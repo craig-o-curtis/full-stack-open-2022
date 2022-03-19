@@ -1,11 +1,11 @@
 # new note
 
 This contain markup of the homework submission.
-Files `pageload.txt` and `homework.txt` also exists in this directory.
+Files `homework_pageload.txt` and `homework_form_submission.txt` also exists in this directory.
 
 Paste the homework.txt contents into the editor at [https://www.websequencediagrams.com/](https://www.websequencediagrams.com/) for the output image.
 
-Instructions:
+Instructions on form submit:
 
 - User creates a note on a page [https://studies.cs.helsinki.fi/exampleapp/notes](https://studies.cs.helsinki.fi/exampleapp/notes)
 - User writes something in the text field
