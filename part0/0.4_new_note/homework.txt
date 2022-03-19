@@ -1,0 +1,8 @@
+note over browser:
+User types in input, clicks Save
+end note
+browser->server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+server->browser: Status Code 203 response with Location /exampleapp/notes to redirect
+note over browser:
+Repeats steps in pageload.txt
+end note
