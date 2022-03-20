@@ -1,4 +1,6 @@
+import { useState, useEffect, useMemo } from "react";
 import { Header, Parts, IPart, Totals } from "./components";
+import courseData from "./data/courseData.json";
 
 interface ICourse {
   title: string;
@@ -6,26 +8,44 @@ interface ICourse {
 }
 
 const App = () => {
-  const courseData: ICourse = {
-    title: "Half Stack application development",
-    parts: [
-      { name: "Fundamentals of React", exercise: 10 },
-      { name: "Using props to pass data", exercise: 7 },
-      { name: "State of a component", exercise: 14 },
-    ],
-  };
+  const [course, setCourse] = useState<ICourse>();
 
-  const getTotals = (): number =>
-    courseData.parts.reduce((acc, curr) => {
-      return acc + curr.exercise;
-    }, 0);
-  console.log(getTotals);
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await new Promise<ICourse>((resolve, reject) => {
+        try {
+          resolve(courseData);
+        } catch (error) {
+          reject(error);
+        }
+      });
+      setCourse(data);
+    };
+    fetchData();
+  }, []);
+  console.log(courseData);
+
+  const totals = useMemo(
+    (): number =>
+      !course
+        ? 0
+        : course.parts.reduce((acc, curr) => {
+            return acc + curr.exercise;
+          }, 0),
+    [course]
+  );
 
   return (
     <div className="App">
-      <Header title={courseData.title} />
-      <Parts parts={courseData.parts} />
-      <Totals totals={getTotals()} />
+      {!course ? (
+        "Loading..."
+      ) : (
+        <>
+          <Header title={course.title} />
+          <Parts parts={course.parts} />
+          <Totals totals={totals} />
+        </>
+      )}
     </div>
   );
 };
