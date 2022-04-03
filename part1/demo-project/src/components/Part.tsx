@@ -2,18 +2,18 @@ import React from "react";
 
 export interface IPart {
   name: string;
-  exercise: number;
+  exercises: number;
 }
 
 interface PartProps {
   part: IPart;
 }
 
-const Part = ({ part: { name, exercise } }: PartProps) => {
+const Part = ({ part: { name, exercises } }: PartProps) => {
   return (
     <li>
       <p>
-        {name}: <strong>{exercise}</strong>
+        {name}: <strong>{exercises}</strong>
       </p>
     </li>
   );
