@@ -1,3 +1,4 @@
+import React from "react";
 const Totals = ({ totals }: { totals: number }) => {
   return (
     <div>
