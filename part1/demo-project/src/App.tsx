@@ -7,7 +7,7 @@ const App = () => {
   const [course, setCourse] = useState<ICourse>();
 
   useEffect(() => {
-    // ** 1.3 course information step3 - data already structured in array syntax in courseData.json
+    // ** 1.5 course information step5 - data already structured in array syntax in courseData.json
     const fetchData = async () => {
       const data = await new Promise<ICourse>((resolve, reject) => {
         try {
