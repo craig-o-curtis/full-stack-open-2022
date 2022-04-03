@@ -1,9 +1,5 @@
 import React from "react";
-
-export interface IPart {
-  name: string;
-  exercises: number;
-}
+import { IPart } from "../interfaces";
 
 interface PartProps {
   part: IPart;

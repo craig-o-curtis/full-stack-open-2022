@@ -1,10 +1,11 @@
 import React from "react";
+import { ICourse } from "../interfaces";
 interface HeaderProps {
-  title?: string;
+  course: ICourse;
   heading?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 }
 
-const Header = ({ title, heading: Tag = "h1" }: HeaderProps) => {
+const Header = ({ course: { title }, heading: Tag = "h1" }: HeaderProps) => {
   return (
     <header>
       <Tag>{title}</Tag>

@@ -1,10 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { Header, Parts, IPart, Totals, Loader } from "./components";
+import { Header, Parts, Totals, Loader } from "./components";
 import courseData from "./data/courseData.json";
-interface ICourse {
-  title: string;
-  parts: IPart[];
-}
+import { ICourse } from "./interfaces";
 
 const App = () => {
   const [course, setCourse] = useState<ICourse>();
@@ -24,25 +21,15 @@ const App = () => {
     fetchData();
   }, []);
 
-  const totals = useMemo(
-    (): number =>
-      !course
-        ? 0
-        : course.parts.reduce((acc, curr) => {
-            return acc + curr.exercises;
-          }, 0),
-    [course]
-  );
-
   return (
     <div className="App">
       {!course ? (
         <Loader />
       ) : (
         <>
-          <Header title={course.title} />
+          <Header course={course} />
           <Parts parts={course.parts} />
-          <Totals totals={totals} />
+          <Totals parts={course.parts} />
         </>
       )}
     </div>
