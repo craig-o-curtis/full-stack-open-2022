@@ -1,5 +1,6 @@
 import React from "react";
-import Part, { IPart } from "./Part";
+import { IPart } from "../interfaces";
+import Part from "./Part";
 
 interface PartsProps {
   parts: IPart[];
