@@ -8,7 +8,7 @@ interface HeaderProps {
 const Header = ({ course: { title }, heading: Tag = "h1" }: HeaderProps) => {
   return (
     <header>
-      <Tag>{title}</Tag>
+      <Tag title={title}>{title}</Tag>
     </header>
   );
 };
