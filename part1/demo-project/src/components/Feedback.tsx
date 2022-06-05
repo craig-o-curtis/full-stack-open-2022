@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import FeedbackButtons from "./FeedbackButtons";
 import { FeedbackType } from "./Feedback.types";
-import FeedbackResults from "./FeedbackResutls";
+import FeedbackResults from "./FeedbackResults";
 
 interface FeedbackState {
   good: number;
