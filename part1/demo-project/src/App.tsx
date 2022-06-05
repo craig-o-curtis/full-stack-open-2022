@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Header, Parts, Totals, Loader } from "./components";
 import courseData from "./data/courseData.json";
 import { ICourse } from "./interfaces";
+import Feedback from "./components/Feedback";
 
 const App = () => {
   const [course, setCourse] = useState<ICourse>();
@@ -32,6 +33,7 @@ const App = () => {
           <Totals parts={course.parts} />
         </>
       )}
+      <Feedback />
     </div>
   );
 };
