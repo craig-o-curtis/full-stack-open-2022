@@ -1,18 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import { FeedbackType } from "./Feedback.types";
+import { Button } from "../Button.styled";
 interface FeedBackButtonsProps {
   onClick: (type: FeedbackType) => void;
 }
 
 const ButtonContainer = styled.div`
   display: grid;
+  grid-gap: 0.5rem;
   grid-template-columns: repeat(3, 1fr);
-`;
-const Button = styled.button`
-  &::focus,
-  &:hover {
-  }
 `;
 
 const FeedbackButtons = ({ onClick }: FeedBackButtonsProps) => {

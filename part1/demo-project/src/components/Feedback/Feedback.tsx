@@ -1,20 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import FeedbackButtons from "./FeedbackButtons";
 import { FeedbackType } from "./Feedback.types";
-import FeedbackResults from "./FeedbackResutls";
-
+import FeedbackStatistics from "./FeedbackStatistics";
+import { Button } from "../Button.styled";
 interface FeedbackState {
   good: number;
   neutral: number;
   bad: number;
 }
 
+const defaultState: Record<FeedbackType, number> = {
+  good: 0,
+  neutral: 0,
+  bad: 0,
+};
+
 const Feedback = () => {
-  const defaultState = {
-    good: 0,
-    neutral: 0,
-    bad: 0,
-  };
   const [feedback, setFeedback] = useState<FeedbackState>(defaultState);
 
   const handleClick = (type: FeedbackType) => {
@@ -28,17 +29,19 @@ const Feedback = () => {
     void setFeedback(() => defaultState);
   };
 
+  const resetDisabled = useMemo(
+    () => Object.values(feedback).every((stat) => stat === 0),
+    [feedback]
+  );
+
   return (
     <div>
       <h2>Give Feedback</h2>
       <FeedbackButtons onClick={handleClick} />
-      <FeedbackResults stats={feedback} />
-      <button
-        disabled={Object.values(feedback).every((stat) => stat === 0)}
-        onClick={handleReset}
-      >
+      <FeedbackStatistics stats={feedback} />
+      <Button disabled={resetDisabled} onClick={handleReset}>
         Reset
-      </button>
+      </Button>
     </div>
   );
 };

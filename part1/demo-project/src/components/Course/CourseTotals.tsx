@@ -1,11 +1,11 @@
 import React, { useMemo } from "react";
-import { ICourse, IPart } from "../interfaces";
+import { ICoursePart } from "./Course.types";
 
-interface TotalsProps {
-  parts: IPart[];
+interface CourseTotalsProps {
+  parts: ICoursePart[];
 }
 
-const Totals = ({ parts }: TotalsProps) => {
+const CourseTotals = ({ parts }: CourseTotalsProps) => {
   const totals = useMemo(
     (): number =>
       !parts
@@ -25,4 +25,4 @@ const Totals = ({ parts }: TotalsProps) => {
   );
 };
 
-export default Totals;
+export default CourseTotals;
