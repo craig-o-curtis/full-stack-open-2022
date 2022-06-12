@@ -1,14 +1,14 @@
 import React from "react";
 
-import Course from "./components/Course";
-import Feedback from "./components/Feedback";
+import { /*Course, Feedback,*/ Anecdotes } from "./components";
 
 const App = () => {
   return (
     <div className="App">
-      <Course />
-      {/* 1.8 Feedback component is top-level for this section, containing inner child components*/}
-      <Feedback />
+      {/* <Course /> */}
+      {/* <Feedback /> */}
+      {/* 1.12 Anecdotes component is top-level for this section */}
+      <Anecdotes />
     </div>
   );
 };
