@@ -1,5 +1,6 @@
-import React, { useMemo, useCallback, useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Button } from "../common";
+import Anecdote from "./Anecdote";
 
 const anecdotes = [
   "If it hurts, do it more often",
@@ -11,20 +12,57 @@ const anecdotes = [
   "Programming without an extremely heavy use of console.log is same as if a doctor would refuse to use x-rays or blood tests when diagnosing patients",
 ];
 
+interface VoteMap {
+  anecdoteIndex: number;
+  anecdote: string;
+  votes: number;
+}
+
 const Anecdotes = () => {
   const [selectedIndex, setSelectedIndex] = useState<number>(null as any);
+  const anecdotesMap = useMemo(
+    () =>
+      anecdotes.map((anecdote, index) => ({
+        anecdoteIndex: index,
+        anecdote: anecdote,
+        votes: 0,
+      })),
+    []
+  );
+  const [votes, setVotes] = useState<VoteMap[]>(anecdotesMap);
 
-  const handleClick = () => {
+  const handleClickShow = () =>
     setSelectedIndex(() => Math.floor(Math.random() * anecdotes.length));
+
+  const handleCLickVote = () => {
+    setVotes((prevVotes) => {
+      const newVotes = prevVotes.map((vote) => {
+        if (vote.anecdoteIndex === selectedIndex) {
+          return {
+            anecdoteIndex: vote.anecdoteIndex,
+            anecdote: vote.anecdote,
+            votes: vote.votes + 1,
+          };
+        }
+        return vote;
+      });
+      return newVotes;
+    });
   };
 
   return (
     <div>
       <h2>Anecdotes</h2>
-      <Button onClick={handleClick}>
+      {selectedIndex !== null && (
+        <Anecdote
+          anecdote={anecdotes[selectedIndex]}
+          onClick={handleCLickVote}
+          votes={votes.find((v) => v.anecdoteIndex === selectedIndex)?.votes}
+        />
+      )}
+      <Button onClick={handleClickShow}>
         {selectedIndex === null ? "Get Quote" : "Next Quote"}
       </Button>
-      <p>{selectedIndex !== null && anecdotes[selectedIndex]}</p>
     </div>
   );
 };
