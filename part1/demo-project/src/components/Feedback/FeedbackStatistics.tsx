@@ -1,7 +1,7 @@
 import React from "react";
 
 import { FeedbackType, FeedbackStat } from "./Feedback.types";
-import * as Styled from "./FeedbackStatistics.styled";
+import StatisticLine from "./StatisticLine";
 
 interface FeedbackStatisticsProps {
   stats: FeedbackStat;
@@ -34,19 +34,12 @@ const FeedbackStatistics = ({ stats }: FeedbackStatisticsProps) => {
       ) : (
         <ul>
           {Object.entries(stats).map(([key, value]) => (
-            <Styled.StatItem key={key}>
-              <Styled.StrongUpper>{key}:</Styled.StrongUpper> {value}
-            </Styled.StatItem>
+            <StatisticLine key={key} label={key} stat={value} />
           ))}
-          <Styled.StatItem>
-            <Styled.StrongUpper>All:</Styled.StrongUpper>: {total}
-          </Styled.StatItem>
-          <Styled.StatItem>
-            <Styled.StrongUpper>Average:</Styled.StrongUpper>: {average}
-          </Styled.StatItem>
-          <Styled.StatItem>
-            <Styled.StrongUpper>Positive:</Styled.StrongUpper>: {positive}%
-          </Styled.StatItem>
+
+          <StatisticLine label="All" stat={total} />
+          <StatisticLine label="Average" stat={average} />
+          <StatisticLine label="Positive" stat={`${positive}%`} />
         </ul>
       )}
     </div>

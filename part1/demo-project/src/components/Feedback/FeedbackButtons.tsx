@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { FeedbackType } from "./Feedback.types";
-import { Button } from "../Button.styled";
+import Button from "../Button";
 interface FeedBackButtonsProps {
   onClick: (type: FeedbackType) => void;
 }
