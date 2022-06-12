@@ -1,8 +1,9 @@
 import React, { useMemo, useState } from "react";
-import { Button } from "../common";
+import { Heading, HR } from "../common";
 import Anecdote from "./Anecdote";
+import TopAnecdote from "./TopAnecdote";
 
-const anecdotes = [
+const anecdotesTemplate = [
   "If it hurts, do it more often",
   "Adding manpower to a late software project makes it later!",
   "The first 90 percent of the code accounts for the first 10 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.",
@@ -19,32 +20,52 @@ interface VoteMap {
 }
 
 const Anecdotes = () => {
-  const [selectedIndex, setSelectedIndex] = useState<number>(null as any);
-  const anecdotesMap = useMemo(
+  const [selectedIndex, setSelectedIndex] = useState<number>(() =>
+    Math.floor(Math.random() * anecdotesTemplate.length)
+  );
+  const defaultAnecdotesMap = useMemo(
     () =>
-      anecdotes.map((anecdote, index) => ({
+      anecdotesTemplate.map((anecdote, index) => ({
         anecdoteIndex: index,
         anecdote: anecdote,
         votes: 0,
       })),
     []
   );
-  const [votes, setVotes] = useState<VoteMap[]>(anecdotesMap);
+  const [anecdotes, setAnecdotes] = useState<VoteMap[]>(defaultAnecdotesMap);
 
-  const handleClickShow = () =>
-    setSelectedIndex(() => Math.floor(Math.random() * anecdotes.length));
+  const topAnecdote = useMemo(() => {
+    let topVotes = [];
+    const votes = anecdotes
+      .map((anecdote) => anecdote.votes)
+      .sort((a, b) => b - a);
+    for (let i = 0; i < anecdotes.length; i++) {
+      if (anecdotes[i].votes === votes[0]) {
+        topVotes.push(anecdotes[i]);
+      }
+    }
 
-  const handleCLickVote = () => {
-    setVotes((prevVotes) => {
-      const newVotes = prevVotes.map((vote) => {
-        if (vote.anecdoteIndex === selectedIndex) {
+    if (topVotes.length > 1) return undefined;
+    return topVotes[0];
+  }, [anecdotes]);
+  console.log(topAnecdote);
+
+  const handleClickNext = () =>
+    setSelectedIndex(() =>
+      Math.floor(Math.random() * defaultAnecdotesMap.length)
+    );
+
+  const handleClickVote = () => {
+    setAnecdotes((prevAnecdotes) => {
+      const newVotes = prevAnecdotes.map((a) => {
+        if (a.anecdoteIndex === selectedIndex) {
           return {
-            anecdoteIndex: vote.anecdoteIndex,
-            anecdote: vote.anecdote,
-            votes: vote.votes + 1,
+            anecdoteIndex: a.anecdoteIndex,
+            anecdote: a.anecdote,
+            votes: a.votes + 1,
           };
         }
-        return vote;
+        return a;
       });
       return newVotes;
     });
@@ -52,17 +73,32 @@ const Anecdotes = () => {
 
   return (
     <div>
-      <h2>Anecdotes</h2>
+      <Heading as="h1">Anecdotes</Heading>
+      <HR />
+      <Heading as="h2">Anecdote of the Day</Heading>
       {selectedIndex !== null && (
         <Anecdote
-          anecdote={anecdotes[selectedIndex]}
-          onClick={handleCLickVote}
-          votes={votes.find((v) => v.anecdoteIndex === selectedIndex)?.votes}
+          anecdote={anecdotesTemplate[selectedIndex]}
+          onClickVote={handleClickVote}
+          onClickNext={handleClickNext}
+          votes={
+            anecdotes.find((a) => a.anecdoteIndex === selectedIndex)?.votes
+          }
         />
       )}
-      <Button onClick={handleClickShow}>
-        {selectedIndex === null ? "Get Quote" : "Next Quote"}
-      </Button>
+      <HR />
+      {topAnecdote !== undefined && (
+        <TopAnecdote
+          anecdote={topAnecdote.anecdote}
+          votes={topAnecdote.votes}
+        />
+      )}
+      {/* {topAnecdote.anecdoteIndex !== -1 && (
+        <TopAnecdote
+          anecdote={topAnecdote.anecdote}
+          votes={topAnecdote.votes}
+        />
+      )} */}
     </div>
   );
 };

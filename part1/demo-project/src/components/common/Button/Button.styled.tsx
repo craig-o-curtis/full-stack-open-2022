@@ -9,6 +9,10 @@ export const Button = styled.button.attrs<ButtonProps>({
 })`
   padding: 0.5rem;
   border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
   &:focus {
     outline: none;
   }
