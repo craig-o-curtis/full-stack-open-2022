@@ -1,2 +1,3 @@
-export { default as Header } from "./Course/CourseHeader";
-export { default as Loader } from "./Loader";
+export { default as Anecdotes } from "./Anecdotes";
+export { default as Course } from "./Course";
+export { default as Feedback } from "./Feedback";

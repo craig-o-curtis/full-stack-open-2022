@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import courseData from "../../data/courseData.json";
 import { ICourse } from "./Course.types";
 import CourseHeader from "./CourseHeader";
-import Loader from "../Loader";
+import { Loader } from "../common";
 import CourseParts from "./CourseParts";
 import CourseTotals from "./CourseTotals";
 

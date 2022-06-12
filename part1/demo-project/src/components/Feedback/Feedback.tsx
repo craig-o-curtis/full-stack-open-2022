@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 import FeedbackButtons from "./FeedbackButtons";
 import { FeedbackType } from "./Feedback.types";
 import FeedbackStatistics from "./FeedbackStatistics";
-import Button from "../Button";
+import { Button } from "../common";
 interface FeedbackState {
   good: number;
   neutral: number;
