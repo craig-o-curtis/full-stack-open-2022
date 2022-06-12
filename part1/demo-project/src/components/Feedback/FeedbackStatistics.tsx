@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 import { FeedbackType, FeedbackStat } from "./Feedback.types";
-import StatisticLine from "./StatisticLine";
+import StatisticsTable from "./StatisticsTable";
 
 interface FeedbackStatisticsProps {
   stats: FeedbackStat;
@@ -26,22 +26,24 @@ const FeedbackStatistics = ({ stats }: FeedbackStatisticsProps) => {
 
   const positive = Number((stats.good / (total || 1)) * 100).toFixed(2);
 
+  const statisticRows = useMemo(() => {
+    if (total === 0) {
+      return [];
+    }
+    return [
+      ...Object.entries(stats).map(([key, value]) => ({
+        label: key,
+        stat: value,
+      })),
+      { label: "All", stat: total },
+      { label: "Average", stat: average },
+      { label: "Positive", stat: `${positive}%` },
+    ];
+  }, [average, positive, stats, total]);
+
   return (
     <div>
-      <h2>Statistics</h2>
-      {total === 0 ? (
-        <p>No feedback given</p>
-      ) : (
-        <ul>
-          {Object.entries(stats).map(([key, value]) => (
-            <StatisticLine key={key} label={key} stat={value} />
-          ))}
-
-          <StatisticLine label="All" stat={total} />
-          <StatisticLine label="Average" stat={average} />
-          <StatisticLine label="Positive" stat={`${positive}%`} />
-        </ul>
-      )}
+      <StatisticsTable title="Statistics" statisticRows={statisticRows} />
     </div>
   );
 };
