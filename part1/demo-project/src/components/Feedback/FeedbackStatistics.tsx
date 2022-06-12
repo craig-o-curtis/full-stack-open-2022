@@ -29,22 +29,26 @@ const FeedbackStatistics = ({ stats }: FeedbackStatisticsProps) => {
   return (
     <div>
       <h2>Statistics</h2>
-      <ul>
-        {Object.entries(stats).map(([key, value]) => (
-          <Styled.StatItem key={key}>
-            <Styled.StrongUpper>{key}:</Styled.StrongUpper> {value}
+      {total === 0 ? (
+        <p>No feedback given</p>
+      ) : (
+        <ul>
+          {Object.entries(stats).map(([key, value]) => (
+            <Styled.StatItem key={key}>
+              <Styled.StrongUpper>{key}:</Styled.StrongUpper> {value}
+            </Styled.StatItem>
+          ))}
+          <Styled.StatItem>
+            <Styled.StrongUpper>All:</Styled.StrongUpper>: {total}
           </Styled.StatItem>
-        ))}
-        <Styled.StatItem>
-          <Styled.StrongUpper>All:</Styled.StrongUpper>: {total}
-        </Styled.StatItem>
-        <Styled.StatItem>
-          <Styled.StrongUpper>Average:</Styled.StrongUpper>: {average}
-        </Styled.StatItem>
-        <Styled.StatItem>
-          <Styled.StrongUpper>Positive:</Styled.StrongUpper>: {positive}%
-        </Styled.StatItem>
-      </ul>
+          <Styled.StatItem>
+            <Styled.StrongUpper>Average:</Styled.StrongUpper>: {average}
+          </Styled.StatItem>
+          <Styled.StatItem>
+            <Styled.StrongUpper>Positive:</Styled.StrongUpper>: {positive}%
+          </Styled.StatItem>
+        </ul>
+      )}
     </div>
   );
 };
