@@ -5,7 +5,8 @@ import Parts from "./Parts";
 import Totals from "./Totals";
 import { Loader } from "../common";
 
-const CoursePartWrapper2 = () => {
+// ** already declared as separate from app
+const RefactoredCourse = () => {
   const courses: ICourse[] = [
     {
       title: "Half Stack application development",
@@ -69,4 +70,4 @@ const CoursePartWrapper2 = () => {
   );
 };
 
-export default CoursePartWrapper2;
+export default RefactoredCourse;
