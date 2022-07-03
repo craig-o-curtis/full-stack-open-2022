@@ -5,6 +5,7 @@ interface CourseTotalsProps {
   parts: ICoursePart[];
 }
 
+//** This step was already completed in the precious exercise
 const CourseTotals = ({ parts }: CourseTotalsProps) => {
   const totals = useMemo(
     (): number =>
