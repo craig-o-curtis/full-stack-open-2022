@@ -1,6 +1,8 @@
 import React from "react";
 
-import { /*Course, Feedback, Anecdotes, */ CoursePart2 } from "./components";
+import {
+  /*Course, Feedback, Anecdotes, */ RefactoredCourse,
+} from "./components";
 
 const App = () => {
   return (
@@ -9,7 +11,7 @@ const App = () => {
       {/* <Feedback /> */}
       {/* 1.12 Anecdotes component is top-level for this section */}
       {/* <Anecdotes /> */}
-      <CoursePart2 />
+      <RefactoredCourse />
     </div>
   );
 };
