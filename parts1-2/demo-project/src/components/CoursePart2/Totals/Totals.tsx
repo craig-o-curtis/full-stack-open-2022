@@ -6,6 +6,8 @@ interface CourseTotalsProps {
 }
 
 //** This step was already completed in the precious exercise
+//** Already using reduce to calculate totals
+//** using VSCode Prettier for auto-formatting
 const CourseTotals = ({ parts }: CourseTotalsProps) => {
   const totals = useMemo(
     (): number =>
