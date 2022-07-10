@@ -10,15 +10,15 @@ const Phonebook = () => {
 
   const handleSubmit = (
     event: React.FormEvent<HTMLFormElement>,
-    newName: string
+    { name, number }: IContact
   ) => {
     event.preventDefault();
 
     // ** prevent dups - pop toast
-    if (contacts.some((c) => c.name === newName)) {
+    if (contacts.some((c) => c.name === name)) {
       toast.error(
         <>
-          Already added contact&nbsp;<strong>{newName}</strong>
+          Already added contact&nbsp;<strong>{name}</strong>
         </>
       );
       return;
@@ -26,8 +26,8 @@ const Phonebook = () => {
 
     // ** ultra paraoid prevent dups
     setContacts((prevContacts) =>
-      !prevContacts.some((p) => p.name === newName)
-        ? [...prevContacts, { name: newName }]
+      !prevContacts.some((p) => p.name === name)
+        ? [...prevContacts, { name, number }]
         : prevContacts
     );
   };

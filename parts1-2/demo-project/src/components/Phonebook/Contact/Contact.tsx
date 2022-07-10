@@ -9,6 +9,7 @@ const Contact = ({ contact }: ContactProps) => (
   <Styled.Contact>
     <IoMdContact />
     <Styled.ContactText>{contact.name}</Styled.ContactText>
+    <Styled.ContactText>{contact.number}</Styled.ContactText>
   </Styled.Contact>
 );
 
