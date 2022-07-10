@@ -1,6 +1,13 @@
 import React from "react";
 
-import { Phonebook } from "./components";
+import {
+  // Course,
+  // Feedback,
+  // Anecdotes,
+  // RefactoredCourse,
+  Phonebook,
+  // Notes,
+} from "./components";
 
 const App = () => {
   return (
@@ -10,6 +17,7 @@ const App = () => {
       {/* <Anecdotes /> */}
       {/* <RefactoredCourse /> */}
       <Phonebook />
+      {/* <Notes /> */}
     </div>
   );
 };
