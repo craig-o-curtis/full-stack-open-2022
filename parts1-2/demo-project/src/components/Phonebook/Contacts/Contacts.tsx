@@ -9,11 +9,13 @@ interface ContactsProps {
   filter: string;
 }
 
-const Contacts = ({ contacts = [], filter }: ContactsProps) => {
+const Contacts = ({ contacts = [], filter = "" }: ContactsProps) => {
   const filteredContacts = useMemo(
     () =>
       filter !== ""
-        ? contacts.filter((c) => c.name.includes(filter))
+        ? contacts.filter((c) =>
+            c.name.toLowerCase().includes(filter.toLowerCase())
+          )
         : contacts,
     [contacts, filter]
   );
@@ -22,8 +24,8 @@ const Contacts = ({ contacts = [], filter }: ContactsProps) => {
     <div>
       {filteredContacts.length > 0 && (
         <Styled.UL>
-          {contacts.map((contact) => (
-            <Contact key={contact.name} contact={contact}></Contact>
+          {filteredContacts.map((contact) => (
+            <Contact key={contact.id} contact={contact}></Contact>
           ))}
         </Styled.UL>
       )}

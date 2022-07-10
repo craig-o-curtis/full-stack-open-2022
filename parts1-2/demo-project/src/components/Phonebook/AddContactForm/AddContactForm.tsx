@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { Button } from "../../common";
 import { AiOutlinePlus } from "react-icons/ai";
 import PhoneNumberInput from "../PhoneNumberInput";
-import { IContact } from "../Contact.types";
 import * as Styled from "./AddContactForm.styled";
 
 interface AddContactFormProps {
   onSubmit: (
     event: React.FormEvent<HTMLFormElement>,
-    newContact: IContact
+    newContact: { name: string; number: string }
   ) => void;
 }
 

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import { v4 as uuidv4 } from "uuid";
 import { Heading } from "../common";
 import AddContactForm from "./AddContactForm";
 import Contacts from "./Contacts";
@@ -7,12 +8,17 @@ import { IContact } from "./Contact.types";
 import FilterContacts from "./FilterContacts";
 
 const Phonebook = () => {
-  const [contacts, setContacts] = useState<IContact[]>([]);
+  const [contacts, setContacts] = useState<IContact[]>([
+    { name: "Arto Hellas", number: "040-123456", id: uuidv4() },
+    { name: "Ada Lovelace", number: "39-44-5323523", id: uuidv4() },
+    { name: "Dan Abramov", number: "12-43-234345", id: uuidv4() },
+    { name: "Mary Poppendieck", number: "39-23-6423122", id: uuidv4() },
+  ]);
   const [filter, setFilter] = useState<string>("");
 
   const handleSubmit = (
     event: React.FormEvent<HTMLFormElement>,
-    { name, number }: IContact
+    { name, number }: { name: string; number: string }
   ) => {
     event.preventDefault();
 
@@ -29,7 +35,7 @@ const Phonebook = () => {
     // ** ultra paraoid prevent dups
     setContacts((prevContacts) =>
       !prevContacts.some((p) => p.name === name)
-        ? [...prevContacts, { name, number }]
+        ? [...prevContacts, { name, number, id: uuidv4() }]
         : prevContacts
     );
   };
