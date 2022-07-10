@@ -1,1 +1,1 @@
-export { Button as default } from "./Button.styled";
+export { default } from "./Button";
