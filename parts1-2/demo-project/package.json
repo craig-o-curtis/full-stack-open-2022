@@ -26,6 +26,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "server": "npx json-server --port 3001 --watch db.json",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

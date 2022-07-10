@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { v4 as uuidv4 } from "uuid";
-import { Heading } from "../common";
+import axios from "axios";
+import { Heading, Loader } from "../common";
 import AddContactForm from "./AddContactForm";
 import Contacts from "./Contacts";
 import { IContact } from "./Contact.types";
@@ -9,13 +9,21 @@ import FilterContacts from "./FilterContacts";
 
 // ** Completed extraction already for part-2.b Exercise 2.10
 const Phonebook = () => {
-  const [contacts, setContacts] = useState<IContact[]>([
-    { name: "Arto Hellas", number: "040-123456", id: uuidv4() },
-    { name: "Ada Lovelace", number: "39-44-5323523", id: uuidv4() },
-    { name: "Dan Abramov", number: "12-43-234345", id: uuidv4() },
-    { name: "Mary Poppendieck", number: "39-23-6423122", id: uuidv4() },
-  ]);
+  const [contacts, setContacts] = useState<IContact[]>(null as any);
   const [filter, setFilter] = useState<string>("");
+
+  useEffect(() => {
+    const getNotes = async () => {
+      try {
+        const { data } = await axios.get("http://localhost:3001/contacts");
+        console.log(data);
+        //   setNotes(notes);
+        setContacts(data);
+      } catch (error) {}
+    };
+
+    getNotes();
+  }, []);
 
   const handleSubmit = (
     event: React.FormEvent<HTMLFormElement>,
@@ -36,7 +44,14 @@ const Phonebook = () => {
     // ** ultra paraoid prevent dups
     setContacts((prevContacts) =>
       !prevContacts.some((p) => p.name === name)
-        ? [...prevContacts, { name, number, id: uuidv4() }]
+        ? [
+            ...prevContacts,
+            {
+              name,
+              number,
+              id: Math.max(...prevContacts.map((c) => c.id)) + 1,
+            },
+          ]
         : prevContacts
     );
   };
@@ -48,17 +63,23 @@ const Phonebook = () => {
   return (
     <div>
       <Heading as="h2">Phonebook</Heading>
-      <AddContactForm onSubmit={handleSubmit} />
+      {contacts ? (
+        <>
+          <AddContactForm onSubmit={handleSubmit} />
 
-      <Heading as="h2">Contacts:</Heading>
-      {contacts.length > 0 && (
-        <FilterContacts
-          filter={filter}
-          onChange={handleFilterChange}
-          onClear={() => setFilter("")}
-        />
+          <Heading as="h2">Contacts:</Heading>
+          {contacts.length > 0 && (
+            <FilterContacts
+              filter={filter}
+              onChange={handleFilterChange}
+              onClear={() => setFilter("")}
+            />
+          )}
+          <Contacts contacts={contacts} filter={filter} />
+        </>
+      ) : (
+        <Loader />
       )}
-      <Contacts contacts={contacts} filter={filter} />
       <Toaster />
     </div>
   );
