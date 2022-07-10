@@ -7,6 +7,7 @@ import Contacts from "./Contacts";
 import { IContact } from "./Contact.types";
 import FilterContacts from "./FilterContacts";
 
+// ** Completed extraction already for part-2.b Exercise 2.10
 const Phonebook = () => {
   const [contacts, setContacts] = useState<IContact[]>([
     { name: "Arto Hellas", number: "040-123456", id: uuidv4() },
