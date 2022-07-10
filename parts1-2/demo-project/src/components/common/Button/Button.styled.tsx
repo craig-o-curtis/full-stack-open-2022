@@ -1,12 +1,6 @@
 import styled from "styled-components";
 
-interface ButtonProps {
-  type: "button" | "reset" | "submit";
-}
-
-export const Button = styled.button.attrs<ButtonProps>({
-  type: "button",
-})`
+export const Button = styled.button`
   padding: 0.5rem;
   border: none;
 
@@ -27,8 +21,7 @@ export const Button = styled.button.attrs<ButtonProps>({
   &:active {
     color: dodgerblue;
   }
+  &:disabled {
+    pointer-events: none;
+  }
 `;
-
-Button.defaultProps = {
-  type: "button",
-};

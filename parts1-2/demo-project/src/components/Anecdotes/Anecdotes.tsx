@@ -48,7 +48,6 @@ const Anecdotes = () => {
     if (topVotes.length > 1) return undefined;
     return topVotes[0];
   }, [anecdotes]);
-  console.log(topAnecdote);
 
   const handleClickNext = () =>
     setSelectedIndex(() =>
