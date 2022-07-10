@@ -4,9 +4,11 @@ import { Heading } from "../common";
 import AddContactForm from "./AddContactForm";
 import Contacts from "./Contacts";
 import { IContact } from "./Contact.types";
+import FilterContacts from "./FilterContacts";
 
 const Phonebook = () => {
   const [contacts, setContacts] = useState<IContact[]>([]);
+  const [filter, setFilter] = useState<string>("");
 
   const handleSubmit = (
     event: React.FormEvent<HTMLFormElement>,
@@ -32,13 +34,24 @@ const Phonebook = () => {
     );
   };
 
+  const handleFilterChange = (newFilter: string) => {
+    setFilter(() => newFilter);
+  };
+
   return (
     <div>
       <Heading as="h2">Phonebook</Heading>
       <AddContactForm onSubmit={handleSubmit} />
 
       <Heading as="h2">Contacts:</Heading>
-      <Contacts contacts={contacts} />
+      {contacts.length > 0 && (
+        <FilterContacts
+          filter={filter}
+          onChange={handleFilterChange}
+          onClear={() => setFilter("")}
+        />
+      )}
+      <Contacts contacts={contacts} filter={filter} />
       <Toaster />
     </div>
   );
