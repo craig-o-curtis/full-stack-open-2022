@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import Country from "../Country";
 import CountryDetail from "../CountryDetail";
 import { ICountry } from "../Country.types";
 import { Banner } from "../../common";
@@ -27,13 +26,13 @@ const Countries = ({ countries = [], filter }: CountriesProps) => {
       {filteredCountries.length === 0 && filter !== "" ? (
         <Banner variant="warning">Please refine your search</Banner>
       ) : (
-        filteredCountries.map((country) =>
-          filteredCountries.length === 1 ? (
-            <CountryDetail key={country?.name?.common} country={country} />
-          ) : (
-            <Country key={country?.name?.common} country={country} />
-          )
-        )
+        filteredCountries.map((country) => (
+          <CountryDetail
+            key={country?.name?.common}
+            country={country}
+            showDefault={filteredCountries.length === 1}
+          />
+        ))
       )}
     </Styled.Countries>
   );
