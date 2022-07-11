@@ -4,7 +4,6 @@ import { IWeather } from "../Weather.types";
 
 const queryKey = "Weather";
 
-console.log("process.env.REACT_APP_API_KEY", process.env.REACT_APP_API_KEY);
 const getWeather = async (lat: number, long: number) => {
   if (lat === undefined || long === undefined) {
     return;

@@ -12,6 +12,11 @@ export const InputsWrapper = styled.div`
   justify-content: flex-start;
 `;
 
+export const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
 export const LabelSpan = styled.span`
   margin-right: 1rem;
 `;

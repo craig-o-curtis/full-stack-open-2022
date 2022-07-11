@@ -7,9 +7,14 @@ import Contact from "../Contact";
 interface ContactsProps {
   contacts: IContact[];
   filter: string;
+  onDeleteContact: (contact: IContact) => void;
 }
 
-const Contacts = ({ contacts = [], filter = "" }: ContactsProps) => {
+const Contacts = ({
+  contacts = [],
+  filter = "",
+  onDeleteContact,
+}: ContactsProps) => {
   const filteredContacts = useMemo(
     () =>
       filter !== ""
@@ -25,7 +30,11 @@ const Contacts = ({ contacts = [], filter = "" }: ContactsProps) => {
       {filteredContacts.length > 0 && (
         <Styled.UL>
           {filteredContacts.map((contact) => (
-            <Contact key={contact.id} contact={contact}></Contact>
+            <Contact
+              key={contact.id}
+              contact={contact}
+              onDeleteContact={onDeleteContact}
+            ></Contact>
           ))}
         </Styled.UL>
       )}

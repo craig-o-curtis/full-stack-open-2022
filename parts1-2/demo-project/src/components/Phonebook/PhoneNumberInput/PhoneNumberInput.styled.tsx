@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import SuccessIcon from "../../common/SuccessIcon/SuccessIcon";
+import SuccessIcon from "../../common/SuccessIcon";
 
 export const PhoneInputWrapper = styled.div`
   display: flex;

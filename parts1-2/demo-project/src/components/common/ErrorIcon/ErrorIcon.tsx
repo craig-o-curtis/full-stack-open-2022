@@ -3,10 +3,11 @@ import Icon from "../Icon";
 
 interface ErrorIconProps {
   size?: number;
+  spacing?: number;
 }
 
-const ErrorIcon = ({ size }: ErrorIconProps) => (
-  <Icon variant="danger" size={size}>
+const ErrorIcon = ({ size, spacing }: ErrorIconProps) => (
+  <Icon variant="danger" size={size} spacing={spacing}>
     <MdError />
   </Icon>
 );

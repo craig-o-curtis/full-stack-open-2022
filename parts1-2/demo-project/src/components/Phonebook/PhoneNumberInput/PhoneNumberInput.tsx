@@ -18,7 +18,6 @@ interface PhoneNumberInputProps {
 
 const PhoneNumberInput = ({ onChange, value }: PhoneNumberInputProps) => {
   const handleChange = (newVal: string) => {
-    console.log("newVal", newVal);
     onChange({
       number: formatPhoneNumberIntl(newVal),
       isPossibleNumber: newVal !== undefined && isPossiblePhoneNumber(newVal),

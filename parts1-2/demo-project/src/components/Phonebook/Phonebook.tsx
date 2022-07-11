@@ -1,72 +1,68 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import axios from "axios";
-import { Heading, Loader } from "../common";
+import { Banner, Heading, Loader } from "../common";
 import AddContactForm from "./AddContactForm";
 import Contacts from "./Contacts";
 import { IContact } from "./Contact.types";
 import FilterContacts from "./FilterContacts";
+import {
+  useContactsQuery,
+  useAddContactMutation,
+  useUpdateContactMutation,
+  useDeleteContactMutation,
+} from "./hooks";
 
 // ** Completed extraction already for part-2.b Exercise 2.10
 const Phonebook = () => {
-  const [contacts, setContacts] = useState<IContact[]>(null as any);
+  const { contacts, isLoading, error, isError } = useContactsQuery();
   const [filter, setFilter] = useState<string>("");
+  const { mutateAsync: postContact } = useAddContactMutation();
+  const { mutateAsync: updateContact } = useUpdateContactMutation();
+  const { mutateAsync: deleteContact } = useDeleteContactMutation();
 
-  useEffect(() => {
-    const getNotes = async () => {
-      try {
-        const { data } = await axios.get("http://localhost:3001/contacts");
-        console.log(data);
-        //   setNotes(notes);
-        setContacts(data);
-      } catch (error) {}
-    };
-
-    getNotes();
-  }, []);
-
-  const handleSubmit = (
+  const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>,
     { name, number }: { name: string; number: string }
   ) => {
     event.preventDefault();
 
-    // ** prevent dups - pop toast
-    if (contacts.some((c) => c.name === name)) {
-      toast.error(
-        <>
-          Already added contact&nbsp;<strong>{name}</strong>
-        </>
-      );
-      return;
+    const hasDupe = contacts?.some(
+      (c) => c.name === name && c.number === number
+    );
+    if (hasDupe) {
+      return toast.error(`${name} already exists`);
     }
 
-    // ** ultra paraoid prevent dups
-    setContacts((prevContacts) =>
-      !prevContacts.some((p) => p.name === name)
-        ? [
-            ...prevContacts,
-            {
-              name,
-              number,
-              id: Math.max(...prevContacts.map((c) => c.id)) + 1,
-            },
-          ]
-        : prevContacts
+    const sameContact = contacts?.find((c) => c.name === name);
+
+    if (sameContact === undefined) {
+      return await postContact({ name, number });
+    }
+
+    // eslint-disable-next-line no-restricted-globals
+    const okToUpdate = confirm(
+      `${name} already exists but with a different number. Are you sure you want to overwrite this contact with a new number?`
     );
+    if (!okToUpdate) {
+      return;
+    }
+    return await updateContact({ name, number, id: sameContact.id });
   };
 
   const handleFilterChange = (newFilter: string) => {
     setFilter(() => newFilter);
   };
 
+  const handleDelete = async (contact: IContact) => {
+    await deleteContact(contact);
+  };
+
   return (
     <div>
       <Heading as="h2">Phonebook</Heading>
-      {contacts ? (
+      {contacts && (
         <>
-          <AddContactForm onSubmit={handleSubmit} />
-
+          <AddContactForm onSubmit={handleSubmit} contacts={contacts} />
           <Heading as="h2">Contacts:</Heading>
           {contacts.length > 0 && (
             <FilterContacts
@@ -75,11 +71,15 @@ const Phonebook = () => {
               onClear={() => setFilter("")}
             />
           )}
-          <Contacts contacts={contacts} filter={filter} />
+          <Contacts
+            contacts={contacts}
+            filter={filter}
+            onDeleteContact={handleDelete}
+          />
         </>
-      ) : (
-        <Loader />
       )}
+      {isLoading && <Loader />}
+      {isError && error && <Banner variant="danger">{error.message}</Banner>}
       <Toaster />
     </div>
   );
