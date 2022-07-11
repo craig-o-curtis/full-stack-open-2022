@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
-export type Variant = "success" | "danger" | "info";
+export type Variant = "success" | "danger" | "info" | "warning";
 
 const variantMap: Record<Variant, string> = {
   success: "forestgreen",
   danger: "firebrick",
+  warning: "goldenrod",
   info: "dodgerblue",
 };
 

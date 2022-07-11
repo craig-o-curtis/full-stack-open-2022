@@ -92,12 +92,6 @@ const Anecdotes = () => {
           votes={topAnecdote.votes}
         />
       )}
-      {/* {topAnecdote.anecdoteIndex !== -1 && (
-        <TopAnecdote
-          anecdote={topAnecdote.anecdote}
-          votes={topAnecdote.votes}
-        />
-      )} */}
     </div>
   );
 };
