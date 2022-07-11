@@ -6,14 +6,14 @@ const variantDarKMap: Record<Variant, string> = {
   success: "forestgreen",
   danger: "firebrick",
   warning: "goldenrod",
-  info: "dodgerblue",
+  info: "royalblue",
 };
 
 const variantLightMap: Record<Variant, string> = {
   success: "lime",
   danger: "pink",
   warning: "lightyellow",
-  info: "skyblue",
+  info: "aliceblue",
 };
 
 interface BannerProps {

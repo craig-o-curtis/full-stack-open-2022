@@ -15,5 +15,5 @@ src/**/*.css
 .DS_Store
 .env
 npm-debug.log*
-/.vscode/settings.json
+
 

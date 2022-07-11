@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ICountry } from "../Country.types";
 import { Heading, Image, Button } from "../../common";
+import CapitalWeather from "../CapitalWeather";
 import * as Styled from "./CountryDetail.styled";
 
 interface CountryDetailProps {
@@ -10,6 +11,10 @@ interface CountryDetailProps {
 
 const CountryDetail = ({ country, showDefault }: CountryDetailProps) => {
   const [showDetails, setShowDetails] = useState(false);
+  const showWeather =
+    country.capital &&
+    country?.capital[0] !== undefined &&
+    country?.capitalInfo?.latlng !== undefined;
 
   useEffect(() => {
     setShowDetails(showDefault);
@@ -27,7 +32,7 @@ const CountryDetail = ({ country, showDefault }: CountryDetailProps) => {
       {showDetails && (
         <Styled.CountryBox>
           <Styled.CountryBoxChild>
-            <Styled.Grid>
+            <Styled.Grid cols={2}>
               <Styled.GridItem>
                 <strong>Capital:</strong>{" "}
               </Styled.GridItem>
@@ -47,12 +52,23 @@ const CountryDetail = ({ country, showDefault }: CountryDetailProps) => {
                 </Styled.UL>
               </Styled.GridItem>
             </Styled.Grid>
+
+            {showWeather && (
+              <CapitalWeather
+                capital={(country?.capital || [])[0]}
+                latlong={country?.capitalInfo?.latlng as number[]}
+              />
+            )}
           </Styled.CountryBoxChild>
           <Styled.CountryBoxChild>
-            <Image
-              src={country?.flags?.png as string}
-              alt={`flag of ${country?.name?.common}`}
-            />
+            <Styled.Grid cols={1}>
+              <Styled.GridItem>
+                <Image
+                  src={country?.flags?.png as string}
+                  alt={`flag of ${country?.name?.common}`}
+                />
+              </Styled.GridItem>
+            </Styled.Grid>
           </Styled.CountryBoxChild>
         </Styled.CountryBox>
       )}

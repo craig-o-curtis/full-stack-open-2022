@@ -27,9 +27,7 @@ const CountrySearch = () => {
 
       <Overflow>
         {isLoading && <Loader />}
-        {isError && error && (
-          <Banner variant="danger">{error as string}</Banner>
-        )}
+        {isError && error && <Banner variant="danger">{error.message}</Banner>}
         {countries && <Countries countries={countries} filter={filter} />}
       </Overflow>
     </OverflowLock>

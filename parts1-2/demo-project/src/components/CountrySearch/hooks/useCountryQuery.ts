@@ -1,5 +1,6 @@
 import { useQuery } from "react-query";
 import axios from "axios";
+import { ICountry } from "../Country.types";
 
 const queryKey = "Countries";
 
@@ -11,9 +12,11 @@ const getCountries = async () => {
     // noop
   }
 };
-getCountries();
 
 export const useCountryQuery = () => {
-  const { data, isLoading, isError, error } = useQuery(queryKey, getCountries);
+  const { data, isLoading, isError, error } = useQuery<ICountry[], Error>(
+    queryKey,
+    getCountries
+  );
   return { data, isLoading, isError, error };
 };
