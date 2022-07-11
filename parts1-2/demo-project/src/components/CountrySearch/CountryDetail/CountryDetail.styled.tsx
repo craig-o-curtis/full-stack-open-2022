@@ -2,9 +2,14 @@ import styled from "styled-components";
 
 export const CountryDetail = styled.div``;
 
+export const HeadingText = styled.span`
+  margin-right: 1rem;
+`;
+
 export const CountryBox = styled.div`
   display: flex;
   justify-content: space-between;
+  margin-top: 1rem;
 `;
 
 export const CountryBoxChild = styled.div`
