@@ -46,8 +46,10 @@ app.get("/api/contacts/:id", (request, response) => {
   const id = Number(request.params.id);
   const contact = memoryContacts.find((contact) => contact.id === id);
 
+  // **
   if (contact === undefined) {
     response.status(404).end();
+    return;
   }
 
   response.json(contact);
@@ -60,6 +62,7 @@ app.patch("/api/contacts/:id", (request, response) => {
 
   if (contact === undefined) {
     response.status(404).end();
+    return;
   }
 
   memoryContacts = memoryContacts
