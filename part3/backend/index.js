@@ -96,6 +96,7 @@ app.post("/api/contacts", (request, response) => {
   response.json(contact);
 });
 
+// ** 3.4 tested in Postman, VSCode rest thingy, and UI
 app.delete("/api/contacts/:id", (request, response) => {
   const id = Number(request.params.id);
   memoryContacts = memoryContacts.filter((contact) => contact.id !== id);
