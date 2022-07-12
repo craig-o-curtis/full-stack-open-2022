@@ -10,6 +10,7 @@ const getContacts = async () => {
     return response.data;
   } catch (error) {
     // noop
+    throw error;
   }
 };
 
