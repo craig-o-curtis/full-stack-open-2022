@@ -1,9 +1,21 @@
 const express = require("express");
 const cors = require("cors");
+const morgan = require("morgan");
+const fs = require("fs");
+const path = require("path");
 const app = express();
 
 const contacts = require("./contacts.json");
 let memoryContacts = [...contacts];
+
+// ** 3.7
+const requestLogger = (request, response, next) => {
+  console.log("Request Method:", request.method);
+  console.log("Request Path:  ", request.path);
+  console.log("Request Body:  ", request.body);
+  console.log("---");
+  next();
+};
 
 // ** 3.5 would rather use uuid package, but using this method for exercise
 const incrementId = () => {
@@ -14,10 +26,34 @@ const incrementId = () => {
   return maxId + 1;
 };
 
+// create a write stream (in append mode)
+const accessLogStream = fs.createWriteStream(
+  path.join(__dirname, "access.log"),
+  { flags: "a" }
+);
+
 // ** to allow using localhost:3001
 app.use(cors());
 // ** to allow request.body to be defined
 app.use(express.json());
+// ** 3.7 "middleware"
+app.use(requestLogger);
+// log only 4xx and 5xx responses to console
+app.use(
+  morgan("dev", {
+    skip: function (req, res) {
+      return res.statusCode < 400;
+    },
+  })
+);
+// log all requests to access.log
+app.use(
+  morgan("common", {
+    stream: fs.createWriteStream(path.join(__dirname, "access.log"), {
+      flags: "a",
+    }),
+  })
+);
 
 app.get("/", (request, response) => {
   response.status(404).end();
@@ -116,10 +152,15 @@ app.post("/api/contacts", (request, response) => {
 app.delete("/api/contacts/:id", (request, response) => {
   const id = Number(request.params.id);
   memoryContacts = memoryContacts.filter((contact) => contact.id !== id);
-
   // 204 no content status code
   response.status(204).end();
 });
+
+// ** 3.7
+const unknownEndpoint = (request, response) => {
+  response.status(404).send({ error: "unknown endpoint" });
+};
+app.use(unknownEndpoint);
 
 const PORT = 3001;
 app.listen(PORT, () => {
