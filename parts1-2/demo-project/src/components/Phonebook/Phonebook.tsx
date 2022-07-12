@@ -54,6 +54,13 @@ const Phonebook = () => {
   };
 
   const handleDelete = async (contact: IContact) => {
+    // eslint-disable-next-line no-restricted-globals
+    const okToDelete = confirm(
+      `Are you sure you want to delete ${contact.name}?`
+    );
+    if (!okToDelete) {
+      return;
+    }
     await deleteContact(contact);
   };
 
