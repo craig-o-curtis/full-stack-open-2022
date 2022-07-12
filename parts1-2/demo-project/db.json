@@ -23,17 +23,12 @@
     {
       "name": "Ada Lovelace",
       "number": "+39 445323523",
-      "id": 2
+      "id": 1
     },
     {
       "name": "test contact",
       "number": "+34 343434443",
-      "id": 5
-    },
-    {
-      "name": "Test contact",
-      "number": "+34 343434443",
-      "id": 6
+      "id": 2
     }
   ]
 }

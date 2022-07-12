@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const FilterContactRow = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
 `;
 
 export const LabelText = styled.span`
