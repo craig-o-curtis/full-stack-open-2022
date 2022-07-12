@@ -78,7 +78,7 @@ const Phonebook = () => {
             <AddContactForm onSubmit={handleSubmit} contacts={contacts} />
           )}
           {contacts && contacts.length > 0 && (
-            <Box alignSelf="flex-end" mt="auto">
+            <Box alignSelf="flex-end" mt="auto" p={1}>
               <FilterContacts
                 filter={filter}
                 onChange={handleFilterChange}
