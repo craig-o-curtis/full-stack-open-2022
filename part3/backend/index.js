@@ -1,21 +1,11 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-const fs = require("fs");
-const path = require("path");
 const app = express();
+const { v4: uuidv4 } = require("uuid");
 
 const contacts = require("./contacts.json");
 let memoryContacts = [...contacts];
-
-// ** 3.7
-const requestLogger = (request, response, next) => {
-  console.log("Request Method:", request.method);
-  console.log("Request Path:  ", request.path);
-  console.log("Request Body:  ", request.body);
-  console.log("---");
-  next();
-};
 
 // ** 3.5 would rather use uuid package, but using this method for exercise
 const incrementId = () => {
@@ -26,33 +16,32 @@ const incrementId = () => {
   return maxId + 1;
 };
 
-// create a write stream (in append mode)
-const accessLogStream = fs.createWriteStream(
-  path.join(__dirname, "access.log"),
-  { flags: "a" }
-);
-
 // ** to allow using localhost:3001
 app.use(cors());
-// ** to allow request.body to be defined
 app.use(express.json());
-// ** 3.7 "middleware"
-app.use(requestLogger);
-// log only 4xx and 5xx responses to console
+// ** to allow request.body to be defined
+// ** 3.8
+morgan.token("id", function getId(req) {
+  return req.id;
+});
+morgan.token("body", (req, res) => JSON.stringify(req.body));
+
+// ** utils
+function assignId(req, res, next) {
+  req.id = uuidv4();
+  next();
+}
+app.use(assignId);
 app.use(
-  morgan("dev", {
-    skip: function (req, res) {
-      return res.statusCode < 400;
-    },
-  })
-);
-// log all requests to access.log
-app.use(
-  morgan("common", {
-    stream: fs.createWriteStream(path.join(__dirname, "access.log"), {
-      flags: "a",
-    }),
-  })
+  morgan(`
+   ***** MORGANFREEMAN *****
+    METHOD:          :method 
+    URL:             :url 
+    STATUS:          :status 
+    RESPONSE TIME:   :response-time 
+    TOTAL TIME:      :total-time
+    REQ BODY:        :body
+  `)
 );
 
 app.get("/", (request, response) => {
@@ -117,6 +106,7 @@ app.patch("/api/contacts/:id", (request, response) => {
 // ** so for this exercise, just adding the never-hit block of code for homwork purposes
 app.post("/api/contacts", (request, response) => {
   const body = request.body;
+
   const nameAlreadyExists = memoryContacts.find(
     (contact) => contact.name === body.name
   );
@@ -124,15 +114,21 @@ app.post("/api/contacts", (request, response) => {
   // ** this block is never hit because the dup check is handled in the front-end and we're allowing updating of numbers
   // ** to existing contacts. but just adding this for homework purposes
   if (nameAlreadyExists) {
-    return response.status(400).json({
-      error: "Name already exists",
-    });
+    return response
+      .status(400)
+      .json({
+        error: "Name already exists",
+      })
+      .end();
   }
 
   if (!body.name || !body.number) {
-    return response.status(400).json({
-      error: `${body?.name === undefined ? "name" : "number"} missing`,
-    });
+    return response
+      .status(400)
+      .json({
+        error: `${body?.name === undefined ? "name" : "number"} missing`,
+      })
+      .end();
   }
   // ** The name or number is missing
   // ** The name already exists in the phonebook
