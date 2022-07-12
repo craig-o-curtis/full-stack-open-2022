@@ -33,27 +33,24 @@ const Phonebook = () => {
   ) => {
     event.preventDefault();
 
-    const hasDupe = contacts?.some(
+    const hasExactDup = contacts?.some(
       (c) => c.name === name && c.number === number
     );
-    if (hasDupe) {
+    const sameContact = contacts?.find((c) => c.name === name);
+
+    if (hasExactDup) {
       return toast.error(`${name} already exists`);
     }
 
-    const sameContact = contacts?.find((c) => c.name === name);
-
-    if (sameContact === undefined) {
-      return await postContact({ name, number });
-    }
-
-    // eslint-disable-next-line no-restricted-globals
-    const okToUpdate = confirm(
-      `${name} already exists but with a different number. Are you sure you want to overwrite this contact with a new number?`
-    );
-    if (!okToUpdate) {
+    if (sameContact !== undefined) {
+      // eslint-disable-next-line no-restricted-globals
+      confirm(
+        `${name} already exists but with a different number. Are you sure you want to overwrite this contact with a new number?`
+      ) && updateContact({ name, number, id: sameContact.id });
       return;
     }
-    return await updateContact({ name, number, id: sameContact.id });
+
+    return await postContact({ name, number });
   };
 
   const handleFilterChange = (newFilter: string) => {
