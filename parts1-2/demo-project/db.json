@@ -29,6 +29,11 @@
       "name": "test contact",
       "number": "+34 343434443",
       "id": 5
+    },
+    {
+      "name": "Test contact",
+      "number": "+34 343434443",
+      "id": 6
     }
   ]
 }
