@@ -5,7 +5,8 @@ const app = express();
 const contacts = require("./contacts.json");
 let memoryContacts = [...contacts];
 
-const generateId = () => {
+// ** 3.5 would rather use uuid package, but using this method for exercise
+const incrementId = () => {
   const maxId =
     memoryContacts.length > 0
       ? Math.max(...memoryContacts.map((n) => n.id))
@@ -88,7 +89,7 @@ app.post("/api/contacts", (request, response) => {
   const contact = {
     name: body.name,
     number: body.number,
-    id: generateId(),
+    id: incrementId(),
   };
 
   memoryContacts = memoryContacts.concat(contact);
