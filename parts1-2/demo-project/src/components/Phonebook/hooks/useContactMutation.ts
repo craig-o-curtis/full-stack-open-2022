@@ -14,13 +14,16 @@ import toast from "react-hot-toast";
 type PartialPayload = Omit<IContact, "id">;
 
 const postContact = async (payload: PartialPayload) => {
-  const response = await axios.post("http://localhost:3001/contacts", payload);
+  const response = await axios.post(
+    "http://localhost:3001/api/contacts",
+    payload
+  );
   return response;
 };
 
 const updateContact = async (payload: IContact) => {
   const response = await axios.patch(
-    `http://localhost:3001/contacts/${payload.id}`,
+    `http://localhost:3001/api/contacts/${payload.id}`,
     payload
   );
   return response;
@@ -28,7 +31,7 @@ const updateContact = async (payload: IContact) => {
 
 const deleteContact = async (contact: IContact) => {
   const response = await axios.delete(
-    `http://localhost:3001/contacts/${contact.id}`
+    `http://localhost:3001/api/contacts/${contact.id}`
   );
   return response;
 };

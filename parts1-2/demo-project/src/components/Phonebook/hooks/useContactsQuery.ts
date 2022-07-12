@@ -7,7 +7,7 @@ export const queryKey = "Contacts";
 
 const getContacts = async () => {
   try {
-    const response = await axios.get("http://localhost:3001/contacts");
+    const response = await axios.get("http://localhost:3001/api/contacts");
     return response.data;
   } catch (error) {
     // noop
