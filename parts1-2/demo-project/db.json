@@ -27,8 +27,13 @@
     },
     {
       "name": "test contact",
-      "number": "+34 343434443",
+      "number": "+45 32 45 34 54",
       "id": 2
+    },
+    {
+      "name": "test contact 2",
+      "number": "+32 14 12 55 34",
+      "id": 3
     }
   ]
 }
