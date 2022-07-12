@@ -3,10 +3,11 @@ import Icon from "../Icon";
 
 interface SuccessIconProps {
   size?: number;
+  spacing?: number;
 }
 
-const SuccessIcon = ({ size }: SuccessIconProps) => (
-  <Icon variant="success" size={size}>
+const SuccessIcon = ({ size, spacing }: SuccessIconProps) => (
+  <Icon variant="success" size={size} spacing={spacing}>
     <AiFillCheckCircle />
   </Icon>
 );

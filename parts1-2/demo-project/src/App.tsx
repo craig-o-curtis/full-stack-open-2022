@@ -6,11 +6,11 @@ import {
   // Feedback,
   // Anecdotes,
   // RefactoredCourse,
-  // Phonebook,
+  Phonebook,
   // Notes,
-  CountrySearch,
+  // CountrySearch,
 } from "./components";
-import { GlobalStyles, AppWrapper, } from "./components/common";
+import { GlobalStyles, AppWrapper } from "./components/common";
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -22,9 +22,9 @@ const App = () => {
         {/* <Feedback /> */}
         {/* <Anecdotes /> */}
         {/* <RefactoredCourse /> */}
-        {/* <Phonebook /> */}
+        <Phonebook />
         {/* <Notes /> */}
-        <CountrySearch />
+        {/* <CountrySearch /> */}
       </AppWrapper>
       <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
     </QueryClientProvider>
