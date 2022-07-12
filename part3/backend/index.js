@@ -77,14 +77,29 @@ app.patch("/api/contacts/:id", (request, response) => {
   response.json(contact);
 });
 
+// ** exercise 3.6 - this is at odds with the patch call for updating phone numbers and all the associated code
+// ** so for this exercise, just adding the never-hit block of code for homwork purposes
 app.post("/api/contacts", (request, response) => {
   const body = request.body;
+  const nameAlreadyExists = memoryContacts.find(
+    (contact) => contact.name === body.name
+  );
+
+  // ** this block is never hit because the dup check is handled in the front-end and we're allowing updating of numbers
+  // ** to existing contacts. but just adding this for homework purposes
+  if (nameAlreadyExists) {
+    return response.status(400).json({
+      error: "Name already exists",
+    });
+  }
 
   if (!body.name || !body.number) {
     return response.status(400).json({
-      error: "content missing",
+      error: `${body?.name === undefined ? "name" : "number"} missing`,
     });
   }
+  // ** The name or number is missing
+  // ** The name already exists in the phonebook
 
   const contact = {
     name: body.name,
