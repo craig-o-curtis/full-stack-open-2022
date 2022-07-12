@@ -22,6 +22,18 @@ app.get("/", (request, response) => {
   response.status(404).end();
 });
 
+app.get("/info", (request, response) => {
+  response
+    .send(
+      `
+    <h1>Info page</h1>
+    <p>Phonebook has info for ${memoryContacts.length} people</p>
+    <p>${new Date()}</p>
+  `
+    )
+    .end();
+});
+
 app.get("/api", (request, response) => {
   response.status(404).end();
 });
