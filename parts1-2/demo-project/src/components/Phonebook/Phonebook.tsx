@@ -1,6 +1,13 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { Banner, Heading, Loader } from "../common";
+import {
+  Banner,
+  Heading,
+  Loader,
+  Box,
+  Overflow,
+  OverflowLock,
+} from "../common";
 import AddContactForm from "./AddContactForm";
 import Contacts from "./Contacts";
 import { IContact } from "./Contact.types";
@@ -65,30 +72,42 @@ const Phonebook = () => {
   };
 
   return (
-    <div>
-      <Heading as="h2">Phonebook</Heading>
-      {contacts && (
-        <>
-          <AddContactForm onSubmit={handleSubmit} contacts={contacts} />
-          <Heading as="h2">Contacts:</Heading>
-          {contacts.length > 0 && (
-            <FilterContacts
-              filter={filter}
-              onChange={handleFilterChange}
-              onClear={() => setFilter("")}
-            />
+    <OverflowLock>
+      <Box p={2}>
+        <Heading as="h2">Phonebook</Heading>
+
+        <Box flex justifyContent="space-between">
+          {contacts && (
+            <AddContactForm onSubmit={handleSubmit} contacts={contacts} />
           )}
-          <Contacts
-            contacts={contacts}
-            filter={filter}
-            onDeleteContact={handleDelete}
-          />
-        </>
-      )}
-      {isLoading && <Loader />}
-      {isError && error && <Banner variant="danger">{error.message}</Banner>}
+          {contacts && contacts.length > 0 && (
+            <Box alignSelf="flex-end" mt="auto">
+              <FilterContacts
+                filter={filter}
+                onChange={handleFilterChange}
+                onClear={() => setFilter("")}
+              />
+            </Box>
+          )}
+        </Box>
+      </Box>
+      <Overflow>
+        {contacts && (
+          <Box p={2}>
+            <Heading as="h2">Contacts:</Heading>
+
+            <Contacts
+              contacts={contacts}
+              filter={filter}
+              onDeleteContact={handleDelete}
+            />
+          </Box>
+        )}
+        {isLoading && <Loader />}
+        {isError && error && <Banner variant="danger">{error.message}</Banner>}
+      </Overflow>
       <Toaster />
-    </div>
+    </OverflowLock>
   );
 };
 
