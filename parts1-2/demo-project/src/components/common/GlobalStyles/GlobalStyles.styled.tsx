@@ -5,6 +5,7 @@ const GlobalStyles = createGlobalStyle`
     height: 100%;
   }
   body {
+    font-family: "Open Sans", sans-serif;
     padding: 0;
     margin: 0;
     height: 100%;
