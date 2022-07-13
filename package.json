@@ -1,34 +1,59 @@
 {
-  "name": "full-stack-open-2022",
-  "version": "1.0.0",
-  "description": "University of Helsinki course submissions",
-  "main": "server/index.js",
-  "workspaces": [
-    "server",
-    "client"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/craig-o-curtis/full-stack-open-2022.git"
-  },
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/craig-o-curtis/full-stack-open-2022/issues"
-  },
-  "homepage": "https://github.com/craig-o-curtis/full-stack-open-2022#readme",
+  "name": "project",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^16.0.1",
-    "dotenv-flow": "^3.2.0",
-    "express": "^4.18.1",
-    "morgan": "^1.10.0",
-    "uuid": "^8.3.2"
+    "@fontsource/open-sans": "^4.5.10",
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^16.11.26",
+    "@types/react": "^18.0.11",
+    "@types/react-dom": "^18.0.5",
+    "axios": "^0.27.2",
+    "polished": "^4.2.2",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-hot-toast": "^2.2.0",
+    "react-icons": "^4.3.1",
+    "react-phone-number-input": "^3.2.3",
+    "react-query": "^3.39.1",
+    "react-scripts": "^5.0.1",
+    "spacing-helper": "^4.1.6",
+    "styled-components": "^5.3.5",
+    "typescript": "^4.6.2",
+    "uuid": "^8.3.2",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "server": "npx json-server --port 3001 --watch db.json",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
-  },
-  "engines": {
-    "node": "16.x"
+    "@testing-library/react": "^13.3.0",
+    "@types/react-phone-number-input": "^3.0.14",
+    "@types/styled-components": "^5.1.24",
+    "@types/uuid": "^8.3.4"
   }
 }
