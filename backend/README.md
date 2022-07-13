@@ -23,3 +23,17 @@ Start locally with
 ```bash
 heroku local web
 ```
+
+Create a Heroku app wtih
+
+```bash
+heroku create -a uhel-demo-app
+```
+
+// https://uhel-demo-app.herokuapp.com/ | https://git.heroku.com/uhel-demo-app.git
+
+Push to Heroku
+
+```bash
+git push heroku main
+```
