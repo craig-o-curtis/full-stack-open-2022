@@ -23,3 +23,9 @@ Start locally with
 ```bash
 heroku local web
 ```
+
+Push to Heroku
+
+```bash
+git push heroku main
+```
