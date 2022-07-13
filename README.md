@@ -1,3 +1,7 @@
+# Fullstack Open 2022
+
+This is the client-side code.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
