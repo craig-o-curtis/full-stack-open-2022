@@ -1,5 +1,5 @@
 import React from "react";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import {
   // Course,
@@ -11,16 +11,8 @@ import {
   // CountrySearch,
 } from "./components";
 import { GlobalStyles, AppWrapper } from "./components/common";
-const queryClient = new QueryClient();
-queryClient.setDefaultOptions({
-  queries: {
-    staleTime: 3000,
-    refetchOnMount: true,
-    refetchOnWindowFocus: true,
-    refetchOnReconnect: true,
-    keepPreviousData: false,
-  },
-});
+
+import queryClient from "./queryClient";
 
 const App = () => {
   return (
