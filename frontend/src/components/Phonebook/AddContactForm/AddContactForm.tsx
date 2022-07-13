@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { Button, WarningIcon } from "../../common";
+import { Button, WarningIcon, Box } from "../../common";
 import { AiOutlinePlus } from "react-icons/ai";
 import PhoneNumberInput from "../PhoneNumberInput";
 import * as Styled from "./AddContactForm.styled";
@@ -61,7 +61,17 @@ const AddContactForm = ({ onSubmit, contacts }: AddContactFormProps) => {
                 required
               />
             </label>
-            {hasDupName && <WarningIcon />}
+            {hasDupName && (
+              <Box
+                flex
+                flexDirection="column"
+                justifyContent="flex-end"
+                ml={1}
+                my={0.5}
+              >
+                <WarningIcon />
+              </Box>
+            )}
           </Styled.InputWrapper>
           <Styled.Spacer />
           <Styled.InputWrapper>

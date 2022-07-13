@@ -23,6 +23,7 @@ export const LabelSpan = styled.span`
 
 export const AddButtonWrapper = styled.div`
   margin-left: 1rem;
+  align-self: flex-end;
 
   ${Button} {
     display: flex;

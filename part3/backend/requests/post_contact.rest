@@ -1,7 +1,0 @@
-POST http://localhost:3001/api/contacts
-Content-Type: application/json
-
-{
-    "name": "Test Rest Add",
-    "number": "1-222-222-2222"
-}
