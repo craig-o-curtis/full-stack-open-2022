@@ -27,3 +27,5 @@ npm start
 npm build
 npm build:copy
 ```
+
+// step 3.10 confirms works at https://uhel-2022-server.herokuapp.com
