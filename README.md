@@ -6,9 +6,15 @@ Server-side code at [https://github.com/craig-o-curtis/full-stack-open-2022-serv
 
 ## Prep build for backend
 
+Build and copy build folder to sibling directory with server code
+
 ```bash
 npm run build
 cp -r build ../full-stack-open-2022-server
+
+or
+
+npm build:copy
 ```
 
 ## Client-side scripts
@@ -16,4 +22,5 @@ cp -r build ../full-stack-open-2022-server
 ```bash
 npm start
 npm build
+npm build:copy
 ```

@@ -1,10 +1,3 @@
-export const specifyApiBaseUrl = (type: "production" | "development") => {
-  return type === "production"
-    ? "https://uhel-2022-server.herokuapp.com/api"
-    : "http://localhost:3001/api";
-};
-
+// ** assumes site and api endpoints on same url
 export const apiBaseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://uhel-2022-server.herokuapp.com/api"
-    : "http://localhost:3001/api";
+  process.env.NODE_ENV === "production" ? "/api" : "http://localhost:3001/api";
