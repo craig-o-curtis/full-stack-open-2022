@@ -5,6 +5,7 @@ import {
   UseMutationOptions,
   useQueryClient,
 } from "react-query";
+import { apiBaseUrl } from "./apiBaseUrl";
 
 import { queryKey } from "./useContactsQuery";
 import axios from "axios";
@@ -14,25 +15,20 @@ import toast from "react-hot-toast";
 type PartialPayload = Omit<IContact, "id">;
 
 const postContact = async (payload: PartialPayload) => {
-  const response = await axios.post(
-    "http://localhost:3001/api/contacts",
-    payload
-  );
+  const response = await axios.post(`${apiBaseUrl}/contacts`, payload);
   return response;
 };
 
 const updateContact = async (payload: IContact) => {
   const response = await axios.patch(
-    `http://localhost:3001/api/contacts/${payload.id}`,
+    `${apiBaseUrl}/contacts/${payload.id}`,
     payload
   );
   return response;
 };
 
 const deleteContact = async (contact: IContact) => {
-  const response = await axios.delete(
-    `http://localhost:3001/api/contacts/${contact.id}`
-  );
+  const response = await axios.delete(`${apiBaseUrl}/contacts/${contact.id}`);
   return response;
 };
 

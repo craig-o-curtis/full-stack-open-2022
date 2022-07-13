@@ -2,12 +2,13 @@
 import { useQuery } from "react-query";
 import axios from "axios";
 import { IContact } from "../Contact.types";
+import { apiBaseUrl } from "./apiBaseUrl";
 
 export const queryKey = "Contacts";
 
 const getContacts = async () => {
   try {
-    const response = await axios.get("http://localhost:3001/api/contacts");
+    const response = await axios.get(`${apiBaseUrl}/contacts`);
     return response.data;
   } catch (error) {
     // noop
