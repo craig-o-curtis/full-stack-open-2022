@@ -2,6 +2,8 @@
 
 This is the client-side code.
 
+Server-side code at [https://github.com/craig-o-curtis/full-stack-open-2022-server](https://github.com/craig-o-curtis/full-stack-open-2022-server)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
