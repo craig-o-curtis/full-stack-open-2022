@@ -56,5 +56,6 @@
     "@types/react-phone-number-input": "^3.0.14",
     "@types/styled-components": "^5.1.24",
     "@types/uuid": "^8.3.4"
-  }
+  },
+  "proxy": "http://localhost:3001"
 }
