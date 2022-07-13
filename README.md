@@ -29,3 +29,4 @@ npm build:copy
 ```
 
 // step 3.10 confirms works at https://uhel-2022-server.herokuapp.com
+// step 3.11 confirms works on Heroku and locally
