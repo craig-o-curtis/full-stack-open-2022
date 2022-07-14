@@ -17,6 +17,7 @@ const incrementId = () => {
   return maxId + 1;
 };
 
+// debugger;
 // ** to allow using localhost:3001
 app.use(cors());
 app.use(express.json());

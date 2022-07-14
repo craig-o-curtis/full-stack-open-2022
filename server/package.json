@@ -11,6 +11,7 @@
     "deploy": "git push heroku main",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && npm run deploy",
     "logs:prod": "heroku logs --tail",
+    "chrome:debugger": "node --inspect index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Craig Curtis",
@@ -20,6 +21,7 @@
     "dotenv": "^16.0.1",
     "dotenv-flow": "^3.2.0",
     "express": "^4.18.1",
+    "mongoose": "^6.4.4",
     "morgan": "^1.10.0",
     "uuid": "^8.3.2"
   },
