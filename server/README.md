@@ -4,7 +4,7 @@ Client-side code at [https://github.com/craig-o-curtis/full-stack-open-2022](htt
 
 Heroku:
 
-- [https://uhel-demo-app.herokuapp.com](https://uhel-demo-app.herokuapp.com)
+- [https://uhel-2022-server.herokuapp.com](https://uhel-2022-server.herokuapp.com)
 - [https://uhel-2022-server.herokuapp.com/api/contacts](https://uhel-2022-server.herokuapp.com/api/contacts)
 
 ## Scripts
@@ -51,17 +51,17 @@ Create a Heroku app with
 heroku create -a uhel-2022-server
 ```
 
-// https://uhel-demo-app.herokuapp.com/ | https://git.heroku.com/uhel-demo-app.git
+// https://uhel-2022-server.herokuapp.com/ | https://git.heroku.com/uhel-2022-server.git
 
-Push to Heroku
+WARNING - for server repo only - Push to Heroku
 
 ```bash
 git push heroku main
 ```
 
 Deployed to:
-https://uhel-demo-app.herokuapp.com
-https://uhel-demo-app.herokuapp.com/api/contacts
+https://uhel-2022-server.herokuapp.com
+https://uhel-2022-server.herokuapp.com/api/contacts
 
 Check Heroku logs with:
 
@@ -74,3 +74,5 @@ Push server dir from monorepo
 ```bash
 git subtree push --prefix server heroku main
 ```
+
+// Confirm Part 3.b exercise 3.10 no console errors on Heroku
