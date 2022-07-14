@@ -80,3 +80,5 @@ git subtree push --prefix server heroku main
 
 MongoDB
 mongodb+srv://fullstack:<password>@cluster0.16byzrz.mongodb.net/?retryWrites=true&w=majority
+
+connect with mongoose
