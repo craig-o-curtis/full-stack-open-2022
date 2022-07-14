@@ -76,3 +76,4 @@ git subtree push --prefix server heroku main
 ```
 
 // Confirm Part 3.b exercise 3.10 no console errors on Heroku
+// Confirm Part 3.b exercise 3.11 CRUD working on Heroku
