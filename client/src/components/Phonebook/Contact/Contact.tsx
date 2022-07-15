@@ -4,17 +4,22 @@ import { IoMdContact } from "react-icons/io";
 import { Button } from "../../common";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
 interface ContactProps {
+  disabled?: boolean;
   contact: IContact;
   onDeleteContact: (contact: IContact) => void;
 }
 
-const Contact = ({ contact, onDeleteContact }: ContactProps) => (
+const Contact = ({
+  disabled = false,
+  contact,
+  onDeleteContact,
+}: ContactProps) => (
   <Styled.Contact>
     <IoMdContact />
     <Styled.ContactText>{contact.name}</Styled.ContactText>
     <Styled.ContactText>{contact.number}</Styled.ContactText>
     <Styled.ButtonWrapper>
-      <Button disabled={true} onClick={() => onDeleteContact(contact)}>
+      <Button disabled={disabled} onClick={() => onDeleteContact(contact)}>
         <IoMdRemoveCircleOutline />
         <span>Delete</span>
       </Button>
