@@ -84,3 +84,20 @@ mongodb+srv://fullstack:<password>@cluster0.16byzrz.mongodb.net/?retryWrites=tru
 connect with mongoose
 
 // 3.c 3.14 confirm GET and POST work with frontend
+
+## Debugging
+
+Node Debugging Mode
+
+- VS Code - Run > Start Debugging
+- Add `debugger` anywhere in server/index.js or other server/\* files
+
+Chrome debugger
+
+- run script `npm run chrome:debugger` or
+
+```bash
+node --inspect server/index.js
+```
+
+- Open Chrome devtools, click on green Node icon to open new tab with debugger
