@@ -13,6 +13,7 @@ export const InputsWrapper = styled.div`
 `;
 
 export const InputWrapper = styled.div`
+  margin-top: 1rem;
   display: flex;
   flex-direction: row;
 `;

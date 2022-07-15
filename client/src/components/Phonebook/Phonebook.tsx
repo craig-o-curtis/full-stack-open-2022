@@ -72,6 +72,10 @@ const Phonebook = () => {
     <OverflowLock>
       <Box p={2}>
         <Heading as="h2">Phonebook</Heading>
+        <Banner variant="danger">
+          Warning: Update of existing and Deleting contacts not implemented yet
+          in Mongo
+        </Banner>
 
         <Box flex justifyContent="space-between">
           {contacts && (

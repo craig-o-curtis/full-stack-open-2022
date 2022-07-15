@@ -40,5 +40,10 @@ export const ButtonWrapper = styled.div`
         color: firebrick;
       }
     }
+    &:disabled {
+      svg {
+        color: #dedede;
+      }
+    }
   }
 `;

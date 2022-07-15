@@ -34,7 +34,7 @@ const Contacts = ({
               key={contact.id}
               contact={contact}
               onDeleteContact={onDeleteContact}
-            ></Contact>
+            />
           ))}
         </Styled.UL>
       )}

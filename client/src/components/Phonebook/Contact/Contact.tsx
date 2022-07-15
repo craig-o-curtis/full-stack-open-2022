@@ -14,7 +14,7 @@ const Contact = ({ contact, onDeleteContact }: ContactProps) => (
     <Styled.ContactText>{contact.name}</Styled.ContactText>
     <Styled.ContactText>{contact.number}</Styled.ContactText>
     <Styled.ButtonWrapper>
-      <Button onClick={() => onDeleteContact(contact)}>
+      <Button disabled={true} onClick={() => onDeleteContact(contact)}>
         <IoMdRemoveCircleOutline />
         <span>Delete</span>
       </Button>
