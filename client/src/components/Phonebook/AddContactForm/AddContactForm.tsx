@@ -51,7 +51,7 @@ const AddContactForm = ({ onSubmit, contacts }: AddContactFormProps) => {
       <Styled.NewContactRow>
         <Styled.InputsWrapper>
           <Styled.InputWrapper>
-            <label>
+            <label style={{ display: "flex" }}>
               <Styled.LabelSpan>Name:</Styled.LabelSpan>
               <input
                 type="text"
