@@ -28,7 +28,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build:copy": "npm run build && cp -r build ../full-stack-open-2022-server",
+    "build:copy": "npm run build && cp -r build ../server",
     "test": "react-scripts test",
     "server": "npx json-server --port 3001 --watch db.json",
     "eject": "react-scripts eject"
