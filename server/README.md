@@ -82,3 +82,5 @@ MongoDB
 mongodb+srv://fullstack:<password>@cluster0.16byzrz.mongodb.net/?retryWrites=true&w=majority
 
 connect with mongoose
+
+// 3.c 3.14 confirm GET and POST work with frontend
