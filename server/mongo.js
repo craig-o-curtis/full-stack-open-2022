@@ -26,7 +26,7 @@ const getDBContactById = async (id) => {
   try {
     await mongoose.connect(url);
     console.log("connected to db");
-    const contact = await Contact.find({ _id: id });
+    const contact = await Contact.findById(id);
     console.log("returning contact", contact);
     console.log("closing db connection");
     mongoose.connection.close();
@@ -41,14 +41,12 @@ const postDBContact = async ({ name, number }) => {
   try {
     await mongoose.connect(url);
     console.log("connected to db for post");
-
     const newContact = new Contact({ name, number });
-
-    await newContact.save();
-    console.log("Contact saved");
+    const createdContact = await newContact.save();
+    console.log("Contact created");
     console.log("closing db connection");
     mongoose.connection.close();
-    return newContact;
+    return createdContact;
   } catch (error) {
     mongoose.connection.close();
     throw error;

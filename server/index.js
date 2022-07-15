@@ -71,54 +71,32 @@ app.get("/api", (request, response) => {
   response.status(404).end();
 });
 
+//** GET all */
 app.get("/api/contacts", async (request, response) => {
   try {
-    const contacts = await getDBContacts();
-    response.json(contacts);
+    const dbContacts = await getDBContacts();
+    response.json(dbContacts);
   } catch (error) {
     console.error(error);
     response.status(404).end();
   }
 });
 
+//** GET by id */
 app.get("/api/contacts/:id", async (request, response) => {
   try {
     const id = request.params.id;
     console.log("got id", id);
-    const contact = await getDBContactById(id);
-    console.log("got contact...", contact);
-    response.json(contact);
+    const dbContact = await getDBContactById(id);
+    console.log("got contact...", dbContact);
+    response.json(dbContact);
   } catch (error) {
     console.error(error);
     response.status(404).end();
   }
 });
 
-app.patch("/api/contacts/:id", async (request, response) => {
-  try {
-    const body = request.body;
-    const { name, number } = body;
-    const id = request.params.id;
-    const contacts = await getDBContacts();
-    const contact = contacts.find((contact) => contact.id === id);
-
-    // TODO throw specific errors if
-
-    if (contact === undefined) {
-      response.status(404).end();
-      return;
-    }
-
-    const result = await updateDBContact({ id, name, number });
-
-    // TODO Mongo action to update an existing contact
-    response.json(contact);
-  } catch (error) {
-    console.error(error);
-    response.status(404).end();
-  }
-});
-
+//** POST new contact */
 app.post("/api/contacts", async (request, response) => {
   try {
     const body = request.body || {};
@@ -129,8 +107,8 @@ app.post("/api/contacts", async (request, response) => {
         .json({ error: `${name === undefined ? "name" : "number"}` });
     }
 
-    const contacts = await getDBContacts();
-    const nameAlreadyExists = contacts.find(
+    const dbContacts = await getDBContacts();
+    const nameAlreadyExists = dbContacts.find(
       (contact) => contact.name === body.name
     );
 
@@ -153,15 +131,40 @@ app.post("/api/contacts", async (request, response) => {
         })
         .end();
     }
-    // ** The name or number is missing
-    // ** The name already exists in the phonebook
 
-    const newContact = await postDBContact({
+    const newDBContact = await postDBContact({
       name: body.name,
       number: body.number,
     });
-    console.log("created new contact: ", newContact);
-    response.json(newContact);
+    console.log("created new contact: ", newDBContact);
+    response.json(newDBContact);
+  } catch (error) {
+    console.error(error);
+    response.status(404).end();
+  }
+});
+
+//** UPDATE? existing */
+// ?? should this be a patch or put call if updating
+app.patch("/api/contacts/:id", async (request, response) => {
+  try {
+    const body = request.body;
+    const { name, number } = body;
+    const id = request.params.id;
+    const contacts = await getDBContacts();
+    const contact = contacts.find((contact) => contact.id === id);
+
+    // TODO throw specific errors if
+
+    if (contact === undefined) {
+      response.status(404).end();
+      return;
+    }
+
+    const result = await updateDBContact({ id, name, number });
+
+    // TODO Mongo action to update an existing contact
+    response.json(contact);
   } catch (error) {
     console.error(error);
     response.status(404).end();
