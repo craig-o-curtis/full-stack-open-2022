@@ -54,6 +54,7 @@ const postDBContact = async ({ name, number }) => {
   }
 };
 
+// ** Part 3.c Exercise 3.17 confirm uses put call
 const updateDBContact = async ({ id, name, number }) => {
   try {
     const updateDBContact = await Contact.findByIdAndUpdate(

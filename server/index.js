@@ -145,7 +145,7 @@ app.post("/api/contacts", async (request, response, next) => {
   }
 });
 
-//** UPDATE? existing */
+// ** Part 3.c Exercise 3.17 confirm uses put call
 app.put("/api/contacts/:id", async (request, response, next) => {
   try {
     const body = request.body;

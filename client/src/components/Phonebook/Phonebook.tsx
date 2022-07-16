@@ -52,6 +52,7 @@ const Phonebook = () => {
       return toast.error(`${name} already exists`);
     }
 
+    // ** Part 3.c Exercise 3.17 confirm uses put call
     if (sameContact !== undefined) {
       // eslint-disable-next-line no-restricted-globals
       confirm(
