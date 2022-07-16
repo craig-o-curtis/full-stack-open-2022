@@ -36,6 +36,8 @@ const Phonebook = () => {
     useDeleteContactMutation();
   const isLoading =
     isContactsLoading || isPostLoading || isUpdateLoading || isDeleteLoading;
+  console.log("isDeleteLoading", isDeleteLoading);
+  console.log("isContactsLoading", isContactsLoading);
 
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>,

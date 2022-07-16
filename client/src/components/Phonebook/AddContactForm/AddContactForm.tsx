@@ -26,6 +26,7 @@ const AddContactForm = ({
     () => contacts.some((c) => c.name === newName),
     [contacts, newName]
   );
+  const nameMinLength = 3;
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setNewName(() => event.target.value);
@@ -43,7 +44,7 @@ const AddContactForm = ({
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (newName.length === 0 || !newName) {
+    if (newName.length < nameMinLength) {
       return;
     }
     onSubmit?.(event, { name: newName, number: newNumber });
@@ -64,6 +65,7 @@ const AddContactForm = ({
                 placeholder="Enter a new contact"
                 onChange={handleNameChange}
                 disabled={disabled}
+                minLength={nameMinLength}
                 required
               />
             </label>
@@ -93,10 +95,7 @@ const AddContactForm = ({
           <Button
             type="submit"
             disabled={
-              newName.length === 0 ||
-              newNumber.length === 0 ||
-              !isPossibleNumber ||
-              disabled
+              newName.length < nameMinLength || !isPossibleNumber || disabled
             }
           >
             <AiOutlinePlus />

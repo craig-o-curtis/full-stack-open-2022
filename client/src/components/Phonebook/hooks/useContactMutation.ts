@@ -14,6 +14,14 @@ import toast from "react-hot-toast";
 
 type PartialPayload = Omit<IContact, "id">;
 
+function errorHandler(error: any, defaultMessage: string) {
+  if (error?.response?.data?.error) {
+    toast.error(error?.response?.data?.error);
+  } else {
+    toast.error(defaultMessage);
+  }
+}
+
 const postContact = async (payload: PartialPayload) => {
   const response = await axios.post(`${apiBaseUrl}/contacts`, payload);
   return response;
@@ -62,8 +70,8 @@ export function useAddContactMutation() {
     onSuccess: (_, contact) => {
       toast.success(`Added contact: ${contact.name}`);
     },
-    onError: (_, contact) => {
-      toast.error(`Problem adding contact: ${contact.name}`);
+    onError: (error: any, contact) => {
+      errorHandler(error, `Problem adding contact: ${contact.name}`);
     },
   });
 }
@@ -73,8 +81,8 @@ export function useUpdateContactMutation() {
     onSuccess: (_, contact) => {
       toast.success(`Updated contact: ${contact.name}`);
     },
-    onError: (_, contact) => {
-      toast.error(`Problem adding contact: ${contact.name}`);
+    onError: (error, contact) => {
+      errorHandler(error, `Problem updating contact: ${contact.name}`);
     },
   });
 }
@@ -84,8 +92,8 @@ export function useDeleteContactMutation() {
     onSuccess: (_, contact) => {
       toast.success(`Deleted contact: ${contact.name}`);
     },
-    onError: (_, contact) => {
-      toast.error(`Problem deleting contact: ${contact.name}`);
+    onError: (error, contact) => {
+      errorHandler(error, `Problem deleting contact: ${contact.name}`);
     },
   });
 }

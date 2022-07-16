@@ -77,7 +77,7 @@ app.get("/api", (request, response) => {
 app.get("/api/contacts", async (request, response) => {
   try {
     const dbContacts = await getDBContacts();
-    console.log("Express got contacts", dbContact);
+    console.log("Express got contacts", dbContacts);
     response.json(dbContacts);
   } catch (error) {
     console.error(error);
@@ -123,15 +123,6 @@ app.post("/api/contacts", async (request, response, next) => {
         .status(400)
         .json({
           error: "Name already exists",
-        })
-        .end();
-    }
-
-    if (!body.name || !body.number) {
-      return response
-        .status(400)
-        .json({
-          error: `${body?.name === undefined ? "name" : "number"} missing`,
         })
         .end();
     }
@@ -189,9 +180,14 @@ app.use(unknownEndpoint);
 // ** error handling middleware
 function errorHandler(error, request, response, next) {
   console.error(error.message);
+
   if (error.name === "CastError") {
     return response.status(400).send({ error: "malformatted id" });
   }
+  if (error.name === "ValidationError") {
+    return response.status(400).send({ error: error.message });
+  }
+
   next(error);
 }
 app.use(errorHandler);
