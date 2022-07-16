@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 const { Contact } = require("./models/contact");
-
 const url = process.env.MONGODB_URI || "";
 
 async function connectToMongo() {

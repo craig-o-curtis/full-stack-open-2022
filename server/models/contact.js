@@ -1,11 +1,18 @@
 const mongoose = require("mongoose");
+const { isPossiblePhoneNumber } = require("react-phone-number-input");
 
 const contactSchema = new mongoose.Schema({
   name: { type: String, minLength: 3, required: true },
   number: {
     type: String,
-    minLength: 5,
-    required: true,
+    validate: {
+      validator: (value) => {
+        // ** use same validation FE and BE for consistency
+        return isPossiblePhoneNumber(value);
+      },
+      message: (props) => `${props.value} is not a valid phone number!`,
+    },
+    required: [true, "User phone number required"],
   },
 });
 
