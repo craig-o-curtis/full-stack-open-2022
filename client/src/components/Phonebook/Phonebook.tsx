@@ -1,9 +1,9 @@
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import {
+  AppLoader,
   Banner,
   Heading,
-  Loader,
   Box,
   Overflow,
   OverflowLock,
@@ -21,11 +21,21 @@ import {
 
 // ** Completed extraction already for part-2.b Exercise 2.10
 const Phonebook = () => {
-  const { contacts, isLoading, error, isError } = useContactsQuery();
+  const {
+    contacts,
+    isLoading: isContactsLoading,
+    error,
+    isError,
+  } = useContactsQuery();
   const [filter, setFilter] = useState<string>("");
-  const { mutateAsync: postContact } = useAddContactMutation();
-  const { mutateAsync: updateContact } = useUpdateContactMutation();
-  const { mutateAsync: deleteContact } = useDeleteContactMutation();
+  const { mutateAsync: postContact, isLoading: isPostLoading } =
+    useAddContactMutation();
+  const { mutateAsync: updateContact, isLoading: isUpdateLoading } =
+    useUpdateContactMutation();
+  const { mutateAsync: deleteContact, isLoading: isDeleteLoading } =
+    useDeleteContactMutation();
+  const isLoading =
+    isContactsLoading || isPostLoading || isUpdateLoading || isDeleteLoading;
 
   const handleSubmit = async (
     event: React.FormEvent<HTMLFormElement>,
@@ -69,45 +79,52 @@ const Phonebook = () => {
   };
 
   return (
-    <OverflowLock>
-      <Box p={2}>
-        <Heading as="h2">Phonebook</Heading>
-        <Banner variant="danger">
-          Warning: Update of existing contacts not implemented yet in Mongo
-        </Banner>
+    <AppLoader isLoading={isLoading}>
+      <OverflowLock>
+        <Box p={2}>
+          <Heading as="h2">Phonebook</Heading>
 
-        <Box flex justifyContent="space-between">
+          <Box flex justifyContent="space-between">
+            {contacts && (
+              <AddContactForm
+                onSubmit={handleSubmit}
+                contacts={contacts}
+                disabled={isLoading}
+              />
+            )}
+            {contacts && contacts.length > 0 && (
+              <Box alignSelf="flex-end" mt="auto" p={1}>
+                <FilterContacts
+                  filter={filter}
+                  disabled={isLoading}
+                  onChange={handleFilterChange}
+                  onClear={() => setFilter("")}
+                />
+              </Box>
+            )}
+          </Box>
+        </Box>
+        <Overflow>
           {contacts && (
-            <AddContactForm onSubmit={handleSubmit} contacts={contacts} />
-          )}
-          {contacts && contacts.length > 0 && (
-            <Box alignSelf="flex-end" mt="auto" p={1}>
-              <FilterContacts
+            <Box p={2}>
+              <Heading as="h2">Contacts:</Heading>
+
+              <Contacts
+                contacts={contacts}
                 filter={filter}
-                onChange={handleFilterChange}
-                onClear={() => setFilter("")}
+                onDeleteContact={handleDelete}
+                disabled={isLoading}
               />
             </Box>
           )}
-        </Box>
-      </Box>
-      <Overflow>
-        {contacts && (
-          <Box p={2}>
-            <Heading as="h2">Contacts:</Heading>
-
-            <Contacts
-              contacts={contacts}
-              filter={filter}
-              onDeleteContact={handleDelete}
-            />
-          </Box>
-        )}
-        {isLoading && <Loader />}
-        {isError && error && <Banner variant="danger">{error.message}</Banner>}
-      </Overflow>
-      <Toaster />
-    </OverflowLock>
+          {isError && error && (
+            <Banner variant="danger">{error.message}</Banner>
+          )}
+        </Overflow>
+        <Toaster />
+      </OverflowLock>
+      {isLoading && <Box>I am a loader choader</Box>}
+    </AppLoader>
   );
 };
 

@@ -20,7 +20,7 @@ const postContact = async (payload: PartialPayload) => {
 };
 
 const updateContact = async (payload: IContact) => {
-  const response = await axios.patch(
+  const response = await axios.put(
     `${apiBaseUrl}/contacts/${payload.id}`,
     payload
   );

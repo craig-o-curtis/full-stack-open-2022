@@ -7,13 +7,18 @@ import { IContact } from "../Contact.types";
 
 interface AddContactFormProps {
   contacts: IContact[];
+  disabled: boolean;
   onSubmit: (
     event: React.FormEvent<HTMLFormElement>,
     newContact: { name: string; number: string }
   ) => void;
 }
 
-const AddContactForm = ({ onSubmit, contacts }: AddContactFormProps) => {
+const AddContactForm = ({
+  contacts,
+  disabled,
+  onSubmit,
+}: AddContactFormProps) => {
   const [newName, setNewName] = useState("");
   const [newNumber, setNewNumber] = useState("");
   const [isPossibleNumber, setIsPossibleNumber] = useState(false);
@@ -58,6 +63,7 @@ const AddContactForm = ({ onSubmit, contacts }: AddContactFormProps) => {
                 value={newName}
                 placeholder="Enter a new contact"
                 onChange={handleNameChange}
+                disabled={disabled}
                 required
               />
             </label>
@@ -75,7 +81,11 @@ const AddContactForm = ({ onSubmit, contacts }: AddContactFormProps) => {
           </Styled.InputWrapper>
           <Styled.Spacer />
           <Styled.InputWrapper>
-            <PhoneNumberInput onChange={handleNumberChange} value={newNumber} />
+            <PhoneNumberInput
+              disabled={disabled}
+              onChange={handleNumberChange}
+              value={newNumber}
+            />
           </Styled.InputWrapper>
         </Styled.InputsWrapper>
 
@@ -85,7 +95,8 @@ const AddContactForm = ({ onSubmit, contacts }: AddContactFormProps) => {
             disabled={
               newName.length === 0 ||
               newNumber.length === 0 ||
-              !isPossibleNumber
+              !isPossibleNumber ||
+              disabled
             }
           >
             <AiOutlinePlus />

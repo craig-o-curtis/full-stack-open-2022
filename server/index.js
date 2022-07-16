@@ -10,8 +10,10 @@ const {
   postDBContact,
   updateDBContact,
   deleteDBContact,
+  connectToMongo,
 } = require("./mongo");
 
+const disconnectMongo = connectToMongo();
 // debugger;
 // ** to allow using localhost:3001
 app.use(cors());
@@ -144,29 +146,20 @@ app.post("/api/contacts", async (request, response, next) => {
 });
 
 //** UPDATE? existing */
-// ?? should this be a patch or put call if updating
-app.patch("/api/contacts/:id", async (request, response, next) => {
+app.put("/api/contacts/:id", async (request, response, next) => {
   try {
     const body = request.body;
     const { name, number } = body;
     const id = request.params.id;
-    const contacts = await getDBContacts();
-    const contact = contacts.find((contact) => contact.id === id);
 
-    // TODO throw specific errors if
-
-    if (contact === undefined) {
-      response.status(404).end();
-      return;
-    }
-
+    console.log("about to update with id: ", id);
     const result = await updateDBContact({ id, name, number });
-    if (result === null) {
-      response.status(404).end();
-    }
-
+    console.log("got result from update: ", result);
+    // if (result === null) {
+    //   response.status(404).end();
+    // }
     // TODO Mongo action to update an existing contact
-    response.json(contact);
+    response.json(result);
   } catch (error) {
     next(error);
   }
@@ -176,8 +169,6 @@ app.patch("/api/contacts/:id", async (request, response, next) => {
 app.delete("/api/contacts/:id", async (request, response, next) => {
   try {
     const { id } = request.params;
-    console.log("GOT ID: ", id);
-    // TODO need to figure out how to delete DB contact
     const deletedContact = await deleteDBContact(id);
     console.log("deleted contact", deletedContact);
     response.status(204).end();
@@ -205,6 +196,14 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 3001;
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+});
+
+process.on("SIGTERM", () => {
+  debug("SIGTERM signal received: closing HTTP server");
+  server.close(async () => {
+    await disconnectMongo();
+    debug("HTTP server closed");
+  });
 });
