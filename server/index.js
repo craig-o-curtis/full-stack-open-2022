@@ -14,7 +14,7 @@ const {
 } = require("./mongo");
 
 const disconnectMongo = connectToMongo();
-// debugger;
+
 // ** to allow using localhost:3001
 app.use(cors());
 // ** 3.9 serve static assets
@@ -183,6 +183,7 @@ function unknownEndpoint(request, response) {
 }
 app.use(unknownEndpoint);
 
+// ** Confirm error handler in place 3.16
 // ** last loaded middleware - error handler
 // ** error handling middleware
 function errorHandler(error, request, response, next) {
