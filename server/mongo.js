@@ -25,7 +25,7 @@ const getDBContacts = async () => {
   try {
     // ** {} param for all... because that makes sense
     const contacts = await Contact.find({});
-    console.log("contacts", contacts);
+    console.log("MongoDB returning contacts", contact);
     return contacts;
   } catch (error) {
     throw error;
@@ -35,7 +35,7 @@ const getDBContacts = async () => {
 const getDBContactById = async (id) => {
   try {
     const contact = await Contact.findById(id);
-    console.log("returning contact", contact);
+    console.log("MongoDB returning contact", contact);
     return contact;
   } catch (error) {
     throw error;
@@ -46,7 +46,7 @@ const postDBContact = async ({ name, number }) => {
   try {
     const newContact = new Contact({ name, number });
     const createdContact = await newContact.save();
-    console.log("Contact created", createdContact);
+    console.log("MongoDB Contact created", createdContact);
     return createdContact;
   } catch (error) {
     mongoose.connection.close();
@@ -65,7 +65,7 @@ const updateDBContact = async ({ id, name, number }) => {
       },
       { new: true }
     );
-    console.log("updatedContact", updateDBContact);
+    console.log("MongoDB updated contact", updateDBContact);
     return updateDBContact;
   } catch (error) {
     throw error;
@@ -75,7 +75,7 @@ const updateDBContact = async ({ id, name, number }) => {
 const deleteDBContact = async (id) => {
   try {
     const dbDeletedContact = await Contact.findByIdAndRemove(id);
-    console.log("Deleted contact", dbDeletedContact);
+    console.log("MongoDB deleted contact", dbDeletedContact);
     return dbDeletedContact;
   } catch (error) {
     throw error;

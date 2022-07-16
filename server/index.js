@@ -77,6 +77,7 @@ app.get("/api", (request, response) => {
 app.get("/api/contacts", async (request, response) => {
   try {
     const dbContacts = await getDBContacts();
+    console.log("Express got contacts", dbContact);
     response.json(dbContacts);
   } catch (error) {
     console.error(error);
@@ -89,10 +90,11 @@ app.get("/api/contacts/:id", async (request, response, next) => {
   try {
     const id = request.params.id;
     const dbContact = await getDBContactById(id);
-
+    console.log("Express got contact", dbContact);
     if (dbContact === null) {
       response.status(404).end();
     }
+    response.json(dbContact);
   } catch (error) {
     next(error);
   }
@@ -138,7 +140,7 @@ app.post("/api/contacts", async (request, response, next) => {
       name: body.name,
       number: body.number,
     });
-    console.log("created new contact: ", newDBContact);
+    console.log("Express created new contact: ", newDBContact);
     response.json(newDBContact);
   } catch (error) {
     next(error);
@@ -154,11 +156,10 @@ app.put("/api/contacts/:id", async (request, response, next) => {
 
     console.log("about to update with id: ", id);
     const result = await updateDBContact({ id, name, number });
-    console.log("got result from update: ", result);
-    // if (result === null) {
-    //   response.status(404).end();
-    // }
-    // TODO Mongo action to update an existing contact
+    console.log("Express updated contact result", result);
+    if (result === null) {
+      response.status(404).end();
+    }
     response.json(result);
   } catch (error) {
     next(error);
@@ -170,7 +171,7 @@ app.delete("/api/contacts/:id", async (request, response, next) => {
   try {
     const { id } = request.params;
     const deletedContact = await deleteDBContact(id);
-    console.log("deleted contact", deletedContact);
+    console.log("Express deleted contact", deletedContact);
     response.status(204).end();
   } catch (error) {
     next(error);
