@@ -1,0 +1,30 @@
+{
+  "env": {
+    "commonjs": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "prettier", "plugin:node/recommended"],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parserOptions": {
+    "ecmaVersion": "latest"
+  },
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error",
+    "no-unused-vars": "warn",
+    "no-console": "off",
+    "func-names": "off",
+    "no-plusplus": "off",
+    "no-process-exit": "off",
+    "class-methods-use-this": "off",
+    "eqeqeq": "error",
+    "no-trailing-spaces": "error",
+    "object-curly-spacing": ["error", "always"],
+    "arrow-spacing": ["error", { "before": true, "after": true }]
+  },
+  "ignorePatterns": ["import/newline-after-import"]
+}

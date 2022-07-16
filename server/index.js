@@ -1,9 +1,9 @@
-const express = require("express");
+const express = require('express');
 const app = express();
-const cors = require("cors");
-require("dotenv-flow").config();
-const morgan = require("morgan");
-const { v4: uuidv4 } = require("uuid");
+const cors = require('cors');
+require('dotenv-flow').config();
+const morgan = require('morgan');
+const { v4: uuidv4 } = require('uuid');
 const {
   getDBContacts,
   getDBContactById,
@@ -11,22 +11,23 @@ const {
   updateDBContact,
   deleteDBContact,
   connectToMongo,
-} = require("./mongo");
+} = require('./mongo');
 
 const disconnectMongo = connectToMongo();
 
 // ** to allow using localhost:3001
 app.use(cors());
 // ** 3.9 serve static assets
-app.use(express.static("build"));
+app.use(express.static('build'));
 app.use(express.json());
 
 // ** to allow request.body to be defined
 // ** 3.8
-morgan.token("id", function getId(req) {
+morgan.token('id', function getId(req) {
   return req.id;
 });
-morgan.token("body", (req, res) => JSON.stringify(req.body));
+// eslint-disable-next-line no-unused-vars
+morgan.token('body', (req, res) => JSON.stringify(req.body));
 
 // ** utils
 // ** For morgan plugin
@@ -48,11 +49,11 @@ app.use(
   `)
 );
 
-app.get("/", (request, response) => {
+app.get('/', (request, response) => {
   response.status(404).end();
 });
 
-app.get("/info", async (request, response) => {
+app.get('/info', async (request, response) => {
   try {
     const contacts = await getDBContacts();
     response
@@ -69,15 +70,15 @@ app.get("/info", async (request, response) => {
   }
 });
 
-app.get("/api", (request, response) => {
+app.get('/api', (request, response) => {
   response.status(404).end();
 });
 
 //** GET all */
-app.get("/api/contacts", async (request, response) => {
+app.get('/api/contacts', async (request, response) => {
   try {
     const dbContacts = await getDBContacts();
-    console.log("Express got contacts", dbContacts);
+    console.log('Express got contacts', dbContacts);
     response.json(dbContacts);
   } catch (error) {
     console.error(error);
@@ -86,11 +87,11 @@ app.get("/api/contacts", async (request, response) => {
 });
 
 //** GET by id */
-app.get("/api/contacts/:id", async (request, response, next) => {
+app.get('/api/contacts/:id', async (request, response, next) => {
   try {
     const id = request.params.id;
     const dbContact = await getDBContactById(id);
-    console.log("Express got contact", dbContact);
+    console.log('Express got contact', dbContact);
     if (dbContact === null) {
       response.status(404).end();
     }
@@ -101,14 +102,14 @@ app.get("/api/contacts/:id", async (request, response, next) => {
 });
 
 //** POST new contact */
-app.post("/api/contacts", async (request, response, next) => {
+app.post('/api/contacts', async (request, response, next) => {
   try {
     const body = request.body || {};
     const { name, number } = body;
     if (name === undefined || number === undefined) {
       return response
         .status(400)
-        .json({ error: `${name === undefined ? "name" : "number"}` });
+        .json({ error: `${name === undefined ? 'name' : 'number'}` });
     }
 
     const dbContacts = await getDBContacts();
@@ -122,7 +123,7 @@ app.post("/api/contacts", async (request, response, next) => {
       return response
         .status(400)
         .json({
-          error: "Name already exists",
+          error: 'Name already exists',
         })
         .end();
     }
@@ -131,7 +132,7 @@ app.post("/api/contacts", async (request, response, next) => {
       name: body.name,
       number: body.number,
     });
-    console.log("Express created new contact: ", newDBContact);
+    console.log('Express created new contact: ', newDBContact);
     response.json(newDBContact);
   } catch (error) {
     next(error);
@@ -139,15 +140,15 @@ app.post("/api/contacts", async (request, response, next) => {
 });
 
 // ** Part 3.c Exercise 3.17 confirm uses put call
-app.put("/api/contacts/:id", async (request, response, next) => {
+app.put('/api/contacts/:id', async (request, response, next) => {
   try {
     const body = request.body;
     const { name, number } = body;
     const id = request.params.id;
 
-    console.log("about to update with id: ", id);
+    console.log('about to update with id: ', id);
     const result = await updateDBContact({ id, name, number });
-    console.log("Express updated contact result", result);
+    console.log('Express updated contact result', result);
     if (result === null) {
       response.status(404).end();
     }
@@ -158,11 +159,11 @@ app.put("/api/contacts/:id", async (request, response, next) => {
 });
 
 // ** 3.4 tested in Postman, VSCode rest thingy, and UI
-app.delete("/api/contacts/:id", async (request, response, next) => {
+app.delete('/api/contacts/:id', async (request, response, next) => {
   try {
     const { id } = request.params;
     const deletedContact = await deleteDBContact(id);
-    console.log("Express deleted contact", deletedContact);
+    console.log('Express deleted contact', deletedContact);
     response.status(204).end();
   } catch (error) {
     next(error);
@@ -171,7 +172,7 @@ app.delete("/api/contacts/:id", async (request, response, next) => {
 
 // ** Order matters for routes
 function unknownEndpoint(request, response) {
-  response.status(404).send({ error: "unknown endpoint" });
+  response.status(404).send({ error: 'unknown endpoint' });
 }
 app.use(unknownEndpoint);
 
@@ -181,10 +182,10 @@ app.use(unknownEndpoint);
 function errorHandler(error, request, response, next) {
   console.error(error.message);
 
-  if (error.name === "CastError") {
-    return response.status(400).send({ error: "malformatted id" });
+  if (error.name === 'CastError') {
+    return response.status(400).send({ error: 'malformatted id' });
   }
-  if (error.name === "ValidationError") {
+  if (error.name === 'ValidationError') {
     return response.status(400).send({ error: error.message });
   }
 
@@ -198,10 +199,11 @@ const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
-process.on("SIGTERM", () => {
-  debug("SIGTERM signal received: closing HTTP server");
+// ?? unsure if thisi is setup
+process.on('SIGTERM', () => {
+  console.log('SIGTERM signal received: closing HTTP server');
   server.close(async () => {
     await disconnectMongo();
-    debug("HTTP server closed");
+    console.log('HTTP server closed');
   });
 });
