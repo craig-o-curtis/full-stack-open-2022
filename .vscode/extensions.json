@@ -1,0 +1,17 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "formulahendry.auto-rename-tag",
+    "aaron-bond.better-comments",
+    "bracketpaircolordlw.bracket-pair-color-dlw",
+    "streetsidesoftware.code-spell-checker",
+    "mikestead.dotenv",
+    "dsznajder.es7-react-js-snippets",
+    "christian-kohler.path-intellisense",
+    "johnpapa.vscode-peacock",
+    "humao.rest-client",
+    "styled-components.vscode-styled-components",
+    "dsznajder.es7-react-js-snippets"
+  ]
+}
