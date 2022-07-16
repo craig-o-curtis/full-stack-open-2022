@@ -4,3 +4,5 @@
 
 - Monorepo for client and server for projects
 - client and server directories have respective README files for spinup process
+
+// Part 3.d Exercise 3.21 confirm works
