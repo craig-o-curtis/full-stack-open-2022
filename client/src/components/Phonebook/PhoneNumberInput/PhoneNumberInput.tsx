@@ -7,6 +7,7 @@ import * as Styled from "./PhoneNumberInput.styled";
 
 interface PhoneNumberInputProps {
   value: string;
+  disabled: boolean;
   onChange: ({
     number,
     isPossibleNumber,
@@ -16,7 +17,11 @@ interface PhoneNumberInputProps {
   }) => void;
 }
 
-const PhoneNumberInput = ({ onChange, value }: PhoneNumberInputProps) => {
+const PhoneNumberInput = ({
+  onChange,
+  disabled,
+  value,
+}: PhoneNumberInputProps) => {
   const handleChange = (newVal: string) => {
     onChange({
       number: formatPhoneNumberIntl(newVal),
@@ -29,6 +34,7 @@ const PhoneNumberInput = ({ onChange, value }: PhoneNumberInputProps) => {
       <PhoneInput
         placeholder="Enter phone number"
         value={value}
+        disabled={disabled}
         onChange={handleChange}
       />
       {isPossiblePhoneNumber(value) && <Styled.SuccessIconGuy />}

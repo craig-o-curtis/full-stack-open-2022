@@ -1,24 +1,26 @@
-require("dotenv-flow").config();
 const express = require("express");
-const cors = require("cors");
-const morgan = require("morgan");
 const app = express();
+const cors = require("cors");
+require("dotenv-flow").config();
+const morgan = require("morgan");
 const { v4: uuidv4 } = require("uuid");
-
 const {
   getDBContacts,
   getDBContactById,
   postDBContact,
   updateDBContact,
   deleteDBContact,
+  connectToMongo,
 } = require("./mongo");
 
+const disconnectMongo = connectToMongo();
 // debugger;
 // ** to allow using localhost:3001
 app.use(cors());
-app.use(express.json());
 // ** 3.9 serve static assets
 app.use(express.static("build"));
+app.use(express.json());
+
 // ** to allow request.body to be defined
 // ** 3.8
 morgan.token("id", function getId(req) {
@@ -27,6 +29,7 @@ morgan.token("id", function getId(req) {
 morgan.token("body", (req, res) => JSON.stringify(req.body));
 
 // ** utils
+// ** For morgan plugin
 function assignId(req, res, next) {
   req.id = uuidv4();
   next();
@@ -63,7 +66,6 @@ app.get("/info", async (request, response) => {
       .end();
   } catch (error) {
     response.status(404).end();
-    mongoose.connection.close();
   }
 });
 
@@ -83,21 +85,21 @@ app.get("/api/contacts", async (request, response) => {
 });
 
 //** GET by id */
-app.get("/api/contacts/:id", async (request, response) => {
+app.get("/api/contacts/:id", async (request, response, next) => {
   try {
     const id = request.params.id;
-    console.log("got id", id);
     const dbContact = await getDBContactById(id);
-    console.log("got contact...", dbContact);
-    response.json(dbContact);
+
+    if (dbContact === null) {
+      response.status(404).end();
+    }
   } catch (error) {
-    console.error(error);
-    response.status(404).end();
+    next(error);
   }
 });
 
 //** POST new contact */
-app.post("/api/contacts", async (request, response) => {
+app.post("/api/contacts", async (request, response, next) => {
   try {
     const body = request.body || {};
     const { name, number } = body;
@@ -139,60 +141,69 @@ app.post("/api/contacts", async (request, response) => {
     console.log("created new contact: ", newDBContact);
     response.json(newDBContact);
   } catch (error) {
-    console.error(error);
-    response.status(404).end();
+    next(error);
   }
 });
 
 //** UPDATE? existing */
-// ?? should this be a patch or put call if updating
-app.patch("/api/contacts/:id", async (request, response) => {
+app.put("/api/contacts/:id", async (request, response, next) => {
   try {
     const body = request.body;
     const { name, number } = body;
     const id = request.params.id;
-    const contacts = await getDBContacts();
-    const contact = contacts.find((contact) => contact.id === id);
 
-    // TODO throw specific errors if
-
-    if (contact === undefined) {
-      response.status(404).end();
-      return;
-    }
-
+    console.log("about to update with id: ", id);
     const result = await updateDBContact({ id, name, number });
-
+    console.log("got result from update: ", result);
+    // if (result === null) {
+    //   response.status(404).end();
+    // }
     // TODO Mongo action to update an existing contact
-    response.json(contact);
+    response.json(result);
   } catch (error) {
-    console.error(error);
-    response.status(404).end();
+    next(error);
   }
 });
 
 // ** 3.4 tested in Postman, VSCode rest thingy, and UI
-app.delete("/api/contacts/:id", async (request, response) => {
+app.delete("/api/contacts/:id", async (request, response, next) => {
   try {
-    const id = request.params.id;
-    // TODO need to figure out how to delete DB contact
-    const result = await deleteDBContact(id);
-    // 204 no content status code
+    const { id } = request.params;
+    const deletedContact = await deleteDBContact(id);
+    console.log("deleted contact", deletedContact);
     response.status(204).end();
   } catch (error) {
-    console.error(error);
-    response.status(404).end();
+    next(error);
   }
 });
 
 // ** Order matters for routes
-const unknownEndpoint = (request, response) => {
+function unknownEndpoint(request, response) {
   response.status(404).send({ error: "unknown endpoint" });
-};
+}
 app.use(unknownEndpoint);
+
+// ** last loaded middleware - error handler
+// ** error handling middleware
+function errorHandler(error, request, response, next) {
+  console.error(error.message);
+  if (error.name === "CastError") {
+    return response.status(400).send({ error: "malformatted id" });
+  }
+  next(error);
+}
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 3001;
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+});
+
+process.on("SIGTERM", () => {
+  debug("SIGTERM signal received: closing HTTP server");
+  server.close(async () => {
+    await disconnectMongo();
+    debug("HTTP server closed");
+  });
 });

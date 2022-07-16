@@ -7,12 +7,14 @@ import Contact from "../Contact";
 interface ContactsProps {
   contacts: IContact[];
   filter: string;
+  disabled: boolean;
   onDeleteContact: (contact: IContact) => void;
 }
 
 const Contacts = ({
   contacts = [],
   filter = "",
+  disabled,
   onDeleteContact,
 }: ContactsProps) => {
   const filteredContacts = useMemo(
@@ -33,6 +35,7 @@ const Contacts = ({
             <Contact
               key={contact.id}
               contact={contact}
+              disabled={disabled}
               onDeleteContact={onDeleteContact}
             />
           ))}
