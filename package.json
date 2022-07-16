@@ -4,8 +4,12 @@
   "description": "Monorepo for client and server",
   "main": "server/index.js",
   "scripts": {
+    "build": "npm run build:clean && npm run build:copy",
+    "build:clean": "cd server && rm -rf build && cd ../",
     "build:copy": "cd client && npm run build && cp -r build ../server && cd ../",
-    "heroku:push": "git subtree push --prefix server heroku main"
+    "build:deploy": "git checkout main && npm run build && git add . && git commit -m 'heroku build'",
+    "heroku:push": "git subtree push --prefix server heroku main",
+    "heroku:deploy": "npm run build:deploy && npm run heroku:push"
   },
   "repository": {
     "type": "git",
