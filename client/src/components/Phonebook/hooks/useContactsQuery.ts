@@ -17,9 +17,9 @@ const getContacts = async () => {
 };
 
 export const useContactsQuery = () => {
-  const { data, isLoading, isError, error } = useQuery<IContact[], Error>(
-    queryKey,
-    getContacts
-  );
-  return { contacts: data, isLoading, isError, error };
+  const { data, isLoading, isFetching, isError, error } = useQuery<
+    IContact[],
+    Error
+  >(queryKey, getContacts);
+  return { contacts: data, isLoading: isLoading || isFetching, isError, error };
 };

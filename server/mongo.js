@@ -25,7 +25,7 @@ const getDBContacts = async () => {
   try {
     // ** {} param for all... because that makes sense
     const contacts = await Contact.find({});
-    console.log("MongoDB returning contacts", contact);
+    console.log("MongoDB returning contacts", contacts);
     return contacts;
   } catch (error) {
     throw error;
@@ -63,7 +63,7 @@ const updateDBContact = async ({ id, name, number }) => {
         name,
         number,
       },
-      { new: true }
+      { new: true, runValidators: true, context: "query" }
     );
     console.log("MongoDB updated contact", updateDBContact);
     return updateDBContact;
