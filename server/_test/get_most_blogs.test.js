@@ -1,4 +1,5 @@
 const getMostBlogs = require('../testUtils/getMostBlogs');
+const { getMockBlogs } = require('../__mocks__/blogs');
 
 describe('getMostBlogs', () => {
   test('returns correct guy with most blogs', () => {
@@ -12,6 +13,15 @@ describe('getMostBlogs', () => {
       blogs: 2,
     };
     const result = getMostBlogs(blogs);
+    expect(result).toEqual(expected);
+  });
+
+  test('returns correck with realistic mock collection of blogs', () => {
+    const expected = {
+      author: 'Michael Chan',
+      blogs: 2,
+    };
+    const result = getMostBlogs(getMockBlogs());
     expect(result).toEqual(expected);
   });
 
