@@ -4,7 +4,7 @@
 node_modules
 
 # production
-./client/build/*
+client/build
 
 # Built CSS files
 src/**/*.css

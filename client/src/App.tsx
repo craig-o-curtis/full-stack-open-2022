@@ -7,7 +7,6 @@ import {
   // Anecdotes,
   // RefactoredCourse,
   Phonebook,
-  // Notes,
   // CountrySearch,
 } from "./components";
 import { GlobalStyles, AppWrapper } from "./components/common";
@@ -19,13 +18,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <GlobalStyles />
       <AppWrapper>
-        {/* <Course /> */}
-        {/* <Feedback /> */}
-        {/* <Anecdotes /> */}
-        {/* <RefactoredCourse /> */}
         <Phonebook />
-        {/* <Notes /> */}
-        {/* <CountrySearch /> */}
       </AppWrapper>
       <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
     </QueryClientProvider>

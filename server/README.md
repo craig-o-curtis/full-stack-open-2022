@@ -83,7 +83,11 @@ mongodb+srv://fullstack:<password>@cluster0.16byzrz.mongodb.net/?retryWrites=tru
 
 connect with mongoose
 
-// 3.c 3.14 confirm GET and POST work with frontend
+Set Heroku env variables with
+
+```
+heroku config:set <VAR>=blah
+```
 
 ## Debugging
 
