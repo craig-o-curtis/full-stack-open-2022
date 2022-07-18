@@ -1,14 +1,13 @@
 const app = require('./app');
 const http = require('http');
+const mongoose = require('mongoose');
 
 const { logger, config, mongoConnection } = require('./utils');
-
-let disconnectMongo;
 
 const server = http.createServer(app);
 
 server.listen(config.PORT, async () => {
-  disconnectMongo = await mongoConnection.connectToMongo();
+  await mongoConnection.connectToMongo();
   logger.log(`Server running on port ${config.PORT}`);
 });
 
@@ -16,7 +15,7 @@ server.listen(config.PORT, async () => {
 process.on('SIGTERM', () => {
   logger.log('SIGTERM signal received: closing HTTP server');
   server.close(async () => {
-    disconnectMongo.connection.close();
+    mongoose.connection.close();
     logger.log('HTTP server closed');
   });
 });
