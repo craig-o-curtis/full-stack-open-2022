@@ -3,20 +3,20 @@ const { MONGODB_URI } = require('./config');
 const logger = require('./logger');
 
 async function connectToMongo() {
-  try {
-    logger.log('connecting db');
-    await mongoose.connect(MONGODB_URI);
-    logger.log('connected to MongoDB');
-  } catch (error) {
-    logger.error('error connecting to MongoDB:', error.message);
-  }
+  const promise = new Promise((resolve, reject) => {
+    mongoose.connect(MONGODB_URI);
+    const db = mongoose.connection;
+    db.on('error', (error) => {
+      logger.error(error);
+      reject(error);
+    });
+    db.once('open', () => {
+      logger.log('connected to db');
+      resolve(db);
+    });
+  });
 
-  // ?? unsure of connecting and disconnecting to mongo
-  // ?? get problems if disconnect on each call
-  return async () => {
-    await mongoose.connection.close();
-    logger.log('disconnected from MongoDB');
-  };
+  return await promise;
 }
 
 module.exports = { connectToMongo };

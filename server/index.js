@@ -3,7 +3,7 @@ const http = require('http');
 
 const { logger, config, mongoConnection } = require('./utils');
 
-let disconnectMongo = undefined;
+let disconnectMongo;
 
 const server = http.createServer(app);
 
@@ -16,7 +16,7 @@ server.listen(config.PORT, async () => {
 process.on('SIGTERM', () => {
   logger.log('SIGTERM signal received: closing HTTP server');
   server.close(async () => {
-    await disconnectMongo();
+    disconnectMongo.connection.close();
     logger.log('HTTP server closed');
   });
 });

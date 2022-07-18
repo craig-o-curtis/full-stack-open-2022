@@ -24,6 +24,7 @@ contactSchema.set('toJSON', {
   },
 });
 
-const Contact = mongoose.model('Contact', contactSchema);
+const phonebookAppDB = mongoose.connection.useDb('phonebookApp');
+const Contact = phonebookAppDB.model('Contact', contactSchema);
 
 module.exports = Contact;

@@ -1,5 +1,5 @@
-const { Contact } = require('../models');
-const { logger } = require('../utils');
+const { Contact } = require('../../models');
+const { logger } = require('../../utils');
 
 async function postDBContact({ name, number }) {
   const newContact = new Contact({ name, number });

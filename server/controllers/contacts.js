@@ -6,7 +6,7 @@ const {
   postDBContact,
   updateDBContact,
   deleteDBContact,
-} = require('../actions');
+} = require('../actions/contacts/');
 
 contactsRouter.get('/', async (request, response) => {
   try {
@@ -63,7 +63,7 @@ contactsRouter.post('/', async (request, response, next) => {
       name: body.name,
       number: body.number,
     });
-    logger.log('Express created new contact: ', newDBContact);
+    logger.log('Express created new contact', newDBContact);
     response.json(newDBContact);
   } catch (error) {
     next(error);
@@ -76,9 +76,8 @@ contactsRouter.put('/:id', async (request, response, next) => {
     const { name, number } = body;
     const id = request.params.id;
 
-    logger.log('about to update with id: ', id);
     const result = await updateDBContact({ id, name, number });
-    logger.log('Express updated contact result', result);
+    logger.log('Express updated contact', result);
     if (result === null) {
       response.status(404).end();
     }

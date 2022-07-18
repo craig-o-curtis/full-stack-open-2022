@@ -1,5 +1,5 @@
-const { Contact } = require('../models');
-const { logger } = require('../utils');
+const { Contact } = require('../../models');
+const { logger } = require('../../utils');
 
 async function getDBContacts() {
   // ** {} param for all... because that makes sense
