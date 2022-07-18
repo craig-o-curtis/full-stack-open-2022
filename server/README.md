@@ -105,3 +105,5 @@ node --inspect server/index.js
 ```
 
 - Open Chrome devtools, click on green Node icon to open new tab with debugger
+
+// Confirms Part 4.a Exercise 4.2 is organized in modules
