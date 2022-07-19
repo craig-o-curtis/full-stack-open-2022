@@ -25,7 +25,7 @@ contactsRouter.get('/:id', async (request, response, next) => {
     const dbContact = await getDBContactById(id);
     logger.log('Express got contact', dbContact);
     if (dbContact === null) {
-      response.status(404).end();
+      response.status(404).json({ error: 'Item id does not exist.' }).end();
     }
     response.json(dbContact);
   } catch (error) {
@@ -64,7 +64,7 @@ contactsRouter.post('/', async (request, response, next) => {
       number: body.number,
     });
     logger.log('Express created new contact', newDBContact);
-    response.json(newDBContact);
+    response.status(201).json(newDBContact);
   } catch (error) {
     next(error);
   }
@@ -79,7 +79,7 @@ contactsRouter.put('/:id', async (request, response, next) => {
     const result = await updateDBContact({ id, name, number });
     logger.log('Express updated contact', result);
     if (result === null) {
-      response.status(404).end();
+      response.status(404).json({ error: 'Item id does not exist.' }).end();
     }
     response.json(result);
   } catch (error) {

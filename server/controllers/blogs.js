@@ -25,7 +25,7 @@ blogsRouter.get('/:id', async (request, response, next) => {
     const dbBlog = await getDBBlogById(id);
     logger.log('Express got contact', dbBlog);
     if (dbBlog === null) {
-      response.status(404).end();
+      response.status(404).json({ error: 'Item id does not exist.' }).end();
     }
     response.json(dbBlog);
   } catch (error) {
@@ -66,7 +66,7 @@ blogsRouter.post('/', async (request, response, next) => {
       likes,
     });
     logger.log('Express created new blog', newDBBlog);
-    response.json(newDBBlog);
+    response.status(201).json(newDBBlog);
   } catch (error) {
     next(error);
   }
@@ -86,7 +86,7 @@ blogsRouter.put('/:id', async (request, response, next) => {
     });
     logger.log('Express updated contact', result);
     if (result === null) {
-      response.status(404).end();
+      response.status(404).json({ error: 'Item id does not exist.' }).end();
     }
     response.json(result);
   } catch (error) {
