@@ -22,6 +22,7 @@ describe('/api/blogs endpoints', () => {
     await Blog.deleteMany({});
 
     const setupItems = blogsHelper.getInitialItems();
+    // ** uses Promise.all
     const prepObjects = setupItems.map((item) => new Blog(item));
     const promises = prepObjects.map((item) => item.save());
     await Promise.all(promises);
