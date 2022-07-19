@@ -159,6 +159,7 @@ describe('/api/blogs endpoints', () => {
     });
 
     test('POST rejects malformed data', async () => {
+      // ** Part 4.b Exercise 4.12 already written
       // setup
       const invalidItem1 = {
         title: '',
