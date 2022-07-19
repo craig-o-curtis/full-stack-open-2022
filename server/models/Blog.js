@@ -33,7 +33,8 @@ blogSchema.set('toJSON', {
   },
 });
 
-const blogApp = mongoose.connection.useDb('blogApp');
+const dbName = process.env.NODE_ENV === 'test' ? 'testBlogApp' : 'blogApp';
+const blogApp = mongoose.connection.useDb(dbName);
 const Blog = blogApp.model('Blog', blogSchema);
 
 module.exports = Blog;

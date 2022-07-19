@@ -85,6 +85,10 @@ blogsRouter.put('/:id', async (request, response, next) => {
       likes,
     });
     logger.log('Express updated contact', result);
+    if (result === null) {
+      response.status(404).end();
+    }
+    response.json(result);
   } catch (error) {
     next(error);
   }

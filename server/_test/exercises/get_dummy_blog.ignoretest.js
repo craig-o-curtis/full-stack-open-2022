@@ -1,4 +1,4 @@
-const getDummyBlog = require('../testUtils/getDummyBlog');
+const getDummyBlog = require('../../testUtils/exercises/getDummyBlog');
 
 describe('getDummyBlog', () => {
   test('dummy returns one', () => {

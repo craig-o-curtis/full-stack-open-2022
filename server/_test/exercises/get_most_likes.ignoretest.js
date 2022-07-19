@@ -1,5 +1,5 @@
-const getMostLikes = require('../testUtils/getMostLikes');
-const { getMockBlogs } = require('../__mocks__/blogs');
+const getMostLikes = require('../../testUtils/exercises/getMostLikes');
+const { getMockBlogs } = require('../../__mocks__/blogs');
 
 describe('getMostLikes', () => {
   test('returns author with most likes', () => {
