@@ -318,6 +318,7 @@ describe('/api/blogs endpoints', () => {
   });
 
   describe('DELETE calls blogsApp', () => {
+    // ** Part 4.b Exercise 4.13 confirms thorough testing
     test('DELETE works', async () => {
       // setup
       const allItems = await blogsHelper.getItemsInDB();
