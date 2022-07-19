@@ -101,6 +101,9 @@ describe('/api/blogs endpoints', () => {
   describe('POST calls blogsApp', () => {
     test('POST works', async () => {
       // setup
+      const originalDBItems = await blogsHelper.getItemsInDB();
+      const originalDBItemsLength = originalDBItems.length;
+
       const postItem = {
         title: 'Test Blog3',
         author: 'Pal Buddyfriend',
@@ -120,6 +123,10 @@ describe('/api/blogs endpoints', () => {
       // assert
       const getByIdResponse = await api.get(`${ENDPOINT_BASE}/${postedItemId}`);
       expectResponseValues(postItem, getByIdResponse.body);
+
+      const updatedDBItems = await blogsHelper.getItemsInDB();
+      const updatedDBItemsLength = updatedDBItems.length;
+      expect(updatedDBItemsLength).toEqual(originalDBItemsLength + 1);
     });
 
     test('POST rejects malformed data', async () => {

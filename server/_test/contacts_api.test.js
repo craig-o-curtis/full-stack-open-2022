@@ -101,6 +101,9 @@ describe('/api/contacts endpoints', () => {
   describe('POST calls phonebookApp', () => {
     test('POST works', async () => {
       // setup
+      const originalDBItems = await contactsHelper.getItemsInDB();
+      const originalDBItemsLength = originalDBItems.length;
+
       const postItem = {
         name: 'Test Post Contact',
         number: '+1 800 555 1234',
@@ -118,6 +121,10 @@ describe('/api/contacts endpoints', () => {
       // assert
       const getByIdResponse = await api.get(`${ENDPOINT_BASE}/${postedItemId}`);
       expectResponseValues(postItem, getByIdResponse.body);
+
+      const updatedDBItems = await contactsHelper.getItemsInDB();
+      const updatedDBItemsLength = updatedDBItems.length;
+      expect(updatedDBItemsLength).toEqual(originalDBItemsLength + 1);
     });
 
     test('POST rejects malformed data', async () => {
