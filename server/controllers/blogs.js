@@ -25,7 +25,7 @@ blogsRouter.get('/:id', async (request, response, next) => {
     const dbBlog = await getDBBlogById(id);
     logger.log('Express got contact', dbBlog);
 
-    apiUtils.handleInvalidIdError(dbBlog);
+    apiUtils.checkInvalidIdError(dbBlog);
     response.json(dbBlog);
   } catch (error) {
     next(error);
@@ -54,9 +54,7 @@ blogsRouter.post('/', async (request, response, next) => {
     // ** Backend safety to prevent posting titles -- should be handled in the FE
     const dbBlogs = await getDBBlogs();
     const titleAlreadyExists = dbBlogs.find((b) => b.title === title);
-    if (titleAlreadyExists) {
-      return response.status(400).json({ error: 'Title already exists' }).end();
-    }
+    apiUtils.checkPropertyExistsError(titleAlreadyExists, 'title');
 
     const newDBBlog = await postDBBlog({
       title,
@@ -64,6 +62,8 @@ blogsRouter.post('/', async (request, response, next) => {
       url,
       likes,
     });
+
+    apiUtils.checkUnsavedItemError(newDBBlog);
     logger.log('Express created new blog', newDBBlog);
     response.status(201).json(newDBBlog);
   } catch (error) {
@@ -85,7 +85,7 @@ blogsRouter.put('/:id', async (request, response, next) => {
     });
     logger.log('Express updated contact', result);
 
-    apiUtils.handleInvalidIdError(result);
+    apiUtils.checkInvalidIdError(result);
     response.json(result);
   } catch (error) {
     next(error);
@@ -97,7 +97,7 @@ blogsRouter.delete('/:id', async (request, response, next) => {
     const { id } = request.params;
     const deletedBlog = await deleteDBBlog(id);
 
-    apiUtils.handleInvalidIdError(deletedBlog);
+    apiUtils.checkInvalidIdError(deletedBlog);
     logger.log('Express deleted blog', deletedBlog);
     response.status(204).end();
   } catch (error) {

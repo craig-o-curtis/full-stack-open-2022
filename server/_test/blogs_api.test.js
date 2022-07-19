@@ -5,27 +5,14 @@ const supertest = require('supertest');
 const app = require('../app');
 const Blog = require('../models/Blog');
 const { mongoConnection } = require('../utils');
-const { expectResponseValues } = require('../testUtils');
+const { expectResponseValues, blogsHelper } = require('../testUtils');
 
 const api = supertest(app);
 const ENDPOINT_BASE = '/api/blogs';
 
-const initialItems = [
-  {
-    title: 'Test Blog1',
-    author: 'Guy Dudeman',
-    url: 'www.example.com',
-    likes: 1,
-  },
-  {
-    title: 'Test Blog2',
-    author: 'Man Boyson',
-    url: 'www.google.com',
-    likes: 2,
-  },
-];
-
 describe('/api/blogs endpoints', () => {
+  const initialItems = blogsHelper.getInitialItems();
+
   beforeAll(async () => {
     await mongoConnection.connectToMongo();
     console.log('Test suite connected to Mongo');
@@ -69,9 +56,12 @@ describe('/api/blogs endpoints', () => {
   describe('GET by id calls', () => {
     test('GET by id works', async () => {
       // setup
-      const itemsResponse = await api.get(ENDPOINT_BASE);
-      const firstItemId = itemsResponse.body?.[0]?.id;
-      const response = await api.get(`${ENDPOINT_BASE}/${firstItemId}`);
+      const allItems = await blogsHelper.getItemsInDB();
+      const firstItemId = allItems[0].id;
+      const response = await api
+        .get(`${ENDPOINT_BASE}/${firstItemId}`)
+        .expect(200)
+        .expect('Content-Type', /application\/json/);
       // assert
       expectResponseValues(initialItems[0], response.body);
     });
@@ -112,7 +102,8 @@ describe('/api/blogs endpoints', () => {
       const postResponse = await api
         .post(ENDPOINT_BASE)
         .send(postItem)
-        .expect(201);
+        .expect(201)
+        .expect('Content-Type', /application\/json/);
       // assert
       expectResponseValues(postItem, postResponse.body);
       // reconfirm with GET by id
@@ -171,8 +162,8 @@ describe('/api/blogs endpoints', () => {
   describe('PUT calls', () => {
     test('PUT works', async () => {
       // setup
-      const allItemsResponse = await api.get(ENDPOINT_BASE);
-      const firstItemId = allItemsResponse.body[0].id;
+      const allItems = await blogsHelper.getItemsInDB();
+      const firstItemId = allItems[0].id;
       const updatedItem = {
         title: 'Test Blog1 Updated',
         author: 'Another Guy',
@@ -184,7 +175,8 @@ describe('/api/blogs endpoints', () => {
       const putResponse = await api
         .put(`${ENDPOINT_BASE}/${firstItemId}`)
         .send(updatedItem)
-        .expect(200);
+        .expect(200)
+        .expect('Content-Type', /application\/json/);
       // assert
       expectResponseValues(updatedItem, putResponse.body);
       expect(putResponse.body.id).toEqual(firstItemId);
@@ -282,8 +274,7 @@ describe('/api/blogs endpoints', () => {
   describe('DELETE calls', () => {
     test('DELETE works', async () => {
       // setup
-      const allItemsResponse = await api.get(ENDPOINT_BASE);
-      const allItems = allItemsResponse.body;
+      const allItems = await blogsHelper.getItemsInDB();
 
       for (const contact of allItems) {
         await api.delete(`${ENDPOINT_BASE}/${contact.id}`).expect(204);

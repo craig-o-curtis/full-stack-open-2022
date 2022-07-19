@@ -25,7 +25,7 @@ contactsRouter.get('/:id', async (request, response, next) => {
     const dbContact = await getDBContactById(id);
     logger.log('Express got contact', dbContact);
 
-    apiUtils.handleInvalidIdError(dbContact);
+    apiUtils.checkInvalidIdError(dbContact);
     response.json(dbContact);
   } catch (error) {
     next(error);
@@ -49,19 +49,14 @@ contactsRouter.post('/', async (request, response, next) => {
 
     // ** this block is never hit because the dup check is handled in the front-end and we're allowing updating of numbers
     // ** to existing contacts. but just adding this for homework purposes
-    if (nameAlreadyExists) {
-      return response
-        .status(400)
-        .json({
-          error: 'Name already exists',
-        })
-        .end();
-    }
+    apiUtils.checkPropertyExistsError(nameAlreadyExists, 'name');
 
     const newDBContact = await postDBContact({
       name: body.name,
       number: body.number,
     });
+
+    apiUtils.checkUnsavedItemError(newDBContact);
     logger.log('Express created new contact', newDBContact);
     response.status(201).json(newDBContact);
   } catch (error) {
@@ -78,7 +73,7 @@ contactsRouter.put('/:id', async (request, response, next) => {
     const result = await updateDBContact({ id, name, number });
     logger.log('Express updated contact', result);
 
-    apiUtils.handleInvalidIdError(result);
+    apiUtils.checkInvalidIdError(result);
     response.json(result);
   } catch (error) {
     next(error);
@@ -90,7 +85,7 @@ contactsRouter.delete('/:id', async (request, response, next) => {
     const { id } = request.params;
     const deletedContact = await deleteDBContact(id);
 
-    apiUtils.handleInvalidIdError(deletedContact);
+    apiUtils.checkInvalidIdError(deletedContact);
     logger.log('Express deleted contact', deletedContact);
     response.status(204).end();
   } catch (error) {

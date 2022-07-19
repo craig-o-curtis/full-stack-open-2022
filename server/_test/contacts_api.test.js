@@ -5,23 +5,14 @@ const supertest = require('supertest');
 const app = require('../app');
 const Contact = require('../models/Contact');
 const { mongoConnection } = require('../utils');
-const { expectResponseValues } = require('../testUtils');
+const { expectResponseValues, contactsHelper } = require('../testUtils');
 
 const api = supertest(app);
 const ENDPOINT_BASE = '/api/contacts';
 
-const initialItems = [
-  {
-    name: 'Test Contact1',
-    number: '+48 62155548',
-  },
-  {
-    name: 'Test Contact2',
-    number: '+53 23 43234',
-  },
-];
-
 describe('/api/contacts endpoints', () => {
+  const initialItems = contactsHelper.getInitialItems();
+
   beforeAll(async () => {
     await mongoConnection.connectToMongo();
     console.log('Test suite connected to Mongo');
@@ -29,6 +20,7 @@ describe('/api/contacts endpoints', () => {
 
   beforeEach(async () => {
     await Contact.deleteMany({});
+
     const initialItem1 = new Contact(initialItems[0]);
     const initialItem2 = new Contact(initialItems[1]);
 
@@ -65,9 +57,12 @@ describe('/api/contacts endpoints', () => {
   describe('GET by id calls', () => {
     test('GET by id works', async () => {
       // setup
-      const allItemsResponse = await api.get(ENDPOINT_BASE);
-      const firstItemId = allItemsResponse.body?.[0]?.id;
-      const response = await api.get(`${ENDPOINT_BASE}/${firstItemId}`);
+      const allItems = await contactsHelper.getItemsInDB();
+      const firstItemId = allItems[0].id;
+      const response = await api
+        .get(`${ENDPOINT_BASE}/${firstItemId}`)
+        .expect(200)
+        .expect('Content-Type', /application\/json/);
       // assert
       expectResponseValues(initialItems[0], response.body);
     });
@@ -106,7 +101,8 @@ describe('/api/contacts endpoints', () => {
       const postResponse = await api
         .post(ENDPOINT_BASE)
         .send(postItem)
-        .expect(201);
+        .expect(201)
+        .expect('Content-Type', /application\/json/);
       // assert
       expectResponseValues(postItem, postResponse.body);
       // reconfirm with GET by id
@@ -159,8 +155,8 @@ describe('/api/contacts endpoints', () => {
   describe('PUT calls', () => {
     test('PUT works', async () => {
       // setup
-      const allItemsResponse = await api.get(ENDPOINT_BASE);
-      const firstItemId = allItemsResponse.body?.[0]?.id;
+      const allItems = await contactsHelper.getItemsInDB();
+      const firstItemId = allItems[0].id;
       const updatedItem = {
         name: 'Test Contact1 Updated',
         number: '+1 555 843 5185',
@@ -169,7 +165,8 @@ describe('/api/contacts endpoints', () => {
       const putResponse = await api
         .put(`${ENDPOINT_BASE}/${firstItemId}`)
         .send(updatedItem)
-        .expect(200);
+        .expect(200)
+        .expect('Content-Type', /application\/json/);
       // assert
       expectResponseValues(updatedItem, putResponse.body);
       expect(putResponse.body.id).toEqual(firstItemId);
@@ -257,8 +254,7 @@ describe('/api/contacts endpoints', () => {
   describe('DELETE calls', () => {
     test('DELETE works', async () => {
       // setup
-      const allItemsResponse = await api.get(ENDPOINT_BASE);
-      const allItems = allItemsResponse.body;
+      const allItems = await contactsHelper.getItemsInDB();
 
       for (const item of allItems) {
         await api.delete(`${ENDPOINT_BASE}/${item.id}`).expect(204);
