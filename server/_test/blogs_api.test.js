@@ -129,6 +129,35 @@ describe('/api/blogs endpoints', () => {
       expect(updatedDBItemsLength).toEqual(originalDBItemsLength + 1);
     });
 
+    test('POST defaults likes to 0', async () => {
+      // setup
+      const postItem = {
+        title: 'Test Blog4',
+        author: 'Fella Wellwisher',
+        url: 'https://www.yankee.com',
+      };
+      // act
+      const postResponse = await api
+        .post(ENDPOINT_BASE)
+        .send(postItem)
+        .expect(201)
+        .expect('Content-Type', /application\/json/);
+      // assert
+      expectResponseValues(postItem, postResponse.body);
+      expect(postResponse.body.likes).toEqual(0);
+      // reconfirm with GET by id
+      const postedItemId = postResponse.body.id;
+      // assert
+      const getByIdResponse = await api.get(`${ENDPOINT_BASE}/${postedItemId}`);
+      expectResponseValues(postItem, getByIdResponse.body);
+
+      const updatedDBItems = await blogsHelper.getItemsInDB();
+      expect(
+        updatedDBItems.find((item) => item.id === postResponse.body.id).likes
+      ).toEqual(0);
+      console.log(updatedDBItems);
+    });
+
     test('POST rejects malformed data', async () => {
       // setup
       const invalidItem1 = {
