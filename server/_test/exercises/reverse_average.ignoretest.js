@@ -1,4 +1,4 @@
-const { reverse, average } = require('../testUtils/utils');
+const { reverse, average } = require('../../testUtils/exercises/utils');
 
 describe('reverse', () => {
   test('reverse of a', () => {

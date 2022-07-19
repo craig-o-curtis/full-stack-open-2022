@@ -1,5 +1,5 @@
-const getFavoriteBlog = require('../testUtils/getFavoriteBlog');
-const { getMockBlogs } = require('../__mocks__/blogs');
+const getFavoriteBlog = require('../../testUtils/exercises/getFavoriteBlog');
+const { getMockBlogs } = require('../../__mocks__/blogs');
 
 describe('getFavoriteBlog', () => {
   test('returns max likes', () => {

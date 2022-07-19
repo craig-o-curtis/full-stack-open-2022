@@ -16,10 +16,22 @@ function errorHandler(error, request, response, next) {
   logger.error(error.message);
 
   if (error.name === 'CastError') {
-    return response.status(400).send({ error: 'malformatted id' });
+    return response.status(400).send({ error: 'Malformatted id.' });
   }
   if (error.name === 'ValidationError') {
     return response.status(400).send({ error: error.message });
+  }
+  if (error.name === 'InvalidIdError') {
+    return response.status(404).send({ error: error.message });
+  }
+  if (error.name === 'SaveItemError') {
+    return response.status(404).send({ error: error.message });
+  }
+  if (error.name === 'PropertyExistsError') {
+    return response.status(400).json({ error: error.message }).end();
+  }
+  if (error.name === 'MissingPropertiesError') {
+    return response.status(400).json({ error: error.message }).end();
   }
 
   next(error);
@@ -27,7 +39,6 @@ function errorHandler(error, request, response, next) {
 
 module.exports = {
   requestLogger,
-
   unknownEndpoint,
   errorHandler,
 };

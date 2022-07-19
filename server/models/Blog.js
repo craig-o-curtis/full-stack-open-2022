@@ -20,7 +20,7 @@ const blogSchema = new mongoose.Schema({
       },
       message: (props) => `${props.value} is not a valid url`,
     },
-    required: [true, 'Blog url required'],
+    required: [true, 'Blog url required.'],
   },
   likes: Number,
 });
@@ -33,7 +33,8 @@ blogSchema.set('toJSON', {
   },
 });
 
-const blogApp = mongoose.connection.useDb('blogApp');
+const dbName = process.env.NODE_ENV === 'test' ? 'testBlogApp' : 'blogApp';
+const blogApp = mongoose.connection.useDb(dbName);
 const Blog = blogApp.model('Blog', blogSchema);
 
 module.exports = Blog;

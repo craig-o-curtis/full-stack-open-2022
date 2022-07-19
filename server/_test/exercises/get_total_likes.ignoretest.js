@@ -1,5 +1,5 @@
-const getTotalLikes = require('../testUtils/getTotalLikes');
-const { getMockBlogs } = require('../__mocks__/blogs');
+const getTotalLikes = require('../../testUtils/exercises/getTotalLikes');
+const { getMockBlogs } = require('../../__mocks__/blogs');
 
 describe('getTotalLikes', () => {
   test('returns 0 for no blogs', () => {

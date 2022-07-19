@@ -6,10 +6,12 @@ async function connectToMongo() {
   const promise = new Promise((resolve, reject) => {
     mongoose.connect(MONGODB_URI);
     const db = mongoose.connection;
+
     db.on('error', (error) => {
       logger.error(error);
       reject(error);
     });
+
     db.once('open', () => {
       logger.log('connected to db');
       resolve(db);
