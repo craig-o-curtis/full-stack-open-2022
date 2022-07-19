@@ -28,7 +28,7 @@ describe('/api/contacts endpoints', () => {
     await initialItem2.save();
   });
 
-  describe('GET calls', () => {
+  describe('GET calls phonebookApp', () => {
     test('GET contacts are returned as json', async () => {
       await api
         .get(ENDPOINT_BASE)
@@ -54,7 +54,7 @@ describe('/api/contacts endpoints', () => {
     });
   });
 
-  describe('GET by id calls', () => {
+  describe('GET by id calls phonebookApp', () => {
     test('GET by id works', async () => {
       // setup
       const allItems = await contactsHelper.getItemsInDB();
@@ -90,7 +90,7 @@ describe('/api/contacts endpoints', () => {
     });
   });
 
-  describe('POST calls', () => {
+  describe('POST calls phonebookApp', () => {
     test('POST works', async () => {
       // setup
       const postItem = {
@@ -152,7 +152,7 @@ describe('/api/contacts endpoints', () => {
     });
   });
 
-  describe('PUT calls', () => {
+  describe('PUT calls phonebookApp', () => {
     test('PUT works', async () => {
       // setup
       const allItems = await contactsHelper.getItemsInDB();
@@ -251,7 +251,7 @@ describe('/api/contacts endpoints', () => {
     });
   });
 
-  describe('DELETE calls', () => {
+  describe('DELETE calls phonebookApp', () => {
     test('DELETE works', async () => {
       // setup
       const allItems = await contactsHelper.getItemsInDB();

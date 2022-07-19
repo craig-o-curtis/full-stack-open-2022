@@ -27,7 +27,7 @@ describe('/api/blogs endpoints', () => {
     await initialItem2.save();
   });
 
-  describe('GET calls', () => {
+  describe('GET calls blogsApp', () => {
     test('blogs are returned as json', async () => {
       await api
         .get(ENDPOINT_BASE)
@@ -53,7 +53,7 @@ describe('/api/blogs endpoints', () => {
     });
   });
 
-  describe('GET by id calls', () => {
+  describe('GET by id calls blogsApp', () => {
     test('GET by id works', async () => {
       // setup
       const allItems = await blogsHelper.getItemsInDB();
@@ -89,7 +89,7 @@ describe('/api/blogs endpoints', () => {
     });
   });
 
-  describe('POST calls', () => {
+  describe('POST calls blogsApp', () => {
     test('POST works', async () => {
       // setup
       const postItem = {
@@ -159,7 +159,7 @@ describe('/api/blogs endpoints', () => {
     });
   });
 
-  describe('PUT calls', () => {
+  describe('PUT calls blogsApp', () => {
     test('PUT works', async () => {
       // setup
       const allItems = await blogsHelper.getItemsInDB();
@@ -271,7 +271,7 @@ describe('/api/blogs endpoints', () => {
     });
   });
 
-  describe('DELETE calls', () => {
+  describe('DELETE calls blogsApp', () => {
     test('DELETE works', async () => {
       // setup
       const allItems = await blogsHelper.getItemsInDB();
