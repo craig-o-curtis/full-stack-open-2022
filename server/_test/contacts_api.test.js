@@ -118,30 +118,30 @@ describe('/api/contacts endpoints', () => {
 
     test('POST rejects malformed data', async () => {
       // setup
-      const invalidPostItem1 = {
+      const invalidItem1 = {
         name: '',
         number: '+1 800 555 5555',
       };
-      const invalidPostItem2 = {
+      const invalidItem2 = {
         name: 'Guy Manboy',
         number: '',
       };
-      const invalidPostItem3 = {
+      const invalidItem3 = {
         name: 'Some Dudeguy',
         number: 'abc',
       };
       // act
       const postResponse1 = await api
         .post(ENDPOINT_BASE)
-        .send(invalidPostItem1)
+        .send(invalidItem1)
         .expect(400);
       const postResponse2 = await api
         .post(ENDPOINT_BASE)
-        .send(invalidPostItem2)
+        .send(invalidItem2)
         .expect(400);
       const postResponse3 = await api
         .post(ENDPOINT_BASE)
-        .send(invalidPostItem3)
+        .send(invalidItem3)
         .expect(400);
       // assert
       expect(postResponse1.body.error).toEqual(
@@ -210,6 +210,48 @@ describe('/api/contacts endpoints', () => {
       // assert
       expect(putResponse.body.error).toEqual('Malformatted id.');
     });
+
+    test('PUT rejects malformed data', async () => {
+      // setup
+      const allItemsResponse = await api.get(ENDPOINT_BASE);
+      const firstItemId = allItemsResponse.body[0].id;
+
+      const invalidItem1 = {
+        name: '',
+        number: '+1 800 555 5555',
+      };
+      const invalidItem2 = {
+        name: 'Guy Manboy',
+        number: '',
+      };
+      const invalidItem3 = {
+        name: 'Some Dudeguy',
+        number: 'abc',
+      };
+      // act
+      const postResponse1 = await api
+        .put(`${ENDPOINT_BASE}/${firstItemId}`)
+        .send(invalidItem1)
+        .expect(400);
+      const postResponse2 = await api
+        .put(`${ENDPOINT_BASE}/${firstItemId}`)
+        .send(invalidItem2)
+        .expect(400);
+      const postResponse3 = await api
+        .put(`${ENDPOINT_BASE}/${firstItemId}`)
+        .send(invalidItem3)
+        .expect(400);
+      // assert
+      expect(postResponse1.body.error).toEqual(
+        'Validation failed: name: Path `name` is required.'
+      );
+      expect(postResponse2.body.error).toEqual(
+        'Validation failed: number: User phone number required.'
+      );
+      expect(postResponse3.body.error).toEqual(
+        'Validation failed: number: abc is not a valid phone number!'
+      );
+    });
   });
 
   describe('DELETE calls', () => {
@@ -231,6 +273,28 @@ describe('/api/contacts endpoints', () => {
       // Reconfirm GET all
       const confirmAllResponse = await api.get(ENDPOINT_BASE).expect(200);
       expect(confirmAllResponse.body).toHaveLength(0);
+    });
+
+    test('DELETE to invalid id 404 id does not exist', async () => {
+      // setup
+      const bogusId = '000000000000000000000000';
+      // act
+      const response = await api
+        .delete(`${ENDPOINT_BASE}/${bogusId}`)
+        .expect(404);
+      // assert
+      expect(response.body.error).toEqual('Item id does not exist.');
+    });
+
+    test('DELETE to impossible id 400 Not Found', async () => {
+      // setup
+      const bogusId = 'abc';
+      // act
+      const response = await api
+        .delete(`${ENDPOINT_BASE}/${bogusId}`)
+        .expect(400);
+      // assert
+      expect(response.body.error).toEqual('Malformatted id.');
     });
   });
 

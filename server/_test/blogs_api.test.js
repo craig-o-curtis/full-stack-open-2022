@@ -76,7 +76,7 @@ describe('/api/blogs endpoints', () => {
       expectResponseValues(initialItems[0], response.body);
     });
 
-    test.only('GET from invalid id 400 Bad Request', async () => {
+    test('GET from invalid id 400 Bad Request', async () => {
       // setup
       const bogusId = '000000000000000000000000';
       // act
@@ -84,7 +84,6 @@ describe('/api/blogs endpoints', () => {
         .get(`${ENDPOINT_BASE}/${bogusId}`)
         .expect(404);
       // assert
-      console.log(putResponse.body);
       expect(putResponse.body.error).toEqual('Item id does not exist.');
     });
 
@@ -125,19 +124,19 @@ describe('/api/blogs endpoints', () => {
 
     test('POST rejects malformed data', async () => {
       // setup
-      const invalidPostItem1 = {
+      const invalidItem1 = {
         title: '',
         author: 'Pal Buddyfriend',
         url: 'http://localhost:3000',
         likes: 100,
       };
-      const invalidPostItem2 = {
+      const invalidItem2 = {
         title: 'Test Blog3',
         author: '',
         url: 'http://localhost:3000',
         likes: 100,
       };
-      const invalidPostItem3 = {
+      const invalidItem3 = {
         title: 'Test Blog3',
         author: 'Pal Buddyfriend',
         url: '',
@@ -146,15 +145,15 @@ describe('/api/blogs endpoints', () => {
       // act
       const postResponse1 = await api
         .post(ENDPOINT_BASE)
-        .send(invalidPostItem1)
+        .send(invalidItem1)
         .expect(400);
       const postResponse2 = await api
         .post(ENDPOINT_BASE)
-        .send(invalidPostItem2)
+        .send(invalidItem2)
         .expect(400);
       const postResponse3 = await api
         .post(ENDPOINT_BASE)
-        .send(invalidPostItem3)
+        .send(invalidItem3)
         .expect(400);
       // assert
       expect(postResponse1.body.error).toEqual(
@@ -210,7 +209,6 @@ describe('/api/blogs endpoints', () => {
         .send(updatedItem)
         .expect(404);
       // assert
-      console.log(putResponse.body);
       expect(putResponse.body.error).toEqual('Item id does not exist.');
     });
 
@@ -230,6 +228,54 @@ describe('/api/blogs endpoints', () => {
         .expect(400);
       // assert
       expect(putResponse.body.error).toEqual('Malformatted id.');
+    });
+
+    test('PUT rejects malformed data', async () => {
+      // setup
+      const allItemsResponse = await api.get(ENDPOINT_BASE);
+      const firstItemId = allItemsResponse.body[0].id;
+
+      const invalidItem1 = {
+        title: '',
+        author: 'Pal Buddyfriend',
+        url: 'http://localhost:3000',
+        likes: 100,
+      };
+      const invalidItem2 = {
+        title: 'Test Blog3',
+        author: '',
+        url: 'http://localhost:3000',
+        likes: 100,
+      };
+      const invalidItem3 = {
+        title: 'Test Blog3',
+        author: 'Pal Buddyfriend',
+        url: '',
+        likes: 100,
+      };
+      // act
+      const postResponse1 = await api
+        .put(`${ENDPOINT_BASE}/${firstItemId}`)
+        .send(invalidItem1)
+        .expect(400);
+      const postResponse2 = await api
+        .put(`${ENDPOINT_BASE}/${firstItemId}`)
+        .send(invalidItem2)
+        .expect(400);
+      const postResponse3 = await api
+        .put(`${ENDPOINT_BASE}/${firstItemId}`)
+        .send(invalidItem3)
+        .expect(400);
+      // assert
+      expect(postResponse1.body.error).toEqual(
+        'Validation failed: title: Path `title` is required.'
+      );
+      expect(postResponse2.body.error).toEqual(
+        'Validation failed: author: Path `author` is required.'
+      );
+      expect(postResponse3.body.error).toEqual(
+        'Validation failed: url: Blog url required.'
+      );
     });
   });
 
@@ -252,6 +298,28 @@ describe('/api/blogs endpoints', () => {
       // Reconfirm GET all
       const reconfirmAllResponse = await api.get(ENDPOINT_BASE).expect(200);
       expect(reconfirmAllResponse.body).toHaveLength(0);
+    });
+
+    test('DELETE to invalid id 404 id does not exist', async () => {
+      // setup
+      const bogusId = '000000000000000000000000';
+      // act
+      const response = await api
+        .delete(`${ENDPOINT_BASE}/${bogusId}`)
+        .expect(404);
+      // assert
+      expect(response.body.error).toEqual('Item id does not exist.');
+    });
+
+    test('DELETE to impossible id 400 Not Found', async () => {
+      // setup
+      const bogusId = 'abc';
+      // act
+      const response = await api
+        .delete(`${ENDPOINT_BASE}/${bogusId}`)
+        .expect(400);
+      // assert
+      expect(response.body.error).toEqual('Malformatted id.');
     });
   });
 

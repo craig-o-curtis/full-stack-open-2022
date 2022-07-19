@@ -21,13 +21,15 @@ function errorHandler(error, request, response, next) {
   if (error.name === 'ValidationError') {
     return response.status(400).send({ error: error.message });
   }
+  if (error.name === 'InvalidIdError') {
+    return response.status(404).send({ error: error.message });
+  }
 
   next(error);
 }
 
 module.exports = {
   requestLogger,
-
   unknownEndpoint,
   errorHandler,
 };

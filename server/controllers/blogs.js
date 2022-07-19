@@ -1,5 +1,5 @@
 const blogsRouter = require('express').Router();
-const { logger } = require('../utils');
+const { logger, apiUtils } = require('../utils');
 const {
   getDBBlogs,
   getDBBlogById,
@@ -24,9 +24,8 @@ blogsRouter.get('/:id', async (request, response, next) => {
     const id = request.params.id;
     const dbBlog = await getDBBlogById(id);
     logger.log('Express got contact', dbBlog);
-    if (dbBlog === null) {
-      response.status(404).json({ error: 'Item id does not exist.' }).end();
-    }
+
+    apiUtils.handleInvalidIdError(dbBlog);
     response.json(dbBlog);
   } catch (error) {
     next(error);
@@ -85,9 +84,8 @@ blogsRouter.put('/:id', async (request, response, next) => {
       likes,
     });
     logger.log('Express updated contact', result);
-    if (result === null) {
-      response.status(404).json({ error: 'Item id does not exist.' }).end();
-    }
+
+    apiUtils.handleInvalidIdError(result);
     response.json(result);
   } catch (error) {
     next(error);
@@ -98,6 +96,8 @@ blogsRouter.delete('/:id', async (request, response, next) => {
   try {
     const { id } = request.params;
     const deletedBlog = await deleteDBBlog(id);
+
+    apiUtils.handleInvalidIdError(deletedBlog);
     logger.log('Express deleted blog', deletedBlog);
     response.status(204).end();
   } catch (error) {

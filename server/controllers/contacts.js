@@ -1,5 +1,5 @@
 const contactsRouter = require('express').Router();
-const { logger } = require('../utils');
+const { logger, apiUtils } = require('../utils');
 const {
   getDBContacts,
   getDBContactById,
@@ -24,9 +24,8 @@ contactsRouter.get('/:id', async (request, response, next) => {
     const id = request.params.id;
     const dbContact = await getDBContactById(id);
     logger.log('Express got contact', dbContact);
-    if (dbContact === null) {
-      response.status(404).json({ error: 'Item id does not exist.' }).end();
-    }
+
+    apiUtils.handleInvalidIdError(dbContact);
     response.json(dbContact);
   } catch (error) {
     next(error);
@@ -78,9 +77,8 @@ contactsRouter.put('/:id', async (request, response, next) => {
 
     const result = await updateDBContact({ id, name, number });
     logger.log('Express updated contact', result);
-    if (result === null) {
-      response.status(404).json({ error: 'Item id does not exist.' }).end();
-    }
+
+    apiUtils.handleInvalidIdError(result);
     response.json(result);
   } catch (error) {
     next(error);
@@ -91,6 +89,8 @@ contactsRouter.delete('/:id', async (request, response, next) => {
   try {
     const { id } = request.params;
     const deletedContact = await deleteDBContact(id);
+
+    apiUtils.handleInvalidIdError(deletedContact);
     logger.log('Express deleted contact', deletedContact);
     response.status(204).end();
   } catch (error) {
