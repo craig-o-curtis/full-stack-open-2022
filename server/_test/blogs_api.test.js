@@ -36,7 +36,15 @@ describe('/api/blogs endpoints', () => {
         .expect('Content-Type', /application\/json/);
     });
 
-    test('GET default environment with 2 initial items', async () => {
+    test('GET contacts have db-generated id', async () => {
+      const response = await api.get(ENDPOINT_BASE).expect(200);
+
+      for (const item of response.body) {
+        expect(item.id).toBeDefined();
+      }
+    });
+
+    test('GET default environment with n initial items', async () => {
       // setup
       const response = await api.get(ENDPOINT_BASE);
       expect(response.body).toHaveLength(initialItems.length);
