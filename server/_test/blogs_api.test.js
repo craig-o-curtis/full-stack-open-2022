@@ -155,7 +155,6 @@ describe('/api/blogs endpoints', () => {
       expect(
         updatedDBItems.find((item) => item.id === postResponse.body.id).likes
       ).toEqual(0);
-      console.log(updatedDBItems);
     });
 
     test('POST rejects malformed data', async () => {
@@ -230,6 +229,35 @@ describe('/api/blogs endpoints', () => {
       const getByIdResponse = await api.get(`${ENDPOINT_BASE}/${firstItemId}`);
       expectResponseValues(updatedItem, getByIdResponse.body);
       expect(getByIdResponse.body.id).toEqual(firstItemId);
+    });
+
+    test('PUT can update number of likes only', async () => {
+      // setup
+      const allItems = await blogsHelper.getItemsInDB();
+      const firstItem = allItems[0];
+      const firstItemId = allItems[0].id;
+      const updatedItem = {
+        likes: firstItem.likes + 1,
+      };
+
+      // act
+      const putResponse = await api
+        .put(`${ENDPOINT_BASE}/${firstItemId}`)
+        .send(updatedItem)
+        .expect(200)
+        .expect('Content-Type', /application\/json/);
+      // assert
+      expectResponseValues(updatedItem, putResponse.body);
+      expect(putResponse.body.id).toEqual(firstItemId);
+      // confirm assert
+      const getByIdResponse = await api.get(`${ENDPOINT_BASE}/${firstItemId}`);
+      expectResponseValues(updatedItem, getByIdResponse.body);
+      expect(getByIdResponse.body.id).toEqual(firstItemId);
+
+      const updatedItems = await blogsHelper.getItemsInDB();
+      expect(
+        updatedItems.find((item) => item.id === firstItemId).likes
+      ).toEqual(firstItem.likes + 1);
     });
 
     test('PUT to invalid id 400 Bad Request', async () => {
