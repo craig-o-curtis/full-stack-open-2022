@@ -20,12 +20,12 @@ describe('/api/contacts endpoints', () => {
 
   beforeEach(async () => {
     await Contact.deleteMany({});
-
-    const initialItem1 = new Contact(initialItems[0]);
-    const initialItem2 = new Contact(initialItems[1]);
-
-    await initialItem1.save();
-    await initialItem2.save();
+    const setupItems = contactsHelper.getInitialItems();
+    // ** uses for of loop
+    for (const item of setupItems) {
+      const newObject = new Contact(item);
+      await newObject.save();
+    }
   });
 
   describe('GET calls phonebookApp', () => {

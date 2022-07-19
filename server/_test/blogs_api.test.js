@@ -20,11 +20,11 @@ describe('/api/blogs endpoints', () => {
 
   beforeEach(async () => {
     await Blog.deleteMany({});
-    const initialItem1 = new Blog(initialItems[0]);
-    const initialItem2 = new Blog(initialItems[1]);
 
-    await initialItem1.save();
-    await initialItem2.save();
+    const setupItems = blogsHelper.getInitialItems();
+    const prepObjects = setupItems.map((item) => new Blog(item));
+    const promises = prepObjects.map((item) => item.save());
+    await Promise.all(promises);
   });
 
   describe('GET calls blogsApp', () => {
