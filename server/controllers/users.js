@@ -65,13 +65,19 @@ usersRouter.post('/', async (request, response) => {
 
 usersRouter.put('/:id', async (request, response) => {
   const body = request.body;
-  const { username, name, passwordHash, blogs, contacts } = body;
+  const { username, name, password, blogs, contacts } = body;
   const id = request.params.id;
 
   // ** Prevent duplicate usernames
   const dbUsers = await getDBUsers();
   const usernameAlreadyExists = dbUsers.find((b) => b.username === username);
   apiUtils.checkPropertyExistsError(usernameAlreadyExists, 'username');
+
+  const saltRounds = 10;
+  const passwordHash =
+    password === undefined
+      ? undefined
+      : await bcrypt.hash(password, saltRounds);
 
   const result = await updateDBUser({
     id,

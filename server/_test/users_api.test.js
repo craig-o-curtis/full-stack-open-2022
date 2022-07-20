@@ -218,10 +218,10 @@ describe('/api/users endpoints', () => {
         .expect(400);
       // assert
       expect(postResponse1.body.error).toEqual(
-        'User validation failed: username: Path `username` is required.'
+        'User validation failed: username: Path `username` (``) is shorter than the minimum allowed length (3).'
       );
       expect(postResponse2.body.error).toEqual(
-        'User validation failed: name: Path `name` is required.'
+        'User validation failed: name: Path `name` (``) is shorter than the minimum allowed length (3).'
       );
       expect(postResponse3.body.error).toEqual('Missing passwordHash');
     });
@@ -301,21 +301,11 @@ describe('/api/users endpoints', () => {
       // setup
       const allItemsResponse = await api.get(ENDPOINT_BASE);
       const firstItemId = allItemsResponse.body[0].id;
-
       const invalidItem1 = {
         username: '',
-        name: 'Good Name',
-        passwordHash: 'good_password',
       };
       const invalidItem2 = {
-        username: 'arealgoodusername',
         name: '',
-        passwordHash: 'realgood_password',
-      };
-      const invalidItem3 = {
-        username: 'superrealgoodusername',
-        name: 'SuperGuy Mandude',
-        passwordHash: 'bad',
       };
       // act
       const putResponse1 = await api
@@ -326,19 +316,13 @@ describe('/api/users endpoints', () => {
         .put(`${ENDPOINT_BASE}/${firstItemId}`)
         .send(invalidItem2)
         .expect(400);
-      const putResponse3 = await api
-        .put(`${ENDPOINT_BASE}/${firstItemId}`)
-        .send(invalidItem3)
-        .expect(400);
+
       // assert
       expect(putResponse1.body.error).toEqual(
-        'Validation failed: username: Path `username` is required.'
+        'Validation failed: username: Path `username` (``) is shorter than the minimum allowed length (3).'
       );
       expect(putResponse2.body.error).toEqual(
-        'Validation failed: name: Path `name` is required.'
-      );
-      expect(putResponse3.body.error).toEqual(
-        'Validation failed: passwordHash: Path `passwordHash` (`bad`) is shorter than the minimum allowed length (10).'
+        'Validation failed: name: Path `name` (``) is shorter than the minimum allowed length (3).'
       );
     });
   });
