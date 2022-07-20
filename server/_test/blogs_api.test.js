@@ -76,6 +76,7 @@ describe('/api/blogs endpoints', () => {
         initialItems.find((item) => item.title === response.body.title),
         response.body
       );
+      expect(response.body.id).toEqual(firstItemId);
     });
 
     test('GET from invalid id 400 Bad Request', async () => {
@@ -161,7 +162,6 @@ describe('/api/blogs endpoints', () => {
     });
 
     test('POST rejects malformed data', async () => {
-      // ** Part 4.b Exercise 4.12 already written
       // setup
       const invalidItem1 = {
         title: '',
@@ -323,46 +323,45 @@ describe('/api/blogs endpoints', () => {
         likes: 100,
       };
       // act
-      const postResponse1 = await api
+      const putResponse1 = await api
         .put(`${ENDPOINT_BASE}/${firstItemId}`)
         .send(invalidItem1)
         .expect(400);
-      const postResponse2 = await api
+      const putResponse2 = await api
         .put(`${ENDPOINT_BASE}/${firstItemId}`)
         .send(invalidItem2)
         .expect(400);
-      const postResponse3 = await api
+      const putResponse3 = await api
         .put(`${ENDPOINT_BASE}/${firstItemId}`)
         .send(invalidItem3)
         .expect(400);
       // assert
-      expect(postResponse1.body.error).toEqual(
+      expect(putResponse1.body.error).toEqual(
         'Validation failed: title: Path `title` is required.'
       );
-      expect(postResponse2.body.error).toEqual(
+      expect(putResponse2.body.error).toEqual(
         'Validation failed: author: Path `author` is required.'
       );
-      expect(postResponse3.body.error).toEqual(
+      expect(putResponse3.body.error).toEqual(
         'Validation failed: url: Blog url required.'
       );
     });
   });
 
   describe('DELETE calls blogsApp', () => {
-    // ** Part 4.b Exercise 4.13 confirms thorough testing
     test('DELETE works', async () => {
       // setup
       const allItems = await blogsHelper.getItemsInDB();
 
-      for (const contact of allItems) {
-        await api.delete(`${ENDPOINT_BASE}/${contact.id}`).expect(204);
+      for (const item of allItems) {
+        await api.delete(`${ENDPOINT_BASE}/${item.id}`).expect(204);
         // confirm with GET
         const confirmAllItemsResponse = await api.get(ENDPOINT_BASE);
         expect(
-          confirmAllItemsResponse.body.some((c) => c.id === contact.id)
+          confirmAllItemsResponse.body.some((c) => c.id === item.id)
         ).toEqual(false);
         // double-confirm with GET by ID
-        await api.get(`${ENDPOINT_BASE}/${contact.id}`).expect(404);
+        await api.get(`${ENDPOINT_BASE}/${item.id}`).expect(404);
       }
       // Reconfirm GET all
       const reconfirmAllResponse = await api.get(ENDPOINT_BASE).expect(200);

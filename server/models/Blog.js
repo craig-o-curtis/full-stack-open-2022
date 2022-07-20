@@ -23,6 +23,7 @@ const blogSchema = new mongoose.Schema({
     required: [true, 'Blog url required.'],
   },
   likes: Number,
+  // TODO add tests for adding user for POST and PUT
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

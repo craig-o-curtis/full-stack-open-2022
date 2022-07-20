@@ -73,6 +73,7 @@ describe('/api/contacts endpoints', () => {
         .expect('Content-Type', /application\/json/);
       // assert
       expectResponseValues(initialItems[0], response.body);
+      expect(response.body.id).toEqual(firstItemId);
     });
 
     test('GET from invalid id 400 Bad Request', async () => {

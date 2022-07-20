@@ -35,21 +35,18 @@ userSchema.set('toJSON', {
     returnedObject.id = returnedObject._id.toString();
     delete returnedObject._id;
     delete returnedObject.__v;
-    // passwordHash should not be revealed
-    delete returnedObject.passwordHash;
+    delete returnedObject.passwordHash; // passwordHash should not be revealed
   },
 });
 
-// ?? Connect multiple???
 const crossAppDBName =
   process.env.NODE_ENV === 'test'
     ? process.env.MONGODB_CROSS_APP_DB_TEST
     : process.env.MONGODB_CROSS_APP_DB;
 
-// ** Option 1 - seperate db
+// ** Option 1 - separate db
 const crossAppDB = mongoose.connection.useDb(crossAppDBName);
 const User = crossAppDB.model('User', userSchema);
-
 // ** Option 2 - connect at top-level
 // const superUserDB = mongoose.connect();
 // const SuperUser = superUserDB.model('User', userSchema);
