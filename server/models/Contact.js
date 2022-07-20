@@ -25,7 +25,9 @@ contactSchema.set('toJSON', {
 });
 
 const dbName =
-  process.env.NODE_ENV === 'test' ? 'testPhonebookApp' : 'phonebookApp';
+  process.env.NODE_ENV === 'test'
+    ? process.env.MONGODB_PHONEBOOK_DB_TEST
+    : process.env.MONGODB_PHONEBOOK_DB;
 
 const phonebookAppDB = mongoose.connection.useDb(dbName);
 const Contact = phonebookAppDB.model('Contact', contactSchema);

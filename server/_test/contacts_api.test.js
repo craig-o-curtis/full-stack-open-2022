@@ -309,7 +309,11 @@ describe('/api/contacts endpoints', () => {
     });
   });
 
-  afterAll(() => {
-    mongoose.connection.close();
+  afterAll(async () => {
+    const testDBName = process.env.MONGODB_PHONEBOOK_DB_TEST;
+    await mongoose.connection.useDb(testDBName).dropCollection('contacts');
+    console.log('Dropped db collection', testDBName);
+    await mongoose.connection.close();
+    console.log('Disconnected from test db');
   });
 });

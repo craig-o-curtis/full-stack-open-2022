@@ -72,7 +72,10 @@ describe('/api/blogs endpoints', () => {
         .expect(200)
         .expect('Content-Type', /application\/json/);
       // assert
-      expectResponseValues(initialItems[0], response.body);
+      expectResponseValues(
+        initialItems.find((item) => item.title === response.body.title),
+        response.body
+      );
     });
 
     test('GET from invalid id 400 Bad Request', async () => {
@@ -389,7 +392,11 @@ describe('/api/blogs endpoints', () => {
     });
   });
 
-  afterAll(() => {
-    mongoose.connection.close();
+  afterAll(async () => {
+    const testDBName = process.env.MONGODB_BLOG_DB_TEST;
+    await mongoose.connection.useDb(testDBName).dropCollection('blogs');
+    console.log('Dropped db collection', testDBName);
+    await mongoose.connection.close();
+    console.log('Disconnected from test db');
   });
 });
