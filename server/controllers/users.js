@@ -7,6 +7,7 @@ const {
   postDBUser,
   updateDBUser,
   deleteDBUser,
+  checkPropertyExists,
 } = require('../actions/users');
 
 usersRouter.get('/', async (request, response) => {
@@ -48,7 +49,13 @@ usersRouter.post('/', async (request, response) => {
   // ** Backend safety to prevent posting username -- should be handled in the FE
   const dbUsers = await getDBUsers();
   const usernameAlreadyExists = dbUsers.find((b) => b.username === username);
-  apiUtils.checkPropertyExistsError(usernameAlreadyExists, 'username');
+  const userAlreadyExists = checkPropertyExists({ username: username });
+  console.log('new test', userAlreadyExists);
+  apiUtils.checkPropertyExistsError(
+    usernameAlreadyExists,
+    'username',
+    'username must be unique'
+  );
 
   const newDBUser = await postDBUser({
     username,
