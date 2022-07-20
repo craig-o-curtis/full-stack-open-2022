@@ -48,15 +48,10 @@ const crossAppDBName =
 
 // ** Option 1 - seperate db
 const crossAppDB = mongoose.connection.useDb(crossAppDBName);
+const User = crossAppDB.model('User', userSchema);
+
 // ** Option 2 - connect at top-level
-const superUserDB = mongoose.connect();
+// const superUserDB = mongoose.connect();
+// const SuperUser = superUserDB.model('User', userSchema);
 
-// ** Option 1
-const CrossAppUser = crossAppDB.model('User', userSchema);
-// ** Option 2
-const SuperUser = superUserDB.model('User', userSchema);
-
-module.exports = {
-  CrossAppUser,
-  SuperUser,
-};
+module.exports = User;

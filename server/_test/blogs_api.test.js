@@ -19,7 +19,7 @@ describe('/api/blogs endpoints', () => {
   });
 
   beforeEach(async () => {
-    await Blog.deleteMany({});
+    await blogsHelper.clearItemsInDB();
 
     const setupItems = blogsHelper.getInitialItems();
     // ** uses Promise.all

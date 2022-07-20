@@ -17,7 +17,7 @@ blogsRouter.get('/', async (request, response) => {
 blogsRouter.get('/:id', async (request, response) => {
   const id = request.params.id;
   const dbBlog = await getDBBlogById(id);
-  logger.log('Express got contact', dbBlog);
+  logger.log('Express got blog', dbBlog);
 
   apiUtils.checkInvalidIdError(dbBlog);
   response.json(dbBlog);
@@ -69,7 +69,7 @@ blogsRouter.put('/:id', async (request, response) => {
     url,
     likes,
   });
-  logger.log('Express updated contact', result);
+  logger.log('Express updated blog', result);
 
   apiUtils.checkInvalidIdError(result);
   response.json(result);

@@ -19,7 +19,7 @@ describe('/api/contacts endpoints', () => {
   });
 
   beforeEach(async () => {
-    await Contact.deleteMany({});
+    await contactsHelper.clearItemsInDB();
     const setupItems = contactsHelper.getInitialItems();
     // ** uses for of loop
     for (const item of setupItems) {

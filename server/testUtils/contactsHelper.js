@@ -1,4 +1,5 @@
 const Contact = require('../models/Contact');
+const sortBy = require('lodash/sortBy');
 
 const initialItems = [
   {
@@ -12,15 +13,23 @@ const initialItems = [
 ];
 
 function getInitialItems() {
-  return [...initialItems];
+  return sortBy([...initialItems], (item) => item.name);
+}
+
+async function clearItemsInDB() {
+  await Contact.deleteMany({});
 }
 
 async function getItemsInDB() {
   const items = await Contact.find({});
-  return items.map((item) => item.toJSON());
+  return sortBy(
+    items.map((item) => item.toJSON()),
+    (item) => item.name
+  );
 }
 
 module.exports = {
   getInitialItems,
   getItemsInDB,
+  clearItemsInDB,
 };
