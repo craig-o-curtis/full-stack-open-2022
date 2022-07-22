@@ -1,6 +1,5 @@
-const bcrypt = require('bcrypt');
 const usersRouter = require('express').Router();
-const { logger, apiUtils } = require('../utils');
+const { logger, apiUtils, bcryptUtils } = require('../utils');
 const {
   getDBUsers,
   getDBUserById,
@@ -43,18 +42,15 @@ usersRouter.post('/', async (request, response) => {
       .end();
   }
 
-  const saltRounds = 10;
-  const passwordHash = await bcrypt.hash(password, saltRounds);
+  const passwordHash = await bcryptUtils.encrypt(password);
 
   // ** Backend safety to prevent posting username -- should be handled in the FE
-  const dbUsers = await getDBUsers();
-  const usernameAlreadyExists = dbUsers.find((b) => b.username === username);
-  const userAlreadyExists = checkPropertyExists({ username: username });
-  console.log('new test', userAlreadyExists);
+  const userAlreadyExists = await checkPropertyExists({ username: username });
+
   apiUtils.checkPropertyExistsError(
-    usernameAlreadyExists,
+    userAlreadyExists,
     'username',
-    'username must be unique'
+    'username must be unique.'
   );
 
   const newDBUser = await postDBUser({
@@ -80,11 +76,8 @@ usersRouter.put('/:id', async (request, response) => {
   const usernameAlreadyExists = dbUsers.find((b) => b.username === username);
   apiUtils.checkPropertyExistsError(usernameAlreadyExists, 'username');
 
-  const saltRounds = 10;
   const passwordHash =
-    password === undefined
-      ? undefined
-      : await bcrypt.hash(password, saltRounds);
+    password === undefined ? undefined : await bcryptUtils.encrypt(password);
 
   const result = await updateDBUser({
     id,

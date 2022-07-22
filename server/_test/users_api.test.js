@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt'); // TODO probably need to encrypt passwords in tests
 // eslint-disable-next-line node/no-unpublished-require
 const supertest = require('supertest');
 
 const app = require('../app');
-const { mongoConnection } = require('../utils');
+const { mongoConnection, bcryptUtils } = require('../utils');
 
 const { expectResponseValues, usersHelper } = require('../testUtils');
 
@@ -78,6 +77,7 @@ describe('/api/users endpoints', () => {
         .expect('Content-Type', /application\/json/);
     });
   });
+
   describe('GET by id calls users', () => {
     test('GET by id works', async () => {
       // setup
@@ -195,7 +195,6 @@ describe('/api/users endpoints', () => {
       const invalidItem2 = {
         username: 'arealgoodusername',
         name: '',
-        // TODO figure out password vs paswordhas in tests
         password: 'realgood_password',
       };
       const invalidItem3 = {
@@ -225,7 +224,28 @@ describe('/api/users endpoints', () => {
       );
       expect(postResponse3.body.error).toEqual('Missing passwordHash');
     });
+
+    test.only('POST does not allow duplicate usernames', async () => {
+      // setup
+      const allItems = await usersHelper.getItemsInDB();
+      const firstItem = allItems[0];
+
+      const duplicateUsernameItem = {
+        username: firstItem.username,
+        name: 'Good Name',
+        password: 'good_password',
+      };
+      // act
+
+      const postResponse = await api
+        .post(ENDPOINT_BASE)
+        .send(duplicateUsernameItem)
+        .expect(400);
+      // assert
+      expect(postResponse.body.error).toEqual('username must be unique.');
+    });
   });
+
   describe('PUT calls users', () => {
     test('PUT works', async () => {
       // setup
