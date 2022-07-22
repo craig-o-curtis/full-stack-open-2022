@@ -72,9 +72,13 @@ usersRouter.put('/:id', async (request, response) => {
   const id = request.params.id;
 
   // ** Prevent duplicate usernames
-  const dbUsers = await getDBUsers();
-  const usernameAlreadyExists = dbUsers.find((b) => b.username === username);
-  apiUtils.checkPropertyExistsError(usernameAlreadyExists, 'username');
+  const userAlreadyExists = await checkPropertyExists({ username: username });
+
+  apiUtils.checkPropertyExistsError(
+    userAlreadyExists,
+    'username',
+    'username already taken.'
+  );
 
   const passwordHash =
     password === undefined ? undefined : await bcryptUtils.encrypt(password);

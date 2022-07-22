@@ -16,7 +16,7 @@ describe('/api/blogs endpoints', () => {
   beforeAll(async () => {
     await mongoConnection.connectToMongo();
     console.log('Test suite connected to Mongo');
-  });
+  }, 10000);
 
   beforeEach(async () => {
     await blogsHelper.clearItemsInDB();

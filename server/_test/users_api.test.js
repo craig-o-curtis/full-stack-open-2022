@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const supertest = require('supertest');
 
 const app = require('../app');
-const { mongoConnection, bcryptUtils } = require('../utils');
+const { mongoConnection } = require('../utils');
 
 const { expectResponseValues, usersHelper } = require('../testUtils');
 
@@ -16,7 +16,7 @@ describe('/api/users endpoints', () => {
   beforeAll(async () => {
     await mongoConnection.connectToMongo();
     console.log('Test suite connected to Mongo');
-  });
+  }, 10000);
 
   beforeEach(async () => {
     await usersHelper.clearItemsInDB();
@@ -225,7 +225,7 @@ describe('/api/users endpoints', () => {
       expect(postResponse3.body.error).toEqual('Missing passwordHash');
     });
 
-    test.only('POST does not allow duplicate usernames', async () => {
+    test('POST does not allow duplicate usernames', async () => {
       // setup
       const allItems = await usersHelper.getItemsInDB();
       const firstItem = allItems[0];
@@ -344,6 +344,26 @@ describe('/api/users endpoints', () => {
       expect(putResponse2.body.error).toEqual(
         'Validation failed: name: Path `name` (``) is shorter than the minimum allowed length (3).'
       );
+    });
+
+    test('PUT does not allow duplicate usernames', async () => {
+      // setup
+      // ** update first item with username of second item
+      const allItems = await usersHelper.getItemsInDB();
+      const firstItem = allItems[0];
+      const secondItem = allItems[1];
+
+      const duplicateUsernameItem = {
+        username: secondItem.username,
+      };
+      // act
+
+      const putResponse = await api
+        .put(`${ENDPOINT_BASE}/${firstItem.id}`)
+        .send(duplicateUsernameItem)
+        .expect(400);
+      // assert
+      expect(putResponse.body.error).toEqual('username already taken.');
     });
   });
   describe('DELETE calls users', () => {
