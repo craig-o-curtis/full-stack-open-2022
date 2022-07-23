@@ -6,7 +6,9 @@ function createToken(username, _id) {
     username,
     id: _id,
   };
-  const token = jwt.sign(userForToken, config.JWT_SECRET);
+  const token = jwt.sign(userForToken, config.JWT_SECRET, {
+    expiresIn: 60 * 60, // ** good for 1 hour
+  });
   return token;
 }
 
