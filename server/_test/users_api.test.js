@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
 // eslint-disable-next-line node/no-unpublished-require
 const supertest = require('supertest');
-
 const app = require('../app');
 const { mongoConnection } = require('../utils');
-
 const { expectResponseValues, usersHelper } = require('../testUtils');
+const config = require('../utils/config');
 
 const api = supertest(app);
 const ENDPOINT_BASE = '/api/users';
@@ -410,7 +409,7 @@ describe('/api/users endpoints', () => {
   });
 
   afterAll(async () => {
-    const testDBName = process.env.MONGODB_CROSS_APP_DB_TEST;
+    const testDBName = config.MONGODB_CROSS_APP_DB_TEST;
     await mongoose.connection.useDb(testDBName).dropCollection('users');
     console.log('Dropped db', testDBName);
     await mongoose.connection.close();

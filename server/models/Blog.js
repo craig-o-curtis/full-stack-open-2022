@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const urlRegex = require('url-regex-safe');
+const config = require('../utils/config');
 
 const blogSchema = new mongoose.Schema({
   title: {
@@ -40,8 +41,8 @@ blogSchema.set('toJSON', {
 
 const dbName =
   process.env.NODE_ENV === 'test'
-    ? process.env.MONGODB_BLOG_DB_TEST
-    : process.env.MONGODB_BLOG_DB;
+    ? config.MONGODB_BLOG_DB_TEST
+    : config.MONGODB_BLOG_DB;
 
 const blogApp = mongoose.connection.useDb(dbName);
 const Blog = blogApp.model('Blog', blogSchema);

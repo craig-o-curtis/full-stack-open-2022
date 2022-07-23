@@ -9,6 +9,7 @@ const {
   blogsHelper,
   usersHelper,
 } = require('../testUtils');
+const config = require('../utils/config');
 
 const api = supertest(app);
 const ENDPOINT_BASE = '/api/blogs';
@@ -493,8 +494,8 @@ describe('/api/blogs endpoints', () => {
   });
 
   afterAll(async () => {
-    const testUseresDBName = process.env.MONGODB_CROSS_APP_DB_TEST;
-    const testDBName = process.env.MONGODB_BLOG_DB_TEST;
+    const testUseresDBName = config.MONGODB_CROSS_APP_DB_TEST;
+    const testDBName = config.MONGODB_BLOG_DB_TEST;
     await mongoose.connection.useDb(testDBName).dropCollection('blogs');
     console.log('Dropped db collection', testDBName);
     await mongoose.connection.useDb(testUseresDBName).dropCollection('users');

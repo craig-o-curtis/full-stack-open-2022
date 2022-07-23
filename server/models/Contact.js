@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { isPossiblePhoneNumber } = require('libphonenumber-js');
+const config = require('../utils/config');
 
 const contactSchema = new mongoose.Schema({
   name: { type: String, minLength: 3, required: true },
@@ -31,8 +32,8 @@ contactSchema.set('toJSON', {
 
 const dbName =
   process.env.NODE_ENV === 'test'
-    ? process.env.MONGODB_PHONEBOOK_DB_TEST
-    : process.env.MONGODB_PHONEBOOK_DB;
+    ? config.MONGODB_PHONEBOOK_DB_TEST
+    : config.MONGODB_PHONEBOOK_DB;
 
 const phonebookAppDB = mongoose.connection.useDb(dbName);
 const Contact = phonebookAppDB.model('Contact', contactSchema);

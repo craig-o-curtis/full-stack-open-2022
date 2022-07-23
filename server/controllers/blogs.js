@@ -1,5 +1,5 @@
 const blogsRouter = require('express').Router();
-const { logger, apiUtils } = require('../utils');
+const { logger, apiUtils, tokenUtils } = require('../utils');
 const {
   getDBBlogs,
   getDBBlogById,
@@ -25,8 +25,20 @@ blogsRouter.get('/:id', async (request, response) => {
   response.json(dbBlog);
 });
 
+// TODO update without token
 blogsRouter.post('/', async (request, response) => {
   const body = request.body;
+
+  const token = tokenUtils.getTokenFrom(request); // !! DANGER TOKEN
+  const isTokenValid = tokenUtils.isTokenValid(token); // !! DANGER TOKEN
+
+  if (!isTokenValid) {
+    // !! DANGER TOKEN
+    return response.status(401).json({ error: 'token missing or invalid' });
+  }
+
+  const decodedToken = tokenUtils.decodeToken(token); // !! DANGER TOKEN
+
   const { title, author, url, likes = 0, userId } = body;
   if (title === undefined || author === undefined || url === undefined) {
     return response
@@ -52,7 +64,9 @@ blogsRouter.post('/', async (request, response) => {
     'title already taken.'
   );
 
-  const currentUser = await getDBUserById(userId);
+  // !! DANGER TOKEN
+  // const currentUser = await getDBUserById(userId);
+  const currentUser = await getDBUserById(decodedToken.id);
 
   const newDBBlog = await postDBBlog({
     title,

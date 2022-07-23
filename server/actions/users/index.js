@@ -1,5 +1,6 @@
 const getDBUsers = require('./getDBUsers');
 const getDBUserById = require('./getDBUserById');
+const getDBUserByUsername = require('./getDBUserByUsername');
 const postDBUser = require('./postDBUser');
 const updateDBUser = require('./updateDBUser');
 const deleteDBUser = require('./deleteDBUser');
@@ -11,6 +12,7 @@ const checkPropertyExists = require('./checkPropertyExists');
 module.exports = {
   getDBUsers,
   getDBUserById,
+  getDBUserByUsername,
   postDBUser,
   updateDBUser,
   deleteDBUser,

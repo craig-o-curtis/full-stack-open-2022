@@ -1,9 +1,11 @@
-const contactsRouter = require('./contacts');
-const blogsRouter = require('./blogs');
+const loginRouter = require('./login');
 const usersRouter = require('./users');
+const blogsRouter = require('./blogs');
+const contactsRouter = require('./contacts');
 
 module.exports = {
-  contactsRouter,
-  blogsRouter,
+  loginRouter,
   usersRouter,
+  blogsRouter,
+  contactsRouter,
 };

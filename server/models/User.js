@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const config = require('../utils/config');
 
 const userSchema = new mongoose.Schema({
   username: {
@@ -38,8 +39,8 @@ userSchema.set('toJSON', {
 
 const crossAppDBName =
   process.env.NODE_ENV === 'test'
-    ? process.env.MONGODB_CROSS_APP_DB_TEST
-    : process.env.MONGODB_CROSS_APP_DB;
+    ? config.MONGODB_CROSS_APP_DB_TEST
+    : config.MONGODB_CROSS_APP_DB;
 
 // ** Option 1 - separate db
 const crossAppDB = mongoose.connection.useDb(crossAppDBName);

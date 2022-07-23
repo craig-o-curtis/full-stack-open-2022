@@ -6,6 +6,7 @@ const app = require('../app');
 const Contact = require('../models/Contact');
 const { mongoConnection } = require('../utils');
 const { expectResponseValues, contactsHelper } = require('../testUtils');
+const config = require('../utils/config');
 
 const api = supertest(app);
 const ENDPOINT_BASE = '/api/contacts';
@@ -311,7 +312,7 @@ describe('/api/contacts endpoints', () => {
   });
 
   afterAll(async () => {
-    const testDBName = process.env.MONGODB_PHONEBOOK_DB_TEST;
+    const testDBName = config.MONGODB_PHONEBOOK_DB_TEST;
     await mongoose.connection.useDb(testDBName).dropCollection('contacts');
     console.log('Dropped db collection', testDBName);
     await mongoose.connection.close();
