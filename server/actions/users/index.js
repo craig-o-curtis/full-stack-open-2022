@@ -3,6 +3,8 @@ const getDBUserById = require('./getDBUserById');
 const postDBUser = require('./postDBUser');
 const updateDBUser = require('./updateDBUser');
 const deleteDBUser = require('./deleteDBUser');
+const updateDBUserBlogs = require('./updateDBUserBlogs');
+const updateDBUserContacts = require('./updateDBUserContacts');
 // utils
 const checkPropertyExists = require('./checkPropertyExists');
 
@@ -12,5 +14,7 @@ module.exports = {
   postDBUser,
   updateDBUser,
   deleteDBUser,
+  updateDBUserBlogs,
+  updateDBUserContacts,
   checkPropertyExists,
 };

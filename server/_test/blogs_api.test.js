@@ -3,9 +3,12 @@ const mongoose = require('mongoose');
 // eslint-disable-next-line node/no-unpublished-require
 const supertest = require('supertest');
 const app = require('../app');
-const Blog = require('../models/Blog');
 const { mongoConnection } = require('../utils');
-const { expectResponseValues, blogsHelper } = require('../testUtils');
+const {
+  expectResponseValues,
+  blogsHelper,
+  usersHelper,
+} = require('../testUtils');
 
 const api = supertest(app);
 const ENDPOINT_BASE = '/api/blogs';
@@ -19,14 +22,21 @@ describe('/api/blogs endpoints', () => {
   }, 10000);
 
   beforeEach(async () => {
+    await usersHelper.clearItemsInDB();
     await blogsHelper.clearItemsInDB();
 
+    const setupUsers = usersHelper.getInitialItems();
     const setupItems = blogsHelper.getInitialItems();
     // ** uses Promise.all
-    const prepObjects = setupItems.map((item) => new Blog(item));
-    const promises = prepObjects.map((item) => item.save());
-    await Promise.all(promises);
-  });
+    const userPromises = setupUsers.map((item) =>
+      usersHelper.postItemToDB(item)
+    );
+    const blogPromises = setupItems.map((item) =>
+      blogsHelper.postItemToDB(item)
+    );
+    const allPromises = [...userPromises, ...blogPromises];
+    await Promise.all(allPromises);
+  }, 10000);
 
   describe('GET calls blogsApp', () => {
     test('blogs are returned as json', async () => {
@@ -104,6 +114,9 @@ describe('/api/blogs endpoints', () => {
 
   describe('POST calls blogsApp', () => {
     test('POST works', async () => {
+      // users setup
+      const testUsers = await usersHelper.getItemsInDB();
+      const firstUserId = testUsers[0].id;
       // setup
       const originalDBItems = await blogsHelper.getItemsInDB();
       const originalDBItemsLength = originalDBItems.length;
@@ -113,6 +126,7 @@ describe('/api/blogs endpoints', () => {
         author: 'Pal Buddyfriend',
         url: 'http://localhost:3000',
         likes: 100,
+        userId: firstUserId,
       };
       // act
       const postResponse = await api
@@ -121,24 +135,43 @@ describe('/api/blogs endpoints', () => {
         .expect(201)
         .expect('Content-Type', /application\/json/);
       // assert
-      expectResponseValues(postItem, postResponse.body);
+      expectResponseValues(
+        {
+          title: postItem.title,
+          author: postItem.author,
+          url: postItem.url,
+          likes: postItem.likes,
+        },
+        postResponse.body
+      );
+      expect(postItem.userId).toEqual(postResponse.body.user);
       // reconfirm with GET by id
       const postedItemId = postResponse.body.id;
       // assert
-      const getByIdResponse = await api.get(`${ENDPOINT_BASE}/${postedItemId}`);
-      expectResponseValues(postItem, getByIdResponse.body);
-
+      // ** Confirm blogs updated
       const updatedDBItems = await blogsHelper.getItemsInDB();
       const updatedDBItemsLength = updatedDBItems.length;
       expect(updatedDBItemsLength).toEqual(originalDBItemsLength + 1);
+      expect(
+        updatedDBItems.some((item) => item.id === postedItemId)
+      ).toBeTruthy();
+      // ** Confirm user updated
+      const updatedUser = await (
+        await usersHelper.getItemsInDB()
+      ).find((item) => item.id === firstUserId);
+      expect(updatedUser.blogs[0].toString()).toEqual(postResponse.body.id);
     });
 
     test('POST defaults likes to 0', async () => {
+      // users setup
+      const testUsers = await usersHelper.getItemsInDB();
+      const firstUserId = testUsers[0].id;
       // setup
       const postItem = {
         title: 'Test Blog4',
         author: 'Fella Wellwisher',
         url: 'https://www.yankee.com',
+        userId: firstUserId,
       };
       // act
       const postResponse = await api
@@ -147,39 +180,52 @@ describe('/api/blogs endpoints', () => {
         .expect(201)
         .expect('Content-Type', /application\/json/);
       // assert
-      expectResponseValues(postItem, postResponse.body);
+      expectResponseValues(
+        { title: postItem.title, author: postItem.author, url: postItem.url },
+        postResponse.body
+      );
+      expect(postResponse.body.user).toEqual(firstUserId);
       expect(postResponse.body.likes).toEqual(0);
-      // reconfirm with GET by id
-      const postedItemId = postResponse.body.id;
-      // assert
-      const getByIdResponse = await api.get(`${ENDPOINT_BASE}/${postedItemId}`);
-      expectResponseValues(postItem, getByIdResponse.body);
+      expect(postResponse.body.id).toBeDefined();
 
+      // ** confirm blogs db
       const updatedDBItems = await blogsHelper.getItemsInDB();
       expect(
         updatedDBItems.find((item) => item.id === postResponse.body.id).likes
       ).toEqual(0);
+      // ** confirm users db
+
+      const updatedUser = await (
+        await usersHelper.getItemsInDB()
+      ).find((item) => item.id === firstUserId);
+      expect(updatedUser.blogs[0].toString()).toEqual(postResponse.body.id);
     });
 
     test('POST rejects malformed data', async () => {
+      // users setup
+      const testUsers = await usersHelper.getItemsInDB();
+      const firstUserId = testUsers[0].id;
       // setup
       const invalidItem1 = {
         title: '',
         author: 'Pal Buddyfriend',
         url: 'http://localhost:3000',
         likes: 100,
+        userId: firstUserId,
       };
       const invalidItem2 = {
         title: 'Test Blog3',
         author: '',
         url: 'http://localhost:3000',
         likes: 100,
+        userId: firstUserId,
       };
       const invalidItem3 = {
         title: 'Test Blog3',
         author: 'Pal Buddyfriend',
         url: '',
         likes: 100,
+        userId: firstUserId,
       };
       // act
       const postResponse1 = await api
@@ -203,6 +249,35 @@ describe('/api/blogs endpoints', () => {
       );
       expect(postResponse3.body.error).toEqual(
         'Blog validation failed: url: Blog url required.'
+      );
+    });
+
+    test('POST rejects duplicate titles', async () => {
+      // users setup
+      const testUsers = await usersHelper.getItemsInDB();
+      const firstUserId = testUsers[0].id;
+      // setup
+      const itemsInDB = await blogsHelper.getItemsInDB();
+      const originalDBItemsLength = itemsInDB.length;
+      const firstItemInDB = itemsInDB[0];
+
+      const postItem = {
+        title: firstItemInDB.title,
+        author: 'A newauthor',
+        url: 'www.gooogle.com',
+        likes: 2,
+        userId: firstUserId,
+      };
+      // act
+      const postResponse = await api
+        .post(ENDPOINT_BASE)
+        .send(postItem)
+        .expect(400)
+        .expect('Content-Type', /application\/json/);
+      // assert
+      expect(postResponse.body.error).toEqual('title already taken.');
+      expect(await blogsHelper.getItemsInDB()).toHaveLength(
+        originalDBItemsLength
       );
     });
   });
@@ -346,6 +421,32 @@ describe('/api/blogs endpoints', () => {
         'Validation failed: url: Blog url required.'
       );
     });
+
+    test('PUT rejects duplicate titles', async () => {
+      // setup
+      const itemsInDB = await blogsHelper.getItemsInDB();
+      const originalDBItemsLength = itemsInDB.length;
+      const firstItemInDB = itemsInDB[0];
+      const firstItemId = firstItemInDB.id;
+
+      const putItem = {
+        title: firstItemInDB.title,
+        author: 'A newauthor',
+        url: 'www.gooogle.com',
+        likes: 2,
+      };
+      // act
+      const putResponse = await api
+        .put(`${ENDPOINT_BASE}/${firstItemId}`)
+        .send(putItem)
+        .expect(400)
+        .expect('Content-Type', /application\/json/);
+      // assert
+      expect(putResponse.body.error).toEqual('title already taken.');
+      expect(await blogsHelper.getItemsInDB()).toHaveLength(
+        originalDBItemsLength
+      );
+    });
   });
 
   describe('DELETE calls blogsApp', () => {
@@ -392,9 +493,12 @@ describe('/api/blogs endpoints', () => {
   });
 
   afterAll(async () => {
+    const testUseresDBName = process.env.MONGODB_CROSS_APP_DB_TEST;
     const testDBName = process.env.MONGODB_BLOG_DB_TEST;
     await mongoose.connection.useDb(testDBName).dropCollection('blogs');
     console.log('Dropped db collection', testDBName);
+    await mongoose.connection.useDb(testUseresDBName).dropCollection('users');
+    console.log('Dropped db collection', testUseresDBName);
     await mongoose.connection.close();
     console.log('Disconnected from test db');
   });

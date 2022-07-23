@@ -32,8 +32,20 @@ async function getItemsInDB() {
   );
 }
 
+async function postItemToDB({ title, author, url, likes = 0 }) {
+  const newObject = new Blog({
+    title,
+    author,
+    url,
+    likes,
+  });
+
+  await newObject.save();
+}
+
 module.exports = {
   getInitialItems,
   getItemsInDB,
   clearItemsInDB,
+  postItemToDB,
 };

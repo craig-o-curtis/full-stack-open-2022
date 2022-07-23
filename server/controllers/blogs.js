@@ -7,6 +7,8 @@ const {
   updateDBBlog,
   deleteDBBlog,
 } = require('../actions/blogs');
+const { updateDBUserBlogs } = require('../actions/users');
+const { getDBUserById } = require('../actions/users');
 
 blogsRouter.get('/', async (request, response) => {
   const dbBlogs = await getDBBlogs();
@@ -24,8 +26,8 @@ blogsRouter.get('/:id', async (request, response) => {
 });
 
 blogsRouter.post('/', async (request, response) => {
-  const body = request.body || {};
-  const { title, author, url, likes = 0 } = body;
+  const body = request.body;
+  const { title, author, url, likes = 0, userId } = body;
   if (title === undefined || author === undefined || url === undefined) {
     return response
       .status(400)
@@ -44,24 +46,49 @@ blogsRouter.post('/', async (request, response) => {
   // ** Backend safety to prevent posting titles -- should be handled in the FE
   const dbBlogs = await getDBBlogs();
   const titleAlreadyExists = dbBlogs.find((b) => b.title === title);
-  apiUtils.checkPropertyExistsError(titleAlreadyExists, 'title');
+  apiUtils.checkPropertyExistsError(
+    titleAlreadyExists,
+    'title',
+    'title already taken.'
+  );
+
+  const currentUser = await getDBUserById(userId);
 
   const newDBBlog = await postDBBlog({
     title,
     author,
     url,
     likes,
+    user: currentUser._id,
+  }); // ** Then pass this to User service to save
+
+  // ** update user blogs array
+  const updatedUser = await updateDBUserBlogs({
+    id: userId,
+    blogId: newDBBlog.id,
   });
 
   apiUtils.checkUnsavedItemError(newDBBlog);
+  apiUtils.checkUnsavedItemError(updatedUser);
+
   logger.log('Express created new blog', newDBBlog);
   response.status(201).json(newDBBlog);
 });
 
 blogsRouter.put('/:id', async (request, response) => {
+  // ** no need to update userId as it is already on the object
   const body = request.body;
   const { title, author, url, likes = 0 } = body;
   const id = request.params.id;
+
+  const dbBlogs = await getDBBlogs();
+  const titleAlreadyExists = dbBlogs.find((b) => b.title === title);
+  apiUtils.checkPropertyExistsError(
+    titleAlreadyExists,
+    'title',
+    'title already taken.'
+  );
+
   const result = await updateDBBlog({
     id,
     title,
@@ -69,6 +96,7 @@ blogsRouter.put('/:id', async (request, response) => {
     url,
     likes,
   });
+  // ** get user id from result, update user blogs
   logger.log('Express updated blog', result);
 
   apiUtils.checkInvalidIdError(result);
