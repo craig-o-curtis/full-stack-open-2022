@@ -1,12 +1,11 @@
 const jwt = require('jsonwebtoken');
 const config = require('./config');
 
-function createToken(username, id) {
+function createToken(username, _id) {
   const userForToken = {
     username,
-    id,
+    id: _id,
   };
-
   const token = jwt.sign(userForToken, config.JWT_SECRET);
   return token;
 }
@@ -20,15 +19,16 @@ function getTokenFrom(request) {
 }
 
 function isTokenValid(token) {
-  const decodedToken = jwt.verify(token, config.SECRET);
-  if (!decodedToken.id) {
+  const decodedToken = jwt.verify(token, config.JWT_SECRET);
+
+  if (!decodedToken?.id) {
     return false;
   }
   return true;
 }
 
 function decodeToken(token) {
-  return jwt.verify(token, config.SECRET);
+  return jwt.verify(token, config.JWT_SECRET);
 }
 
 module.exports = {

@@ -7,13 +7,10 @@ loginRouter.post('/', async (request, response) => {
 
   const user = await getDBUserByUsername(username);
 
-  // TODO actualliy post to users db
   const passwordCorrect =
     user === null
       ? false
       : await bcryptUtils.isMatch(password, user.passwordHash);
-
-  // TODO add to error handler
 
   if (!(user && passwordCorrect)) {
     return response.status(401).json({

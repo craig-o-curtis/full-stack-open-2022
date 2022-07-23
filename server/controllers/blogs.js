@@ -25,19 +25,19 @@ blogsRouter.get('/:id', async (request, response) => {
   response.json(dbBlog);
 });
 
-// TODO update without token
+// TODO add token logic to contacts later
 blogsRouter.post('/', async (request, response) => {
   const body = request.body;
 
-  const token = tokenUtils.getTokenFrom(request); // !! DANGER TOKEN
-  const isTokenValid = tokenUtils.isTokenValid(token); // !! DANGER TOKEN
+  const token = tokenUtils.getTokenFrom(request);
+
+  const isTokenValid = tokenUtils.isTokenValid(token);
 
   if (!isTokenValid) {
-    // !! DANGER TOKEN
     return response.status(401).json({ error: 'token missing or invalid' });
   }
 
-  const decodedToken = tokenUtils.decodeToken(token); // !! DANGER TOKEN
+  const decodedToken = tokenUtils.decodeToken(token);
 
   const { title, author, url, likes = 0, userId } = body;
   if (title === undefined || author === undefined || url === undefined) {
@@ -64,8 +64,6 @@ blogsRouter.post('/', async (request, response) => {
     'title already taken.'
   );
 
-  // !! DANGER TOKEN
-  // const currentUser = await getDBUserById(userId);
   const currentUser = await getDBUserById(decodedToken.id);
 
   const newDBBlog = await postDBBlog({
@@ -73,7 +71,7 @@ blogsRouter.post('/', async (request, response) => {
     author,
     url,
     likes,
-    user: currentUser._id,
+    user: currentUser._id, // ** save in Mongo OBject format
   }); // ** Then pass this to User service to save
 
   // ** update user blogs array

@@ -27,6 +27,12 @@ async function getItemsInDB() {
   );
 }
 
+// ** Necessary for methods that require Mongo Object _id
+async function getRawItemsInDB() {
+  const rawUsers = await User.find({});
+  return sortBy(rawUsers, (item) => item.username);
+}
+
 async function clearItemsInDB() {
   await User.deleteMany({});
 }
@@ -50,6 +56,7 @@ async function postItemToDB(item) {
 module.exports = {
   getInitialItems,
   getItemsInDB,
+  getRawItemsInDB,
   clearItemsInDB,
   postItemToDB,
 };

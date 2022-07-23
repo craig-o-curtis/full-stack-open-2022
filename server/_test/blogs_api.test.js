@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 // eslint-disable-next-line node/no-unpublished-require
 const supertest = require('supertest');
 const app = require('../app');
-const { mongoConnection } = require('../utils');
+const { mongoConnection, tokenUtils } = require('../utils');
 const {
   expectResponseValues,
   blogsHelper,
@@ -118,6 +118,12 @@ describe('/api/blogs endpoints', () => {
       // users setup
       const testUsers = await usersHelper.getItemsInDB();
       const firstUserId = testUsers[0].id;
+      // token auth header setup
+      const testRawUsers = await usersHelper.getRawItemsInDB();
+      const token = tokenUtils.createToken(
+        testRawUsers[0].username,
+        testRawUsers[0]._id
+      );
       // setup
       const originalDBItems = await blogsHelper.getItemsInDB();
       const originalDBItemsLength = originalDBItems.length;
@@ -129,9 +135,11 @@ describe('/api/blogs endpoints', () => {
         likes: 100,
         userId: firstUserId,
       };
+
       // act
       const postResponse = await api
         .post(ENDPOINT_BASE)
+        .set('Authorization', `bearer ${token}`)
         .send(postItem)
         .expect(201)
         .expect('Content-Type', /application\/json/);
@@ -167,6 +175,12 @@ describe('/api/blogs endpoints', () => {
       // users setup
       const testUsers = await usersHelper.getItemsInDB();
       const firstUserId = testUsers[0].id;
+      // token auth header setup
+      const testRawUsers = await usersHelper.getRawItemsInDB();
+      const token = tokenUtils.createToken(
+        testRawUsers[0].username,
+        testRawUsers[0]._id
+      );
       // setup
       const postItem = {
         title: 'Test Blog4',
@@ -177,6 +191,7 @@ describe('/api/blogs endpoints', () => {
       // act
       const postResponse = await api
         .post(ENDPOINT_BASE)
+        .set('Authorization', `bearer ${token}`)
         .send(postItem)
         .expect(201)
         .expect('Content-Type', /application\/json/);
@@ -206,6 +221,12 @@ describe('/api/blogs endpoints', () => {
       // users setup
       const testUsers = await usersHelper.getItemsInDB();
       const firstUserId = testUsers[0].id;
+      // token auth header setup
+      const testRawUsers = await usersHelper.getRawItemsInDB();
+      const token = tokenUtils.createToken(
+        testRawUsers[0].username,
+        testRawUsers[0]._id
+      );
       // setup
       const invalidItem1 = {
         title: '',
@@ -231,14 +252,17 @@ describe('/api/blogs endpoints', () => {
       // act
       const postResponse1 = await api
         .post(ENDPOINT_BASE)
+        .set('Authorization', `bearer ${token}`)
         .send(invalidItem1)
         .expect(400);
       const postResponse2 = await api
         .post(ENDPOINT_BASE)
+        .set('Authorization', `bearer ${token}`)
         .send(invalidItem2)
         .expect(400);
       const postResponse3 = await api
         .post(ENDPOINT_BASE)
+        .set('Authorization', `bearer ${token}`)
         .send(invalidItem3)
         .expect(400);
       // assert
@@ -257,6 +281,12 @@ describe('/api/blogs endpoints', () => {
       // users setup
       const testUsers = await usersHelper.getItemsInDB();
       const firstUserId = testUsers[0].id;
+      // token auth header setup
+      const testRawUsers = await usersHelper.getRawItemsInDB();
+      const token = tokenUtils.createToken(
+        testRawUsers[0].username,
+        testRawUsers[0]._id
+      );
       // setup
       const itemsInDB = await blogsHelper.getItemsInDB();
       const originalDBItemsLength = itemsInDB.length;
@@ -272,6 +302,7 @@ describe('/api/blogs endpoints', () => {
       // act
       const postResponse = await api
         .post(ENDPOINT_BASE)
+        .set('Authorization', `bearer ${token}`)
         .send(postItem)
         .expect(400)
         .expect('Content-Type', /application\/json/);
