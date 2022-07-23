@@ -312,6 +312,30 @@ describe('/api/blogs endpoints', () => {
         originalDBItemsLength
       );
     });
+
+    test('POST rejects invalid token', async () => {
+      // users setup
+      const testUsers = await usersHelper.getItemsInDB();
+      const firstUserId = testUsers[0].id;
+      // token auth header setup
+      const badToken = 'not a token';
+      // setup
+      const validItem = {
+        title: 'Very good title',
+        author: 'Pal Buddyfriend',
+        url: 'http://localhost:3000',
+        likes: 100,
+        userId: firstUserId,
+      };
+      // act
+      const postResponse = await api
+        .post(ENDPOINT_BASE)
+        .set('Authorization', `bearer ${badToken}`)
+        .send(validItem)
+        .expect(401);
+
+      expect(postResponse.body.error).toEqual('invalid token.');
+    });
   });
 
   describe('PUT calls blogsApp', () => {
