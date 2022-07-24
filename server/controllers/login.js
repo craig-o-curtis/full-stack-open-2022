@@ -5,6 +5,12 @@ const { bcryptUtils, tokenUtils } = require('../utils');
 loginRouter.post('/', async (request, response) => {
   const { username, password } = request.body;
 
+  if (password.length < 3) {
+    return response.status(401).json({
+      error: 'password must be at least 3 characters long.',
+    });
+  }
+
   const user = await getDBUserByUsername(username);
 
   const passwordCorrect =
