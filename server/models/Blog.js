@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const urlRegex = require('url-regex-safe');
+const config = require('../utils/config');
 
 const blogSchema = new mongoose.Schema({
   title: {
@@ -23,6 +24,11 @@ const blogSchema = new mongoose.Schema({
     required: [true, 'Blog url required.'],
   },
   likes: Number,
+  // TODO add tests for adding user for POST and PUT
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
 });
 
 blogSchema.set('toJSON', {
@@ -33,7 +39,11 @@ blogSchema.set('toJSON', {
   },
 });
 
-const dbName = process.env.NODE_ENV === 'test' ? 'testBlogApp' : 'blogApp';
+const dbName =
+  process.env.NODE_ENV === 'test'
+    ? config.MONGODB_BLOG_DB_TEST
+    : config.MONGODB_BLOG_DB;
+
 const blogApp = mongoose.connection.useDb(dbName);
 const Blog = blogApp.model('Blog', blogSchema);
 

@@ -6,6 +6,7 @@ const app = require('../app');
 const Contact = require('../models/Contact');
 const { mongoConnection } = require('../utils');
 const { expectResponseValues, contactsHelper } = require('../testUtils');
+const config = require('../utils/config');
 
 const api = supertest(app);
 const ENDPOINT_BASE = '/api/contacts';
@@ -16,10 +17,10 @@ describe('/api/contacts endpoints', () => {
   beforeAll(async () => {
     await mongoConnection.connectToMongo();
     console.log('Test suite connected to Mongo');
-  });
+  }, 10000);
 
   beforeEach(async () => {
-    await Contact.deleteMany({});
+    await contactsHelper.clearItemsInDB();
     const setupItems = contactsHelper.getInitialItems();
     // ** uses for of loop
     for (const item of setupItems) {
@@ -73,6 +74,7 @@ describe('/api/contacts endpoints', () => {
         .expect('Content-Type', /application\/json/);
       // assert
       expectResponseValues(initialItems[0], response.body);
+      expect(response.body.id).toEqual(firstItemId);
     });
 
     test('GET from invalid id 400 Bad Request', async () => {
@@ -309,7 +311,11 @@ describe('/api/contacts endpoints', () => {
     });
   });
 
-  afterAll(() => {
-    mongoose.connection.close();
+  afterAll(async () => {
+    const testDBName = config.MONGODB_PHONEBOOK_DB_TEST;
+    await mongoose.connection.useDb(testDBName).dropCollection('contacts');
+    console.log('Dropped db collection', testDBName);
+    await mongoose.connection.close();
+    console.log('Disconnected from test db');
   });
 });

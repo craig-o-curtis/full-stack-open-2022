@@ -1,9 +1,11 @@
 POST http://localhost:3001/api/blogs
 Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjYyZGJkZjM2NDEyZWM3M2RmN2UwNjNiMyIsImlhdCI6MTY1ODU5MzUyNn0.xeunsu3BtUOthVpJb09Uqay0wJDFSn4kS5VvB4woY9k
 
 {
-    "title": "MongDB Title 1",
-    "author": "Guy Dudeman",
+    "title": "Token Blog",
+    "author": "root",
     "url": "www.example.com",
-    "likes": 0
+    "likes": 0,
+    "userId": "62dbdf36412ec73df7e063b3"
 }

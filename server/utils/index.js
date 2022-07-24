@@ -3,6 +3,8 @@ const logger = require('./logger');
 const middleware = require('./middleware');
 const mongoConnection = require('./mongoConnection');
 const apiUtils = require('./apiUtils');
+const bcryptUtils = require('./bcryptUtils');
+const tokenUtils = require('./tokenUtils');
 
 module.exports = {
   config,
@@ -10,4 +12,6 @@ module.exports = {
   middleware,
   mongoConnection,
   apiUtils,
+  bcryptUtils,
+  tokenUtils,
 };

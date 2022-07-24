@@ -3,9 +3,13 @@ const mongoose = require('mongoose');
 // eslint-disable-next-line node/no-unpublished-require
 const supertest = require('supertest');
 const app = require('../app');
-const Blog = require('../models/Blog');
-const { mongoConnection } = require('../utils');
-const { expectResponseValues, blogsHelper } = require('../testUtils');
+const { mongoConnection, tokenUtils } = require('../utils');
+const {
+  expectResponseValues,
+  blogsHelper,
+  usersHelper,
+} = require('../testUtils');
+const config = require('../utils/config');
 
 const api = supertest(app);
 const ENDPOINT_BASE = '/api/blogs';
@@ -16,17 +20,24 @@ describe('/api/blogs endpoints', () => {
   beforeAll(async () => {
     await mongoConnection.connectToMongo();
     console.log('Test suite connected to Mongo');
-  });
+  }, 10000);
 
   beforeEach(async () => {
-    await Blog.deleteMany({});
+    await usersHelper.clearItemsInDB();
+    await blogsHelper.clearItemsInDB();
 
+    const setupUsers = usersHelper.getInitialItems();
     const setupItems = blogsHelper.getInitialItems();
     // ** uses Promise.all
-    const prepObjects = setupItems.map((item) => new Blog(item));
-    const promises = prepObjects.map((item) => item.save());
-    await Promise.all(promises);
-  });
+    const userPromises = setupUsers.map((item) =>
+      usersHelper.postItemToDB(item)
+    );
+    const blogPromises = setupItems.map((item) =>
+      blogsHelper.postItemToDB(item)
+    );
+    const allPromises = [...userPromises, ...blogPromises];
+    await Promise.all(allPromises);
+  }, 10000);
 
   describe('GET calls blogsApp', () => {
     test('blogs are returned as json', async () => {
@@ -72,7 +83,11 @@ describe('/api/blogs endpoints', () => {
         .expect(200)
         .expect('Content-Type', /application\/json/);
       // assert
-      expectResponseValues(initialItems[0], response.body);
+      expectResponseValues(
+        initialItems.find((item) => item.title === response.body.title),
+        response.body
+      );
+      expect(response.body.id).toEqual(firstItemId);
     });
 
     test('GET from invalid id 400 Bad Request', async () => {
@@ -100,6 +115,15 @@ describe('/api/blogs endpoints', () => {
 
   describe('POST calls blogsApp', () => {
     test('POST works', async () => {
+      // users setup
+      const testUsers = await usersHelper.getItemsInDB();
+      const firstUserId = testUsers[0].id;
+      // token auth header setup
+      const testRawUsers = await usersHelper.getRawItemsInDB();
+      const token = tokenUtils.createToken(
+        testRawUsers[0].username,
+        testRawUsers[0]._id
+      );
       // setup
       const originalDBItems = await blogsHelper.getItemsInDB();
       const originalDBItemsLength = originalDBItems.length;
@@ -109,86 +133,136 @@ describe('/api/blogs endpoints', () => {
         author: 'Pal Buddyfriend',
         url: 'http://localhost:3000',
         likes: 100,
+        userId: firstUserId,
       };
+
       // act
       const postResponse = await api
         .post(ENDPOINT_BASE)
+        .set('Authorization', `bearer ${token}`)
         .send(postItem)
         .expect(201)
         .expect('Content-Type', /application\/json/);
       // assert
-      expectResponseValues(postItem, postResponse.body);
+      expectResponseValues(
+        {
+          title: postItem.title,
+          author: postItem.author,
+          url: postItem.url,
+          likes: postItem.likes,
+        },
+        postResponse.body
+      );
+      expect(postItem.userId).toEqual(postResponse.body.user);
       // reconfirm with GET by id
       const postedItemId = postResponse.body.id;
       // assert
-      const getByIdResponse = await api.get(`${ENDPOINT_BASE}/${postedItemId}`);
-      expectResponseValues(postItem, getByIdResponse.body);
-
+      // ** Confirm blogs updated
       const updatedDBItems = await blogsHelper.getItemsInDB();
       const updatedDBItemsLength = updatedDBItems.length;
       expect(updatedDBItemsLength).toEqual(originalDBItemsLength + 1);
+      expect(
+        updatedDBItems.some((item) => item.id === postedItemId)
+      ).toBeTruthy();
+      // ** Confirm user updated
+      const updatedUser = await (
+        await usersHelper.getItemsInDB()
+      ).find((item) => item.id === firstUserId);
+      expect(updatedUser.blogs[0].toString()).toEqual(postResponse.body.id);
     });
 
     test('POST defaults likes to 0', async () => {
+      // users setup
+      const testUsers = await usersHelper.getItemsInDB();
+      const firstUserId = testUsers[0].id;
+      // token auth header setup
+      const testRawUsers = await usersHelper.getRawItemsInDB();
+      const token = tokenUtils.createToken(
+        testRawUsers[0].username,
+        testRawUsers[0]._id
+      );
       // setup
       const postItem = {
         title: 'Test Blog4',
         author: 'Fella Wellwisher',
         url: 'https://www.yankee.com',
+        userId: firstUserId,
       };
       // act
       const postResponse = await api
         .post(ENDPOINT_BASE)
+        .set('Authorization', `bearer ${token}`)
         .send(postItem)
         .expect(201)
         .expect('Content-Type', /application\/json/);
       // assert
-      expectResponseValues(postItem, postResponse.body);
+      expectResponseValues(
+        { title: postItem.title, author: postItem.author, url: postItem.url },
+        postResponse.body
+      );
+      expect(postResponse.body.user).toEqual(firstUserId);
       expect(postResponse.body.likes).toEqual(0);
-      // reconfirm with GET by id
-      const postedItemId = postResponse.body.id;
-      // assert
-      const getByIdResponse = await api.get(`${ENDPOINT_BASE}/${postedItemId}`);
-      expectResponseValues(postItem, getByIdResponse.body);
+      expect(postResponse.body.id).toBeDefined();
 
+      // ** confirm blogs db
       const updatedDBItems = await blogsHelper.getItemsInDB();
       expect(
         updatedDBItems.find((item) => item.id === postResponse.body.id).likes
       ).toEqual(0);
+      // ** confirm users db
+
+      const updatedUser = await (
+        await usersHelper.getItemsInDB()
+      ).find((item) => item.id === firstUserId);
+      expect(updatedUser.blogs[0].toString()).toEqual(postResponse.body.id);
     });
 
     test('POST rejects malformed data', async () => {
-      // ** Part 4.b Exercise 4.12 already written
+      // users setup
+      const testUsers = await usersHelper.getItemsInDB();
+      const firstUserId = testUsers[0].id;
+      // token auth header setup
+      const testRawUsers = await usersHelper.getRawItemsInDB();
+      const token = tokenUtils.createToken(
+        testRawUsers[0].username,
+        testRawUsers[0]._id
+      );
       // setup
       const invalidItem1 = {
         title: '',
         author: 'Pal Buddyfriend',
         url: 'http://localhost:3000',
         likes: 100,
+        userId: firstUserId,
       };
       const invalidItem2 = {
         title: 'Test Blog3',
         author: '',
         url: 'http://localhost:3000',
         likes: 100,
+        userId: firstUserId,
       };
       const invalidItem3 = {
         title: 'Test Blog3',
         author: 'Pal Buddyfriend',
         url: '',
         likes: 100,
+        userId: firstUserId,
       };
       // act
       const postResponse1 = await api
         .post(ENDPOINT_BASE)
+        .set('Authorization', `bearer ${token}`)
         .send(invalidItem1)
         .expect(400);
       const postResponse2 = await api
         .post(ENDPOINT_BASE)
+        .set('Authorization', `bearer ${token}`)
         .send(invalidItem2)
         .expect(400);
       const postResponse3 = await api
         .post(ENDPOINT_BASE)
+        .set('Authorization', `bearer ${token}`)
         .send(invalidItem3)
         .expect(400);
       // assert
@@ -201,6 +275,66 @@ describe('/api/blogs endpoints', () => {
       expect(postResponse3.body.error).toEqual(
         'Blog validation failed: url: Blog url required.'
       );
+    });
+
+    test('POST rejects duplicate titles', async () => {
+      // users setup
+      const testUsers = await usersHelper.getItemsInDB();
+      const firstUserId = testUsers[0].id;
+      // token auth header setup
+      const testRawUsers = await usersHelper.getRawItemsInDB();
+      const token = tokenUtils.createToken(
+        testRawUsers[0].username,
+        testRawUsers[0]._id
+      );
+      // setup
+      const itemsInDB = await blogsHelper.getItemsInDB();
+      const originalDBItemsLength = itemsInDB.length;
+      const firstItemInDB = itemsInDB[0];
+
+      const postItem = {
+        title: firstItemInDB.title,
+        author: 'A newauthor',
+        url: 'www.gooogle.com',
+        likes: 2,
+        userId: firstUserId,
+      };
+      // act
+      const postResponse = await api
+        .post(ENDPOINT_BASE)
+        .set('Authorization', `bearer ${token}`)
+        .send(postItem)
+        .expect(400)
+        .expect('Content-Type', /application\/json/);
+      // assert
+      expect(postResponse.body.error).toEqual('title already taken.');
+      expect(await blogsHelper.getItemsInDB()).toHaveLength(
+        originalDBItemsLength
+      );
+    });
+
+    test('POST rejects invalid token', async () => {
+      // users setup
+      const testUsers = await usersHelper.getItemsInDB();
+      const firstUserId = testUsers[0].id;
+      // token auth header setup
+      const badToken = 'not a token';
+      // setup
+      const validItem = {
+        title: 'Very good title',
+        author: 'Pal Buddyfriend',
+        url: 'http://localhost:3000',
+        likes: 100,
+        userId: firstUserId,
+      };
+      // act
+      const postResponse = await api
+        .post(ENDPOINT_BASE)
+        .set('Authorization', `bearer ${badToken}`)
+        .send(validItem)
+        .expect(401);
+
+      expect(postResponse.body.error).toEqual('invalid token.');
     });
   });
 
@@ -320,46 +454,71 @@ describe('/api/blogs endpoints', () => {
         likes: 100,
       };
       // act
-      const postResponse1 = await api
+      const putResponse1 = await api
         .put(`${ENDPOINT_BASE}/${firstItemId}`)
         .send(invalidItem1)
         .expect(400);
-      const postResponse2 = await api
+      const putResponse2 = await api
         .put(`${ENDPOINT_BASE}/${firstItemId}`)
         .send(invalidItem2)
         .expect(400);
-      const postResponse3 = await api
+      const putResponse3 = await api
         .put(`${ENDPOINT_BASE}/${firstItemId}`)
         .send(invalidItem3)
         .expect(400);
       // assert
-      expect(postResponse1.body.error).toEqual(
+      expect(putResponse1.body.error).toEqual(
         'Validation failed: title: Path `title` is required.'
       );
-      expect(postResponse2.body.error).toEqual(
+      expect(putResponse2.body.error).toEqual(
         'Validation failed: author: Path `author` is required.'
       );
-      expect(postResponse3.body.error).toEqual(
+      expect(putResponse3.body.error).toEqual(
         'Validation failed: url: Blog url required.'
+      );
+    });
+
+    test('PUT rejects duplicate titles', async () => {
+      // setup
+      const itemsInDB = await blogsHelper.getItemsInDB();
+      const originalDBItemsLength = itemsInDB.length;
+      const firstItemInDB = itemsInDB[0];
+      const firstItemId = firstItemInDB.id;
+
+      const putItem = {
+        title: firstItemInDB.title,
+        author: 'A newauthor',
+        url: 'www.gooogle.com',
+        likes: 2,
+      };
+      // act
+      const putResponse = await api
+        .put(`${ENDPOINT_BASE}/${firstItemId}`)
+        .send(putItem)
+        .expect(400)
+        .expect('Content-Type', /application\/json/);
+      // assert
+      expect(putResponse.body.error).toEqual('title already taken.');
+      expect(await blogsHelper.getItemsInDB()).toHaveLength(
+        originalDBItemsLength
       );
     });
   });
 
   describe('DELETE calls blogsApp', () => {
-    // ** Part 4.b Exercise 4.13 confirms thorough testing
     test('DELETE works', async () => {
       // setup
       const allItems = await blogsHelper.getItemsInDB();
 
-      for (const contact of allItems) {
-        await api.delete(`${ENDPOINT_BASE}/${contact.id}`).expect(204);
+      for (const item of allItems) {
+        await api.delete(`${ENDPOINT_BASE}/${item.id}`).expect(204);
         // confirm with GET
         const confirmAllItemsResponse = await api.get(ENDPOINT_BASE);
         expect(
-          confirmAllItemsResponse.body.some((c) => c.id === contact.id)
+          confirmAllItemsResponse.body.some((c) => c.id === item.id)
         ).toEqual(false);
         // double-confirm with GET by ID
-        await api.get(`${ENDPOINT_BASE}/${contact.id}`).expect(404);
+        await api.get(`${ENDPOINT_BASE}/${item.id}`).expect(404);
       }
       // Reconfirm GET all
       const reconfirmAllResponse = await api.get(ENDPOINT_BASE).expect(200);
@@ -389,7 +548,14 @@ describe('/api/blogs endpoints', () => {
     });
   });
 
-  afterAll(() => {
-    mongoose.connection.close();
+  afterAll(async () => {
+    const testUseresDBName = config.MONGODB_CROSS_APP_DB_TEST;
+    const testDBName = config.MONGODB_BLOG_DB_TEST;
+    await mongoose.connection.useDb(testDBName).dropCollection('blogs');
+    console.log('Dropped db collection', testDBName);
+    await mongoose.connection.useDb(testUseresDBName).dropCollection('users');
+    console.log('Dropped db collection', testUseresDBName);
+    await mongoose.connection.close();
+    console.log('Disconnected from test db');
   });
 });

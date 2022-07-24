@@ -16,10 +16,11 @@ function checkUnsavedItemError(obj) {
   }
 }
 
-function checkPropertyExistsError(condition, property) {
+function checkPropertyExistsError(condition, property, message) {
   if (!condition) return;
+  const msg = message || `Property ${property} already exists.`;
 
-  const error = new Error(`Property ${property} already exists.`);
+  const error = new Error(msg);
   error.name = 'PropertyExistsError';
 
   throw error;

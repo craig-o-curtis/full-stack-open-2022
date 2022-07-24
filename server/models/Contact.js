@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const { isPossiblePhoneNumber } = require('react-phone-number-input');
+const { isPossiblePhoneNumber } = require('libphonenumber-js');
+const config = require('../utils/config');
 
 const contactSchema = new mongoose.Schema({
   name: { type: String, minLength: 3, required: true },
@@ -14,6 +15,11 @@ const contactSchema = new mongoose.Schema({
     },
     required: [true, 'User phone number required.'],
   },
+  // TODO add tests for adding user for POST and PUT
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
 });
 
 contactSchema.set('toJSON', {
@@ -25,7 +31,9 @@ contactSchema.set('toJSON', {
 });
 
 const dbName =
-  process.env.NODE_ENV === 'test' ? 'testPhonebookApp' : 'phonebookApp';
+  process.env.NODE_ENV === 'test'
+    ? config.MONGODB_PHONEBOOK_DB_TEST
+    : config.MONGODB_PHONEBOOK_DB;
 
 const phonebookAppDB = mongoose.connection.useDb(dbName);
 const Contact = phonebookAppDB.model('Contact', contactSchema);
