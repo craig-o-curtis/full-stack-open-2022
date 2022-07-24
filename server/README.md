@@ -115,4 +115,4 @@ node --inspect server/index.js
 // // login controller still doesn't post new users to db, assuming will be implemented in part 5
 // // also will assume using React Router for login page, then can also add blog and contacts routes, add tokens to contacts
 
-// Part 4.d Exercise 4.20 confirms middleware for token extractor
+// Part 4.d Exercise 4.20 confirms middleware for token extractor, working with unit tests
