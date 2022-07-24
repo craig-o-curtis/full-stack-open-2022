@@ -7,7 +7,7 @@ const {
   updateDBBlog,
   deleteDBBlog,
 } = require('../actions/blogs');
-const { updateDBUserBlogs } = require('../actions/users');
+const { updateDBUserBlog, deleteDBUserBlog } = require('../actions/users');
 const { getDBUserById } = require('../actions/users');
 
 blogsRouter.get('/', async (request, response) => {
@@ -27,19 +27,14 @@ blogsRouter.get('/:id', async (request, response) => {
 
 // TODO add token logic to contacts later
 blogsRouter.post('/', async (request, response) => {
-  const body = request.body;
-
-  const token = tokenUtils.getTokenFrom(request);
-
+  const { token, body } = request;
   const isTokenValid = tokenUtils.isTokenValid(token);
-
   if (!isTokenValid) {
     return response.status(401).json({ error: 'token missing or invalid' });
   }
-
   const decodedToken = tokenUtils.decodeToken(token);
 
-  const { title, author, url, likes = 0, userId } = body;
+  const { title, author, url, likes = 0 } = body;
   if (title === undefined || author === undefined || url === undefined) {
     return response
       .status(400)
@@ -75,8 +70,8 @@ blogsRouter.post('/', async (request, response) => {
   }); // ** Then pass this to User service to save
 
   // ** update user blogs array
-  const updatedUser = await updateDBUserBlogs({
-    id: userId,
+  const updatedUser = await updateDBUserBlog({
+    userId: decodedToken.id,
     blogId: newDBBlog.id,
   });
 
@@ -117,10 +112,25 @@ blogsRouter.put('/:id', async (request, response) => {
 
 blogsRouter.delete('/:id', async (request, response) => {
   const { id } = request.params;
+  const { token } = request;
+  const isTokenValid = tokenUtils.isTokenValid(token);
+  if (!isTokenValid) {
+    console.log('token invalid');
+    return response.status(401).json({ error: 'token missing or invalid' });
+  }
+  console.log('token valid');
+  const decodedToken = tokenUtils.decodeToken(token);
   const deletedBlog = await deleteDBBlog(id);
+  console.log('check deletedBlog for _id object', deletedBlog);
+  const deletedUserBlog = await deleteDBUserBlog({
+    userId: decodedToken.id,
+    blogId: id,
+  });
 
   apiUtils.checkInvalidIdError(deletedBlog);
+  apiUtils.checkInvalidIdError(deletedUserBlog);
   logger.log('Express deleted blog', deletedBlog);
+  logger.log('Express deleted blog from user', deletedUserBlog);
   response.status(204).end();
 });
 

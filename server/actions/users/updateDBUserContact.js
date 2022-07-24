@@ -2,12 +2,12 @@ const { User } = require('../../models');
 const { logger } = require('../../utils');
 const getDBUserById = require('./getDBUserById');
 
-async function updateDBUserContacts({ id, contactId }) {
-  const userContacts = (await getDBUserById(id)).contacts;
+async function updateDBUserContact({ userId, contactId }) {
+  const userContacts = (await getDBUserById(userId)).contacts;
   const updatedContacts = userContacts.concat(contactId);
 
   const updatedDBUser = await User.findByIdAndUpdate(
-    id,
+    userId,
     {
       contacts: updatedContacts,
     },
@@ -18,4 +18,4 @@ async function updateDBUserContacts({ id, contactId }) {
   return updatedDBUser;
 }
 
-module.exports = updateDBUserContacts;
+module.exports = updateDBUserContact;

@@ -1,16 +1,4 @@
-const logger = require('./logger');
-
-function requestLogger(request, response, next) {
-  logger.info('Method:', request.method);
-  logger.info('Path:  ', request.path);
-  logger.info('Body:  ', request.body);
-  logger.info('---');
-  next();
-}
-
-function unknownEndpoint(request, response) {
-  response.status(404).send({ error: 'unknown endpoint' });
-}
+const logger = require('../utils/logger');
 
 function errorHandler(error, request, response, next) {
   if (error.name === 'CastError') {
@@ -41,8 +29,4 @@ function errorHandler(error, request, response, next) {
   next(error);
 }
 
-module.exports = {
-  requestLogger,
-  unknownEndpoint,
-  errorHandler,
-};
+module.exports = errorHandler;
