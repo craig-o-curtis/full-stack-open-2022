@@ -37,9 +37,15 @@ usersRouter.post('/', async (request, response) => {
             : name === undefined
             ? 'name'
             : 'passwordHash'
-        }`,
+        }.`,
       })
       .end();
+  }
+  // ** handling length here as model is for passwordHash
+  if (password.length < 3) {
+    return response.status(401).json({
+      error: 'password must be at least 3 characters long.',
+    });
   }
 
   const passwordHash = await bcryptUtils.encrypt(password);

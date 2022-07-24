@@ -201,6 +201,11 @@ describe('/api/users endpoints', () => {
         name: 'SuperGuy Mandude',
         password: undefined,
       };
+      const invalidItem4 = {
+        username: 'superrealgoodusername',
+        name: 'SuperGuy Mandude',
+        password: '12',
+      };
       // act
       const postResponse1 = await api
         .post(ENDPOINT_BASE)
@@ -214,6 +219,10 @@ describe('/api/users endpoints', () => {
         .post(ENDPOINT_BASE)
         .send(invalidItem3)
         .expect(400);
+      const postResponse4 = await api
+        .post(ENDPOINT_BASE)
+        .send(invalidItem4)
+        .expect(401);
       // assert
       expect(postResponse1.body.error).toEqual(
         'User validation failed: username: Path `username` (``) is shorter than the minimum allowed length (3).'
@@ -221,7 +230,10 @@ describe('/api/users endpoints', () => {
       expect(postResponse2.body.error).toEqual(
         'User validation failed: name: Path `name` (``) is shorter than the minimum allowed length (3).'
       );
-      expect(postResponse3.body.error).toEqual('Missing passwordHash');
+      expect(postResponse3.body.error).toEqual('Missing passwordHash.');
+      expect(postResponse4.body.error).toEqual(
+        'password must be at least 3 characters long.'
+      );
     });
 
     test('POST does not allow duplicate usernames', async () => {
