@@ -32,20 +32,15 @@ async function getItemsInDB() {
   );
 }
 
-async function postItemToDB({ title, author, url, likes = 0 }) {
-  const newObject = new Blog({
-    title,
-    author,
-    url,
-    likes,
-  });
-
-  await newObject.save();
+// ** Necessary for methods that require Mongo Object _id
+async function getRawItemsInDB() {
+  const rawBlogs = await Blog.find({});
+  return sortBy(rawBlogs, (item) => item.title);
 }
 
 module.exports = {
   getInitialItems,
   getItemsInDB,
   clearItemsInDB,
-  postItemToDB,
+  getRawItemsInDB,
 };
