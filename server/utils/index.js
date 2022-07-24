@@ -4,6 +4,7 @@ const mongoConnection = require('./mongoConnection');
 const apiUtils = require('./apiUtils');
 const bcryptUtils = require('./bcryptUtils');
 const tokenUtils = require('./tokenUtils');
+const getAsMongoObjectId = require('./getAsMongoObjectId');
 
 module.exports = {
   config,
@@ -12,4 +13,5 @@ module.exports = {
   apiUtils,
   bcryptUtils,
   tokenUtils,
+  getAsMongoObjectId,
 };

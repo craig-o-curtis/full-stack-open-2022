@@ -3,13 +3,15 @@ const mongoose = require('mongoose');
 // eslint-disable-next-line node/no-unpublished-require
 const supertest = require('supertest');
 const app = require('../app');
-const { mongoConnection, tokenUtils } = require('../utils');
+const { mongoConnection, tokenUtils, getAsMongoObjectId } = require('../utils');
 const {
   expectResponseValues,
   blogsHelper,
   usersHelper,
 } = require('../testUtils');
 const config = require('../utils/config');
+const blogActions = require('../actions/blogs');
+const userActions = require('../actions/users');
 
 const api = supertest(app);
 const ENDPOINT_BASE = '/api/blogs';
@@ -23,20 +25,32 @@ describe('/api/blogs endpoints', () => {
   }, 10000);
 
   beforeEach(async () => {
+    // ** clear db
     await usersHelper.clearItemsInDB();
     await blogsHelper.clearItemsInDB();
 
+    // ** create users
     const setupUsers = usersHelper.getInitialItems();
-    const setupItems = blogsHelper.getInitialItems();
-    // ** uses Promise.all
-    const userPromises = setupUsers.map((item) =>
-      usersHelper.postItemToDB(item)
-    );
-    const blogPromises = setupItems.map((item) =>
-      blogsHelper.postItemToDB(item)
-    );
-    const allPromises = [...userPromises, ...blogPromises];
-    await Promise.all(allPromises);
+    for (const user of setupUsers) {
+      await usersHelper.postItemToDB(user);
+    }
+
+    const dbUsers = await usersHelper.getRawItemsInDB();
+    const firstUser = dbUsers[0];
+
+    // ** create blogs with first user
+    const setupBlogs = blogsHelper
+      .getInitialItems()
+      .map((blog) => ({ ...blog, user: firstUser._id }));
+    for (const blog of setupBlogs) {
+      await blogActions.postDBBlog(blog);
+    }
+    // ** get new blogs
+    const dbBlogs = await blogsHelper.getRawItemsInDB();
+    const blogIds = dbBlogs.map((blog) => blog._id);
+    for (const blogId of blogIds) {
+      await userActions.updateDBUserBlog({ userId: firstUser.id, blogId });
+    }
   }, 10000);
 
   describe('GET calls blogsApp', () => {
@@ -168,7 +182,10 @@ describe('/api/blogs endpoints', () => {
       const updatedUser = await (
         await usersHelper.getItemsInDB()
       ).find((item) => item.id === firstUserId);
-      expect(updatedUser.blogs[0].toString()).toEqual(postResponse.body.id);
+
+      expect(
+        updatedUser.blogs[updatedUser.blogs.length - 1].toString()
+      ).toEqual(postResponse.body.id);
     });
 
     test('POST defaults likes to 0', async () => {
@@ -214,7 +231,9 @@ describe('/api/blogs endpoints', () => {
       const updatedUser = await (
         await usersHelper.getItemsInDB()
       ).find((item) => item.id === firstUserId);
-      expect(updatedUser.blogs[0].toString()).toEqual(postResponse.body.id);
+      expect(
+        updatedUser.blogs[updatedUser.blogs.length - 1].toString()
+      ).toEqual(postResponse.body.id);
     });
 
     test('POST rejects malformed data', async () => {
@@ -338,6 +357,7 @@ describe('/api/blogs endpoints', () => {
     });
   });
 
+  // TODO Consider adding user safeguards here
   describe('PUT calls blogsApp', () => {
     test('PUT works', async () => {
       // setup
@@ -507,11 +527,20 @@ describe('/api/blogs endpoints', () => {
 
   describe('DELETE calls blogsApp', () => {
     test('DELETE works', async () => {
+      // token auth header setup
+      const testRawUsers = await usersHelper.getRawItemsInDB();
+      const token = tokenUtils.createToken(
+        testRawUsers[0].username,
+        testRawUsers[0]._id
+      );
       // setup
       const allItems = await blogsHelper.getItemsInDB();
 
       for (const item of allItems) {
-        await api.delete(`${ENDPOINT_BASE}/${item.id}`).expect(204);
+        await api
+          .delete(`${ENDPOINT_BASE}/${item.id}`)
+          .set('Authorization', `bearer ${token}`)
+          .expect(204);
         // confirm with GET
         const confirmAllItemsResponse = await api.get(ENDPOINT_BASE);
         expect(
@@ -526,22 +555,36 @@ describe('/api/blogs endpoints', () => {
     });
 
     test('DELETE to invalid id 404 id does not exist', async () => {
+      // token auth header setup
+      const testRawUsers = await usersHelper.getRawItemsInDB();
+      const token = tokenUtils.createToken(
+        testRawUsers[0].username,
+        testRawUsers[0]._id
+      );
       // setup
       const bogusId = '000000000000000000000000';
       // act
       const response = await api
         .delete(`${ENDPOINT_BASE}/${bogusId}`)
+        .set('Authorization', `bearer ${token}`)
         .expect(404);
       // assert
       expect(response.body.error).toEqual('Item id does not exist.');
     });
 
     test('DELETE to impossible id 400 Not Found', async () => {
+      // token auth header setup
+      const testRawUsers = await usersHelper.getRawItemsInDB();
+      const token = tokenUtils.createToken(
+        testRawUsers[0].username,
+        testRawUsers[0]._id
+      );
       // setup
       const bogusId = 'abc';
       // act
       const response = await api
         .delete(`${ENDPOINT_BASE}/${bogusId}`)
+        .set('Authorization', `bearer ${token}`)
         .expect(400);
       // assert
       expect(response.body.error).toEqual('Malformatted id.');

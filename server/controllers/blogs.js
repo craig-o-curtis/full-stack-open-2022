@@ -115,13 +115,23 @@ blogsRouter.delete('/:id', async (request, response) => {
   const { token } = request;
   const isTokenValid = tokenUtils.isTokenValid(token);
   if (!isTokenValid) {
-    console.log('token invalid');
     return response.status(401).json({ error: 'token missing or invalid' });
   }
-  console.log('token valid');
   const decodedToken = tokenUtils.decodeToken(token);
+
+  // ** Check if user is owner of blog
+  const dbBlog = await getDBBlogById(id);
+  apiUtils.checkInvalidIdError(dbBlog);
+  const userId = dbBlog.user;
+  const user = await getDBUserById(userId);
+  apiUtils.checkInvalidIdError(user);
+  if (user.username !== decodedToken.username) {
+    return response.status(401).json({ error: 'user is not owner of blog.' });
+  }
+
+  // ** delete action 1 - delete blog
   const deletedBlog = await deleteDBBlog(id);
-  console.log('check deletedBlog for _id object', deletedBlog);
+  // ** delete action 2 - delete blog id from user object
   const deletedUserBlog = await deleteDBUserBlog({
     userId: decodedToken.id,
     blogId: id,
