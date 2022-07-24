@@ -2,7 +2,7 @@ const express = require('express');
 require('express-async-errors');
 const app = express();
 const cors = require('cors');
-const { middleware } = require('./utils');
+const middleware = require('./middleware');
 const {
   loginRouter,
   usersRouter,
@@ -14,6 +14,7 @@ app.use(cors());
 app.use(express.static('build'));
 app.use(express.json());
 app.use(middleware.requestLogger);
+app.use(middleware.tokenExtractor);
 
 app.use('/api/login', loginRouter);
 app.use('/api/users', usersRouter);

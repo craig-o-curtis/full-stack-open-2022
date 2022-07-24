@@ -1,6 +1,6 @@
 const loginRouter = require('express').Router();
 const { getDBUserByUsername } = require('../actions/users');
-const { bcryptUtils, tokenUtils } = require('../utils');
+const { logger, bcryptUtils, tokenUtils } = require('../utils');
 
 loginRouter.post('/', async (request, response) => {
   const { username, password } = request.body;
@@ -25,6 +25,7 @@ loginRouter.post('/', async (request, response) => {
   }
 
   const token = tokenUtils.createToken(user.username, user._id);
+  logger.log('token', token);
 
   response
     .status(200)
