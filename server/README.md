@@ -110,3 +110,7 @@ node --inspect server/index.js
 // Part 4.d Exercis 4.17 due to connections of dbs in this project, keeping dbs separated
 // // only populating with unique identifiers, not using populate method
 // // this will also work better with React Query hooks to fetch and cache this data in the FE
+
+// Part 4.d Exercis 4.18 confirms has token-based authentication for blogs...
+// // login controller still doesn't post new users to db, assuming will be implemented in part 5
+// // also will assume using React Router for login page, then can also add blog and contacts routes, add tokens to contacts
