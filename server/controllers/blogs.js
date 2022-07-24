@@ -9,6 +9,7 @@ const {
 } = require('../actions/blogs');
 const { updateDBUserBlog, deleteDBUserBlog } = require('../actions/users');
 const { getDBUserById } = require('../actions/users');
+const userExtractor = require('../middleware/userExtractor');
 
 blogsRouter.get('/', async (request, response) => {
   const dbBlogs = await getDBBlogs();
@@ -26,13 +27,12 @@ blogsRouter.get('/:id', async (request, response) => {
 });
 
 // TODO add token logic to contacts later
-blogsRouter.post('/', async (request, response) => {
-  const { token, body } = request;
+blogsRouter.post('/', userExtractor, async (request, response) => {
+  const { token, user, body } = request;
   const isTokenValid = tokenUtils.isTokenValid(token);
   if (!isTokenValid) {
     return response.status(401).json({ error: 'token missing or invalid' });
   }
-  const decodedToken = tokenUtils.decodeToken(token);
 
   const { title, author, url, likes = 0 } = body;
   if (title === undefined || author === undefined || url === undefined) {
@@ -59,7 +59,7 @@ blogsRouter.post('/', async (request, response) => {
     'title already taken.'
   );
 
-  const currentUser = await getDBUserById(decodedToken.id);
+  const currentUser = await getDBUserById(user.id);
 
   const newDBBlog = await postDBBlog({
     title,
@@ -71,7 +71,7 @@ blogsRouter.post('/', async (request, response) => {
 
   // ** update user blogs array
   const updatedUser = await updateDBUserBlog({
-    userId: decodedToken.id,
+    userId: user.id,
     blogId: newDBBlog.id,
   });
 
@@ -110,7 +110,7 @@ blogsRouter.put('/:id', async (request, response) => {
   response.json(result);
 });
 
-blogsRouter.delete('/:id', async (request, response) => {
+blogsRouter.delete('/:id', userExtractor, async (request, response) => {
   const { id } = request.params;
   const { token } = request;
   const isTokenValid = tokenUtils.isTokenValid(token);

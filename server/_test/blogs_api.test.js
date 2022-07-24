@@ -147,7 +147,6 @@ describe('/api/blogs endpoints', () => {
         author: 'Pal Buddyfriend',
         url: 'http://localhost:3000',
         likes: 100,
-        userId: firstUserId,
       };
 
       // act
@@ -167,7 +166,7 @@ describe('/api/blogs endpoints', () => {
         },
         postResponse.body
       );
-      expect(postItem.userId).toEqual(postResponse.body.user);
+      expect(firstUserId).toEqual(postResponse.body.user);
       // reconfirm with GET by id
       const postedItemId = postResponse.body.id;
       // assert
@@ -203,7 +202,6 @@ describe('/api/blogs endpoints', () => {
         title: 'Test Blog4',
         author: 'Fella Wellwisher',
         url: 'https://www.yankee.com',
-        userId: firstUserId,
       };
       // act
       const postResponse = await api
@@ -252,21 +250,18 @@ describe('/api/blogs endpoints', () => {
         author: 'Pal Buddyfriend',
         url: 'http://localhost:3000',
         likes: 100,
-        userId: firstUserId,
       };
       const invalidItem2 = {
         title: 'Test Blog3',
         author: '',
         url: 'http://localhost:3000',
         likes: 100,
-        userId: firstUserId,
       };
       const invalidItem3 = {
         title: 'Test Blog3',
         author: 'Pal Buddyfriend',
         url: '',
         likes: 100,
-        userId: firstUserId,
       };
       // act
       const postResponse1 = await api
@@ -297,9 +292,6 @@ describe('/api/blogs endpoints', () => {
     });
 
     test('POST rejects duplicate titles', async () => {
-      // users setup
-      const testUsers = await usersHelper.getItemsInDB();
-      const firstUserId = testUsers[0].id;
       // token auth header setup
       const testRawUsers = await usersHelper.getRawItemsInDB();
       const token = tokenUtils.createToken(
@@ -316,7 +308,6 @@ describe('/api/blogs endpoints', () => {
         author: 'A newauthor',
         url: 'www.gooogle.com',
         likes: 2,
-        userId: firstUserId,
       };
       // act
       const postResponse = await api
