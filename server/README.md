@@ -116,3 +116,5 @@ node --inspect server/index.js
 // // also will assume using React Router for login page, then can also add blog and contacts routes, add tokens to contacts
 
 // Part 4.d Exercise 4.20 confirms middleware for token extractor, working with unit tests
+
+// Part 4.d Exercise 4.23 confirm unit tests passing
