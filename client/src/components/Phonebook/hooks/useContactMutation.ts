@@ -5,7 +5,7 @@ import {
   UseMutationOptions,
   useQueryClient,
 } from "react-query";
-import { apiBaseUrl } from "./apiBaseUrl";
+import { apiBaseUrl } from "../../../api";
 
 import { queryKey } from "./useContactsQuery";
 import axios from "axios";

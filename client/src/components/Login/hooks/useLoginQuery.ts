@@ -1,14 +1,14 @@
 // ** Simple implementation of React Query for easy server client state management
 import { useQuery } from "react-query";
 import axios from "axios";
-import { IContact } from "../Contact.types";
+
 import { apiBaseUrl } from "../../../api";
 
-export const queryKey = "Contacts";
+export const queryKey = "Login";
 
-const getContacts = async () => {
+const getUserLogin = async () => {
   try {
-    const response = await axios.get(`${apiBaseUrl}/contacts`);
+    const response = await axios.get(`${apiBaseUrl}/users`);
     return response.data;
   } catch (error) {
     // noop
@@ -16,10 +16,10 @@ const getContacts = async () => {
   }
 };
 
-export const useContactsQuery = () => {
-  const { data, isLoading, isFetching, isError, error } = useQuery<
-    IContact[],
-    Error
-  >(queryKey, getContacts);
+export const useLoginQuery = () => {
+  const { data, isLoading, isFetching, isError, error } = useQuery<any, Error>(
+    queryKey,
+    getUserLogin
+  );
   return { contacts: data, isLoading: isLoading || isFetching, isError, error };
 };

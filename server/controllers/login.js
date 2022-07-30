@@ -2,6 +2,26 @@ const loginRouter = require('express').Router();
 const { getDBUserByUsername } = require('../actions/users');
 const { logger, bcryptUtils, tokenUtils } = require('../utils');
 
+// ** simply returns new token username, name, id
+loginRouter.get('/', async (request, response) => {
+  console.log('confirm get user token here');
+  const { token } = request;
+
+  const isTokenValid = tokenUtils.isTokenValid(token);
+  if (!isTokenValid) {
+    return response.status(401).json({ error: 'token missing or invalid' });
+  }
+  const { username } = tokenUtils.decodeToken(token);
+  const user = await getDBUserByUsername(username);
+
+  const newToken = tokenUtils.createToken(user.username, user._id);
+  logger.log('refreshed token', token);
+
+  response
+    .status(200)
+    .send({ token: newToken, username: user.username, name: user.name });
+});
+
 loginRouter.post('/', async (request, response) => {
   const { username, password } = request.body;
 

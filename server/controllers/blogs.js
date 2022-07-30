@@ -7,8 +7,11 @@ const {
   updateDBBlog,
   deleteDBBlog,
 } = require('../actions/blogs');
-const { updateDBUserBlog, deleteDBUserBlog } = require('../actions/users');
-const { getDBUserById } = require('../actions/users');
+const {
+  getDBUserById,
+  updateDBUserBlog,
+  deleteDBUserBlog,
+} = require('../actions/users');
 const userExtractor = require('../middleware/userExtractor');
 
 blogsRouter.get('/', async (request, response) => {
