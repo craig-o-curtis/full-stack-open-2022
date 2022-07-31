@@ -1,36 +1,44 @@
 import React from "react";
-import { useForm, FormProvider } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
-import { Button, FormControl } from "../common";
+import { NavLink, useNavigate } from "react-router-dom";
+import { AppLoader, Form, FormControl, FormSubmitButton } from "../common";
+import { ILoginUser } from "./Login.types";
+import { useLoginUserMutation } from "./hooks";
 import * as Styled from "./Login.styled";
-
-type FormData = {
-  username: string;
-  password: string;
-};
+import { useUserContext } from "../../auth/AuthProvider";
 
 const Login = () => {
-  // const { register, control, setValue, handleSubmit, reset, formState } =
-  //   useForm<FormData>({ mode: "onChange" });
-  // const onSubmit = handleSubmit((data) => console.log(data));
+  const { mutateAsync: postUser, isLoading } = useLoginUserMutation();
+  const navigate = useNavigate();
+  const [state, actions] = useUserContext();
 
-  const methods = useForm();
-  const onSubmit = (data: any) => console.log(data);
-  // firstName and lastName will have correct type
+  console.log("check user actions...", actions);
+  console.log("check user state...", state);
 
-  console.log("formState", methods.formState.errors);
+  const handleSubmit = async (data: ILoginUser) => {
+    console.log("need to type", data);
+    // ** For existing users
+    // ** Just need to do post to /login and get token
+    // ** token can be stored in RQ???
+    const currentUser = await postUser(data);
+    // ** dispatch to context
+    if (currentUser) {
+      actions.setUser(currentUser);
+    }
+    navigate("/");
+  };
 
   return (
-    <Styled.FormPage>
-      <Styled.FormWrapper>
-        <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)} autoComplete="off">
+    <AppLoader isLoading={isLoading}>
+      <Styled.FormPage>
+        <Styled.FormWrapper>
+          <Form onSubmit={handleSubmit} debug>
             <FormControl
               name="username"
               label="Username:"
               type="text"
               autoComplete="off"
               required
+              minLength={3}
               placeholder="Enter a unique username..."
             />
 
@@ -40,23 +48,18 @@ const Login = () => {
               type="password"
               autoComplete="new-password"
               required
+              minLength={3}
               placeholder="Enter a password..."
             />
 
-            <Button
-              type="submit"
-              onClick={() => {
-                // methods.reset();
-              }}
-            >
-              Submit
-            </Button>
-
-            <DevTool control={methods.control} />
-          </form>
-        </FormProvider>
-      </Styled.FormWrapper>
-    </Styled.FormPage>
+            <Styled.FormFooter flex justifyContent="space-between">
+              <NavLink to="/signup">Register for account</NavLink>
+              <FormSubmitButton>Submit</FormSubmitButton>
+            </Styled.FormFooter>
+          </Form>
+        </Styled.FormWrapper>
+      </Styled.FormPage>
+    </AppLoader>
   );
 };
 

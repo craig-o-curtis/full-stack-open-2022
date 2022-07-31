@@ -4,11 +4,11 @@ import axios from "axios";
 
 import { apiBaseUrl } from "../../../api";
 
-export const queryKey = "Login";
+export const queryKey = "currentUser";
 
-const getUserLogin = async () => {
+const getCurrentUser = async (userId: string) => {
   try {
-    const response = await axios.get(`${apiBaseUrl}/users`);
+    const response = await axios.get(`${apiBaseUrl}/users/${userId}`);
     return response.data;
   } catch (error) {
     // noop
@@ -16,10 +16,10 @@ const getUserLogin = async () => {
   }
 };
 
-export const useLoginQuery = () => {
+export const useUserQuery = (userId: string) => {
   const { data, isLoading, isFetching, isError, error } = useQuery<any, Error>(
     queryKey,
-    getUserLogin
+    () => getCurrentUser(userId)
   );
-  return { contacts: data, isLoading: isLoading || isFetching, isError, error };
+  return { data, isLoading: isLoading || isFetching, isError, error };
 };

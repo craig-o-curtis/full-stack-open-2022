@@ -1,5 +1,5 @@
 import React from "react";
-import LoaderDisc from "../LoaderDisc";
+import { LoaderDisc } from "../common";
 import * as Styled from "./Splash.styled";
 
 const Splash = () => {
