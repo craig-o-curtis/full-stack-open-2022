@@ -18,7 +18,7 @@ const Login = () => {
       // ** dispatch to context
       if (currentUser) {
         actions.setUser(currentUser);
-        navigate("/");
+        navigate("/home", { replace: true });
       }
     } catch (error) {
       console.error("Error", error);

@@ -1,8 +1,10 @@
-import React from "react";
+import { AuthRoute } from "../auth";
 import { Feedback } from "../components";
 
-const FeedbackRoute = () => {
-  return <Feedback />;
-};
+const FeedbackRoute = () => (
+  <AuthRoute>
+    <Feedback />
+  </AuthRoute>
+);
 
 export default FeedbackRoute;

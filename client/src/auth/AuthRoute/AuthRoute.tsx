@@ -9,7 +9,7 @@ interface AuthRouteProps {
   children: React.ReactNode;
 }
 
-const AuthRoute = ({ children }: AuthRouteProps) => {
+const AuthRoute = React.memo(function ({ children }: AuthRouteProps) {
   const navigate = useNavigate();
   const [{ user }, actions] = useUserContext();
   const { lsUser } = useLocalStorageCurrentUser();
@@ -20,6 +20,7 @@ const AuthRoute = ({ children }: AuthRouteProps) => {
   useEffect(() => {
     if (!isLoading && data) {
       if (token !== data.token) {
+        console.log("am i setting again', data has id", data);
         actions.setUser(data);
       }
     }
@@ -33,6 +34,6 @@ const AuthRoute = ({ children }: AuthRouteProps) => {
   }, [isError, error, navigate, actions, isLoading, data]);
 
   return <>{!isLoading && data && <>{children}</>}</>;
-};
+});
 
 export default AuthRoute;

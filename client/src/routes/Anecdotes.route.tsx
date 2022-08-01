@@ -1,8 +1,10 @@
-import React from "react";
+import { AuthRoute } from "../auth";
 import { Anecdotes } from "../components";
 
-const AnecdotesRoute = () => {
-  return <Anecdotes />;
-};
+const AnecdotesRoute = () => (
+  <AuthRoute>
+    <Anecdotes />
+  </AuthRoute>
+);
 
 export default AnecdotesRoute;

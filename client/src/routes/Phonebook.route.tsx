@@ -1,8 +1,10 @@
-import React from "react";
-import Phonebook from "../components/Phonebook";
+import { AuthRoute } from "../auth";
+import { Phonebook } from "../components";
 
-const PhonebookRoute = () => {
-  return <Phonebook />;
-};
+const PhonebookRoute = () => (
+  <AuthRoute>
+    <Phonebook />
+  </AuthRoute>
+);
 
 export default PhonebookRoute;

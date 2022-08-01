@@ -13,14 +13,17 @@ export const useLogout = () => {
   // ** destroy
   const logout = useCallback(() => {
     // ** remove from user context and ls
+    console.log("set store as null");
+
     actions.setUser(null);
     // ** invalidate query client
-
+    console.log("remove query");
     queryClient.removeQueries(queryKey);
 
     // ** pop a toast
     toast.success("Logged out");
     // ** redirect to login page
+    console.log("navigating");
     navigate("/login");
   }, [actions, navigate, queryClient]);
 

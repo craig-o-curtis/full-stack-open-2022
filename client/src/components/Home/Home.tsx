@@ -1,16 +1,28 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { AiOutlineUser } from "react-icons/ai";
 import { Box, Button } from "../common";
 import * as Styled from "./Home.styled";
 import { useLogout } from "../../auth";
 
 const Home = () => {
   const logout = useLogout();
+  const navigate = useNavigate();
+
+  const handleNavUserProfile = () => {
+    navigate("/user-profile", { replace: true });
+  };
 
   return (
     <Styled.Home>
       <Box p={2} flex justifyContent="space-between">
         <header>Full Stack 2022 Course Projects</header>
+
+        <Box ml="auto" mr={1}>
+          <Button onClick={handleNavUserProfile}>
+            <AiOutlineUser />
+          </Button>
+        </Box>
         <Button onClick={logout}>Log out</Button>
       </Box>
       <ul>

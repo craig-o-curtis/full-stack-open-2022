@@ -4,6 +4,7 @@ export { default as Login } from "./Login";
 export { default as NotFound } from "./NotFound";
 
 export { default as Home } from "./Home";
+export { default as UserProfile } from "./UserProfile";
 export { default as Anecdotes } from "./Anecdotes";
 export { default as Course } from "./Course";
 export { default as Feedback } from "./Feedback";

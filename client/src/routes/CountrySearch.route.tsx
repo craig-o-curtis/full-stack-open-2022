@@ -1,8 +1,10 @@
-import React from "react";
+import { AuthRoute } from "../auth";
 import { CountrySearch } from "../components";
 
-const CountrySearchRoute = () => {
-  return <CountrySearch />;
-};
+const CountrySearchRoute = () => (
+  <AuthRoute>
+    <CountrySearch />
+  </AuthRoute>
+);
 
 export default CountrySearchRoute;

@@ -1,8 +1,10 @@
-import React from "react";
+import { AuthRoute } from "../auth";
 import { RefactoredCourse } from "../components";
 
-const RefactoredCourseRoute = () => {
-  return <RefactoredCourse />;
-};
+const RefactoredCourseRoute = () => (
+  <AuthRoute>
+    <RefactoredCourse />
+  </AuthRoute>
+);
 
 export default RefactoredCourseRoute;

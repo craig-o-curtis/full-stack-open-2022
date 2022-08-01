@@ -1,8 +1,10 @@
-import React from "react";
+import { AuthRoute } from "../auth";
 import { Course } from "../components";
 
-const CourseRoute = () => {
-  return <Course />;
-};
+const CourseRoute = () => (
+  <AuthRoute>
+    <Course />
+  </AuthRoute>
+);
 
 export default CourseRoute;

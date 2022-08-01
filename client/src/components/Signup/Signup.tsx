@@ -16,7 +16,7 @@ const Signup = () => {
       // ** dispatch to context
       if (createdUser) {
         actions.setUser(createdUser);
-        navigate("/");
+        navigate("/home", { replace: true });
       }
     } catch (error) {
       console.error("Error", error);

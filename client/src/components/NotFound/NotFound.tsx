@@ -10,7 +10,7 @@ const NotFound = () => {
     <Styled.NotFound>
       <Styled.FourOFour>404</Styled.FourOFour>
       <Styled.NotFoundText>Not Found</Styled.NotFoundText>
-      <Button onClick={() => navigate("home", { replace: true })}>
+      <Button onClick={() => navigate("/", { replace: true })}>
         Back to Safety
       </Button>
     </Styled.NotFound>

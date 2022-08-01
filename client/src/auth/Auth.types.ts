@@ -1,4 +1,5 @@
 export type IAuthUser = {
+  id: string;
   name: string;
   token: string;
   username: string;

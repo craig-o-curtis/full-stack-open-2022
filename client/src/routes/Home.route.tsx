@@ -1,8 +1,9 @@
-import React from "react";
+import { AuthRoute } from "../auth";
 import { Home } from "../components";
 
-const HomeRoute = () => {
-  return <Home />;
-};
-
+const HomeRoute = () => (
+  <AuthRoute>
+    <Home />
+  </AuthRoute>
+);
 export default HomeRoute;
