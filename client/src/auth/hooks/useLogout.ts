@@ -14,8 +14,8 @@ export const useLogout = () => {
   const logout = useCallback(() => {
     // ** remove from user context and ls
     console.log("set store as null");
-
-    actions.setUser(null);
+    // actions.setUser(null);
+    actions.resetState();
     // ** invalidate query client
     console.log("remove query");
     queryClient.removeQueries(queryKey);

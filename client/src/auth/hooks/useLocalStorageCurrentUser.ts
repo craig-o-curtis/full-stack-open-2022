@@ -6,12 +6,18 @@ export const LS_USER_KEY = "uhel-fullstack2022currentUser";
 export const useLocalStorageCurrentUser = (): {
   lsUser: IAuthUser | null;
   setLsUser: any;
+  clearLS: any;
 } => {
   const [lsUser, setLsUser] = useLocalStorage(LS_USER_KEY, null);
+
+  const clearLS = () => {
+    window.localStorage.removeItem(LS_USER_KEY);
+  };
 
   return {
     lsUser,
     setLsUser,
+    clearLS,
   };
 };
 

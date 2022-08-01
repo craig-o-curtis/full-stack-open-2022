@@ -20,6 +20,7 @@ const getRefreshToken = async (config: AuthTokenConfig) => {
 
 export const useRefreshTokenQuery = () => {
   const config = useAuthTokenConfig();
+
   const { data, isLoading, isFetching, isError, error } = useQuery<any, Error>(
     queryKey,
     () => getRefreshToken(config)

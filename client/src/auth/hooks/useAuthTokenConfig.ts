@@ -1,6 +1,7 @@
 import { AxiosRequestConfig } from "axios";
 import { useMemo } from "react";
 import { useUserContext } from "../AuthProvider";
+import { useLocalStorageCurrentUser } from "../hooks";
 
 export type AuthTokenConfig =
   | AxiosRequestConfig<any>
@@ -9,17 +10,19 @@ export type AuthTokenConfig =
 
 export const useAuthTokenConfig = () => {
   const [{ user }] = useUserContext();
+  const { lsUser } = useLocalStorageCurrentUser();
+  const token = user?.token || lsUser?.token;
 
   const config = useMemo(
     () =>
-      !user
+      !token
         ? undefined
         : {
             headers: {
-              Authorization: `Bearer ${user?.token}`,
+              Authorization: `Bearer ${token}`,
             },
           },
-    [user]
+    [token]
   );
 
   return config;

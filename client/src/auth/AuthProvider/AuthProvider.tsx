@@ -11,24 +11,26 @@ interface AuthProviderProps {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [state, dispatch] = useAuthReducer();
-  const { setLsUser } = useLocalStorageCurrentUser();
+  const { setLsUser, clearLS } = useLocalStorageCurrentUser();
 
   const actions = useMemo((): StateActions => {
     const setUser = (user: IAuthUser | null) => {
       dispatch({ type: "setUser", value: user });
+      console.log("setting ls", user);
       setLsUser(user as any);
     };
 
     const resetState = () => {
       dispatch({ type: "resetState" });
       setLsUser(null);
+      clearLS();
     };
 
     return {
       setUser,
       resetState,
     };
-  }, [dispatch, setLsUser]);
+  }, [dispatch, setLsUser, clearLS]);
 
   return (
     <UserContext.Provider value={[state, actions]}>

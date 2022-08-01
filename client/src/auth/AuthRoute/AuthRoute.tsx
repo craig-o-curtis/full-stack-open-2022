@@ -14,7 +14,9 @@ const AuthRoute = React.memo(function ({ children }: AuthRouteProps) {
   const [{ user }, actions] = useUserContext();
   const { lsUser } = useLocalStorageCurrentUser();
   const token = user?.token || lsUser?.token;
-  // ** refresh token on every route nav
+
+  // TODO user token and browser refreshing, redirect, LS clearing needs love
+
   const { data, isLoading, isError, error } = useRefreshTokenQuery();
 
   useEffect(() => {
@@ -27,11 +29,20 @@ const AuthRoute = React.memo(function ({ children }: AuthRouteProps) {
   }, [isLoading, data, actions, token]);
 
   useEffect(() => {
-    if (isError || error || (!isLoading && !data)) {
+    if (isError || error) {
       navigate("/login", { replace: true });
       actions.setUser(null);
     }
   }, [isError, error, navigate, actions, isLoading, data]);
+
+  useEffect(() => {
+    if (!isLoading && !data) {
+      navigate("/login", { replace: true });
+      actions.setUser(null);
+    }
+  }, [actions, data, isLoading, navigate]);
+
+  console.log("hit data", data);
 
   return <>{!isLoading && data && <>{children}</>}</>;
 });
