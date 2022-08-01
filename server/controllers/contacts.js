@@ -7,6 +7,7 @@ const {
   updateDBContact,
   deleteDBContact,
 } = require('../actions/contacts/');
+const userExtractor = require('../middleware/userExtractor');
 
 contactsRouter.get('/', async (request, response) => {
   const dbContacts = await getDBContacts();
@@ -23,8 +24,12 @@ contactsRouter.get('/:id', async (request, response) => {
   response.json(dbContact);
 });
 
-contactsRouter.post('/', async (request, response) => {
-  const body = request.body || {};
+contactsRouter.post('/', userExtractor, async (request, response) => {
+  const { token, user, body } = request;
+
+  console.log('contacts has token', token);
+  console.log('contacts has user', user);
+
   const { name, number } = body;
   if (name === undefined || number === undefined) {
     return response

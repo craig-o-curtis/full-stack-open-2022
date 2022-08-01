@@ -4,5 +4,6 @@ export {
   useLocalStorageCurrentUser,
   useReadLocalStorageCurrentUser,
   useLogout,
+  useAuthTokenConfig,
 } from "./hooks";
 export * from "./Auth.types";

@@ -73,9 +73,12 @@ usersRouter.post('/', async (request, response) => {
 
   apiUtils.checkUnsavedItemError(newDBUser);
   logger.log('Express created new user', newDBUser);
-  response
-    .status(201)
-    .json({ token, username: newDBUser.username, name: newDBUser.name });
+  response.status(201).json({
+    token,
+    username: newDBUser.username,
+    name: newDBUser.name,
+    id: newDBUser._id.toString(),
+  });
 });
 
 usersRouter.put('/:id', async (request, response) => {

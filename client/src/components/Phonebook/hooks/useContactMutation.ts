@@ -6,7 +6,7 @@ import {
   useQueryClient,
 } from "react-query";
 import { apiBaseUrl } from "../../../api";
-
+import { useAuthTokenConfig } from "../../../auth";
 import { queryKey } from "./useContactsQuery";
 import axios from "axios";
 import { IContact } from "../Contact.types";
@@ -49,6 +49,19 @@ function useContactsMutation<T>(
   }: UseMutationOptions<unknown, unknown, T> = {}
 ) {
   const queryClient = useQueryClient();
+  const config = useAuthTokenConfig();
+
+  // axios.interceptors.request.use(
+  //   function () {
+  //     // Do something before request is sent
+  //     return config;
+  //   },
+  //   function (error) {
+  //     // Do something with request error
+  //     return Promise.reject(error);
+  //   }
+  // );
+
   return useMutation(mutationFn, {
     ...options,
     onSuccess: async (...args) => {

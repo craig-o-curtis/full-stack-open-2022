@@ -15,7 +15,7 @@ const AuthRoute = React.memo(function ({ children }: AuthRouteProps) {
   const { lsUser } = useLocalStorageCurrentUser();
   const token = user?.token || lsUser?.token;
   // ** refresh token on every route nav
-  const { data, isLoading, isError, error } = useRefreshTokenQuery(token);
+  const { data, isLoading, isError, error } = useRefreshTokenQuery();
 
   useEffect(() => {
     if (!isLoading && data) {

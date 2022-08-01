@@ -4,7 +4,6 @@ const { logger, bcryptUtils, tokenUtils } = require('../utils');
 
 // ** simply returns new token username, name, id
 loginRouter.get('/', async (request, response) => {
-  console.log('confirm get user token here');
   const { token } = request;
 
   const isTokenValid = tokenUtils.isTokenValid(token);
@@ -17,9 +16,12 @@ loginRouter.get('/', async (request, response) => {
   const newToken = tokenUtils.createToken(user.username, user._id);
   logger.log('refreshed token', token);
 
-  response
-    .status(200)
-    .send({ token: newToken, username: user.username, name: user.name });
+  response.status(200).send({
+    token: newToken,
+    username: user.username,
+    name: user.name,
+    id: user._id.toString(),
+  });
 });
 
 loginRouter.post('/', async (request, response) => {
@@ -32,7 +34,6 @@ loginRouter.post('/', async (request, response) => {
   }
 
   const user = await getDBUserByUsername(username);
-  console.log('do I get id back???', user);
 
   const passwordCorrect =
     user === null
@@ -48,9 +49,12 @@ loginRouter.post('/', async (request, response) => {
   const token = tokenUtils.createToken(user.username, user._id);
   logger.log('token', token);
 
-  response
-    .status(200)
-    .send({ token, username: user.username, name: user.name });
+  response.status(200).send({
+    token,
+    username: user.username,
+    name: user.name,
+    id: user._id.toString(),
+  });
 });
 
 module.exports = loginRouter;
