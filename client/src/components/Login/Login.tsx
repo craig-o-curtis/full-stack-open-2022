@@ -1,30 +1,28 @@
 import React from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AppLoader, Form, FormControl, FormSubmitButton } from "../common";
-import { ILoginUser } from "./Login.types";
-import { useLoginUserMutation } from "./hooks";
+
 import * as Styled from "./Login.styled";
 import { useUserContext } from "../../auth/AuthProvider";
+import { useLoginUserMutation } from "../../auth/hooks";
+import { ILoginUser } from "../../auth";
 
 const Login = () => {
-  const { mutateAsync: postUser, isLoading } = useLoginUserMutation();
+  const { mutateAsync: loginUser, isLoading } = useLoginUserMutation();
   const navigate = useNavigate();
-  const [state, actions] = useUserContext();
-
-  console.log("check user actions...", actions);
-  console.log("check user state...", state);
+  const [, actions] = useUserContext();
 
   const handleSubmit = async (data: ILoginUser) => {
-    console.log("need to type", data);
-    // ** For existing users
-    // ** Just need to do post to /login and get token
-    // ** token can be stored in RQ???
-    const currentUser = await postUser(data);
-    // ** dispatch to context
-    if (currentUser) {
-      actions.setUser(currentUser);
+    try {
+      const currentUser = await loginUser(data);
+      // ** dispatch to context
+      if (currentUser) {
+        actions.setUser(currentUser);
+        navigate("/");
+      }
+    } catch (error) {
+      console.error("Error", error);
     }
-    navigate("/");
   };
 
   return (
@@ -39,7 +37,7 @@ const Login = () => {
               autoComplete="off"
               required
               minLength={3}
-              placeholder="Enter a unique username..."
+              placeholder="Enter username..."
             />
 
             <FormControl
@@ -49,7 +47,7 @@ const Login = () => {
               autoComplete="new-password"
               required
               minLength={3}
-              placeholder="Enter a password..."
+              placeholder="Enter password..."
             />
 
             <Styled.FormFooter flex justifyContent="space-between">

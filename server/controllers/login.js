@@ -32,6 +32,7 @@ loginRouter.post('/', async (request, response) => {
   }
 
   const user = await getDBUserByUsername(username);
+  console.log('do I get id back???', user);
 
   const passwordCorrect =
     user === null

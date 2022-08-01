@@ -1,11 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { Box, Button } from "../common";
 import * as Styled from "./Home.styled";
+import { useLogout } from "../../auth";
 
 const Home = () => {
+  const logout = useLogout();
+
   return (
     <Styled.Home>
-      <header>Full Stack 2022 Course Projects</header>
+      <Box p={2} flex justifyContent="space-between">
+        <header>Full Stack 2022 Course Projects</header>
+        <Button onClick={logout}>Log out</Button>
+      </Box>
       <ul>
         <li>
           <NavLink to="/phonebook">Phonebook</NavLink>
@@ -14,7 +21,7 @@ const Home = () => {
           <NavLink to="/countries">Country Search</NavLink>
         </li>
         <li>
-          ∑<NavLink to="/anecdotes">Anecdotes</NavLink>
+          <NavLink to="/anecdotes">Anecdotes</NavLink>
         </li>
         <li>
           <NavLink to="/course">Course</NavLink>

@@ -9,8 +9,6 @@ interface FormSubmitButtonProps {
 const FormSubmitButton = ({ children }: FormSubmitButtonProps) => {
   const { formState } = useFormContext();
 
-  console.log("submit button form state", formState);
-
   return (
     <Button type="submit" disabled={!formState.isValid}>
       {children ? children : "Submit"}

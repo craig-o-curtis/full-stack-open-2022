@@ -9,7 +9,11 @@ interface FormProps {
 }
 
 const Form = ({ onSubmit, debug = false, children }: FormProps) => {
-  const methods = useForm({ mode: "onChange" });
+  const methods = useForm({
+    mode: "onChange",
+    shouldFocusError: true,
+    delayError: 400,
+  });
 
   return (
     <FormProvider {...methods}>

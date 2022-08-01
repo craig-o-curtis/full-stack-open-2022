@@ -30,7 +30,6 @@ const FormControl = ({
     register,
     formState: { errors },
   } = useFormContext();
-  console.log("check errors", errors);
 
   return (
     <Styled.FormControl>

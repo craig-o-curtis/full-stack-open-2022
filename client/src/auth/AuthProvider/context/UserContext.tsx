@@ -1,17 +1,12 @@
 import { useContext, createContext } from "react";
-
-export type IAuthUser = {
-  name: string;
-  token: string;
-  username: string;
-};
+import { IAuthUser } from "../../Auth.types";
 
 export type UserState = {
-  user?: IAuthUser;
+  user: IAuthUser | null;
 };
 
 export type StateActions = {
-  setUser: (user: IAuthUser) => any;
+  setUser: (user: IAuthUser | null) => any;
   resetState: () => any;
 };
 

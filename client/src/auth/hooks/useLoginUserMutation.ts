@@ -5,11 +5,11 @@ import {
   UseMutationOptions,
   useQueryClient,
 } from "react-query";
-import { apiBaseUrl } from "../../../api";
-
-import { queryKey } from "./useUserQuery";
 import axios from "axios";
-import { ILoginUser, IUser } from "../Login.types";
+import { apiBaseUrl } from "../../api";
+import { queryKey } from "./useRefreshTokenQuery";
+
+import { ILoginUser } from "../Auth.types";
 
 import toast from "react-hot-toast";
 
@@ -25,19 +25,6 @@ const postLoginUser = async (payload: ILoginUser) => {
   const response = await axios.post(`${apiBaseUrl}/login`, payload);
   // ** return user for UserContext
   return response.data;
-};
-
-const updateUser = async (payload: IUser) => {
-  const response = await axios.put(
-    `${apiBaseUrl}/contacts/${payload.id}`,
-    payload
-  );
-  return response;
-};
-
-const deleteUser = async (contact: IUser) => {
-  const response = await axios.delete(`${apiBaseUrl}/users/${contact.id}`);
-  return response;
 };
 
 function useUserMutation<T>(
@@ -69,34 +56,10 @@ function useUserMutation<T>(
 export function useLoginUserMutation() {
   return useUserMutation(postLoginUser, {
     onSuccess: (_, user) => {
-      toast.success(`Added user: ${user.username}`);
+      toast.success(`Logged in user: ${user.username}`);
     },
     onError: (error: any, user) => {
       errorHandler(error, `Problem adding user: ${user.username}`);
-    },
-  });
-}
-
-// ** not used yet
-export function useUpdateUserMutation() {
-  return useUserMutation(updateUser, {
-    onSuccess: (_, user) => {
-      toast.success(`Updated user: ${user.name}`);
-    },
-    onError: (error, user) => {
-      errorHandler(error, `Problem updating contact: ${user.name}`);
-    },
-  });
-}
-
-// ** not used yet
-export function useDeleteUserMutation() {
-  return useUserMutation(deleteUser, {
-    onSuccess: (_, user) => {
-      toast.success(`Deleted user: ${user.name}`);
-    },
-    onError: (error, user) => {
-      errorHandler(error, `Problem deleting user: ${user.name}`);
     },
   });
 }

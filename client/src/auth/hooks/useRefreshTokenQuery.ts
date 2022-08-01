@@ -2,13 +2,18 @@
 import { useQuery } from "react-query";
 import axios from "axios";
 
-import { apiBaseUrl } from "../../../api";
+import { apiBaseUrl } from "../../api";
 
-export const queryKey = "currentUser";
+export const queryKey = "currentUserToken";
 
-const getCurrentUser = async (userId: string) => {
+const getRefreshToken = async (token: string | undefined) => {
+  if (!token) return;
   try {
-    const response = await axios.get(`${apiBaseUrl}/users/${userId}`);
+    const response = await axios.get(`${apiBaseUrl}/login`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     // noop
@@ -16,10 +21,11 @@ const getCurrentUser = async (userId: string) => {
   }
 };
 
-export const useUserQuery = (userId: string) => {
+export const useRefreshTokenQuery = (token: string | undefined) => {
   const { data, isLoading, isFetching, isError, error } = useQuery<any, Error>(
     queryKey,
-    () => getCurrentUser(userId)
+    () => getRefreshToken(token)
   );
+
   return { data, isLoading: isLoading || isFetching, isError, error };
 };

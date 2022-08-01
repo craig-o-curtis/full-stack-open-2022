@@ -1,23 +1,21 @@
 import { useReducer } from "react";
-
-import { UserState, IAuthUser } from "../context/UserContext";
+import { UserState } from "../context/UserContext";
+import { IAuthUser } from "../../Auth.types";
 
 export type Actions =
   | {
       type: "setUser";
-      value: IAuthUser;
+      value: IAuthUser | null;
     }
   | {
       type: "resetState";
     };
 
 export const initialState: UserState = {
-  user: undefined,
+  user: null,
 };
 
 const stateInitializer = (state: UserState) => {
-  // ** TODO get from local storage
-
   return {
     ...state,
   };

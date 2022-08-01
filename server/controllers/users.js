@@ -1,5 +1,5 @@
 const usersRouter = require('express').Router();
-const { logger, apiUtils, bcryptUtils } = require('../utils');
+const { logger, apiUtils, bcryptUtils, tokenUtils } = require('../utils');
 const {
   getDBUsers,
   getDBUserById,
@@ -67,9 +67,15 @@ usersRouter.post('/', async (request, response) => {
     blogs: [],
   });
 
+  console.log('NEW DB USER', newDBUser);
+  const token = tokenUtils.createToken(newDBUser.username, newDBUser._id);
+  console.log('created thsi new token', token);
+
   apiUtils.checkUnsavedItemError(newDBUser);
   logger.log('Express created new user', newDBUser);
-  response.status(201).json(newDBUser);
+  response
+    .status(201)
+    .json({ token, username: newDBUser.username, name: newDBUser.name });
 });
 
 usersRouter.put('/:id', async (request, response) => {

@@ -1,7 +1,9 @@
 import React, { useMemo } from "react";
 
-import { UserContext, StateActions, IAuthUser } from "./context/UserContext";
+import { UserContext, StateActions } from "./context/UserContext";
+import { IAuthUser } from "../Auth.types";
 import { useAuthReducer } from "./hooks";
+import { useLocalStorageCurrentUser } from "../hooks";
 
 interface AuthProviderProps {
   children: React.ReactNode;
@@ -9,20 +11,24 @@ interface AuthProviderProps {
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [state, dispatch] = useAuthReducer();
+  const { setLsUser } = useLocalStorageCurrentUser();
 
   const actions = useMemo((): StateActions => {
-    const setUser = (user: IAuthUser) => {
+    const setUser = (user: IAuthUser | null) => {
       dispatch({ type: "setUser", value: user });
+      setLsUser(user as any);
     };
+
     const resetState = () => {
       dispatch({ type: "resetState" });
+      setLsUser(null);
     };
 
     return {
       setUser,
       resetState,
     };
-  }, [dispatch]);
+  }, [dispatch, setLsUser]);
 
   return (
     <UserContext.Provider value={[state, actions]}>
