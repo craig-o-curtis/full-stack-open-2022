@@ -6,7 +6,7 @@ import {
   useQueryClient,
 } from "react-query";
 import { apiBaseUrl } from "../../../api";
-import { useAuthTokenConfig } from "../../../auth";
+import { useAuthTokenConfig, AuthTokenConfig } from "../../../auth";
 import { queryKey } from "./useContactsQuery";
 import axios from "axios";
 import { IContact } from "../Contact.types";
@@ -22,21 +22,30 @@ function errorHandler(error: any, defaultMessage: string) {
   }
 }
 
-const postContact = async (payload: PartialPayload) => {
-  const response = await axios.post(`${apiBaseUrl}/contacts`, payload);
+// TODO need to add token to unit tests, follow blogs as example
+
+const postContact = async (
+  payload: PartialPayload,
+  config: AuthTokenConfig
+) => {
+  const response = await axios.post(`${apiBaseUrl}/contacts`, payload, config);
   return response;
 };
 
-const updateContact = async (payload: IContact) => {
+const updateContact = async (payload: IContact, config: AuthTokenConfig) => {
   const response = await axios.put(
     `${apiBaseUrl}/contacts/${payload.id}`,
-    payload
+    payload,
+    config
   );
   return response;
 };
 
-const deleteContact = async (contact: IContact) => {
-  const response = await axios.delete(`${apiBaseUrl}/contacts/${contact.id}`);
+const deleteContact = async (contact: IContact, config: AuthTokenConfig) => {
+  const response = await axios.delete(
+    `${apiBaseUrl}/contacts/${contact.id}`,
+    config
+  );
   return response;
 };
 
@@ -49,18 +58,6 @@ function useContactsMutation<T>(
   }: UseMutationOptions<unknown, unknown, T> = {}
 ) {
   const queryClient = useQueryClient();
-  const config = useAuthTokenConfig();
-
-  // axios.interceptors.request.use(
-  //   function () {
-  //     // Do something before request is sent
-  //     return config;
-  //   },
-  //   function (error) {
-  //     // Do something with request error
-  //     return Promise.reject(error);
-  //   }
-  // );
 
   return useMutation(mutationFn, {
     ...options,
@@ -79,34 +76,49 @@ function useContactsMutation<T>(
 }
 
 export function useAddContactMutation() {
-  return useContactsMutation(postContact, {
-    onSuccess: (_, contact) => {
-      toast.success(`Added contact: ${contact.name}`);
-    },
-    onError: (error: any, contact) => {
-      errorHandler(error, `Problem adding contact: ${contact.name}`);
-    },
-  });
+  const config = useAuthTokenConfig();
+
+  return useContactsMutation(
+    (payload: PartialPayload) => postContact(payload, config),
+    {
+      onSuccess: (_, contact) => {
+        toast.success(`Added contact: ${contact.name}`);
+      },
+      onError: (error: any, contact) => {
+        errorHandler(error, `Problem adding contact: ${contact.name}`);
+      },
+    }
+  );
 }
 
 export function useUpdateContactMutation() {
-  return useContactsMutation(updateContact, {
-    onSuccess: (_, contact) => {
-      toast.success(`Updated contact: ${contact.name}`);
-    },
-    onError: (error, contact) => {
-      errorHandler(error, `Problem updating contact: ${contact.name}`);
-    },
-  });
+  const config = useAuthTokenConfig();
+
+  return useContactsMutation(
+    (payload: IContact) => updateContact(payload, config),
+    {
+      onSuccess: (_, contact) => {
+        toast.success(`Updated contact: ${contact.name}`);
+      },
+      onError: (error, contact) => {
+        errorHandler(error, `Problem updating contact: ${contact.name}`);
+      },
+    }
+  );
 }
 
 export function useDeleteContactMutation() {
-  return useContactsMutation(deleteContact, {
-    onSuccess: (_, contact) => {
-      toast.success(`Deleted contact: ${contact.name}`);
-    },
-    onError: (error, contact) => {
-      errorHandler(error, `Problem deleting contact: ${contact.name}`);
-    },
-  });
+  const config = useAuthTokenConfig();
+
+  return useContactsMutation(
+    (payload: IContact) => deleteContact(payload, config),
+    {
+      onSuccess: (_, contact) => {
+        toast.success(`Deleted contact: ${contact.name}`);
+      },
+      onError: (error, contact) => {
+        errorHandler(error, `Problem deleting contact: ${contact.name}`);
+      },
+    }
+  );
 }

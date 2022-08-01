@@ -8,6 +8,7 @@ export const queryKey = "currentUserToken";
 
 const getRefreshToken = async (config: AuthTokenConfig) => {
   if (!config) return;
+
   try {
     const response = await axios.get(`${apiBaseUrl}/login`, config);
     return response.data;

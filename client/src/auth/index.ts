@@ -6,4 +6,5 @@ export {
   useLogout,
   useAuthTokenConfig,
 } from "./hooks";
+export type { AuthTokenConfig } from "./hooks";
 export * from "./Auth.types";
