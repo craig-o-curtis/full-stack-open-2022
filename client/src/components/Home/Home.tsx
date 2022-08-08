@@ -27,6 +27,9 @@ const Home = () => {
       </Box>
       <ul>
         <li>
+          <NavLink to="/blogs">Blogs</NavLink>
+        </li>
+        <li>
           <NavLink to="/phonebook">Phonebook</NavLink>
         </li>
         <li>

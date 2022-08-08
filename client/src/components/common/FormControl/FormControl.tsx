@@ -6,7 +6,7 @@ import { ErrorMessage } from "@hookform/error-message";
 interface FormControlProps {
   label: string;
   name: string;
-  type: Extract<HTMLInputTypeAttribute, "text" | "password">;
+  type: Extract<HTMLInputTypeAttribute, "text" | "password" | "url">;
   autoComplete?: "off" | "new-password";
   required?: boolean;
   minLength?: number;
@@ -19,7 +19,7 @@ const FormControl = ({
   label,
   name,
   type,
-  autoComplete,
+  autoComplete = "off",
   required = false,
   requiredMessage = "Required",
   minLength,

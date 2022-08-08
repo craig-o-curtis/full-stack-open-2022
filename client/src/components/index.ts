@@ -11,3 +11,4 @@ export { default as Feedback } from "./Feedback";
 export { default as RefactoredCourse } from "./RefactoredCourse";
 export { default as Phonebook } from "./Phonebook";
 export { default as CountrySearch } from "./CountrySearch";
+export { default as Blogs } from "./Blogs";

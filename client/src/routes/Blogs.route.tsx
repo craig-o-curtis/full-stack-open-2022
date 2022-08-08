@@ -1,7 +1,10 @@
-import React from "react";
+import { AuthRoute } from "../auth";
+import { Blogs } from "../components";
 
-const BlogsRoute = () => {
-  return <div>TBD Blogs.route</div>;
-};
+const AnecdotesRoute = () => (
+  <AuthRoute>
+    <Blogs />
+  </AuthRoute>
+);
 
-export default BlogsRoute;
+export default AnecdotesRoute;

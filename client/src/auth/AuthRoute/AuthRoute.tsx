@@ -22,7 +22,6 @@ const AuthRoute = React.memo(function ({ children }: AuthRouteProps) {
   useEffect(() => {
     if (!isLoading && data) {
       if (token !== data.token) {
-        console.log("am i setting again', data has id", data);
         actions.setUser(data);
       }
     }
@@ -41,8 +40,6 @@ const AuthRoute = React.memo(function ({ children }: AuthRouteProps) {
       actions.setUser(null);
     }
   }, [actions, data, isLoading, navigate]);
-
-  console.log("hit data", data);
 
   return <>{!isLoading && data && <>{children}</>}</>;
 });

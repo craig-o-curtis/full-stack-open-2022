@@ -11,6 +11,8 @@ export { default as Banner } from "./Banner";
 
 export { default as Heading } from "./Heading";
 export { default as HR } from "./HR";
+export { default as Spacer } from "./Spacer";
+export * from "./List";
 
 export { default as Image } from "./Image";
 export { default as Icon } from "./Icon";

@@ -5,6 +5,7 @@ export { default as NotFound } from "./NotFound.route";
 export { default as UserProfile } from "./UserProfile.route";
 
 export { default as Home } from "./Home.route";
+export { default as Blogs } from "./Blogs.route";
 export { default as Phonebook } from "./Phonebook.route";
 export { default as CountrySearch } from "./CountrySearch.route";
 export { default as Anecdotes } from "./Anecdotes.route";
