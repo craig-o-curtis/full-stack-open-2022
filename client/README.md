@@ -28,5 +28,4 @@ npm build
 npm build:copy
 ```
 
-// step 3.10 confirms works at https://uhel-2022-server.herokuapp.com
-// step 3.11 confirms works on Heroku and locally
+// part 5.a 5.4 confirm both login form and sign up form have both input-level validation and toasters
