@@ -1,14 +1,23 @@
 import React from "react";
-import { useForm, FormProvider } from "react-hook-form";
+import { useForm, FormProvider, FormState } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
+import FormStateWatcher from "../FormStateWatcher";
 
 interface FormProps {
-  onSubmit: any;
+  onSubmit: (values: any) => void;
+  onChange?: (formState: FormState<any>) => void;
   debug?: boolean;
+  resetOnSuccess?: boolean;
   children: React.ReactNode;
 }
 
-const Form = ({ onSubmit, debug = false, children }: FormProps) => {
+const Form = ({
+  onSubmit,
+  debug = false,
+  onChange,
+  resetOnSuccess,
+  children,
+}: FormProps) => {
   const methods = useForm({
     mode: "onChange",
     shouldFocusError: true,
@@ -23,6 +32,8 @@ const Form = ({ onSubmit, debug = false, children }: FormProps) => {
       {debug && process.env.NODE_ENV === "development" && (
         <DevTool control={methods.control} />
       )}
+      {/* // TODO create hook if work */}
+      <FormStateWatcher onChange={onChange} resetOnSuccess={resetOnSuccess} />
     </FormProvider>
   );
 };

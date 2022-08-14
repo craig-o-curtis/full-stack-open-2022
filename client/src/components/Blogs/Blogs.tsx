@@ -1,4 +1,5 @@
 import React from "react";
+import toast, { Toaster } from "react-hot-toast";
 import {
   AppLoader,
   OverflowLock,
@@ -11,10 +12,48 @@ import {
 import { useBlogsQuery } from "./hooks";
 import BlogItem from "./BlogItem";
 import AddBlogForm from "./AddBlogForm";
+import {
+  useAddBlogMutation,
+  useDeleteBlogMutation,
+} from "./hooks/useBlogsMutations";
+import { IBlog, IPostBlogPayload } from "./Blog.types";
 
 const Blogs = () => {
-  const { blogs, isLoading, error, isError } = useBlogsQuery();
-  console.log("blogs", blogs);
+  const {
+    blogs = [],
+    isLoading: isGetLoading,
+    error,
+    isError,
+  } = useBlogsQuery();
+  const { mutateAsync: postBlog, isLoading: isPostLoading } =
+    useAddBlogMutation();
+  const { mutateAsync: deleteBlog, isLoading: isDeleteLoading } =
+    useDeleteBlogMutation();
+  const isLoading = isGetLoading || isPostLoading || isDeleteLoading;
+
+  const handleSubmit = async ({ title, author, url }: IPostBlogPayload) => {
+    console.log("final submit", {
+      title,
+      author,
+      url,
+    });
+
+    // ** Exact check
+    const hasExactDup = blogs?.some(
+      (b) => b.title === title && b.author === author && b.url === url
+    );
+
+    if (hasExactDup) {
+      return toast.error(`${title} already exists`);
+    }
+
+    return await postBlog({ title, author, url });
+  };
+
+  const handleDeleteBlog = async (blog: IBlog) => {
+    console.log("id - confirm mongo whats", blog);
+    return await deleteBlog(blog);
+  };
 
   return (
     <AppLoader isLoading={isLoading}>
@@ -23,7 +62,11 @@ const Blogs = () => {
           <Heading as="h2">Blogs</Heading>
         </Box>
         <Box p={2}>
-          <AddBlogForm />
+          <AddBlogForm
+            blogs={blogs}
+            onSubmit={handleSubmit}
+            disabled={isLoading}
+          />
         </Box>
 
         <Overflow>
@@ -31,7 +74,11 @@ const Blogs = () => {
             {blogs && blogs.length > 0 && (
               <List>
                 {blogs.map((blog) => (
-                  <BlogItem key={blog.id} blog={blog} />
+                  <BlogItem
+                    key={blog.id}
+                    blog={blog}
+                    onDelete={handleDeleteBlog}
+                  />
                 ))}
               </List>
             )}
@@ -41,6 +88,7 @@ const Blogs = () => {
             )}
           </Box>
         </Overflow>
+        <Toaster />
       </OverflowLock>
     </AppLoader>
   );

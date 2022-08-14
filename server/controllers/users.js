@@ -112,6 +112,7 @@ usersRouter.put('/:id', async (request, response) => {
   response.json(result);
 });
 
+// TODO if delete user, also need to delete their associated contacts and blogs that they've added
 usersRouter.delete('/:id', async (request, response) => {
   const { id } = request.params;
   const deletedUser = await deleteDBUser(id);

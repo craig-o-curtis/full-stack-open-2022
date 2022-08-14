@@ -1,15 +1,21 @@
 import React from "react";
 import { Box, Form, FormControl, FormSubmitButton } from "../common";
+import { IBlog, IPostBlogPayload } from "./Blog.types";
 
-const AddBlogForm = () => {
-  const handleSubmit = async (data: any) => {
-    try {
-    } catch (error) {}
+interface AddBlogFormProps {
+  blogs: IBlog[];
+  disabled?: boolean;
+  onSubmit: (newBlog: IPostBlogPayload) => void;
+}
+
+const AddBlogForm = ({ disabled, onSubmit }: AddBlogFormProps) => {
+  const handleSubmit = (data: IPostBlogPayload) => {
+    onSubmit?.(data);
   };
 
   return (
     <div>
-      <Form onSubmit={handleSubmit} debug>
+      <Form onSubmit={handleSubmit} debug resetOnSuccess>
         <FormControl
           name="title"
           label="Title:"
@@ -38,7 +44,7 @@ const AddBlogForm = () => {
         />
 
         <Box flex flexDirection="row-reverse">
-          <FormSubmitButton>Submit</FormSubmitButton>
+          <FormSubmitButton disabled={disabled}>Submit</FormSubmitButton>
         </Box>
       </Form>
     </div>
