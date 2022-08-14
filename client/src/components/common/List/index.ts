@@ -1,2 +1,2 @@
-export { UL as List } from "./List.styled";
-export { LI as ListItem } from "./ListItem.styled";
+export { List } from "./List.styled";
+export { ListItem } from "./ListItem.styled";
