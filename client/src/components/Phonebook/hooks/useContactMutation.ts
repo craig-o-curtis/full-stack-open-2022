@@ -5,8 +5,8 @@ import {
   UseMutationOptions,
   useQueryClient,
 } from "react-query";
-import { apiBaseUrl } from "./apiBaseUrl";
-
+import { apiBaseUrl } from "../../../api";
+import { useAuthTokenConfig, AuthTokenConfig } from "../../../auth";
 import { queryKey } from "./useContactsQuery";
 import axios from "axios";
 import { IContact } from "../Contact.types";
@@ -22,26 +22,38 @@ function errorHandler(error: any, defaultMessage: string) {
   }
 }
 
-const postContact = async (payload: PartialPayload) => {
-  const response = await axios.post(`${apiBaseUrl}/contacts`, payload);
-  return response;
-};
+// TODO need to add token to unit tests, follow blogs as example
+const postContact =
+  (config: AuthTokenConfig) => async (payload: PartialPayload) => {
+    const response = await axios.post(
+      `${apiBaseUrl}/contacts`,
+      payload,
+      config
+    );
+    return response;
+  };
 
-const updateContact = async (payload: IContact) => {
-  const response = await axios.put(
-    `${apiBaseUrl}/contacts/${payload.id}`,
-    payload
-  );
-  return response;
-};
+const updateContact =
+  (config: AuthTokenConfig) => async (payload: IContact) => {
+    const response = await axios.put(
+      `${apiBaseUrl}/contacts/${payload.id}`,
+      payload,
+      config
+    );
+    return response;
+  };
 
-const deleteContact = async (contact: IContact) => {
-  const response = await axios.delete(`${apiBaseUrl}/contacts/${contact.id}`);
-  return response;
-};
+const deleteContact =
+  (config: AuthTokenConfig) => async (contact: IContact) => {
+    const response = await axios.delete(
+      `${apiBaseUrl}/contacts/${contact.id}`,
+      config
+    );
+    return response;
+  };
 
 function useContactsMutation<T>(
-  mutationFn: MutationFunction<any, T>,
+  mutationFn: (config: AuthTokenConfig) => MutationFunction<any, T>,
   {
     onSuccess,
     onError,
@@ -49,7 +61,9 @@ function useContactsMutation<T>(
   }: UseMutationOptions<unknown, unknown, T> = {}
 ) {
   const queryClient = useQueryClient();
-  return useMutation(mutationFn, {
+  const config = useAuthTokenConfig();
+
+  return useMutation(mutationFn(config), {
     ...options,
     onSuccess: async (...args) => {
       void queryClient.invalidateQueries(queryKey);

@@ -5,7 +5,7 @@ queryClient.setDefaultOptions({
   queries: {
     staleTime: 3000,
     refetchOnMount: true,
-    refetchOnWindowFocus: true,
+    refetchOnWindowFocus: false,
     refetchOnReconnect: true,
     keepPreviousData: false,
   },

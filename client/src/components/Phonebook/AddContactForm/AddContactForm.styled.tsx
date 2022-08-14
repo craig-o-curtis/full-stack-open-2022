@@ -40,8 +40,3 @@ export const AddButtonWrapper = styled.div`
 export const ButtonText = styled.span`
   margin-left: 0.25rem;
 `;
-
-export const Spacer = styled.div`
-  margin: 0.5rem;
-  border: 1px solid #dedede;
-`;

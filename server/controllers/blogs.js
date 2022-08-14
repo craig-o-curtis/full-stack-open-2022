@@ -7,8 +7,11 @@ const {
   updateDBBlog,
   deleteDBBlog,
 } = require('../actions/blogs');
-const { updateDBUserBlog, deleteDBUserBlog } = require('../actions/users');
-const { getDBUserById } = require('../actions/users');
+const {
+  getDBUserById,
+  updateDBUserBlog,
+  deleteDBUserBlog,
+} = require('../actions/users');
 const userExtractor = require('../middleware/userExtractor');
 
 blogsRouter.get('/', async (request, response) => {
@@ -26,7 +29,6 @@ blogsRouter.get('/:id', async (request, response) => {
   response.json(dbBlog);
 });
 
-// TODO add token logic to contacts later
 blogsRouter.post('/', userExtractor, async (request, response) => {
   const { token, user, body } = request;
   const isTokenValid = tokenUtils.isTokenValid(token);

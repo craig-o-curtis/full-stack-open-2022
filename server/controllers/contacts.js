@@ -1,5 +1,5 @@
 const contactsRouter = require('express').Router();
-const { logger, apiUtils } = require('../utils');
+const { logger, apiUtils, tokenUtils } = require('../utils');
 const {
   getDBContacts,
   getDBContactById,
@@ -7,6 +7,7 @@ const {
   updateDBContact,
   deleteDBContact,
 } = require('../actions/contacts/');
+const userExtractor = require('../middleware/userExtractor');
 
 contactsRouter.get('/', async (request, response) => {
   const dbContacts = await getDBContacts();
@@ -23,8 +24,15 @@ contactsRouter.get('/:id', async (request, response) => {
   response.json(dbContact);
 });
 
-contactsRouter.post('/', async (request, response) => {
-  const body = request.body || {};
+contactsRouter.post('/', userExtractor, async (request, response) => {
+  const { token, body } = request;
+  const isTokenValid = tokenUtils.isTokenValid(token);
+  if (!isTokenValid) {
+    return response.status(401).json({ error: 'token missing or invalid' });
+  }
+
+  // TODO add logic to update user's contacts... follow blog.js controller
+
   const { name, number } = body;
   if (name === undefined || number === undefined) {
     return response
@@ -52,7 +60,12 @@ contactsRouter.post('/', async (request, response) => {
 });
 
 contactsRouter.put('/:id', async (request, response) => {
-  const body = request.body;
+  const { token, body } = request;
+  const isTokenValid = tokenUtils.isTokenValid(token);
+  if (!isTokenValid) {
+    return response.status(401).json({ error: 'token missing or invalid' });
+  }
+
   const { name, number } = body;
   const id = request.params.id;
 
@@ -64,6 +77,12 @@ contactsRouter.put('/:id', async (request, response) => {
 });
 
 contactsRouter.delete('/:id', async (request, response) => {
+  const { token } = request;
+  const isTokenValid = tokenUtils.isTokenValid(token);
+  if (!isTokenValid) {
+    return response.status(401).json({ error: 'token missing or invalid' });
+  }
+
   const { id } = request.params;
   const deletedContact = await deleteDBContact(id);
 

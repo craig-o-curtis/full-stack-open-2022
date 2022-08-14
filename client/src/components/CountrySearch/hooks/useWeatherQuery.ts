@@ -10,7 +10,7 @@ const getWeather = async (lat: number, long: number) => {
   }
   try {
     const response = await axios.get(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${process.env.REACT_APP_API_KEY}`
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${process.env.REACT_APP_OPENWEATHERMAP_API_KEY}`
     );
     return response.data;
   } catch (error) {

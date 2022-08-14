@@ -2,7 +2,7 @@
 import { useQuery } from "react-query";
 import axios from "axios";
 import { IContact } from "../Contact.types";
-import { apiBaseUrl } from "./apiBaseUrl";
+import { apiBaseUrl } from "../../../api";
 
 export const queryKey = "Contacts";
 

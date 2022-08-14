@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { Button, WarningIcon, Box } from "../../common";
+import { Button, WarningIcon, Box, Spacer } from "../../common";
 import { AiOutlinePlus } from "react-icons/ai";
 import PhoneNumberInput from "../PhoneNumberInput";
 import * as Styled from "./AddContactForm.styled";
@@ -81,7 +81,7 @@ const AddContactForm = ({
               </Box>
             )}
           </Styled.InputWrapper>
-          <Styled.Spacer />
+          <Spacer />
           <Styled.InputWrapper>
             <PhoneNumberInput
               disabled={disabled}
