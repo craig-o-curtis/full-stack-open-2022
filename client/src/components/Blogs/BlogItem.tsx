@@ -4,10 +4,14 @@ import * as Styled from "./BlogItem.styled";
 
 interface BlogItemProps {
   blog: IBlog;
+  currentUserId?: string;
   onDelete: (blog: IBlog) => void;
 }
 
-const BlogItem = ({ blog, onDelete }: BlogItemProps) => {
+const BlogItem = ({ blog, onDelete, currentUserId }: BlogItemProps) => {
+  console.log("blog", blog);
+  console.log("userid", currentUserId);
+
   const handleOnDelete = () => {
     onDelete?.(blog);
   };
@@ -41,9 +45,11 @@ const BlogItem = ({ blog, onDelete }: BlogItemProps) => {
         </Styled.BlogData>
       </Styled.BlogItemBox>
       <Styled.BlogItemBox>
-        <Styled.DeleteButton onClick={handleOnDelete}>
-          Delete
-        </Styled.DeleteButton>
+        {blog.user === currentUserId && (
+          <Styled.DeleteButton onClick={handleOnDelete}>
+            Delete
+          </Styled.DeleteButton>
+        )}
       </Styled.BlogItemBox>
     </Styled.BlogItem>
   );

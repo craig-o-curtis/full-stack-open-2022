@@ -24,7 +24,6 @@ const stateInitializer = (state: UserState) => {
 function authReducer(state: UserState, action: Actions): UserState {
   switch (action.type) {
     case "setUser":
-      console.log("reducer got user", action.value);
       return {
         ...state,
         user: action.value,

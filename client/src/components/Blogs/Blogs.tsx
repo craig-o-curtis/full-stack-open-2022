@@ -17,6 +17,7 @@ import {
   useDeleteBlogMutation,
 } from "./hooks/useBlogsMutations";
 import { IBlog, IPostBlogPayload } from "./Blog.types";
+import { useUserContext } from "../../auth/AuthProvider";
 
 const Blogs = () => {
   const {
@@ -30,14 +31,9 @@ const Blogs = () => {
   const { mutateAsync: deleteBlog, isLoading: isDeleteLoading } =
     useDeleteBlogMutation();
   const isLoading = isGetLoading || isPostLoading || isDeleteLoading;
+  const [{ user }] = useUserContext();
 
   const handleSubmit = async ({ title, author, url }: IPostBlogPayload) => {
-    console.log("final submit", {
-      title,
-      author,
-      url,
-    });
-
     // ** Exact check
     const hasExactDup = blogs?.some(
       (b) => b.title === title && b.author === author && b.url === url
@@ -51,7 +47,6 @@ const Blogs = () => {
   };
 
   const handleDeleteBlog = async (blog: IBlog) => {
-    console.log("id - confirm mongo whats", blog);
     return await deleteBlog(blog);
   };
 
@@ -78,6 +73,7 @@ const Blogs = () => {
                     key={blog.id}
                     blog={blog}
                     onDelete={handleDeleteBlog}
+                    currentUserId={user?.id}
                   />
                 ))}
               </List>
