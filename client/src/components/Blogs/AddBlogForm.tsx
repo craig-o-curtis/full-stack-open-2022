@@ -8,6 +8,7 @@ interface AddBlogFormProps {
   onSubmit: (newBlog: IPostBlogPayload) => void;
 }
 
+// ** Confirm FE component to add blog 5.a 5.3
 const AddBlogForm = ({ disabled, onSubmit }: AddBlogFormProps) => {
   const handleSubmit = (data: IPostBlogPayload) => {
     onSubmit?.(data);
