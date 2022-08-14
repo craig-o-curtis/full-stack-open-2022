@@ -10,6 +10,7 @@ export const useLocalStorageCurrentUser = (): {
 } => {
   const [lsUser, setLsUser] = useLocalStorage(LS_USER_KEY, null);
 
+  // ** Homework Part 5.a Exercise 5.2 - confirmed local storage cleared
   const clearLS = () => {
     window.localStorage.removeItem(LS_USER_KEY);
   };
