@@ -9,9 +9,6 @@ interface BlogItemProps {
 }
 
 const BlogItem = ({ blog, onDelete, currentUserId }: BlogItemProps) => {
-  console.log("blog", blog);
-  console.log("userid", currentUserId);
-
   const handleOnDelete = () => {
     onDelete?.(blog);
   };
