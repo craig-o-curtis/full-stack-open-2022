@@ -12,6 +12,8 @@ export const BlogDatum = styled(ListItem)``;
 
 export const BlogItemBox = styled(Box)``;
 
+export const ButtonContainer = styled(Box)``;
+
 export const DeleteButton = styled(Button)`
   background-color: firebrick !important;
   color: white;
