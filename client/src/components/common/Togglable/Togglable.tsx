@@ -1,11 +1,10 @@
 import React, { useImperativeHandle, useState } from "react";
-import { Box, Button } from "../common";
+import { Box, Button } from "../.";
 
 interface TogglableProps {
   isShowing?: boolean;
   showText?: string;
   hideText?: string;
-  mb?: number;
   children: React.ReactNode;
 }
 
@@ -15,7 +14,6 @@ const Togglable = React.forwardRef(
       isShowing = false,
       showText = "Show",
       hideText = "Hide",
-      mb = 2,
       children,
     }: TogglableProps,
     ref
@@ -35,7 +33,7 @@ const Togglable = React.forwardRef(
 
     return (
       <>
-        <Box mb={mb}>
+        <Box mb={2}>
           <Button onClick={() => handleToggle()}>
             {isShow ? hideText : showText}
           </Button>
