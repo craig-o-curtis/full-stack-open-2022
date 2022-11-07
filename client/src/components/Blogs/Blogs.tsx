@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import {
   AppLoader,
@@ -8,10 +8,12 @@ import {
   Overflow,
   List,
   Banner,
+  Button,
 } from "../common";
 import { useBlogsQuery } from "./hooks";
 import BlogItem from "./BlogItem";
 import AddBlogForm from "./AddBlogForm";
+import Togglable from "./Togglable";
 import {
   useAddBlogMutation,
   useDeleteBlogMutation,
@@ -33,6 +35,8 @@ const Blogs = () => {
   const isLoading = isGetLoading || isPostLoading || isDeleteLoading;
   const [{ user }] = useUserContext();
 
+  const toggleBlogRef = useRef(null) as any;
+
   const handleSubmit = async ({ title, author, url }: IPostBlogPayload) => {
     // ** Exact check
     const hasExactDup = blogs?.some(
@@ -43,11 +47,16 @@ const Blogs = () => {
       return toast.error(`${title} already exists`);
     }
 
+    toggleAddBlog(false);
     return await postBlog({ title, author, url });
   };
 
   const handleDeleteBlog = async (blog: IBlog) => {
     return await deleteBlog(blog);
+  };
+
+  const toggleAddBlog = (show: boolean | undefined) => {
+    toggleBlogRef.current?.handleToggle(show);
   };
 
   return (
@@ -56,12 +65,20 @@ const Blogs = () => {
         <Box p={2}>
           <Heading as="h2">Blogs</Heading>
         </Box>
+
         <Box p={2}>
-          <AddBlogForm
-            blogs={blogs}
-            onSubmit={handleSubmit}
-            disabled={isLoading}
-          />
+          <Togglable
+            ref={toggleBlogRef}
+            isShowing={false}
+            showText="Add blog"
+            hideText="Hide add blog form"
+          >
+            <AddBlogForm
+              blogs={blogs}
+              onSubmit={handleSubmit}
+              disabled={isLoading}
+            />
+          </Togglable>
         </Box>
 
         <Overflow>
