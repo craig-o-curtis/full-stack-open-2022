@@ -73,6 +73,7 @@ const Blogs = () => {
             showText="Add blog"
             hideText="Hide add blog form"
           >
+            {/* // ** 5.6 confirm already separated Blog form */}
             <AddBlogForm
               blogs={blogs}
               onSubmit={handleSubmit}
