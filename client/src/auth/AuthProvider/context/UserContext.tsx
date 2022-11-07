@@ -6,8 +6,8 @@ export type UserState = {
 };
 
 export type StateActions = {
-  setUser: (user: IAuthUser | null) => any;
-  resetState: () => any;
+  setUser: (user: IAuthUser | null) => void;
+  resetState: () => void;
 };
 
 export const UserContext = createContext<readonly [UserState, StateActions]>(
