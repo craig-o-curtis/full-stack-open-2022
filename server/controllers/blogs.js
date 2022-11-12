@@ -91,7 +91,11 @@ blogsRouter.put('/:id', async (request, response) => {
   const id = request.params.id;
 
   const dbBlogs = await getDBBlogs();
-  const titleAlreadyExists = dbBlogs.find((b) => b.title === title);
+  const dbBlog = dbBlogs.find((b) => b.title === title);
+  const isLiking = dbBlog.likes < likes;
+
+  const titleAlreadyExists = isLiking ? false : dbBlog.title === title;
+
   apiUtils.checkPropertyExistsError(
     titleAlreadyExists,
     'title',
