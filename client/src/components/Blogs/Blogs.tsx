@@ -61,6 +61,7 @@ const Blogs = () => {
     return await postBlog({ title, author, url });
   };
 
+  // confirm 5.10 already implemented
   const handleDeleteBlog = async (blog: IBlog) => {
     return await deleteBlog(blog);
   };
