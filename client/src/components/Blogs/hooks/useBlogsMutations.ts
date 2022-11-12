@@ -9,7 +9,7 @@ import { apiBaseUrl } from "../../../api";
 import { useAuthTokenConfig, AuthTokenConfig } from "../../../auth";
 import { queryKey } from "./useBlogsQuery";
 import axios from "axios";
-import { IBlog, IPostBlogPayload } from "../Blog.types";
+import { IBlog, IPostBlogPayload, IUpdateBlogPayload } from "../Blog.types";
 import toast from "react-hot-toast";
 
 function errorHandler(error: any, defaultMessage: string) {
@@ -27,14 +27,18 @@ const postBlog =
     return response;
   };
 
-const updateBlog = (config: AuthTokenConfig) => async (payload: IBlog) => {
-  const response = await axios.put(
-    `${apiBaseUrl}/blogs/${payload.id}`,
-    payload,
-    config
-  );
-  return response;
-};
+const updateBlog =
+  (config: AuthTokenConfig) =>
+  async ({ id: blogId, ...payload }: IBlog) => {
+    const updateBlogPayload: IUpdateBlogPayload = { ...payload };
+
+    const response = await axios.put(
+      `${apiBaseUrl}/blogs/${blogId}`,
+      updateBlogPayload,
+      config
+    );
+    return response;
+  };
 
 const deleteBlog = (config: AuthTokenConfig) => async (blog: IBlog) => {
   const response = await axios.delete(`${apiBaseUrl}/blogs/${blog.id}`, config);
