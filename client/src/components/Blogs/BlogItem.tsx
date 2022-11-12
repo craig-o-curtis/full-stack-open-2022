@@ -1,18 +1,25 @@
 import React, { useState } from "react";
 import { IBlog } from "./Blog.types";
 import * as Styled from "./BlogItem.styled";
-import { Button } from "../common";
+import { Button, Box } from "../common";
 interface BlogItemProps {
   blog: IBlog;
   currentUserId?: string;
   onDelete: (blog: IBlog) => void;
+  onLike: (blog: IBlog) => void;
 }
 
-const BlogItem = ({ blog, onDelete, currentUserId }: BlogItemProps) => {
+const BlogItem = ({ blog, onDelete, onLike, currentUserId }: BlogItemProps) => {
   const [isShowDetails, setIsShowDetails] = useState(false);
 
   const handleOnDelete = () => {
     onDelete?.(blog);
+  };
+
+  const showLikeButton = currentUserId !== blog.user;
+
+  const handleOnLike = () => {
+    onLike?.(blog);
   };
 
   return (
@@ -30,8 +37,15 @@ const BlogItem = ({ blog, onDelete, currentUserId }: BlogItemProps) => {
                 {blog.author}
               </Styled.BlogDatum>
               <Styled.BlogDatum>
-                <strong>Likes: </strong>
-                {blog.likes}
+                <Box flex>
+                  <strong>Likes: </strong>
+                  <span>{blog.likes}</span>
+                  {showLikeButton && (
+                    <Styled.LikeButton onClick={handleOnLike}>
+                      Like
+                    </Styled.LikeButton>
+                  )}
+                </Box>
               </Styled.BlogDatum>
               <Styled.BlogDatum>
                 <strong>Link: </strong>

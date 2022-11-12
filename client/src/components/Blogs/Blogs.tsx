@@ -16,6 +16,7 @@ import AddBlogForm from "./AddBlogForm";
 import {
   useAddBlogMutation,
   useDeleteBlogMutation,
+  useUpdateBlogMutation,
 } from "./hooks/useBlogsMutations";
 import { IBlog, IPostBlogPayload } from "./Blog.types";
 import { useUserContext } from "../../auth/AuthProvider";
@@ -31,7 +32,11 @@ const Blogs = () => {
     useAddBlogMutation();
   const { mutateAsync: deleteBlog, isLoading: isDeleteLoading } =
     useDeleteBlogMutation();
-  const isLoading = isGetLoading || isPostLoading || isDeleteLoading;
+  const { mutateAsync: updateBlog, isLoading: isUpdateLoading } =
+    useUpdateBlogMutation();
+
+  const isLoading =
+    isGetLoading || isPostLoading || isDeleteLoading || isUpdateLoading;
   const [{ user }] = useUserContext();
 
   const toggleBlogRef = useRef(null) as any;
@@ -56,6 +61,14 @@ const Blogs = () => {
 
   const toggleAddBlog = (show: boolean | undefined) => {
     toggleBlogRef.current?.handleToggle(show);
+  };
+
+  const handleLikeBlog = async (blog: IBlog) => {
+    const payload = {
+      ...blog,
+      likes: blog.likes + 1,
+    };
+    return await updateBlog(payload);
   };
 
   return (
@@ -90,6 +103,7 @@ const Blogs = () => {
                     key={blog.id}
                     blog={blog}
                     onDelete={handleDeleteBlog}
+                    onLike={handleLikeBlog}
                     currentUserId={user?.id}
                   />
                 ))}

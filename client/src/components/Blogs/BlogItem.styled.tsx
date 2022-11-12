@@ -18,3 +18,10 @@ export const DeleteButton = styled(Button)`
   background-color: firebrick !important;
   color: white;
 `;
+
+export const LikeButton = styled(Button)`
+  margin-left: 1rem;
+  padding: 0.25rem 0.5rem;
+  background: transparent;
+  color: dodgerblue;
+`;
