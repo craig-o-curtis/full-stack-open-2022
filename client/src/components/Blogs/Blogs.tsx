@@ -1,4 +1,5 @@
-import React, { useRef } from "react";
+// cSpell:ignore Togglable
+import React, { useRef, useMemo, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import {
   AppLoader,
@@ -9,6 +10,8 @@ import {
   List,
   Banner,
   Togglable,
+  NavButton,
+  SortByButton,
 } from "../common";
 import { useBlogsQuery } from "./hooks";
 import BlogItem from "./BlogItem";
@@ -20,8 +23,12 @@ import {
 } from "./hooks/useBlogsMutations";
 import { IBlog, IPostBlogPayload } from "./Blog.types";
 import { useUserContext } from "../../auth/AuthProvider";
+import sortBy from "lodash/sortBy";
+
+type SortGuy = "ASC" | "DESC";
 
 const Blogs = () => {
+  const [sortGuys, setSortGuys] = useState<SortGuy>("DESC");
   const {
     blogs = [],
     isLoading: isGetLoading,
@@ -39,8 +46,7 @@ const Blogs = () => {
     isGetLoading || isPostLoading || isDeleteLoading || isUpdateLoading;
   const [{ user }] = useUserContext();
 
-  const toggleBlogRef = useRef(null) as any;
-
+  // ** API Methods
   const handleSubmit = async ({ title, author, url }: IPostBlogPayload) => {
     // ** Exact check
     const hasExactDup = blogs?.some(
@@ -70,12 +76,28 @@ const Blogs = () => {
     };
     return await updateBlog(payload);
   };
+  // ** API Methods ^^^^^^
+
+  // ** UI Methods
+  const toggleBlogRef = useRef(null) as any;
+
+  const handleSortBy = () => {
+    setSortGuys((prev) => (prev === "ASC" ? "DESC" : "ASC"));
+  };
+
+  const sortedBlogs = useMemo(() => {
+    if (!blogs || blogs.length === 0) return [];
+    return sortBy(blogs, (b) => (sortGuys === "ASC" ? b.likes : -b.likes));
+  }, [blogs, sortGuys]);
+  // ** UI Methods ^^^^^^
 
   return (
     <AppLoader isLoading={isLoading}>
       <OverflowLock>
-        <Box p={2}>
+        <Box p={2} flex justifyContent="space-between">
           <Heading as="h2">Blogs</Heading>
+          <SortByButton sortBy={sortGuys} onClickSortBy={handleSortBy} />
+          <NavButton />
         </Box>
 
         <Box p={2}>
@@ -96,9 +118,9 @@ const Blogs = () => {
 
         <Overflow>
           <Box p={2}>
-            {blogs && blogs.length > 0 && (
+            {sortedBlogs && (
               <List>
-                {blogs.map((blog) => (
+                {sortedBlogs.map((blog) => (
                   <BlogItem
                     key={blog.id}
                     blog={blog}
