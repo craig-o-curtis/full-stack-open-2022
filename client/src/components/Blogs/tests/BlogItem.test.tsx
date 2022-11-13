@@ -5,19 +5,7 @@ import userEvent from "@testing-library/user-event";
 import BlogItem, { BlogItemProps } from "../BlogItem";
 import { IBlog } from "../Blog.types";
 
-const mockBlogItem: IBlog = {
-  id: "1",
-  title: "test title",
-  author: "test author",
-  url: "https://www.example.com",
-  likes: 0,
-  user: "1234",
-};
-
-const getMockBlogItem = (overrides?: IBlog): IBlog => ({
-  ...mockBlogItem,
-  ...overrides,
-});
+import { getMockBlogItem } from "./blogTest.utils";
 
 type ComponentProps = Omit<BlogItemProps, "blog" | "onDelete" | "onLike"> & {
   blog?: IBlog;

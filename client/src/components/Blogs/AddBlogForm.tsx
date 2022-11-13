@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Form, FormControl, FormSubmitButton } from "../common";
 import { IBlog, IPostBlogPayload } from "./Blog.types";
 
-interface AddBlogFormProps {
+export interface AddBlogFormProps {
   blogs: IBlog[];
   disabled?: boolean;
   onSubmit: (newBlog: IPostBlogPayload) => void;

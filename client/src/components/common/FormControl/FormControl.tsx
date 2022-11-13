@@ -32,7 +32,7 @@ const FormControl = ({
   } = useFormContext();
 
   return (
-    <Styled.FormControl>
+    <Styled.FormControl data-testid={`control-${name}`}>
       <Styled.FormControlLabel>
         <Styled.FormControlLabelBox>
           <Styled.FormControlLabelText>{label}</Styled.FormControlLabelText>
