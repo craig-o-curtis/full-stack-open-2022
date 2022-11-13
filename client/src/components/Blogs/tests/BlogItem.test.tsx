@@ -111,7 +111,6 @@ describe("BlogItem", () => {
     expect(clickPayload).toEqual(mockBlog);
   });
 
-  // ** 5.14 confirm testing url and likes for correct user
   it("should not show delete button to non-author, but should show working like button", async () => {
     // setup
     const onLikeSpy = jest.fn();
@@ -127,15 +126,23 @@ describe("BlogItem", () => {
     ).not.toBeInTheDocument();
     // act
     await expectOpenDetails();
+    const likeButton = screen.getByRole("button", { name: "Like" });
     expect(screen.getByText("Like")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Like" })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "Like" })).not.toBeDisabled();
+    expect(likeButton).toBeInTheDocument();
+    expect(likeButton).not.toBeDisabled();
 
-    await userEvent.click(screen.getByRole("button", { name: "Like" }));
+    // ** 1st click
+    await userEvent.click(likeButton);
 
     expect(onLikeSpy).toHaveBeenCalled();
     expect(onLikeSpy).toHaveBeenCalledTimes(1);
-    const clickPayload = onLikeSpy.mock.calls[0][0];
-    expect(clickPayload).toEqual(mockBlog);
+    const clickPayload1 = onLikeSpy.mock.calls[0][0];
+    expect(clickPayload1).toEqual(mockBlog);
+
+    // ** 2nd click
+    await userEvent.click(likeButton);
+    const clickPayload2 = onLikeSpy.mock.calls[1][0];
+    expect(onLikeSpy).toHaveBeenCalledTimes(2);
+    expect(clickPayload2).toEqual(mockBlog);
   });
 });
