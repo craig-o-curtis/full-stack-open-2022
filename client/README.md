@@ -1,11 +1,9 @@
 # Fullstack Open 2022
 
-This is the client-side code.
-
-Server-side code at [https://github.com/craig-o-curtis/full-stack-open-2022-server](https://github.com/craig-o-curtis/full-stack-open-2022-server)
-
 Built client-side code + server-side code at
 [https://uhel-2022-server.herokuapp.com/](https://uhel-2022-server.herokuapp.com/)
+
+abandoned server code at [https://github.com/craig-o-curtis/full-stack-open-2022-server](https://github.com/craig-o-curtis/full-stack-open-2022-server)
 
 ## Prep build for backend
 
@@ -27,5 +25,3 @@ npm start
 npm build
 npm build:copy
 ```
-
-// part 5.a 5.4 confirm both login form and sign up form have both input-level validation and toasters
