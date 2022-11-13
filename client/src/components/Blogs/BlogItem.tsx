@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IBlog } from "./Blog.types";
 import * as Styled from "./BlogItem.styled";
 import { Button, Box } from "../common";
-interface BlogItemProps {
+export interface BlogItemProps {
   blog: IBlog;
   currentUserId?: string;
   onDelete: (blog: IBlog) => void;
@@ -13,13 +13,13 @@ const BlogItem = ({ blog, onDelete, onLike, currentUserId }: BlogItemProps) => {
   const [isShowDetails, setIsShowDetails] = useState(false);
 
   const handleOnDelete = () => {
-    onDelete?.(blog);
+    onDelete(blog);
   };
 
   const showLikeButton = currentUserId !== blog.user;
 
   const handleOnLike = () => {
-    onLike?.(blog);
+    onLike(blog);
   };
 
   return (

@@ -1,7 +1,8 @@
+// cSpell:ignore Togglable
 import React, { useImperativeHandle, useState } from "react";
 import { Box, Button } from "../common";
 
-interface TogglableProps {
+export interface TogglableProps {
   isShowing?: boolean;
   showText?: string;
   hideText?: string;
