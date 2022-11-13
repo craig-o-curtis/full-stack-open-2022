@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { IBlog } from "./Blog.types";
 import * as Styled from "./BlogItem.styled";
 import { Button, Box } from "../common";
-interface BlogItemProps {
+export interface BlogItemProps {
   blog: IBlog;
   currentUserId?: string;
   onDelete: (blog: IBlog) => void;
