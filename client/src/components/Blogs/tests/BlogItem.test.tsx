@@ -111,6 +111,7 @@ describe("BlogItem", () => {
     expect(clickPayload).toEqual(mockBlog);
   });
 
+  // ** 5.14 confirm testing url and likes for correct user
   it("should not show delete button to non-author, but should show working like button", async () => {
     // setup
     const onLikeSpy = jest.fn();
