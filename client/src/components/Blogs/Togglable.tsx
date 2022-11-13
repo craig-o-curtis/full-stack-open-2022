@@ -1,3 +1,4 @@
+// cSpell:ignore Togglable
 import React, { useImperativeHandle, useState } from "react";
 import { Box, Button } from "../common";
 
