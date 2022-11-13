@@ -13,13 +13,13 @@ const BlogItem = ({ blog, onDelete, onLike, currentUserId }: BlogItemProps) => {
   const [isShowDetails, setIsShowDetails] = useState(false);
 
   const handleOnDelete = () => {
-    onDelete?.(blog);
+    onDelete(blog);
   };
 
   const showLikeButton = currentUserId !== blog.user;
 
   const handleOnLike = () => {
-    onLike?.(blog);
+    onLike(blog);
   };
 
   return (

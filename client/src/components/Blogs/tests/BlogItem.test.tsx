@@ -27,8 +27,8 @@ type ComponentProps = Omit<BlogItemProps, "blog" | "onDelete" | "onLike"> & {
 
 const Component = ({
   blog = getMockBlogItem(),
-  onDelete = jest.fn(),
   onLike = jest.fn(),
+  onDelete = jest.fn(),
   currentUserId = getMockBlogItem().user,
 }: ComponentProps) => {
   return (
@@ -50,6 +50,10 @@ const expectOpenDetails = async () => {
 };
 
 describe("BlogItem", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    userEvent.setup();
+  });
   it("should render blog item defaults, details hidden by default", async () => {
     // setup
     render(<Component />);
@@ -78,9 +82,18 @@ describe("BlogItem", () => {
     expect(screen.getByText("https://www.example.com")).toBeInTheDocument();
   });
 
-  it("should show delete button only to creator of blog and not the like button", async () => {
+  it("should show working delete button only to creator of blog and not the like button", async () => {
     // setup
-    render(<Component currentUserId={getMockBlogItem().user} />);
+    const onDeleteSpy = jest.fn();
+    const mockBlog = getMockBlogItem();
+
+    render(
+      <Component
+        blog={mockBlog}
+        currentUserId={mockBlog.user}
+        onDelete={onDeleteSpy}
+      />
+    );
     // assert
     expect(screen.getByRole("button", { name: "Delete" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Delete" })).not.toBeDisabled();
@@ -90,11 +103,22 @@ describe("BlogItem", () => {
     expect(
       screen.queryByRole("button", { name: "Like" })
     ).not.toBeInTheDocument();
+
+    await userEvent.click(screen.getByRole("button", { name: "Delete" }));
+    expect(onDeleteSpy).toHaveBeenCalled();
+    expect(onDeleteSpy).toHaveBeenCalledTimes(1);
+    const clickPayload = onDeleteSpy.mock.calls[0][0];
+    expect(clickPayload).toEqual(mockBlog);
   });
 
-  it("should not show delete button to non-author, but should show like button", async () => {
+  it("should not show delete button to non-author, but should show working like button", async () => {
     // setup
-    render(<Component currentUserId="12345" />);
+    const onLikeSpy = jest.fn();
+    const mockBlog = getMockBlogItem();
+    render(
+      <Component blog={mockBlog} currentUserId="12345" onLike={onLikeSpy} />
+    );
+
     // assert
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
     expect(
@@ -105,5 +129,12 @@ describe("BlogItem", () => {
     expect(screen.getByText("Like")).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Like" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Like" })).not.toBeDisabled();
+
+    await userEvent.click(screen.getByRole("button", { name: "Like" }));
+
+    expect(onLikeSpy).toHaveBeenCalled();
+    expect(onLikeSpy).toHaveBeenCalledTimes(1);
+    const clickPayload = onLikeSpy.mock.calls[0][0];
+    expect(clickPayload).toEqual(mockBlog);
   });
 });
