@@ -1,0 +1,1658 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1668355509156" clover="3.2.0">
+  <project timestamp="1668355509156" name="All files">
+    <metrics statements="818" coveredstatements="134" conditionals="385" coveredconditionals="58" methods="279" coveredmethods="14" elements="1482" coveredelements="206" complexity="0" loc="818" ncloc="818" packages="69" files="209" classes="209"/>
+    <package name="src">
+      <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="App.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/App.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+      </file>
+      <file name="index.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/index.tsx">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="7" count="0" type="stmt"/>
+      </file>
+      <file name="queryClient.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/queryClient.ts">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.api">
+      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="apiBaseUrl.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/api/apiBaseUrl.ts">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/api/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.auth">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="Auth.types.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/auth/Auth.types.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/auth/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.auth.AuthProvider">
+      <metrics statements="13" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+      <file name="AuthProvider.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/auth/AuthProvider/AuthProvider.tsx">
+        <metrics statements="13" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/auth/AuthProvider/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.auth.AuthProvider.context">
+      <metrics statements="7" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="UserContext.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/auth/AuthProvider/context/UserContext.tsx">
+        <metrics statements="7" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.auth.AuthProvider.hooks">
+      <metrics statements="8" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/auth/AuthProvider/hooks/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="useAuthReducer.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/auth/AuthProvider/hooks/useAuthReducer.ts">
+        <metrics statements="8" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="25" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.auth.AuthRoute">
+      <metrics statements="19" coveredstatements="0" conditionals="19" coveredconditionals="0" methods="4" coveredmethods="0"/>
+      <file name="AuthRoute.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/auth/AuthRoute/AuthRoute.tsx">
+        <metrics statements="19" coveredstatements="0" conditionals="19" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="24" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="44" count="0" type="cond" truecount="0" falsecount="3"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/auth/AuthRoute/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.auth.hooks">
+      <metrics statements="86" coveredstatements="0" conditionals="29" coveredconditionals="0" methods="34" coveredmethods="0"/>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/auth/hooks/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="useAuthTokenConfig.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/auth/hooks/useAuthTokenConfig.ts">
+        <metrics statements="7" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="28" count="0" type="stmt"/>
+      </file>
+      <file name="useDeleteUserMutation.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/auth/hooks/useDeleteUserMutation.ts">
+        <metrics statements="16" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="8" coveredmethods="0"/>
+        <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="47" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="52" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+      </file>
+      <file name="useLocalStorageCurrentUser.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/auth/hooks/useLocalStorageCurrentUser.ts">
+        <metrics statements="9" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+      </file>
+      <file name="useLoginUserMutation.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/auth/hooks/useLoginUserMutation.ts">
+        <metrics statements="16" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="8" coveredmethods="0"/>
+        <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="49" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+      </file>
+      <file name="useLogout.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/auth/hooks/useLogout.ts">
+        <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+      </file>
+      <file name="useRefreshTokenQuery.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/auth/hooks/useRefreshTokenQuery.ts">
+        <metrics statements="12" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="29" count="0" type="cond" truecount="0" falsecount="2"/>
+      </file>
+      <file name="useUserMutation.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/auth/hooks/useUserMutation.ts">
+        <metrics statements="16" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="8" coveredmethods="0"/>
+        <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="49" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.Anecdotes">
+      <metrics statements="39" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="17" coveredmethods="0"/>
+      <file name="Anecdote.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Anecdotes/Anecdote.styled.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="Anecdote.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Anecdotes/Anecdote.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+      </file>
+      <file name="AnecdoteDisplay.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Anecdotes/AnecdoteDisplay.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="Anecdotes.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Anecdotes/Anecdotes.tsx">
+        <metrics statements="29" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="13" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="48" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="stmt"/>
+        <line num="54" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="60" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="84" count="0" type="stmt"/>
+      </file>
+      <file name="NextAnecdoteButton.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Anecdotes/NextAnecdoteButton.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+      <file name="TopAnecdote.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Anecdotes/TopAnecdote.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Anecdotes/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.Blogs">
+      <metrics statements="58" coveredstatements="24" conditionals="43" coveredconditionals="18" methods="23" coveredmethods="9"/>
+      <file name="AddBlogForm.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Blogs/AddBlogForm.tsx">
+        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+      </file>
+      <file name="Blog.types.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Blogs/Blog.types.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="BlogItem.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Blogs/BlogItem.styled.tsx">
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="15" count="1" type="stmt"/>
+        <line num="17" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+      </file>
+      <file name="BlogItem.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Blogs/BlogItem.tsx">
+        <metrics statements="9" coveredstatements="9" conditionals="8" coveredconditionals="8" methods="5" coveredmethods="5"/>
+        <line num="12" count="1" type="stmt"/>
+        <line num="13" count="6" type="stmt"/>
+        <line num="15" count="6" type="stmt"/>
+        <line num="16" count="1" type="stmt"/>
+        <line num="19" count="6" type="stmt"/>
+        <line num="21" count="6" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="25" count="6" type="stmt"/>
+        <line num="66" count="3" type="stmt"/>
+      </file>
+      <file name="Blogs.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Blogs/Blogs.tsx">
+        <metrics statements="30" coveredstatements="0" conditionals="23" coveredconditionals="0" methods="11" coveredmethods="0"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="46" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="53" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="56" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="70" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="74" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="83" count="0" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="86" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="90" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="91" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="95" count="0" type="stmt"/>
+        <line num="125" count="0" type="stmt"/>
+      </file>
+      <file name="Togglable.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Blogs/Togglable.tsx">
+        <metrics statements="8" coveredstatements="8" conditionals="12" coveredconditionals="10" methods="5" coveredmethods="4"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="24" count="4" type="stmt"/>
+        <line num="26" count="4" type="stmt"/>
+        <line num="27" count="2" type="stmt"/>
+        <line num="28" count="2" type="cond" truecount="2" falsecount="2"/>
+        <line num="32" count="4" type="stmt"/>
+        <line num="37" count="4" type="stmt"/>
+        <line num="40" count="2" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Blogs/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.Blogs.hooks">
+      <metrics statements="40" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="21" coveredmethods="0"/>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Blogs/hooks/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="useBlogsMutations.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Blogs/hooks/useBlogsMutations.ts">
+        <metrics statements="31" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="19" coveredmethods="0"/>
+        <line num="16" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="56" count="0" type="stmt"/>
+        <line num="57" count="0" type="stmt"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="62" count="0" type="stmt"/>
+        <line num="63" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="68" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="78" count="0" type="stmt"/>
+        <line num="81" count="0" type="stmt"/>
+        <line num="87" count="0" type="stmt"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="92" count="0" type="stmt"/>
+        <line num="98" count="0" type="stmt"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="103" count="0" type="stmt"/>
+      </file>
+      <file name="useBlogsQuery.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Blogs/hooks/useBlogsQuery.ts">
+        <metrics statements="9" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="24" count="0" type="cond" truecount="0" falsecount="2"/>
+      </file>
+    </package>
+    <package name="src.components.CountrySearch">
+      <metrics statements="7" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="4" coveredmethods="0"/>
+      <file name="Country.types.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/CountrySearch/Country.types.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="CountrySearch.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/CountrySearch/CountrySearch.tsx">
+        <metrics statements="7" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+      </file>
+      <file name="Weather.types.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/CountrySearch/Weather.types.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/CountrySearch/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.CountrySearch.CapitalWeather">
+      <metrics statements="11" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="CapitalWeather.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/CountrySearch/CapitalWeather/CapitalWeather.styled.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+      </file>
+      <file name="CapitalWeather.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/CountrySearch/CapitalWeather/CapitalWeather.tsx">
+        <metrics statements="9" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="19" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="27" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/CountrySearch/CapitalWeather/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.CountrySearch.Countries">
+      <metrics statements="8" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="4" coveredmethods="0"/>
+      <file name="Countries.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/CountrySearch/Countries/Countries.styled.tsx">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+      </file>
+      <file name="Countries.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/CountrySearch/Countries/Countries.tsx">
+        <metrics statements="7" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="12" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="23" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/CountrySearch/Countries/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.CountrySearch.CountryDetail">
+      <metrics statements="18" coveredstatements="0" conditionals="15" coveredconditionals="0" methods="6" coveredmethods="0"/>
+      <file name="CountryDetail.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/CountrySearch/CountryDetail/CountryDetail.styled.tsx">
+        <metrics statements="10" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="27" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+      </file>
+      <file name="CountryDetail.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/CountrySearch/CountryDetail/CountryDetail.tsx">
+        <metrics statements="8" coveredstatements="0" conditionals="13" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="15" count="0" type="cond" truecount="0" falsecount="3"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/CountrySearch/CountryDetail/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.CountrySearch.CountryFilter">
+      <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="CountryFilter.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/CountrySearch/CountryFilter/CountryFilter.styled.tsx">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+      </file>
+      <file name="CountryFilter.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/CountrySearch/CountryFilter/CountryFilter.tsx">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/CountrySearch/CountryFilter/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.CountrySearch.CountryHeaderBar">
+      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="CountryHeaderBar.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/CountrySearch/CountryHeaderBar/CountryHeaderBar.styled.tsx">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/CountrySearch/CountryHeaderBar/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.CountrySearch.hooks">
+      <metrics statements="20" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="5" coveredmethods="0"/>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/CountrySearch/hooks/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="useCountryQuery.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/CountrySearch/hooks/useCountryQuery.ts">
+        <metrics statements="8" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+      </file>
+      <file name="useWeatherQuery.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/CountrySearch/hooks/useWeatherQuery.ts">
+        <metrics statements="12" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+      </file>
+    </package>
+    <package name="src.components.Course">
+      <metrics statements="23" coveredstatements="0" conditionals="5" coveredconditionals="0" methods="11" coveredmethods="0"/>
+      <file name="Course.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Course/Course.tsx">
+        <metrics statements="11" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+      </file>
+      <file name="Course.types.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Course/Course.types.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="CourseHeader.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Course/CourseHeader.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+      </file>
+      <file name="CoursePart.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Course/CoursePart.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="CourseParts.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Course/CourseParts.tsx">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+      </file>
+      <file name="CourseTotals.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Course/CourseTotals.tsx">
+        <metrics statements="5" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Course/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.Feedback">
+      <metrics statements="44" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="19" coveredmethods="0"/>
+      <file name="Feedback.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Feedback/Feedback.tsx">
+        <metrics statements="10" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="7" coveredmethods="0"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+      </file>
+      <file name="Feedback.types.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Feedback/Feedback.types.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="FeedbackButtons.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Feedback/FeedbackButtons.tsx">
+        <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+      </file>
+      <file name="FeedbackStatistics.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Feedback/FeedbackStatistics.styled.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+      </file>
+      <file name="FeedbackStatistics.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Feedback/FeedbackStatistics.tsx">
+        <metrics statements="13" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="27" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+      </file>
+      <file name="StatisticLine.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Feedback/StatisticLine.styled.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+      </file>
+      <file name="StatisticLine.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Feedback/StatisticLine.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+      <file name="StatisticsTable.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Feedback/StatisticsTable.styled.tsx">
+        <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+      </file>
+      <file name="StatisticsTable.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Feedback/StatisticsTable.tsx">
+        <metrics statements="3" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Feedback/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.Home">
+      <metrics statements="7" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="Home.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Home/Home.styled.tsx">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+      </file>
+      <file name="Home.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Home/Home.tsx">
+        <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Home/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.Login">
+      <metrics statements="15" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="Login.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Login/Login.styled.tsx">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+      </file>
+      <file name="Login.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Login/Login.tsx">
+        <metrics statements="12" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="19" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Login/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.NotFound">
+      <metrics statements="7" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="NotFound.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/NotFound/NotFound.styled.tsx">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+      </file>
+      <file name="NotFound.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/NotFound/NotFound.tsx">
+        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/NotFound/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.Phonebook">
+      <metrics statements="27" coveredstatements="0" conditionals="26" coveredconditionals="0" methods="8" coveredmethods="0"/>
+      <file name="Contact.types.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/Contact.types.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="Phonebook.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/Phonebook.tsx">
+        <metrics statements="27" coveredstatements="0" conditionals="26" coveredconditionals="0" methods="8" coveredmethods="0"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="38" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="40" count="0" type="stmt"/>
+        <line num="44" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="47" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="49" count="0" type="stmt"/>
+        <line num="51" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="56" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="58" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="61" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="67" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="76" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="77" count="0" type="stmt"/>
+        <line num="79" count="0" type="stmt"/>
+        <line num="82" count="0" type="stmt"/>
+        <line num="102" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.Phonebook.AddContactForm">
+      <metrics statements="26" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="9" coveredmethods="0"/>
+      <file name="AddContactForm.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/AddContactForm/AddContactForm.styled.tsx">
+        <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="40" count="0" type="stmt"/>
+      </file>
+      <file name="AddContactForm.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/AddContactForm/AddContactForm.tsx">
+        <metrics statements="20" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="9" coveredmethods="0"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="46" count="0" type="stmt"/>
+        <line num="47" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="50" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/AddContactForm/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.Phonebook.Contact">
+      <metrics statements="6" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="Contact.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/Contact/Contact.styled.tsx">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+      </file>
+      <file name="Contact.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/Contact/Contact.tsx">
+        <metrics statements="3" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/Contact/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.Phonebook.Contacts">
+      <metrics statements="7" coveredstatements="0" conditionals="11" coveredconditionals="0" methods="4" coveredmethods="0"/>
+      <file name="Contacts.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/Contacts/Contacts.styled.tsx">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+      </file>
+      <file name="Contacts.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/Contacts/Contacts.tsx">
+        <metrics statements="6" coveredstatements="0" conditionals="11" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="22" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/Contacts/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.Phonebook.FilterContacts">
+      <metrics statements="6" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="FilterContacts.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/FilterContacts/FilterContacts.styled.tsx">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+      </file>
+      <file name="FilterContacts.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/FilterContacts/FilterContacts.tsx">
+        <metrics statements="3" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/FilterContacts/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.Phonebook.NoContactsMessage">
+      <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="NoContactsMessage.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/NoContactsMessage/NoContactsMessage.styled.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="NoContactsMessage.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/NoContactsMessage/NoContactsMessage.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/NoContactsMessage/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.Phonebook.PhoneNumberInput">
+      <metrics statements="6" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="PhoneNumberInput.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/PhoneNumberInput/PhoneNumberInput.styled.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="PhoneNumberInput.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/PhoneNumberInput/PhoneNumberInput.tsx">
+        <metrics statements="4" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/PhoneNumberInput/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.Phonebook.hooks">
+      <metrics statements="38" coveredstatements="0" conditionals="9" coveredconditionals="0" methods="21" coveredmethods="0"/>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/hooks/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="useContactMutation.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/hooks/useContactMutation.ts">
+        <metrics statements="29" coveredstatements="0" conditionals="7" coveredconditionals="0" methods="19" coveredmethods="0"/>
+        <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+        <line num="28" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="47" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="64" count="0" type="stmt"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="69" count="0" type="stmt"/>
+        <line num="70" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="71" count="0" type="stmt"/>
+        <line num="75" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="83" count="0" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="88" count="0" type="stmt"/>
+        <line num="94" count="0" type="stmt"/>
+        <line num="96" count="0" type="stmt"/>
+        <line num="99" count="0" type="stmt"/>
+        <line num="105" count="0" type="stmt"/>
+        <line num="107" count="0" type="stmt"/>
+        <line num="110" count="0" type="stmt"/>
+      </file>
+      <file name="useContactsQuery.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Phonebook/hooks/useContactsQuery.ts">
+        <metrics statements="9" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="24" count="0" type="cond" truecount="0" falsecount="2"/>
+      </file>
+    </package>
+    <package name="src.components.RefactoredCourse">
+      <metrics statements="4" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="Course.types.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/RefactoredCourse/Course.types.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="RefactoredCourse.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/RefactoredCourse/RefactoredCourse.tsx">
+        <metrics statements="4" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="55" count="0" type="stmt"/>
+        <line num="60" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/RefactoredCourse/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.RefactoredCourse.Header">
+      <metrics statements="3" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="Header.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/RefactoredCourse/Header/Header.styled.tsx">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+      </file>
+      <file name="Header.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/RefactoredCourse/Header/Header.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="3" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="8" count="0" type="cond" truecount="0" falsecount="1"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/RefactoredCourse/Header/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.RefactoredCourse.Part">
+      <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="Part.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/RefactoredCourse/Part/Part.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/RefactoredCourse/Part/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.RefactoredCourse.Parts">
+      <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="Parts.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/RefactoredCourse/Parts/Parts.tsx">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/RefactoredCourse/Parts/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.RefactoredCourse.Totals">
+      <metrics statements="5" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="Totals.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/RefactoredCourse/Totals/Totals.tsx">
+        <metrics statements="5" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="14" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/RefactoredCourse/Totals/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.Signup">
+      <metrics statements="15" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="Signup.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Signup/Signup.styled.tsx">
+        <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+      </file>
+      <file name="Signup.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Signup/Signup.tsx">
+        <metrics statements="12" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="17" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="22" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Signup/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.Splash">
+      <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="Splash.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Splash/Splash.styled.tsx">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+      </file>
+      <file name="Splash.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Splash/Splash.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/Splash/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.UserProfile">
+      <metrics statements="15" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="UserProfile.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/UserProfile/UserProfile.styled.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+      <file name="UserProfile.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/UserProfile/UserProfile.tsx">
+        <metrics statements="13" coveredstatements="0" conditionals="4" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="7" count="0" type="stmt"/>
+        <line num="8" count="0" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="13" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="29" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/UserProfile/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.AppLoader">
+      <metrics statements="6" coveredstatements="5" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="AppLoader.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/AppLoader/AppLoader.styled.tsx">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+      </file>
+      <file name="AppLoader.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/AppLoader/AppLoader.tsx">
+        <metrics statements="2" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/AppLoader/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.AppWrapper">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="AppWrapper.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/AppWrapper/AppWrapper.styled.tsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="2" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/AppWrapper/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.Banner">
+      <metrics statements="9" coveredstatements="5" conditionals="6" coveredconditionals="0" methods="4" coveredmethods="0"/>
+      <file name="Banner.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Banner/Banner.styled.tsx">
+        <metrics statements="7" coveredstatements="4" conditionals="6" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="23" count="2" type="stmt"/>
+        <line num="24" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="25" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="26" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="30" count="2" type="stmt"/>
+      </file>
+      <file name="Banner.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Banner/Banner.tsx">
+        <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Banner/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.Box">
+      <metrics statements="79" coveredstatements="51" conditionals="80" coveredconditionals="39" methods="4" coveredmethods="4"/>
+      <file name="Box.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Box/Box.styled.tsx">
+        <metrics statements="79" coveredstatements="51" conditionals="80" coveredconditionals="39" methods="4" coveredmethods="4"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="56" type="stmt"/>
+        <line num="8" count="56" type="cond" truecount="2" falsecount="0"/>
+        <line num="9" count="9" type="stmt"/>
+        <line num="14" count="9" type="cond" truecount="1" falsecount="1"/>
+        <line num="15" count="9" type="stmt"/>
+        <line num="23" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="30" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="37" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="44" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="51" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="52" count="0" type="stmt"/>
+        <line num="58" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="59" count="0" type="stmt"/>
+        <line num="65" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="66" count="0" type="stmt"/>
+        <line num="72" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="73" count="0" type="stmt"/>
+        <line num="79" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="80" count="0" type="stmt"/>
+        <line num="86" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="87" count="0" type="stmt"/>
+        <line num="94" count="56" type="stmt"/>
+        <line num="97" count="2" type="stmt"/>
+        <line num="98" count="56" type="stmt"/>
+        <line num="100" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="101" count="0" type="stmt"/>
+        <line num="107" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="108" count="0" type="stmt"/>
+        <line num="114" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="115" count="0" type="stmt"/>
+        <line num="121" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="122" count="0" type="stmt"/>
+        <line num="128" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="129" count="0" type="stmt"/>
+        <line num="136" count="56" type="stmt"/>
+        <line num="139" count="2" type="stmt"/>
+        <line num="140" count="56" type="stmt"/>
+        <line num="142" count="56" type="stmt"/>
+        <line num="143" count="20" type="cond" truecount="1" falsecount="1"/>
+        <line num="144" count="20" type="stmt"/>
+        <line num="147" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="148" count="0" type="stmt"/>
+        <line num="156" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="157" count="0" type="stmt"/>
+        <line num="164" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="165" count="0" type="stmt"/>
+        <line num="172" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="173" count="0" type="stmt"/>
+        <line num="179" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="180" count="0" type="stmt"/>
+        <line num="186" count="56" type="cond" truecount="2" falsecount="0"/>
+        <line num="187" count="10" type="stmt"/>
+        <line num="193" count="56" type="cond" truecount="2" falsecount="0"/>
+        <line num="194" count="10" type="stmt"/>
+        <line num="200" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="201" count="0" type="stmt"/>
+        <line num="208" count="56" type="cond" truecount="2" falsecount="0"/>
+        <line num="209" count="6" type="stmt"/>
+        <line num="217" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="218" count="0" type="stmt"/>
+        <line num="225" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="226" count="0" type="stmt"/>
+        <line num="233" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="234" count="0" type="stmt"/>
+        <line num="240" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="241" count="0" type="stmt"/>
+        <line num="247" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="248" count="0" type="stmt"/>
+        <line num="254" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="255" count="0" type="stmt"/>
+        <line num="261" count="56" type="cond" truecount="1" falsecount="1"/>
+        <line num="262" count="0" type="stmt"/>
+        <line num="268" count="56" type="stmt"/>
+        <line num="271" count="2" type="stmt"/>
+      </file>
+      <file name="Box.types.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Box/Box.types.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Box/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.Button">
+      <metrics statements="3" coveredstatements="3" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+      <file name="Button.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Button/Button.styled.tsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="2" type="stmt"/>
+      </file>
+      <file name="Button.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Button/Button.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="19" count="15" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Button/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.ErrorIcon">
+      <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="ErrorIcon.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/ErrorIcon/ErrorIcon.tsx">
+        <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/ErrorIcon/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.Form">
+      <metrics statements="3" coveredstatements="1" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="Form.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Form/Form.tsx">
+        <metrics statements="3" coveredstatements="1" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Form/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.FormControl">
+      <metrics statements="9" coveredstatements="7" conditionals="14" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="FormControl.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/FormControl/FormControl.styled.tsx">
+        <metrics statements="6" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="27" count="2" type="stmt"/>
+        <line num="31" count="2" type="stmt"/>
+      </file>
+      <file name="FormControl.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/FormControl/FormControl.tsx">
+        <metrics statements="3" coveredstatements="1" conditionals="14" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/FormControl/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.FormStateWatcher">
+      <metrics statements="8" coveredstatements="1" conditionals="4" coveredconditionals="0" methods="3" coveredmethods="0"/>
+      <file name="FormStateWatcher.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/FormStateWatcher/FormStateWatcher.tsx">
+        <metrics statements="8" coveredstatements="1" conditionals="4" coveredconditionals="0" methods="3" coveredmethods="0"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="22" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="27" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/FormStateWatcher/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.FormSubmitButton">
+      <metrics statements="3" coveredstatements="1" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="FormSubmitButton.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/FormSubmitButton/FormSubmitButton.tsx">
+        <metrics statements="3" coveredstatements="1" conditionals="4" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/FormSubmitButton/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.GlobalStyles">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="GlobalStyles.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/GlobalStyles/GlobalStyles.styled.tsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="2" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/GlobalStyles/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.HR">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="HR.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/HR/HR.styled.tsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="2" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/HR/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.Heading">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="Heading.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Heading/Heading.styled.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Heading/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.Icon">
+      <metrics statements="9" coveredstatements="4" conditionals="3" coveredconditionals="0" methods="5" coveredmethods="0"/>
+      <file name="Icon.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Icon/Icon.styled.tsx">
+        <metrics statements="7" coveredstatements="3" conditionals="2" coveredconditionals="0" methods="4" coveredmethods="0"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="18" count="2" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="25" count="0" type="stmt"/>
+        <line num="26" count="0" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
+      </file>
+      <file name="Icon.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Icon/Icon.tsx">
+        <metrics statements="2" coveredstatements="1" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="11" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="12" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Icon/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.Image">
+      <metrics statements="3" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="Image.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Image/Image.styled.tsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="2" type="stmt"/>
+      </file>
+      <file name="Image.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Image/Image.tsx">
+        <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="9" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Image/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.List">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="List.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/List/List.styled.tsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="2" type="stmt"/>
+      </file>
+      <file name="ListItem.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/List/ListItem.styled.tsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="4" count="2" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/List/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.Loader">
+      <metrics statements="5" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="Loader.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Loader/Loader.tsx">
+        <metrics statements="5" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="12" count="2" type="stmt"/>
+        <line num="19" count="2" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Loader/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.LoaderDisc">
+      <metrics statements="10" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="LoaderDisc.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/LoaderDisc/LoaderDisc.styled.tsx">
+        <metrics statements="10" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="25" count="2" type="stmt"/>
+        <line num="34" count="2" type="stmt"/>
+        <line num="47" count="2" type="stmt"/>
+        <line num="61" count="2" type="stmt"/>
+        <line num="67" count="2" type="stmt"/>
+        <line num="74" count="2" type="stmt"/>
+        <line num="75" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/LoaderDisc/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.NavButton">
+      <metrics statements="5" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+      <file name="NavButton.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/NavButton/NavButton.tsx">
+        <metrics statements="5" coveredstatements="1" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
+        <line num="10" count="2" type="cond" truecount="0" falsecount="2"/>
+        <line num="11" count="0" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/NavButton/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.Overflow">
+      <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="Overflow.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Overflow/Overflow.styled.tsx">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Overflow/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.SortByButton">
+      <metrics statements="2" coveredstatements="1" conditionals="3" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="SortByButton.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/SortByButton/SortByButton.tsx">
+        <metrics statements="2" coveredstatements="1" conditionals="3" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="10" count="2" type="cond" truecount="0" falsecount="1"/>
+        <line num="11" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/SortByButton/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.Spacer">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="Spacer.styled.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Spacer/Spacer.styled.tsx">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="2" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Spacer/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.SuccessIcon">
+      <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="SuccessIcon.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/SuccessIcon/SuccessIcon.tsx">
+        <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/SuccessIcon/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.Togglable">
+      <metrics statements="8" coveredstatements="1" conditionals="11" coveredconditionals="0" methods="5" coveredmethods="0"/>
+      <file name="Togglable.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Togglable/Togglable.tsx">
+        <metrics statements="8" coveredstatements="1" conditionals="11" coveredconditionals="0" methods="5" coveredmethods="0"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="stmt"/>
+        <line num="25" count="0" type="cond" truecount="0" falsecount="4"/>
+        <line num="29" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/Togglable/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.components.common.WarningIcon">
+      <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="WarningIcon.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/WarningIcon/WarningIcon.tsx">
+        <metrics statements="2" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/components/common/WarningIcon/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.hooks">
+      <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/hooks/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="useHooks.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/hooks/useHooks.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.routes">
+      <metrics statements="26" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="13" coveredmethods="0"/>
+      <file name="Anecdotes.route.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/routes/Anecdotes.route.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="Blogs.route.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/routes/Blogs.route.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="CountrySearch.route.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/routes/CountrySearch.route.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="Course.route.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/routes/Course.route.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="Feedback.route.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/routes/Feedback.route.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="Home.route.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/routes/Home.route.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="Login.route.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/routes/Login.route.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="NotFound.route.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/routes/NotFound.route.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="Phonebook.route.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/routes/Phonebook.route.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="RefactoredCourse.route.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/routes/RefactoredCourse.route.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="Signup.route.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/routes/Signup.route.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="Splash.route.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/routes/Splash.route.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="5" count="0" type="stmt"/>
+        <line num="6" count="0" type="stmt"/>
+      </file>
+      <file name="UserProfile.route.tsx" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/routes/UserProfile.route.tsx">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="4" count="0" type="stmt"/>
+        <line num="5" count="0" type="stmt"/>
+      </file>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/routes/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+    </package>
+    <package name="src.utils.styled">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="index.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/utils/styled/index.ts">
+        <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      </file>
+      <file name="styled.utils.ts" path="/Users/craigcurtis/demos/university-of-helsinki/full-stack-open-2022/client/src/utils/styled/styled.utils.ts">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="2" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

@@ -33,6 +33,8 @@
     "build": "react-scripts build",
     "build:copy": "npm run build && cp -r build ../server",
     "test": "react-scripts test",
+    "coverage": "react-scripts test --coverage",
+    "cov": "CI=true npm test -- --coverage",
     "server": "npx json-server --port 3001 --watch db.json",
     "format": "prettier --write src/**/*.ts{,x}",
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
