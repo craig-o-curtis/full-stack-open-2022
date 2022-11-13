@@ -5,6 +5,7 @@ node_modules
 
 # production
 client/build
+client/coverage
 
 # Built CSS files
 src/**/*.css
