@@ -1,8 +1,8 @@
-import React from "react";
-import { useUserContext } from "../../auth/AuthProvider";
-import { useDeleteUserMutation, useLogout } from "../../auth/hooks";
-import { AppLoader, Loader, Button, Box } from "../common";
-import * as Styled from "./UserProfile.styled";
+import React from 'react';
+import { useUserContext } from '../../auth/AuthProvider';
+import { useDeleteUserMutation, useLogout } from '../../auth/hooks';
+import { AppLoader, Loader, Button, Box, NavButton } from '../common';
+import * as Styled from './UserProfile.styled';
 
 const UserProfile = () => {
   const [{ user }] = useUserContext();
@@ -20,15 +20,16 @@ const UserProfile = () => {
         id: user.id,
         username: user.username,
       });
-      console.log("deletedUser", deletedUser);
+      console.log('deletedUser', deletedUser);
     } catch (error) {
-      console.error("Error", error);
+      console.error('Error', error);
     }
   };
 
   return (
     <AppLoader isLoading={isLoading}>
       <Styled.UserProfilePage>
+        <NavButton />
         <Styled.UserProfileContent>
           {user ? (
             <>
