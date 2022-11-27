@@ -25,13 +25,35 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      login({
+        username,
+        password,
+      }: {
+        username: string;
+        password: string;
+      }): Chainable<unknown>;
+    }
+  }
+}
+// good idea, but too much happening with user context, auth routs for this at the moment
+Cypress.Commands.add(
+  "login",
+  ({ username, password }: { username: string; password: string }) => {
+    localStorage.removeItem("uhel-fullstack2022currentUser");
+
+    return cy
+      .request("POST", "http://localhost:3001/api/login", {
+        username,
+        password,
+      })
+      .then(({ body }) => {
+        localStorage.setItem("loggedNoteappUser", JSON.stringify(body));
+
+        cy.visit("http://localhost:3000");
+        cy.visit("http://localhost:3000/home");
+      });
+  }
+);

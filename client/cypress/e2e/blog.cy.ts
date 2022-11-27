@@ -16,6 +16,8 @@ describe("Blogs page", function () {
     clearDB();
     createTestUser();
     loginToApp();
+    // cy.login({ username: "cypress", password: "cypress" });
+    cy.visit("http://localhost:3000/home");
     clickBlogsRoute();
   });
 
