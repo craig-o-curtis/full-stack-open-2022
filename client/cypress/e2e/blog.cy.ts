@@ -51,6 +51,7 @@ describe("Blogs page", function () {
     cy.contains("Submit").should("be.visible").and("be.disabled");
   });
 
+  // ** Confirming exercise 5.19
   it("should be able to create and delete a blog", function () {
     cy.get("h1").should("contain", "Blogs");
     // click Add blog button
@@ -71,10 +72,8 @@ describe("Blogs page", function () {
     cy.contains("Cypress author").should("be.visible");
     cy.contains("http://www.cypresstest.com").should("be.visible");
     cy.contains("Likes: 0").should("be.visible");
-    // !! at this point the tests are flaky as the user is sometimes null
     // can delete own
     cy.contains("Delete").should("be.visible").and("be.enabled").click();
-
     // should not show blog title
     cy.contains("Cypress blog").should("not.exist");
   });
