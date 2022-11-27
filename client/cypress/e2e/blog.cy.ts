@@ -81,11 +81,15 @@ describe("Blogs page", function () {
   });
 });
 
-describe("Other user blog", function () {
+describe("Like other user blogs", function () {
   beforeEach(function () {
     clearUserFromLocalStorage();
     clearDB();
-    createTestBlog();
+    createTestBlog({
+      title: "Cypress other user blog",
+      author: "Cypress other user author",
+      url: "http://www.test.com",
+    });
     createTestUser();
     loginToApp();
     cy.visit("http://localhost:3000/home");
@@ -106,5 +110,78 @@ describe("Other user blog", function () {
       .and("be.enabled")
       .click();
     cy.contains("Likes: 1").should("be.visible");
+  });
+});
+
+describe("Blog order", function () {
+  // ** ensure sort button works
+  beforeEach(function () {
+    clearUserFromLocalStorage();
+    clearDB();
+
+    createTestBlog({
+      title: "Cypress blog 1",
+      author: "Cypress author 1",
+      url: "http://www.cypresstest.com",
+    });
+    createTestBlog({
+      title: "Cypress blog 2",
+      author: "Cypress author 2",
+      url: "http://www.cypresstest.com",
+    });
+
+    createTestUser();
+    loginToApp();
+    cy.visit("http://localhost:3000/home");
+    clickBlogsRoute();
+  });
+
+  it.only("should sort by likes", function () {
+    // Confirm both blogs visible
+    cy.get(".blog-item").eq(0).should("contain", "Cypress blog 1");
+    cy.get(".blog-item").eq(1).should("contain", "Cypress blog 2");
+
+    // open first and like once, confirm still first
+    cy.get(".blog-item").eq(0).contains("Show details").click();
+    cy.get(".blog-item").eq(0).contains("Like").click();
+
+    cy.get(".blog-item").eq(0).contains("Likes: 0").should("be.visible");
+    // confirm Like button enabled and can click
+    cy.get(".blog-item")
+      .eq(0)
+      .get("button")
+      .contains("Like")
+      .should("be.visible")
+      .and("be.enabled")
+      .click();
+    cy.get(".blog-item").eq(0).contains("Likes: 1").should("be.visible");
+    // close to avoid flake
+    cy.get(".blog-item").eq(0).contains("Hide details").click();
+
+    // open second and like twice, confirm first
+    cy.get(".blog-item").eq(1).contains("Show details").click();
+    cy.get(".blog-item")
+      .eq(1)
+      .get("button")
+      .contains("Like")
+      .should("be.visible")
+      .and("be.enabled")
+      .click();
+    cy.get(".blog-item").eq(1).contains("Likes: 1").should("be.visible");
+    cy.get(".blog-item")
+      .eq(1)
+      .get("button")
+      .contains("Like")
+      .should("be.visible")
+      .and("be.enabled")
+      .click();
+    // Disregard index as flakiness ensues, assume after these two asserts the indices are correct
+    cy.contains("Likes: 2").should("be.visible");
+    cy.contains("Hide details").click();
+
+    cy.get(".blog-item").eq(0).should("contain", "Cypress blog 2");
+    cy.get(".blog-item").eq(1).should("contain", "Cypress blog 1");
+
+    // cy.
   });
 });
