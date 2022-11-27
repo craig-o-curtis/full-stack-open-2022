@@ -4,6 +4,7 @@ import {
   clearUserFromLocalStorage,
 } from "../cypressUtils";
 
+// ** Confirming exercise 5.18
 describe("Login page", function () {
   beforeEach(function () {
     clearDB();
