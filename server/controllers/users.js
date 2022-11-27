@@ -69,7 +69,7 @@ usersRouter.post('/', async (request, response) => {
 
   console.log('NEW DB USER', newDBUser);
   const token = tokenUtils.createToken(newDBUser.username, newDBUser._id);
-  console.log('created thsi new token', token);
+  console.log('created this new token', token);
 
   apiUtils.checkUnsavedItemError(newDBUser);
   logger.log('Express created new user', newDBUser);

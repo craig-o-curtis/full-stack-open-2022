@@ -1,8 +1,13 @@
-import { clearDB, createTestUser } from "../cypressUtils";
+import {
+  clearDB,
+  createTestUser,
+  clearUserFromLocalStorage,
+} from "../cypressUtils";
 
 describe("Login page", function () {
   beforeEach(function () {
     clearDB();
+    clearUserFromLocalStorage();
     createTestUser();
   });
 
@@ -93,5 +98,21 @@ describe("Login page", function () {
     // should be able to log out
     cy.contains("Log out").click();
     cy.url().should("include", "/login");
+  });
+
+  it("should fail on incorrect username", function () {
+    cy.visit("http://localhost:3000");
+    cy.contains("Username:").find("input[type=text]").type("incorrect");
+    cy.contains("Password:").find("input[type=password]").type("cypress");
+    cy.contains("Submit").click();
+    cy.contains("invalid username or password").should("be.visible");
+  });
+
+  it("should fail on incorrect password", function () {
+    cy.visit("http://localhost:3000");
+    cy.contains("Username:").find("input[type=text]").type("cypress");
+    cy.contains("Password:").find("input[type=password]").type("incorrect");
+    cy.contains("Submit").click();
+    cy.contains("invalid username or password").should("be.visible");
   });
 });

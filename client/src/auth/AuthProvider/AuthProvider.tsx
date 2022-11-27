@@ -16,7 +16,6 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const actions = useMemo((): StateActions => {
     const setUser = (user: IAuthUser | null) => {
       dispatch({ type: 'setUser', value: user });
-      alert('SETTING USER');
       setLsUser(user as any);
     };
 
