@@ -53,6 +53,7 @@ describe("Blogs page", function () {
   });
 
   // ** Confirming exercise 5.19
+  // ** Confirming exercise 5.21
   it("should be able to create and delete a blog", function () {
     cy.get("h1").should("contain", "Blogs");
     // click Add blog button
