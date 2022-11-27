@@ -3,6 +3,7 @@ import {
   clearDB,
   createTestUser,
   loginToApp,
+  createTestBlog,
 } from "../cypressUtils";
 
 const clickBlogsRoute = () => {
@@ -27,7 +28,7 @@ describe("Blogs page", function () {
     cy.contains("Home").should("be.visible").and("be.enabled");
     cy.contains("Add blog").should("be.visible").and("be.enabled");
     // should show a disabled sort button
-    cy.get('button[title^="Sort by"]').should("be.disabled");
+    cy.get('button[title^="Sort by"]').should("be.visible");
 
     // confirm add blog page opens add blog form
     cy.contains("Add blog").click();
@@ -76,5 +77,33 @@ describe("Blogs page", function () {
     cy.contains("Delete").should("be.visible").and("be.enabled").click();
     // should not show blog title
     cy.contains("Cypress blog").should("not.exist");
+  });
+});
+
+describe("Other user blog", function () {
+  beforeEach(function () {
+    clearUserFromLocalStorage();
+    clearDB();
+    createTestBlog();
+    createTestUser();
+    loginToApp();
+    cy.visit("http://localhost:3000/home");
+    clickBlogsRoute();
+  });
+
+  it("should be able to like other blogs", function () {
+    // The keep blog is made by the root user and not deleted
+    // confirm has Title keep, can open Show details button
+    cy.contains("Cypress other user blog").should("be.visible");
+    cy.contains("Show details").should("be.visible").and("be.enabled").click();
+
+    cy.contains("Likes: 0").should("be.visible");
+    // confirm Like button enabled and can click
+    cy.get("button")
+      .contains("Like")
+      .should("be.visible")
+      .and("be.enabled")
+      .click();
+    cy.contains("Likes: 1").should("be.visible");
   });
 });

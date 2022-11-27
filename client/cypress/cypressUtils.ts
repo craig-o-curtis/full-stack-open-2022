@@ -10,13 +10,17 @@ export function createTestUser() {
   cy.request("POST", "http://localhost:3001/api/testing/test-user");
 }
 
-export function loginToApp() {
+export function loginToApp(username?: string, password?: string) {
   cy.intercept("/api/login").as("login");
   cy.visit("http://localhost:3000/login");
   localStorage.removeItem("uhel-fullstack2022currentUser");
 
-  cy.contains("Username:").find("input[type=text]").type("cypress");
-  cy.contains("Password:").find("input[type=password]").type("cypress");
+  cy.contains("Username:")
+    .find("input[type=text]")
+    .type(username ?? "cypress");
+  cy.contains("Password:")
+    .find("input[type=password]")
+    .type(password ?? "cypress");
   cy.contains("Submit").click();
 
   cy.wait("@login").then((interceptor) => {
@@ -26,5 +30,25 @@ export function loginToApp() {
       JSON.stringify(interceptor?.response?.body)
     );
     cy.url().should("include", "/home");
+  });
+}
+
+export function createTestBlog() {
+  cy.request("POST", "http://localhost:3001/api/login", {
+    username: "root",
+    password: "1234",
+  }).then(({ body }) => {
+    cy.request({
+      url: "http://localhost:3001/api/blogs",
+      method: "POST",
+      body: {
+        title: "Cypress other user blog",
+        author: "Cypress other user author",
+        url: "http://www.test.com",
+      },
+      headers: {
+        Authorization: `Bearer ${body.token}`,
+      },
+    });
   });
 }
