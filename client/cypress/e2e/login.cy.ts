@@ -1,11 +1,15 @@
-describe("Login page", () => {
-  beforeEach(() => {
-    // cy.visit("http://localhost:3000");
+import { clearDB, createTestUser } from "../cypressUtils";
+
+describe("Login page", function () {
+  beforeEach(function () {
+    clearDB();
+    createTestUser();
   });
 
-  it("should display login page defaults", () => {
+  it("should display login page defaults", function () {
     cy.visit("http://localhost:3000");
     // ** username
+    // ** searching by label name and not CSS selector input:first etc for better testing readability
     cy.contains("Username:")
       .should("be.visible")
       .find("input[type=text]")
@@ -30,14 +34,14 @@ describe("Login page", () => {
     cy.contains("Submit").should("be.enabled");
   });
 
-  it("should be able to navigate to the signup page from login", () => {
+  it("should be able to navigate to the signup page from login", function () {
     cy.visit("http://localhost:3000");
     cy.url().should("include", "/login");
     cy.contains("Register for account").click();
     cy.url().should("include", "/signup");
   });
 
-  it("should display signup page defaults", () => {
+  it("should display signup page defaults", function () {
     cy.visit("http://localhost:3000/signup");
     // ** username
     cy.contains("Username:")
@@ -71,10 +75,23 @@ describe("Login page", () => {
     cy.contains("Submit").should("be.enabled");
   });
 
-  it("should be able to navigate back to the login page from signup page", () => {
+  it("should be able to navigate back to the login page from signup page", function () {
     cy.visit("http://localhost:3000/signup");
     cy.url().should("include", "/signup");
     cy.contains("Already have an account?").click();
+    cy.url().should("include", "/login");
+  });
+
+  it("should be able to login with example user", function () {
+    // example user is cypress root
+    cy.visit("http://localhost:3000");
+    cy.contains("Username:").find("input[type=text]").type("cypress");
+    cy.contains("Password:").find("input[type=password]").type("cypress");
+    cy.contains("Submit").click();
+    cy.url().should("include", "/home");
+    cy.contains("Full Stack 2022 Course Projects").should("be.visible");
+    // should be able to log out
+    cy.contains("Log out").click();
     cy.url().should("include", "/login");
   });
 });

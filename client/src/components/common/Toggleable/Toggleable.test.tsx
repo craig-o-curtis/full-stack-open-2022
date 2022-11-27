@@ -1,20 +1,21 @@
-// cSpell:ignore Togglable
+// cSpell:ignore Toggleable
+// cSpell:ignore Toggleable
 import React from "react";
 import "@testing-library/jest-dom/extend-expect";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import Togglable, { TogglableProps } from "../Togglable";
+import Toggleable, { ToggleableProps } from "./Toggleable";
 
-type ComponentProps = Omit<TogglableProps, "children"> & {};
+type ComponentProps = Omit<ToggleableProps, "children"> & {};
 
 const Component = ({ isShowing, showText, hideText }: ComponentProps) => (
-  <Togglable isShowing={isShowing} showText={showText} hideText={hideText}>
+  <Toggleable isShowing={isShowing} showText={showText} hideText={hideText}>
     <div>Test children</div>
-  </Togglable>
+  </Toggleable>
 );
 
-fdescribe("Togglable component", () => {
+describe("Toggleable component", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     userEvent.setup();

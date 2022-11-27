@@ -1,9 +1,9 @@
-import React, { useMemo } from "react";
+import React, { useMemo } from 'react';
 
-import { UserContext, StateActions } from "./context/UserContext";
-import { IAuthUser } from "../Auth.types";
-import { useAuthReducer } from "./hooks";
-import { useLocalStorageCurrentUser } from "../hooks";
+import { UserContext, StateActions } from './context/UserContext';
+import { IAuthUser } from '../Auth.types';
+import { useAuthReducer } from './hooks';
+import { useLocalStorageCurrentUser } from '../hooks';
 
 interface AuthProviderProps {
   children: React.ReactNode;
@@ -15,12 +15,13 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
   const actions = useMemo((): StateActions => {
     const setUser = (user: IAuthUser | null) => {
-      dispatch({ type: "setUser", value: user });
+      dispatch({ type: 'setUser', value: user });
+      alert('SETTING USER');
       setLsUser(user as any);
     };
 
     const resetState = () => {
-      dispatch({ type: "resetState" });
+      dispatch({ type: 'resetState' });
       setLsUser(null);
       clearLS();
     };
