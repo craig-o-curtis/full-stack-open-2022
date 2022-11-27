@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { IBlog } from "./Blog.types";
-import * as Styled from "./BlogItem.styled";
-import { Button, Box } from "../common";
+import React, { useState } from 'react';
+import { IBlog } from './Blog.types';
+import * as Styled from './BlogItem.styled';
+import { Button, Box } from '../common';
 export interface BlogItemProps {
   blog: IBlog;
   currentUserId?: string;
@@ -23,7 +23,7 @@ const BlogItem = ({ blog, onDelete, onLike, currentUserId }: BlogItemProps) => {
   };
 
   return (
-    <Styled.BlogItem p={1} mb={1} key={blog.id}>
+    <Styled.BlogItem p={1} mb={1} key={blog.id} className="blog-item">
       <Styled.BlogItemBox>
         <Styled.BlogData>
           <Styled.BlogDatum>
@@ -64,7 +64,7 @@ const BlogItem = ({ blog, onDelete, onLike, currentUserId }: BlogItemProps) => {
       <Styled.BlogItemBox flex>
         <Styled.ButtonContainer ml={1}>
           <Button onClick={() => setIsShowDetails((prev) => !prev)}>
-            {isShowDetails ? "Hide" : "Show"} details
+            {isShowDetails ? 'Hide' : 'Show'} details
           </Button>
         </Styled.ButtonContainer>
         {blog.user === currentUserId && (

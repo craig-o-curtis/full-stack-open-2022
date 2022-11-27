@@ -33,7 +33,7 @@ export function loginToApp(username?: string, password?: string) {
   });
 }
 
-export function createTestBlog() {
+export function createTestBlog({ title, author, url }) {
   cy.request("POST", "http://localhost:3001/api/login", {
     username: "root",
     password: "1234",
@@ -42,9 +42,9 @@ export function createTestBlog() {
       url: "http://localhost:3001/api/blogs",
       method: "POST",
       body: {
-        title: "Cypress other user blog",
-        author: "Cypress other user author",
-        url: "http://www.test.com",
+        title,
+        author,
+        url,
       },
       headers: {
         Authorization: `Bearer ${body.token}`,
