@@ -1,6 +1,6 @@
-import React from "react";
-import { Box, Form, FormControl, FormSubmitButton } from "../common";
-import { IBlog, IPostBlogPayload } from "./Blog.types";
+import React from 'react';
+import { Box, Form, FormControl, FormSubmitButton } from '../common';
+import { IBlog, IPostBlogPayload } from './Blog.types';
 
 export interface AddBlogFormProps {
   blogs: IBlog[];
