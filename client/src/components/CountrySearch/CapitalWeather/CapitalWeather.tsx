@@ -22,12 +22,10 @@ const CapitalWeather = ({ latlong, capital }: CapitalWeatherProps) => {
     [data?.weather]
   );
 
-  console.log("imageIconUrl", imageUrl);
+  const convertKelvinToCelsius = (kelvin: number = 0) => {
+    const conversion = 273.15;
 
-  const convertKelvinToCelcius = (kelvin: number = 0) => {
-    const converstion = 273.15;
-
-    return Math.round(kelvin - converstion);
+    return Math.round(kelvin - conversion);
   };
 
   return (
@@ -38,7 +36,7 @@ const CapitalWeather = ({ latlong, capital }: CapitalWeatherProps) => {
 
       <Banner variant="info">
         <p>
-          <strong>Temp:</strong> {convertKelvinToCelcius(data?.main.temp)}
+          <strong>Temp:</strong> {convertKelvinToCelsius(data?.main.temp)}
           &#8451;
         </p>
         <p>
