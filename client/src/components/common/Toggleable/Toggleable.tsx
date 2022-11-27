@@ -1,21 +1,24 @@
+// cSpell:ignore Toggleable
 import React, { useImperativeHandle, useState } from "react";
-import { Box, Button } from "../.";
+import { Box, Button } from "..";
 
-interface TogglableProps {
+export interface ToggleableProps {
   isShowing?: boolean;
   showText?: string;
   hideText?: string;
+  disabled?: boolean;
   children: React.ReactNode;
 }
 
-const Togglable = React.forwardRef(
+const Toggleable = React.forwardRef(
   (
     {
       isShowing = false,
       showText = "Show",
       hideText = "Hide",
+      disabled = false,
       children,
-    }: TogglableProps,
+    }: ToggleableProps,
     ref
   ) => {
     const [isShow, setIsShow] = useState(isShowing);
@@ -34,7 +37,7 @@ const Togglable = React.forwardRef(
     return (
       <>
         <Box mb={2}>
-          <Button onClick={() => handleToggle()}>
+          <Button onClick={() => handleToggle()} disabled={disabled}>
             {isShow ? hideText : showText}
           </Button>
         </Box>
@@ -45,4 +48,4 @@ const Togglable = React.forwardRef(
   }
 );
 
-export default Togglable;
+export default Toggleable;

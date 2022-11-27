@@ -1,4 +1,4 @@
-// cSpell:ignore Togglable
+// cSpell:ignore Toggleable
 export { default as GlobalStyles } from "./GlobalStyles";
 export { default as AppWrapper } from "./AppWrapper";
 export { default as AppLoader } from "./AppLoader";
@@ -9,7 +9,7 @@ export { default as Button } from "./Button";
 export { default as Loader } from "./Loader";
 export { default as LoaderDisc } from "./LoaderDisc";
 export { default as Banner } from "./Banner";
-export { default as Togglable } from "./Togglable";
+export { default as Toggleable } from "./Toggleable";
 export { default as NavButton } from "./NavButton";
 export { default as SortByButton } from "./SortByButton";
 

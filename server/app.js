@@ -21,6 +21,12 @@ app.use('/api/users', usersRouter);
 app.use('/api/contacts', contactsRouter);
 app.use('/api/blogs', blogsRouter);
 
+// ** Cypress tests
+if (process.env.NODE_ENV === 'test') {
+  const { cypressTestsRouter } = require('./controllers');
+  app.use('/api/testing', cypressTestsRouter);
+}
+
 // ** Order matters for routes
 app.use(middleware.unknownEndpoint);
 // ** last loaded middleware - error handler

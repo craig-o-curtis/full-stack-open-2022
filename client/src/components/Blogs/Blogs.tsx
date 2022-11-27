@@ -1,6 +1,6 @@
-// cSpell:ignore Togglable
-import React, { useRef, useMemo, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+// cSpell:ignore Toggleable
+import React, { useRef, useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
 import {
   AppLoader,
   OverflowLock,
@@ -9,26 +9,27 @@ import {
   Overflow,
   List,
   Banner,
-  Togglable,
+  Toggleable,
   NavButton,
   SortByButton,
-} from "../common";
-import { useBlogsQuery } from "./hooks";
-import BlogItem from "./BlogItem";
-import AddBlogForm from "./AddBlogForm";
+} from '../common';
+import { useBlogsQuery } from './hooks';
+import BlogItem from './BlogItem';
+import AddBlogForm from './AddBlogForm';
 import {
   useAddBlogMutation,
   useDeleteBlogMutation,
   useUpdateBlogMutation,
-} from "./hooks/useBlogsMutations";
-import { IBlog, IPostBlogPayload } from "./Blog.types";
-import { useUserContext } from "../../auth/AuthProvider";
-import sortBy from "lodash/sortBy";
+} from './hooks/useBlogsMutations';
+import { IBlog, IPostBlogPayload } from './Blog.types';
+import { useUserContext } from '../../auth/AuthProvider';
+import sortBy from 'lodash/sortBy';
+import isEmpty from 'lodash/isEmpty';
 
-type SortGuy = "ASC" | "DESC";
+type SortGuy = 'ASC' | 'DESC';
 
 const Blogs = () => {
-  const [sortGuys, setSortGuys] = useState<SortGuy>("DESC");
+  const [sortGuys, setSortGuys] = useState<SortGuy>('DESC');
   const {
     blogs = [],
     isLoading: isGetLoading,
@@ -83,26 +84,30 @@ const Blogs = () => {
   const toggleBlogRef = useRef(null) as any;
 
   const handleSortBy = () => {
-    setSortGuys((prev) => (prev === "ASC" ? "DESC" : "ASC"));
+    setSortGuys((prev) => (prev === 'ASC' ? 'DESC' : 'ASC'));
   };
 
-  const sortedBlogs = useMemo(() => {
-    if (!blogs || blogs.length === 0) return [];
-    return sortBy(blogs, (b) => (sortGuys === "ASC" ? b.likes : -b.likes));
-  }, [blogs, sortGuys]);
+  const sortedBlogs =
+    !blogs || blogs.length === 0
+      ? []
+      : sortBy(blogs, (b) => (sortGuys === 'ASC' ? b.likes : -b.likes));
   // ** UI Methods ^^^^^^
 
   return (
     <AppLoader isLoading={isLoading}>
       <OverflowLock>
         <Box p={2} flex justifyContent="space-between">
-          <Heading as="h2">Blogs</Heading>
-          <SortByButton sortBy={sortGuys} onClickSortBy={handleSortBy} />
+          <Heading as="h1">Blogs</Heading>
+          <SortByButton
+            sortBy={sortGuys}
+            onClickSortBy={handleSortBy}
+            disabled={isEmpty(sortedBlogs)}
+          />
           <NavButton />
         </Box>
 
         <Box p={2}>
-          <Togglable
+          <Toggleable
             ref={toggleBlogRef}
             isShowing={false}
             showText="Add blog"
@@ -114,7 +119,7 @@ const Blogs = () => {
               onSubmit={handleSubmit}
               disabled={isLoading}
             />
-          </Togglable>
+          </Toggleable>
         </Box>
 
         <Overflow>

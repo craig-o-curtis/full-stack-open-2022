@@ -1,12 +1,13 @@
 import React from "react";
 import * as Styled from "./Button.styled";
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
   disabled?: React.ButtonHTMLAttributes<HTMLButtonElement>["disabled"];
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   className?: string;
   children: React.ReactNode;
+  title?: React.ButtonHTMLAttributes<HTMLButtonElement>["title"];
 }
 
 const Button = ({
@@ -15,6 +16,7 @@ const Button = ({
   className,
   onClick,
   children,
+  title,
 }: ButtonProps) => {
   return (
     <Styled.Button
@@ -22,6 +24,7 @@ const Button = ({
       disabled={disabled}
       onClick={onClick}
       className={className}
+      title={title}
     >
       {children}
     </Styled.Button>
