@@ -1,13 +1,13 @@
-import React from "react";
-import { QueryClientProvider } from "react-query";
-import { ReactQueryDevtools } from "react-query/devtools";
-import { Toaster } from "react-hot-toast";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { GlobalStyles, AppWrapper } from "./components/common";
-import * as AppRoutes from "./routes";
+import React from 'react';
+import { QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
+import { Toaster } from 'react-hot-toast';
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
+import { GlobalStyles, AppWrapper } from './components/common';
+import * as AppRoutes from './routes';
 
-import queryClient from "./queryClient";
-import { AuthProvider } from "./auth";
+import queryClient from './queryClient';
+import { AuthProvider } from './auth';
 
 const App = () => {
   return (
@@ -34,6 +34,7 @@ const App = () => {
                 element={<AppRoutes.RefactoredCourse />}
               />
               <Route path="/feedback" element={<AppRoutes.Feedback />} />
+              <Route path="/redux" element={<AppRoutes.Redux />} />
 
               <Route path="/" element={<AppRoutes.Home />} />
               <Route path="*" element={<AppRoutes.NotFound />} />
