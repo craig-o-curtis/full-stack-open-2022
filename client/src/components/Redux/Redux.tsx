@@ -3,6 +3,7 @@ import {
   AppLoader,
   Banner,
   Heading,
+  NavButton,
   Box,
   Overflow,
   OverflowLock,
@@ -16,8 +17,9 @@ const Redux = () => {
     <StoreProvider>
       <AppLoader isLoading={false}>
         <OverflowLock>
-          <Box p={2}>
+          <Box p={2} flex justifyContent="space-between">
             <Heading as="h1">Part 6 - Redux</Heading>
+            <NavButton />
           </Box>
           <Overflow>
             <Box p={2}>
