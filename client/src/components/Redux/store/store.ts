@@ -1,9 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
+// reducers
 import counterReducer from './counterSlice';
+import ratingReducer from './ratingSlice';
 
 export const store = configureStore({
   reducer: {
     counter: counterReducer,
+    rating: ratingReducer,
   },
 });
 

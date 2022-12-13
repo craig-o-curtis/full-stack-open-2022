@@ -10,11 +10,13 @@ import * as Styled from './Counter.styled';
 
 const Counter = () => {
   const count = useAppSelector((state: RootState) => state.counter.value);
+
   const dispatch = useAppDispatch();
 
   return (
     <Box mt={2} flex flexDirection="column">
       <Heading as="h2">Counter Example:</Heading>
+
       <Styled.MainBox flex justifyContent="center">
         <Styled.InnerBox flex m={2}>
           <Styled.EventButton

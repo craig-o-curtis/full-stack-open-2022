@@ -9,6 +9,7 @@ import {
   OverflowLock,
 } from '../common';
 import Counter from './Counter';
+import Rating from './Rating';
 
 import { StoreProvider } from './store';
 
@@ -24,7 +25,10 @@ const Redux = () => {
           <Overflow>
             <Box p={2}>
               <Banner variant="info">This uses Redux Toolkit</Banner>
+              {/* // ** Counter */}
               <Counter />
+              {/* // ** Rating */}
+              <Rating />
             </Box>
           </Overflow>
         </OverflowLock>
