@@ -2,10 +2,10 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from './store';
 
-export type Rating = 'good' | 'bad' | 'ok' | undefined;
+export type Rating = 'good' | 'bad' | 'ok';
 
 export interface RatingState {
-  value: Rating;
+  value?: Rating;
 }
 
 const initialState: RatingState = {
@@ -17,17 +17,24 @@ export const ratingSlice = createSlice({
   initialState,
   reducers: {
     rate: (state, action: PayloadAction<Rating>) => {
-      state.value = action.payload;
+      // ** Bad Immer way
+      //   state.value = action.payload;
+      // ** vanilla immutable way
+      return { ...state, value: action.payload };
     },
     reset: (state) => {
-      state.value = undefined;
+      // ** Bad Immer way
+      //   state.value = undefined;
+      // ** vanilla immutable way
+      return { ...state, value: undefined };
     },
   },
 });
 
+// ** Actions - defined in reducers above
 export const { rate, reset } = ratingSlice.actions;
 
 // from docs, but not used
-export const selectCount = (state: RootState) => state.rating.value;
+export const selectRating = (state: RootState) => state.rating.value;
 
 export default ratingSlice.reducer;

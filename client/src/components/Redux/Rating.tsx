@@ -13,8 +13,7 @@ const Rating = () => {
   return (
     <Box mt={2} flex flexDirection="column">
       <Heading as="h2">Rating Example:</Heading>
-
-      <Box as="p">Rating: {rating}</Box>
+      <Box as="p">Rating: {rating ? rating : '-'}</Box>
       <Box flex>
         <Button onClick={() => dispatch(rate('bad'))}>Bad</Button>
         <Button onClick={() => dispatch(rate('ok'))}>Ok</Button>

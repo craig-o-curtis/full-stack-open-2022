@@ -14,13 +14,27 @@ export const counterSlice = createSlice({
   initialState,
   reducers: {
     increment: (state) => {
-      state.value += 1;
+      // ** Redux toolkit uses Immer, but this pushes devs to write bad code - mutable code
+      //   state.value += 1;
+      // ** instead I'll create a new object
+      return {
+        ...state,
+        value: state.value + 1,
+      };
     },
     decrement: (state) => {
-      state.value -= 1;
+      //   state.value -= 1;
+      return {
+        ...state,
+        value: state.value - 1,
+      };
     },
     incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload;
+      //   state.value += action.payload;
+      return {
+        ...state,
+        value: state.value + action.payload,
+      };
     },
   },
 });
