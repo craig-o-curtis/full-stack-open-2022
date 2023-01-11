@@ -1,16 +1,16 @@
-import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import { AiOutlineUser } from "react-icons/ai";
-import { Box, Button } from "../common";
-import * as Styled from "./Home.styled";
-import { useLogout } from "../../auth";
+import React from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { AiOutlineUser } from 'react-icons/ai';
+import { Box, Button } from '../common';
+import * as Styled from './Home.styled';
+import { useLogout } from '../../auth';
 
 const Home = () => {
   const logout = useLogout();
   const navigate = useNavigate();
 
   const handleNavUserProfile = () => {
-    navigate("/user-profile", { replace: true });
+    navigate('/user-profile', { replace: true });
   };
 
   return (
@@ -26,6 +26,9 @@ const Home = () => {
         <Button onClick={logout}>Log out</Button>
       </Box>
       <ul>
+        <li>
+          <NavLink to="/redux">Part 6 - Redux</NavLink>
+        </li>
         <li>
           <NavLink to="/blogs">Blogs</NavLink>
         </li>
