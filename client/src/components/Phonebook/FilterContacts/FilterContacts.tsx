@@ -1,6 +1,6 @@
-import React from "react";
-import { Button } from "../../common";
-import * as Styled from "./FilterContacts.styled";
+import React from 'react';
+import { Button } from 'components/common';
+import * as Styled from './FilterContacts.styled';
 
 interface FilterContactsProps {
   filter: string;
@@ -27,7 +27,7 @@ const FilterContacts = ({
         />
       </label>
       <Styled.ButtonWrapper>
-        <Button disabled={filter === "" || disabled} onClick={onClear}>
+        <Button disabled={filter === '' || disabled} onClick={onClear}>
           Clear
         </Button>
       </Styled.ButtonWrapper>

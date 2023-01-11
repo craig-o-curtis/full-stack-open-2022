@@ -12,7 +12,7 @@ import {
   Toggleable,
   NavButton,
   SortByButton,
-} from '../common';
+} from 'components/common';
 import { useBlogsQuery } from './hooks';
 import BlogItem from './BlogItem';
 import AddBlogForm from './AddBlogForm';
@@ -22,7 +22,7 @@ import {
   useUpdateBlogMutation,
 } from './hooks/useBlogsMutations';
 import { IBlog, IPostBlogPayload } from './Blog.types';
-import { useUserContext } from '../../auth/AuthProvider';
+import { useUserContext } from 'auth/AuthProvider';
 import sortBy from 'lodash/sortBy';
 import isEmpty from 'lodash/isEmpty';
 

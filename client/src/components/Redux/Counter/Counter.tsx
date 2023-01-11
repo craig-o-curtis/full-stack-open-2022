@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Box, Heading } from '../common';
-import type { RootState } from './store';
-import { useAppDispatch, useAppSelector } from './store';
-import { decrement, increment } from './store/counterSlice';
+import { Box, Heading } from 'components/common';
+import type { RootState } from 'components/Redux/store';
+import { useAppDispatch, useAppSelector } from 'components/Redux/store';
+import { decrement, increment } from 'components/Redux/store/counterSlice';
 
 import { FaPlus, FaMinus } from 'react-icons/fa';
 import * as Styled from './Counter.styled';

@@ -1,5 +1,5 @@
 import { AuthRoute } from '../auth';
-import { Redux } from '../components';
+import { Redux } from 'components';
 
 const ReduxRoute = () => (
   <AuthRoute>

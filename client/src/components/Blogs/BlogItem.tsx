@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { IBlog } from './Blog.types';
 import * as Styled from './BlogItem.styled';
-import { Button, Box } from '../common';
+import { Button, Box } from 'components/common';
 export interface BlogItemProps {
   blog: IBlog;
   currentUserId?: string;

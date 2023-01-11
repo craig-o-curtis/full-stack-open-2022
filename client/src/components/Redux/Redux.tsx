@@ -7,7 +7,7 @@ import {
   Box,
   Overflow,
   OverflowLock,
-} from '../common';
+} from 'components/common';
 import Counter from './Counter';
 import Rating from './Rating';
 

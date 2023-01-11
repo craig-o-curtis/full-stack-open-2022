@@ -4,13 +4,17 @@ import {
   useMutation,
   UseMutationOptions,
   useQueryClient,
-} from "react-query";
-import { apiBaseUrl } from "../../../api";
-import { useAuthTokenConfig, AuthTokenConfig } from "../../../auth";
-import { queryKey } from "./useBlogsQuery";
-import axios from "axios";
-import { IBlog, IPostBlogPayload, IUpdateBlogPayload } from "../Blog.types";
-import toast from "react-hot-toast";
+} from 'react-query';
+import { apiBaseUrl } from 'api';
+import { useAuthTokenConfig, AuthTokenConfig } from 'auth';
+import { queryKey } from './useBlogsQuery';
+import axios from 'axios';
+import {
+  IBlog,
+  IPostBlogPayload,
+  IUpdateBlogPayload,
+} from 'components/Blogs/Blog.types';
+import toast from 'react-hot-toast';
 
 function errorHandler(error: any, defaultMessage: string) {
   if (error?.response?.data?.error) {

@@ -1,7 +1,7 @@
-import { useMemo } from "react";
-import { Heading, Loader, Banner, Image } from "../../common";
-import { useWeatherQuery } from "../hooks";
-import * as Styled from "./CapitalWeather.styled";
+import { useMemo } from 'react';
+import { Heading, Loader, Banner, Image } from 'components/common';
+import { useWeatherQuery } from '../hooks';
+import * as Styled from './CapitalWeather.styled';
 
 interface CapitalWeatherProps {
   latlong: number[];

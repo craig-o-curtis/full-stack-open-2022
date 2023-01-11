@@ -1,8 +1,8 @@
-import { useMemo } from "react";
-import CountryDetail from "../CountryDetail";
-import { ICountry } from "../Country.types";
-import { Banner } from "../../common";
-import * as Styled from "./Countries.styled";
+import { useMemo } from 'react';
+import CountryDetail from '../CountryDetail';
+import { ICountry } from '../Country.types';
+import { Banner } from 'components/common';
+import * as Styled from './Countries.styled';
 
 interface CountriesProps {
   countries: ICountry[];
@@ -12,7 +12,7 @@ interface CountriesProps {
 const Countries = ({ countries = [], filter }: CountriesProps) => {
   const filteredCountries = useMemo(
     () =>
-      filter === ""
+      filter === ''
         ? countries
         : countries.filter((c) =>
             c?.name?.common?.toLowerCase().includes(filter.toLowerCase())
@@ -23,7 +23,7 @@ const Countries = ({ countries = [], filter }: CountriesProps) => {
   if (countries.length === 0) return null;
   return (
     <Styled.Countries>
-      {filteredCountries.length === 0 && filter !== "" ? (
+      {filteredCountries.length === 0 && filter !== '' ? (
         <Banner variant="warning">Please refine your search</Banner>
       ) : (
         filteredCountries.map((country) => (

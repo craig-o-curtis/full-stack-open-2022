@@ -1,6 +1,6 @@
-import React from "react";
-import Loader from "../Loader";
-import * as Styled from "./AppLoader.styled";
+import React from 'react';
+import { Loader } from 'components/common';
+import * as Styled from './AppLoader.styled';
 
 interface AppLoaderWrapperProps {
   children: React.ReactNode;

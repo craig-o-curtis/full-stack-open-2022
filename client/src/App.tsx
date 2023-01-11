@@ -3,11 +3,11 @@ import { QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Toaster } from 'react-hot-toast';
 import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
-import { GlobalStyles, AppWrapper } from './components/common';
-import * as AppRoutes from './routes';
+import { GlobalStyles, AppWrapper } from 'components/common';
+import * as AppRoutes from 'routes';
 
-import queryClient from './queryClient';
-import { AuthProvider } from './auth';
+import queryClient from 'queryClient';
+import { AuthProvider } from 'auth';
 
 const App = () => {
   return (

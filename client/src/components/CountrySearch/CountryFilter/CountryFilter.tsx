@@ -1,6 +1,6 @@
-import React from "react";
-import { Button } from "../../common";
-import * as Styled from "./CountryFilter.styled";
+import React from 'react';
+import { Button } from 'components/common';
+import * as Styled from './CountryFilter.styled';
 
 interface CountryFilterProps {
   filter: string;
@@ -20,7 +20,7 @@ const CountryFilter = ({ filter, onChange, onClear }: CountryFilterProps) => {
         />
       </label>
       <Styled.ButtonWrapper>
-        <Button disabled={filter === ""} onClick={onClear}>
+        <Button disabled={filter === ''} onClick={onClear}>
           Clear
         </Button>
       </Styled.ButtonWrapper>

@@ -1,5 +1,5 @@
-import { AiFillWarning } from "react-icons/ai";
-import Icon from "../Icon";
+import { AiFillWarning } from 'react-icons/ai';
+import { Icon } from 'components/common';
 
 interface WarningIconProps {
   size?: number;

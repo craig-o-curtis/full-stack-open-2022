@@ -1,6 +1,6 @@
-import React from "react";
-import { Heading } from "../common";
-import AnecdoteDisplay from "./AnecdoteDisplay";
+import React from 'react';
+import { Heading } from 'components/common';
+import AnecdoteDisplay from './AnecdoteDisplay';
 
 interface TopAnecdoteProps {
   anecdote: string;

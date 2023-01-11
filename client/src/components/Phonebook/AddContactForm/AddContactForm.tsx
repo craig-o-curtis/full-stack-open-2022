@@ -1,9 +1,9 @@
-import React, { useState, useMemo } from "react";
-import { Button, WarningIcon, Box, Spacer } from "../../common";
-import { AiOutlinePlus } from "react-icons/ai";
-import PhoneNumberInput from "../PhoneNumberInput";
-import * as Styled from "./AddContactForm.styled";
-import { IContact } from "../Contact.types";
+import React, { useState, useMemo } from 'react';
+import { Button, WarningIcon, Box, Spacer } from 'components/common';
+import { AiOutlinePlus } from 'react-icons/ai';
+import PhoneNumberInput from '../PhoneNumberInput';
+import * as Styled from './AddContactForm.styled';
+import { IContact } from '../Contact.types';
 
 interface AddContactFormProps {
   contacts: IContact[];
@@ -19,8 +19,8 @@ const AddContactForm = ({
   disabled,
   onSubmit,
 }: AddContactFormProps) => {
-  const [newName, setNewName] = useState("");
-  const [newNumber, setNewNumber] = useState("");
+  const [newName, setNewName] = useState('');
+  const [newNumber, setNewNumber] = useState('');
   const [isPossibleNumber, setIsPossibleNumber] = useState(false);
   const hasDupName = useMemo(
     () => contacts.some((c) => c.name === newName),
@@ -48,8 +48,8 @@ const AddContactForm = ({
       return;
     }
     onSubmit?.(event, { name: newName, number: newNumber });
-    setNewName(() => "");
-    setNewNumber(() => "");
+    setNewName(() => '');
+    setNewNumber(() => '');
   };
 
   return (
@@ -57,7 +57,7 @@ const AddContactForm = ({
       <Styled.NewContactRow>
         <Styled.InputsWrapper>
           <Styled.InputWrapper>
-            <label style={{ display: "flex" }}>
+            <label style={{ display: 'flex' }}>
               <Styled.LabelSpan>Name:</Styled.LabelSpan>
               <input
                 type="text"

@@ -1,8 +1,8 @@
-import React, { useState, useMemo } from "react";
-import FeedbackButtons from "./FeedbackButtons";
-import { FeedbackType } from "./Feedback.types";
-import FeedbackStatistics from "./FeedbackStatistics";
-import { Button } from "../common";
+import React, { useState, useMemo } from 'react';
+import FeedbackButtons from './FeedbackButtons';
+import { FeedbackType } from './Feedback.types';
+import FeedbackStatistics from './FeedbackStatistics';
+import { Button } from 'components/common';
 interface FeedbackState {
   good: number;
   neutral: number;

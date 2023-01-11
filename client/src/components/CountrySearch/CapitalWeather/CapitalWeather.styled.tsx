@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Heading } from "../../common";
+import styled from 'styled-components';
+import { Heading } from '../../common';
 
 export const CapitalWeather = styled.div`
   margin-top: 1rem;

@@ -1,7 +1,7 @@
 import React from 'react';
-import { useUserContext } from '../../auth/AuthProvider';
-import { useDeleteUserMutation, useLogout } from '../../auth/hooks';
-import { AppLoader, Loader, Button, Box, NavButton } from '../common';
+import { useUserContext } from 'auth/AuthProvider';
+import { useDeleteUserMutation, useLogout } from 'auth/hooks';
+import { AppLoader, Loader, Button, Box, NavButton } from 'components/common';
 import * as Styled from './UserProfile.styled';
 
 const UserProfile = () => {

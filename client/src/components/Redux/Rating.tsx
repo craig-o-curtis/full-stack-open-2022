@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Box, Heading, Button } from '../common';
+import { Box, Heading, Button } from 'components/common';
 import type { RootState } from './store/store';
 import { useAppDispatch, useAppSelector } from './store';
 import { rate, reset } from './store/ratingSlice';

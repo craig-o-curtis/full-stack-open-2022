@@ -1,12 +1,18 @@
-import React, { useState } from "react";
-import { Heading, OverflowLock, Overflow, Loader, Banner } from "../common";
-import { useCountryQuery } from "./hooks";
-import CountryHeaderBar from "./CountryHeaderBar";
-import CountryFilter from "./CountryFilter";
-import Countries from "./Countries";
+import React, { useState } from 'react';
+import {
+  Heading,
+  OverflowLock,
+  Overflow,
+  Loader,
+  Banner,
+} from 'components/common';
+import { useCountryQuery } from './hooks';
+import CountryHeaderBar from './CountryHeaderBar';
+import CountryFilter from './CountryFilter';
+import Countries from './Countries';
 
 const CountrySearch = () => {
-  const [filter, setFilter] = useState<string>("");
+  const [filter, setFilter] = useState<string>('');
 
   const { data: countries, isLoading, isError, error } = useCountryQuery();
 
@@ -21,7 +27,7 @@ const CountrySearch = () => {
         <CountryFilter
           filter={filter}
           onChange={handleFilterChange}
-          onClear={() => setFilter("")}
+          onClear={() => setFilter('')}
         />
       </CountryHeaderBar>
 

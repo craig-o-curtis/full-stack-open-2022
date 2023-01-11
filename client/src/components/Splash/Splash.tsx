@@ -1,6 +1,6 @@
-import React from "react";
-import { LoaderDisc } from "../common";
-import * as Styled from "./Splash.styled";
+import React from 'react';
+import { LoaderDisc } from 'components/common';
+import * as Styled from './Splash.styled';
 
 const Splash = () => {
   return (

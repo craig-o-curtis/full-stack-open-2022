@@ -1,9 +1,14 @@
-import { AppLoader, Form, FormControl, FormSubmitButton } from "../common";
-import { NavLink, useNavigate } from "react-router-dom";
-import { ISignupUser } from "../../auth";
-import * as Styled from "./Signup.styled";
-import { useSignupUserMutation } from "../../auth/hooks";
-import { useUserContext } from "../../auth/AuthProvider";
+import {
+  AppLoader,
+  Form,
+  FormControl,
+  FormSubmitButton,
+} from 'components/common';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { ISignupUser } from 'auth';
+import * as Styled from './Signup.styled';
+import { useSignupUserMutation } from 'auth/hooks';
+import { useUserContext } from 'auth/AuthProvider';
 
 const Signup = () => {
   const { mutateAsync: createUser, isLoading } = useSignupUserMutation();
@@ -16,10 +21,10 @@ const Signup = () => {
       // ** dispatch to context
       if (createdUser) {
         actions.setUser(createdUser);
-        navigate("/home", { replace: true });
+        navigate('/home', { replace: true });
       }
     } catch (error) {
-      console.error("Error", error);
+      console.error('Error', error);
     }
   };
 

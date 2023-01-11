@@ -1,6 +1,6 @@
-import styled, { css, FlattenSimpleInterpolation } from "styled-components";
-import { BoxProps } from "./Box.types";
-import { spacing } from "../../../utils/styled";
+import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
+import { BoxProps } from './Box.types';
+import { spacing } from 'utils/styled';
 
 const flexStyles = (props: BoxProps) => {
   const s: FlattenSimpleInterpolation[] = [];
@@ -20,7 +20,7 @@ const flexStyles = (props: BoxProps) => {
     }
   }
 
-  if (typeof props.flex === "string") {
+  if (typeof props.flex === 'string') {
     s.push(
       css`
         flex: ${props.flex};
@@ -107,28 +107,28 @@ const positionStyles = ({ position, top, right, bottom, left }: BoxProps) => {
   if (top !== undefined) {
     s.push(
       css`
-        top: ${typeof top === "string" ? top : `${top}px`};
+        top: ${typeof top === 'string' ? top : `${top}px`};
       `
     );
   }
   if (right !== undefined) {
     s.push(
       css`
-        right: ${typeof right === "string" ? right : `${right}px`};
+        right: ${typeof right === 'string' ? right : `${right}px`};
       `
     );
   }
   if (bottom !== undefined) {
     s.push(
       css`
-        width: ${typeof bottom === "string" ? bottom : `${bottom}px`};
+        width: ${typeof bottom === 'string' ? bottom : `${bottom}px`};
       `
     );
   }
   if (left !== undefined) {
     s.push(
       css`
-        width: ${typeof left === "string" ? left : `${left}px`};
+        width: ${typeof left === 'string' ? left : `${left}px`};
       `
     );
   }
@@ -139,8 +139,8 @@ const positionStyles = ({ position, top, right, bottom, left }: BoxProps) => {
 const spacingStyles = (props: BoxProps) => {
   const s: FlattenSimpleInterpolation[] = [];
 
-  const spacingOrAuto = (value: number | "auto") => {
-    if (value === "auto") return "auto";
+  const spacingOrAuto = (value: number | 'auto') => {
+    if (value === 'auto') return 'auto';
     return spacing(value);
   };
 

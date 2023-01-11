@@ -1,7 +1,7 @@
-import React from "react";
-import { Button } from "../common";
-import * as Styled from "./Anecdote.styled";
-import NextAnecdoteButton from "./NextAnecdoteButton";
+import React from 'react';
+import { Button } from 'components/common';
+import * as Styled from './Anecdote.styled';
+import NextAnecdoteButton from './NextAnecdoteButton';
 
 interface AnecdoteProps {
   anecdote: string;

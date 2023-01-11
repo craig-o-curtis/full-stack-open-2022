@@ -4,15 +4,15 @@ import {
   useMutation,
   UseMutationOptions,
   useQueryClient,
-} from "react-query";
-import { apiBaseUrl } from "../../../api";
-import { useAuthTokenConfig, AuthTokenConfig } from "../../../auth";
-import { queryKey } from "./useContactsQuery";
-import axios from "axios";
-import { IContact } from "../Contact.types";
-import toast from "react-hot-toast";
+} from 'react-query';
+import { apiBaseUrl } from 'api';
+import { useAuthTokenConfig, AuthTokenConfig } from 'auth';
+import { queryKey } from './useContactsQuery';
+import axios from 'axios';
+import { IContact } from '../Contact.types';
+import toast from 'react-hot-toast';
 
-type PartialPayload = Omit<IContact, "id">;
+type PartialPayload = Omit<IContact, 'id'>;
 
 function errorHandler(error: any, defaultMessage: string) {
   if (error?.response?.data?.error) {

@@ -1,5 +1,5 @@
-import React from "react";
-import { Signup } from "../components";
+import React from 'react';
+import { Signup } from 'components';
 
 const SignupRoute = () => {
   return <Signup />;

@@ -1,7 +1,6 @@
-import React from "react";
-import { ImSpinner9 } from "react-icons/im";
-import { keyframes } from "styled-components";
-import styled from "styled-components";
+import React from 'react';
+import { ImSpinner9 } from 'react-icons/im';
+import styled, { keyframes } from 'styled-components';
 
 const loadAnimation = keyframes`
  0% { transform: rotate(0deg); }
