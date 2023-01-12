@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import { Box } from "../common";
+import styled from 'styled-components';
+
+import { Box } from 'components/common';
 
 export const Splash = styled(Box)`
   background: rgba(0, 0, 0, 0.85);

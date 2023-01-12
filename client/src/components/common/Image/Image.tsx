@@ -1,4 +1,4 @@
-import * as Styled from "./Image.styled";
+import * as Styled from './Image.styled';
 
 interface ImageProps {
   src: string;

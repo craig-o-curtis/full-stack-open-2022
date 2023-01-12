@@ -1,1 +1,1 @@
-export { apiBaseUrl } from "./apiBaseUrl";
+export { apiBaseUrl } from './apiBaseUrl';

@@ -1,13 +1,14 @@
 import React from 'react';
+import { Toaster } from 'react-hot-toast';
 import { QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { Toaster } from 'react-hot-toast';
-import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
-import { GlobalStyles, AppWrapper } from './components/common';
-import * as AppRoutes from './routes';
+import { BrowserRouter, Outlet, Route, Routes } from 'react-router-dom';
 
-import queryClient from './queryClient';
-import { AuthProvider } from './auth';
+import { AuthProvider } from 'auth';
+import queryClient from 'queryClient';
+import * as AppRoutes from 'routes';
+
+import { AppWrapper, GlobalStyles } from 'components/common';
 
 const App = () => {
   return (

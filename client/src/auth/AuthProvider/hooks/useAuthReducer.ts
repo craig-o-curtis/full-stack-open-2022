@@ -1,14 +1,15 @@
-import { useReducer } from "react";
-import { UserState } from "../context/UserContext";
-import { IAuthUser } from "../../Auth.types";
+import { useReducer } from 'react';
+
+import { IAuthUser } from '../../Auth.types';
+import { UserState } from '../context/UserContext';
 
 export type Actions =
   | {
-      type: "setUser";
+      type: 'setUser';
       value: IAuthUser | null;
     }
   | {
-      type: "resetState";
+      type: 'resetState';
     };
 
 export const initialState: UserState = {
@@ -23,12 +24,12 @@ const stateInitializer = (state: UserState) => {
 
 function authReducer(state: UserState, action: Actions): UserState {
   switch (action.type) {
-    case "setUser":
+    case 'setUser':
       return {
         ...state,
         user: action.value,
       };
-    case "resetState":
+    case 'resetState':
       return stateInitializer(initialState);
     default:
       return state;

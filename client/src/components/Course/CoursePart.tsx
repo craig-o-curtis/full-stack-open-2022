@@ -1,5 +1,6 @@
-import React from "react";
-import { ICoursePart } from "./Course.types";
+import React from 'react';
+
+import { ICoursePart } from './Course.types';
 
 interface CoursePartProps {
   part: ICoursePart;

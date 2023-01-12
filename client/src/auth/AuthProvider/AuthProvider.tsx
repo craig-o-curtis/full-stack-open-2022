@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react';
 
-import { UserContext, StateActions } from './context/UserContext';
 import { IAuthUser } from '../Auth.types';
-import { useAuthReducer } from './hooks';
 import { useLocalStorageCurrentUser } from '../hooks';
+import { StateActions, UserContext } from './context/UserContext';
+import { useAuthReducer } from './hooks';
 
 interface AuthProviderProps {
   children: React.ReactNode;

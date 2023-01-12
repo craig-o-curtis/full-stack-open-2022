@@ -1,6 +1,7 @@
-import React from "react";
-import StatisticLine from "./StatisticLine";
-import * as Styled from "./StatisticsTable.styled";
+import React from 'react';
+
+import StatisticLine from './StatisticLine';
+import * as Styled from './StatisticsTable.styled';
 
 interface StatisticRow {
   label: string;

@@ -1,5 +1,6 @@
-import React, { useMemo } from "react";
-import { ICoursePart } from "./Course.types";
+import React, { useMemo } from 'react';
+
+import { ICoursePart } from './Course.types';
 
 interface CourseTotalsProps {
   parts: ICoursePart[];

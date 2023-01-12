@@ -1,2 +1,2 @@
-export { Box as default } from "./Box.styled";
-export * from "./Box.types";
+export * from './Box.types';
+export { default } from './Box.styled';

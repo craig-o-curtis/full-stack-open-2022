@@ -1,9 +1,10 @@
-import { useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import { useQueryClient } from "react-query";
-import toast from "react-hot-toast";
-import { useUserContext } from "../AuthProvider";
-import { queryKey } from "./useRefreshTokenQuery";
+import { useCallback } from 'react';
+import toast from 'react-hot-toast';
+import { useQueryClient } from 'react-query';
+import { useNavigate } from 'react-router-dom';
+
+import { useUserContext } from '../AuthProvider';
+import { queryKey } from './useRefreshTokenQuery';
 
 export const useLogout = () => {
   const [, actions] = useUserContext();
@@ -18,9 +19,9 @@ export const useLogout = () => {
     queryClient.removeQueries(queryKey);
 
     // ** pop a toast
-    toast.success("Logged out");
+    toast.success('Logged out');
     // ** redirect to login page
-    navigate("/login");
+    navigate('/login');
   }, [actions, navigate, queryClient]);
 
   return logout;

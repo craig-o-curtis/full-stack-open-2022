@@ -1,23 +1,25 @@
-import { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import { useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+
 import {
   AppLoader,
   Banner,
-  Heading,
   Box,
+  Heading,
   Overflow,
   OverflowLock,
-} from "../common";
-import AddContactForm from "./AddContactForm";
-import Contacts from "./Contacts";
-import { IContact } from "./Contact.types";
-import FilterContacts from "./FilterContacts";
+} from 'components/common';
+
+import AddContactForm from './AddContactForm';
+import { IContact } from './Contact.types';
+import Contacts from './Contacts';
+import FilterContacts from './FilterContacts';
 import {
-  useContactsQuery,
   useAddContactMutation,
-  useUpdateContactMutation,
+  useContactsQuery,
   useDeleteContactMutation,
-} from "./hooks";
+  useUpdateContactMutation,
+} from './hooks';
 
 // ** Completed extraction already for part-2.b Exercise 2.10
 const Phonebook = () => {
@@ -27,7 +29,7 @@ const Phonebook = () => {
     error,
     isError,
   } = useContactsQuery();
-  const [filter, setFilter] = useState<string>("");
+  const [filter, setFilter] = useState<string>('');
   const { mutateAsync: postContact, isLoading: isPostLoading } =
     useAddContactMutation();
   const { mutateAsync: updateContact, isLoading: isUpdateLoading } =
@@ -99,7 +101,7 @@ const Phonebook = () => {
                   filter={filter}
                   disabled={isLoading}
                   onChange={handleFilterChange}
-                  onClear={() => setFilter("")}
+                  onClear={() => setFilter('')}
                 />
               </Box>
             )}

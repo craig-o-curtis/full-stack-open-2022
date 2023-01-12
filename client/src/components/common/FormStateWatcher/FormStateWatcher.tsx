@@ -1,5 +1,5 @@
-import { useEffect } from "react";
-import { FormState, useFormContext } from "react-hook-form";
+import { useEffect } from 'react';
+import { FormState, useFormContext } from 'react-hook-form';
 
 // ** Component watches form state and notifies when successful submit
 interface FormStateWatcherProps {

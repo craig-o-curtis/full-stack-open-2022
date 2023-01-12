@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import { Box, List, ListItem, Button } from "../common";
+import styled from 'styled-components';
+
+import { Box, Button, List, ListItem } from 'components/common';
 
 export const BlogItem = styled(ListItem)`
   box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.25);

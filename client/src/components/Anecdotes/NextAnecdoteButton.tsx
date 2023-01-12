@@ -1,5 +1,6 @@
-import React from "react";
-import { Button } from "../common";
+import React from 'react';
+
+import { Button } from 'components/common';
 
 interface NextAnecdoteButtonProps {
   onClick: () => void;

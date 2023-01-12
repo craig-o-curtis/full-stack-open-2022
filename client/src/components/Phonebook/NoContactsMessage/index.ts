@@ -1,1 +1,1 @@
-export { default } from "./NoContactsMessage";
+export { default } from './NoContactsMessage';

@@ -1,16 +1,23 @@
 // ** Simple implementation of React Query for easy server client state management
+import toast from 'react-hot-toast';
 import {
   MutationFunction,
-  useMutation,
   UseMutationOptions,
+  useMutation,
   useQueryClient,
-} from "react-query";
-import { apiBaseUrl } from "../../../api";
-import { useAuthTokenConfig, AuthTokenConfig } from "../../../auth";
-import { queryKey } from "./useBlogsQuery";
-import axios from "axios";
-import { IBlog, IPostBlogPayload, IUpdateBlogPayload } from "../Blog.types";
-import toast from "react-hot-toast";
+} from 'react-query';
+
+import { apiBaseUrl } from 'api';
+import { AuthTokenConfig, useAuthTokenConfig } from 'auth';
+import axios from 'axios';
+
+import {
+  IBlog,
+  IPostBlogPayload,
+  IUpdateBlogPayload,
+} from 'components/Blogs/Blog.types';
+
+import { queryKey } from './useBlogsQuery';
 
 function errorHandler(error: any, defaultMessage: string) {
   if (error?.response?.data?.error) {

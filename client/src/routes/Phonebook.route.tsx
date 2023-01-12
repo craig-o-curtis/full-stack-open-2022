@@ -1,5 +1,5 @@
-import { AuthRoute } from "../auth";
-import { Phonebook } from "../components";
+import { AuthRoute } from 'auth';
+import { Phonebook } from 'components';
 
 const PhonebookRoute = () => (
   <AuthRoute>

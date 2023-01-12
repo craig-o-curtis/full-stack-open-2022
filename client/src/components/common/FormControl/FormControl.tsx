@@ -1,13 +1,15 @@
-import React, { HTMLInputTypeAttribute } from "react";
-import { useFormContext, Validate } from "react-hook-form";
-import * as Styled from "./FormControl.styled";
-import { ErrorMessage } from "@hookform/error-message";
+import React, { HTMLInputTypeAttribute } from 'react';
+import { Validate, useFormContext } from 'react-hook-form';
+
+import { ErrorMessage } from '@hookform/error-message';
+
+import * as Styled from './FormControl.styled';
 
 interface FormControlProps {
   label: string;
   name: string;
-  type: Extract<HTMLInputTypeAttribute, "text" | "password" | "url">;
-  autoComplete?: "off" | "new-password";
+  type: Extract<HTMLInputTypeAttribute, 'text' | 'password' | 'url'>;
+  autoComplete?: 'off' | 'new-password';
   required?: boolean;
   minLength?: number;
   placeholder?: string;
@@ -19,9 +21,9 @@ const FormControl = ({
   label,
   name,
   type,
-  autoComplete = "off",
+  autoComplete = 'off',
   required = false,
-  requiredMessage = "Required",
+  requiredMessage = 'Required',
   minLength,
   placeholder,
   validate,
@@ -39,9 +41,9 @@ const FormControl = ({
 
           <Styled.FormControlLabelRequiredError
             className={
-              (errors?.[name]?.type || ("" as string)) === "required"
-                ? "required"
-                : "error"
+              (errors?.[name]?.type || ('' as string)) === 'required'
+                ? 'required'
+                : 'error'
             }
           >
             <ErrorMessage errors={errors} name={name} />
@@ -59,7 +61,7 @@ const FormControl = ({
             ...(minLength && {
               minLength: {
                 value: minLength,
-                message: "Length must be 3 or more",
+                message: 'Length must be 3 or more',
               },
             }),
             validate,

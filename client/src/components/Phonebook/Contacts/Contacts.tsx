@@ -1,8 +1,9 @@
-import React, { useMemo } from "react";
-import { IContact } from "../Contact.types";
-import * as Styled from "./Contacts.styled";
-import NoContactsMessage from "../NoContactsMessage";
-import Contact from "../Contact";
+import React, { useMemo } from 'react';
+
+import Contact from '../Contact';
+import { IContact } from '../Contact.types';
+import NoContactsMessage from '../NoContactsMessage';
+import * as Styled from './Contacts.styled';
 
 interface ContactsProps {
   contacts: IContact[];
@@ -13,13 +14,13 @@ interface ContactsProps {
 
 const Contacts = ({
   contacts = [],
-  filter = "",
+  filter = '',
   disabled,
   onDeleteContact,
 }: ContactsProps) => {
   const filteredContacts = useMemo(
     () =>
-      filter !== ""
+      filter !== ''
         ? contacts.filter((c) =>
             c.name.toLowerCase().includes(filter.toLowerCase())
           )

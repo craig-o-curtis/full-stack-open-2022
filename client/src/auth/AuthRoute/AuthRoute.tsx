@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-import { useUserContext } from "../AuthProvider";
-import { useLocalStorageCurrentUser } from "../hooks";
-import { useRefreshTokenQuery } from "../hooks/useRefreshTokenQuery";
+import { useUserContext } from '../AuthProvider';
+import { useLocalStorageCurrentUser } from '../hooks';
+import { useRefreshTokenQuery } from '../hooks/useRefreshTokenQuery';
 
 interface AuthRouteProps {
   children: React.ReactNode;
@@ -29,14 +29,14 @@ const AuthRoute = React.memo(function ({ children }: AuthRouteProps) {
 
   useEffect(() => {
     if (isError || error) {
-      navigate("/login", { replace: true });
+      navigate('/login', { replace: true });
       actions.setUser(null);
     }
   }, [isError, error, navigate, actions, isLoading, data]);
 
   useEffect(() => {
     if (!isLoading && !data) {
-      navigate("/login", { replace: true });
+      navigate('/login', { replace: true });
       actions.setUser(null);
     }
   }, [actions, data, isLoading, navigate]);

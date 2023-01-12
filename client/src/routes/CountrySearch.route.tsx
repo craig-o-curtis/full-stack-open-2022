@@ -1,5 +1,5 @@
-import { AuthRoute } from "../auth";
-import { CountrySearch } from "../components";
+import { AuthRoute } from 'auth';
+import { CountrySearch } from 'components';
 
 const CountrySearchRoute = () => (
   <AuthRoute>

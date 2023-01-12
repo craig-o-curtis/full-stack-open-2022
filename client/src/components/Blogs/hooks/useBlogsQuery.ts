@@ -1,10 +1,12 @@
 // ** Simple implementation of React Query for easy server client state management
-import { useQuery } from "react-query";
-import axios from "axios";
-import { IBlog } from "../Blog.types";
-import { apiBaseUrl } from "../../../api";
+import { useQuery } from 'react-query';
 
-export const queryKey = "Blogs";
+import { apiBaseUrl } from 'api';
+import axios from 'axios';
+
+import { IBlog } from 'components/Blogs/Blog.types';
+
+export const queryKey = 'Blogs';
 
 const getBlogs = async () => {
   try {

@@ -1,5 +1,7 @@
-import { Box, Button } from '../common';
 import styled from 'styled-components';
+
+import { Box, Button } from 'components/common';
+
 const Bada55 = '#bada55';
 
 export const MainBox = styled(Box)`

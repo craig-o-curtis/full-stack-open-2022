@@ -2,5 +2,19 @@
   "trailingComma": "es5",
   "tabWidth": 2,
   "semi": true,
-  "singleQuote": true
+  "singleQuote": true,
+  "importOrder": [
+    "^react",
+    "<THIRD_PARTY_MODULES>",
+    "^api/(.*)$",
+    "^auth/(.*)$",
+    "^data/(.*)$",
+    "^utils/(.*)$",
+    "^hooks/(.*)$",
+    "^routes/(.*)$",
+    "^components/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }

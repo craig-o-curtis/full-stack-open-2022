@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { ICountry } from "../Country.types";
-import { Heading, Image, Button } from "../../common";
-import CapitalWeather from "../CapitalWeather";
-import * as Styled from "./CountryDetail.styled";
+import React, { useEffect, useState } from 'react';
+
+import { Button, Heading, Image } from 'components/common';
+
+import CapitalWeather from '../CapitalWeather';
+import { ICountry } from '../Country.types';
+import * as Styled from './CountryDetail.styled';
 
 interface CountryDetailProps {
   country: ICountry;
@@ -25,7 +27,7 @@ const CountryDetail = ({ country, showDefault }: CountryDetailProps) => {
       <Heading as="h2">
         <Styled.HeadingText>{country?.name?.common}</Styled.HeadingText>
         <Button onClick={() => setShowDetails((prev) => !prev)}>
-          {!showDetails ? "Show" : "Hide"}
+          {!showDetails ? 'Show' : 'Hide'}
         </Button>
       </Heading>
 
@@ -34,15 +36,15 @@ const CountryDetail = ({ country, showDefault }: CountryDetailProps) => {
           <Styled.CountryBoxChild>
             <Styled.Grid cols={2}>
               <Styled.GridItem>
-                <strong>Capital:</strong>{" "}
+                <strong>Capital:</strong>{' '}
               </Styled.GridItem>
               <Styled.GridItem>{country.capital}</Styled.GridItem>
               <Styled.GridItem>
-                <strong>Area:</strong>{" "}
+                <strong>Area:</strong>{' '}
               </Styled.GridItem>
               <Styled.GridItem>{country.area}</Styled.GridItem>
               <Styled.GridItem>
-                <strong>Languages:</strong>{" "}
+                <strong>Languages:</strong>{' '}
               </Styled.GridItem>
               <Styled.GridItem>
                 <Styled.UL>

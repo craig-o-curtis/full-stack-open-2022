@@ -1,5 +1,6 @@
-import { MdError } from "react-icons/md";
-import Icon from "../Icon";
+import { MdError } from 'react-icons/md';
+
+import { Icon } from 'components/common';
 
 interface ErrorIconProps {
   size?: number;

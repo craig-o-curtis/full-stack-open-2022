@@ -1,9 +1,10 @@
-import "react-phone-number-input/style.css";
 import PhoneInput, {
   formatPhoneNumberIntl,
   isPossiblePhoneNumber,
-} from "react-phone-number-input";
-import * as Styled from "./PhoneNumberInput.styled";
+} from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
+
+import * as Styled from './PhoneNumberInput.styled';
 
 interface PhoneNumberInputProps {
   value: string;

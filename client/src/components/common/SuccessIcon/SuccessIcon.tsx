@@ -1,5 +1,6 @@
-import { AiFillCheckCircle } from "react-icons/ai";
-import Icon from "../Icon";
+import { AiFillCheckCircle } from 'react-icons/ai';
+
+import { Icon } from 'components/common';
 
 interface SuccessIconProps {
   size?: number;

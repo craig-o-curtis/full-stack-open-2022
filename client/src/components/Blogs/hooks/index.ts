@@ -1,1 +1,1 @@
-export * from "./useBlogsQuery";
+export * from './useBlogsQuery';

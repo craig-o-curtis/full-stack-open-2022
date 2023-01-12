@@ -1,11 +1,11 @@
 import React from 'react';
+import { FaMinus, FaPlus } from 'react-icons/fa';
 
-import { Box, Heading } from '../common';
-import type { RootState } from './store';
-import { useAppDispatch, useAppSelector } from './store';
-import { decrement, increment } from './store/counterSlice';
+import type { RootState } from 'components/Redux/store';
+import { useAppDispatch, useAppSelector } from 'components/Redux/store';
+import { decrement, increment } from 'components/Redux/store/counterSlice';
+import { Box, Heading } from 'components/common';
 
-import { FaPlus, FaMinus } from 'react-icons/fa';
 import * as Styled from './Counter.styled';
 
 const Counter = () => {

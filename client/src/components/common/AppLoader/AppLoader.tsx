@@ -1,6 +1,8 @@
-import React from "react";
-import Loader from "../Loader";
-import * as Styled from "./AppLoader.styled";
+import React from 'react';
+
+import { Loader } from 'components/common';
+
+import * as Styled from './AppLoader.styled';
 
 interface AppLoaderWrapperProps {
   children: React.ReactNode;
@@ -9,14 +11,14 @@ interface AppLoaderWrapperProps {
 
 const AppLoader = ({ children, isLoading }: AppLoaderWrapperProps) => {
   return (
-    <Styled.AppLoaderWrapper>
+    <div>
       <>{children}</>
       {isLoading && (
         <Styled.AppLoaderContainer>
           <Loader />
         </Styled.AppLoaderContainer>
       )}
-    </Styled.AppLoaderWrapper>
+    </div>
   );
 };
 

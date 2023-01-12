@@ -1,5 +1,5 @@
-import { AuthRoute } from "../auth";
-import { RefactoredCourse } from "../components";
+import { AuthRoute } from 'auth';
+import { RefactoredCourse } from 'components';
 
 const RefactoredCourseRoute = () => (
   <AuthRoute>

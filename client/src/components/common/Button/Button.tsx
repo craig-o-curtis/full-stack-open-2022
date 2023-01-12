@@ -1,17 +1,18 @@
-import React from "react";
-import * as Styled from "./Button.styled";
+import React from 'react';
+
+import * as Styled from './Button.styled';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  type?: React.ButtonHTMLAttributes<HTMLButtonElement>["type"];
-  disabled?: React.ButtonHTMLAttributes<HTMLButtonElement>["disabled"];
+  type?: React.ButtonHTMLAttributes<HTMLButtonElement>['type'];
+  disabled?: React.ButtonHTMLAttributes<HTMLButtonElement>['disabled'];
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   className?: string;
   children: React.ReactNode;
-  title?: React.ButtonHTMLAttributes<HTMLButtonElement>["title"];
+  title?: React.ButtonHTMLAttributes<HTMLButtonElement>['title'];
 }
 
 const Button = ({
-  type = "button",
+  type = 'button',
   disabled,
   className,
   onClick,

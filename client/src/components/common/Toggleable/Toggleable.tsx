@@ -1,6 +1,7 @@
 // cSpell:ignore Toggleable
-import React, { useImperativeHandle, useState } from "react";
-import { Box, Button } from "..";
+import React, { useImperativeHandle, useState } from 'react';
+
+import { Box, Button } from 'components/common';
 
 export interface ToggleableProps {
   isShowing?: boolean;
@@ -14,8 +15,8 @@ const Toggleable = React.forwardRef(
   (
     {
       isShowing = false,
-      showText = "Show",
-      hideText = "Hide",
+      showText = 'Show',
+      hideText = 'Hide',
       disabled = false,
       children,
     }: ToggleableProps,
@@ -25,7 +26,7 @@ const Toggleable = React.forwardRef(
 
     const handleToggle = (show?: boolean) => {
       setIsShow((prevShow) =>
-        show !== undefined && typeof show === "boolean" ? show : !prevShow
+        show !== undefined && typeof show === 'boolean' ? show : !prevShow
       );
     };
 

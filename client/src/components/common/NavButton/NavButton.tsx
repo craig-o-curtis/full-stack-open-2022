@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button } from '..';
-import { Box } from '../.';
 import { useNavigate } from 'react-router-dom';
+
+import { Box, Button } from 'components/common';
 
 interface NavButtonProps {
   route?: string;

@@ -1,5 +1,5 @@
-import { AuthRoute } from "../auth";
-import { Blogs } from "../components";
+import { AuthRoute } from 'auth';
+import { Blogs } from 'components';
 
 const AnecdotesRoute = () => (
   <AuthRoute>

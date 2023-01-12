@@ -3,4 +3,4 @@ export {
   useLocalStorage,
   useReadLocalStorage,
   useEventListener,
-} from "usehooks-ts";
+} from 'usehooks-ts';

@@ -1,6 +1,7 @@
-import React from "react";
-import { useFormContext } from "react-hook-form";
-import { Button } from "../";
+import React from 'react';
+import { useFormContext } from 'react-hook-form';
+
+import { Button } from 'components/common';
 
 interface FormSubmitButtonProps {
   disabled?: boolean;
@@ -12,7 +13,7 @@ const FormSubmitButton = ({ disabled, children }: FormSubmitButtonProps) => {
 
   return (
     <Button type="submit" disabled={!formState.isValid || disabled}>
-      {children ? children : "Submit"}
+      {children ? children : 'Submit'}
     </Button>
   );
 };

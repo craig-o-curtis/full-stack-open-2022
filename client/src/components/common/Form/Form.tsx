@@ -1,7 +1,9 @@
-import React from "react";
-import { useForm, FormProvider, FormState } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
-import FormStateWatcher from "../FormStateWatcher";
+import React from 'react';
+import { FormProvider, FormState, useForm } from 'react-hook-form';
+
+import { DevTool } from '@hookform/devtools';
+
+import FormStateWatcher from 'components/common/FormStateWatcher';
 
 interface FormProps {
   onSubmit: (values: any) => void;
@@ -19,7 +21,7 @@ const Form = ({
   children,
 }: FormProps) => {
   const methods = useForm({
-    mode: "onChange",
+    mode: 'onChange',
     shouldFocusError: true,
     delayError: 400,
   });
@@ -29,7 +31,7 @@ const Form = ({
       <form onSubmit={methods.handleSubmit(onSubmit)} autoComplete="off">
         {children}
       </form>
-      {debug && process.env.NODE_ENV === "development" && (
+      {debug && process.env.NODE_ENV === 'development' && (
         <DevTool control={methods.control} />
       )}
       {/* // TODO create hook if work */}

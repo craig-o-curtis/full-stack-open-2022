@@ -1,16 +1,17 @@
 import React from 'react';
+
 import {
   AppLoader,
   Banner,
+  Box,
   Heading,
   NavButton,
-  Box,
   Overflow,
   OverflowLock,
-} from '../common';
+} from 'components/common';
+
 import Counter from './Counter';
 import Rating from './Rating';
-
 import { StoreProvider } from './store';
 
 const Redux = () => {

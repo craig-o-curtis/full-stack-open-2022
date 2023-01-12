@@ -1,10 +1,12 @@
 // ** Simple implementation of React Query for easy server client state management
-import { useQuery } from "react-query";
-import axios from "axios";
-import { useAuthTokenConfig, AuthTokenConfig } from "./useAuthTokenConfig";
-import { apiBaseUrl } from "../../api";
+import { useQuery } from 'react-query';
 
-export const queryKey = "currentUserToken";
+import { apiBaseUrl } from 'api';
+import axios from 'axios';
+
+import { AuthTokenConfig, useAuthTokenConfig } from './useAuthTokenConfig';
+
+export const queryKey = 'currentUserToken';
 
 const getRefreshToken = async (config: AuthTokenConfig) => {
   if (!config) return;

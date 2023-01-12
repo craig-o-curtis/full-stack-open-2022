@@ -1,1 +1,2 @@
-export { default } from "./WarningIcon";
+// export { default } from "./WarningIcon";
+export {};

@@ -1,5 +1,5 @@
-import React from "react";
-import { Splash } from "../components";
+import React from 'react';
+import { Splash } from 'components';
 
 // todo do auth and protected route logic
 const SplashRoute = () => {

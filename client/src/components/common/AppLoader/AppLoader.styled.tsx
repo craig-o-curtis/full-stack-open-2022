@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import Box from "../Box";
+import styled from 'styled-components';
+
+import { Box } from 'components/common';
 
 export const AppLoaderWrapper = styled(Box)`
   height: 100%;
@@ -7,7 +8,7 @@ export const AppLoaderWrapper = styled(Box)`
 `;
 
 AppLoaderWrapper.defaultProps = {
-  position: "relative",
+  position: 'relative',
 };
 
 export const AppLoaderContainer = styled(Box)`
@@ -18,13 +19,13 @@ export const AppLoaderContainer = styled(Box)`
 `;
 
 AppLoaderContainer.defaultProps = {
-  position: "absolute",
+  position: 'absolute',
   top: 0,
   bottom: 0,
   left: 0,
   right: 0,
   flex: true,
-  flexDirection: "column",
-  alignItems: "center",
-  justifyContent: "center",
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
 };

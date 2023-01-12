@@ -1,4 +1,5 @@
 import { Provider } from 'react-redux';
+
 import { configuredStore } from './store';
 
 interface StoreProviderProps {

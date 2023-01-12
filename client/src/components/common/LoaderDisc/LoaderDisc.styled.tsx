@@ -1,8 +1,8 @@
 // ** inspired from https://codepen.io/AlexWarnes/pen/jXYYKL
-import styled, { keyframes } from "styled-components";
+import styled, { keyframes } from 'styled-components';
 
 const colors = {
-  border: "rgb(122, 231, 214)",
+  border: 'rgb(122, 231, 214)',
 };
 
 const gradients = {
