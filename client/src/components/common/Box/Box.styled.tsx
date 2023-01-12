@@ -1,6 +1,8 @@
-import styled, { css, FlattenSimpleInterpolation } from 'styled-components';
-import { BoxProps } from './Box.types';
+import styled, { FlattenSimpleInterpolation, css } from 'styled-components';
+
 import { spacing } from 'utils/styled';
+
+import { BoxProps } from './Box.types';
 
 const flexStyles = (props: BoxProps) => {
   const s: FlattenSimpleInterpolation[] = [];
@@ -268,8 +270,10 @@ const spacingStyles = (props: BoxProps) => {
   return s;
 };
 
-export const Box = styled.div<BoxProps>`
+const Box = styled.div<BoxProps>`
   ${flexStyles}
   ${positionStyles}
     ${spacingStyles}
 `;
+
+export default Box;

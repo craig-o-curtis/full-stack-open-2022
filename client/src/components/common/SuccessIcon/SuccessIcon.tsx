@@ -1,4 +1,5 @@
 import { AiFillCheckCircle } from 'react-icons/ai';
+
 import { Icon } from 'components/common';
 
 interface SuccessIconProps {

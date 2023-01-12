@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import courseData from 'data/courseData.json';
+
+import { Loader } from 'components/common';
+
 import { ICourse } from './Course.types';
 import CourseHeader from './CourseHeader';
-import { Loader } from 'components/common';
 import CourseParts from './CourseParts';
 import CourseTotals from './CourseTotals';
 

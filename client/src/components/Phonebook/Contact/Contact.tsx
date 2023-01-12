@@ -1,8 +1,11 @@
+import { IoMdContact } from 'react-icons/io';
+import { IoMdRemoveCircleOutline } from 'react-icons/io';
+
+import { Button } from 'components/common';
+
 import { IContact } from '../Contact.types';
 import * as Styled from './Contact.styled';
-import { IoMdContact } from 'react-icons/io';
-import { Button } from 'components/common';
-import { IoMdRemoveCircleOutline } from 'react-icons/io';
+
 interface ContactProps {
   disabled?: boolean;
   contact: IContact;

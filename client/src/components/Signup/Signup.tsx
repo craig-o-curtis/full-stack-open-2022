@@ -1,14 +1,18 @@
+import { NavLink, useNavigate } from 'react-router-dom';
+
+import { ISignupUser } from 'auth';
+
+import { useUserContext } from 'auth/AuthProvider';
+import { useSignupUserMutation } from 'auth/hooks';
+
 import {
   AppLoader,
   Form,
   FormControl,
   FormSubmitButton,
 } from 'components/common';
-import { NavLink, useNavigate } from 'react-router-dom';
-import { ISignupUser } from 'auth';
+
 import * as Styled from './Signup.styled';
-import { useSignupUserMutation } from 'auth/hooks';
-import { useUserContext } from 'auth/AuthProvider';
 
 const Signup = () => {
   const { mutateAsync: createUser, isLoading } = useSignupUserMutation();

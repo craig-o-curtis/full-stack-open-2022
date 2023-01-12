@@ -1,9 +1,12 @@
 import React from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
 import { AiOutlineUser } from 'react-icons/ai';
-import { Box, Button } from 'components/common';
-import * as Styled from './Home.styled';
+import { NavLink, useNavigate } from 'react-router-dom';
+
 import { useLogout } from 'auth';
+
+import { Box, Button } from 'components/common';
+
+import * as Styled from './Home.styled';
 
 const Home = () => {
   const logout = useLogout();

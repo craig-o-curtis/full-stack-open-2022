@@ -1,5 +1,11 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+
+import { ILoginUser } from 'auth';
+
+import { useUserContext } from 'auth/AuthProvider';
+import { useLoginUserMutation } from 'auth/hooks';
+
 import {
   AppLoader,
   Form,
@@ -8,9 +14,6 @@ import {
 } from 'components/common';
 
 import * as Styled from './Login.styled';
-import { useUserContext } from 'auth/AuthProvider';
-import { useLoginUserMutation } from 'auth/hooks';
-import { ILoginUser } from 'auth';
 
 const Login = () => {
   const { mutateAsync: loginUser, isLoading } = useLoginUserMutation();

@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import { CSSProperties } from 'react';
 
 type BoxNumberTuple = [
   first: number,
@@ -6,27 +6,27 @@ type BoxNumberTuple = [
   third?: number,
   fourth?: number
 ];
-export type Margin = number | "auto";
+export type Margin = number | 'auto';
 
 export interface BoxFlexProps {
-  flex?: boolean | CSSProperties["flex"];
-  flexDirection?: CSSProperties["flexDirection"];
-  justifyContent?: CSSProperties["justifyContent"];
-  alignItems?: CSSProperties["alignItems"];
-  alignContent?: CSSProperties["alignContent"];
-  alignSelf?: CSSProperties["alignSelf"];
-  flexWrap?: CSSProperties["flexWrap"];
-  flexGrow?: CSSProperties["flexGrow"];
-  flexShrink?: CSSProperties["flexShrink"];
-  flexBasis?: CSSProperties["flexBasis"];
+  flex?: boolean | CSSProperties['flex'];
+  flexDirection?: CSSProperties['flexDirection'];
+  justifyContent?: CSSProperties['justifyContent'];
+  alignItems?: CSSProperties['alignItems'];
+  alignContent?: CSSProperties['alignContent'];
+  alignSelf?: CSSProperties['alignSelf'];
+  flexWrap?: CSSProperties['flexWrap'];
+  flexGrow?: CSSProperties['flexGrow'];
+  flexShrink?: CSSProperties['flexShrink'];
+  flexBasis?: CSSProperties['flexBasis'];
 }
 
 export interface BoxPositionProps {
-  position?: CSSProperties["position"];
-  top?: CSSProperties["top"];
-  right?: CSSProperties["right"];
-  bottom?: CSSProperties["bottom"];
-  left?: CSSProperties["left"];
+  position?: CSSProperties['position'];
+  top?: CSSProperties['top'];
+  right?: CSSProperties['right'];
+  bottom?: CSSProperties['bottom'];
+  left?: CSSProperties['left'];
 }
 
 export interface BoxMarginProps {

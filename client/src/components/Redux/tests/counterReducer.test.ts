@@ -1,5 +1,6 @@
-import { counterSlice, CounterState } from '../store/counterSlice';
 import deepFreeze from 'deep-freeze';
+
+import { CounterState, counterSlice } from '../store/counterSlice';
 
 describe('counterReducer', () => {
   it('should handle initial state', () => {

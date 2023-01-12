@@ -13,4 +13,4 @@ export interface IPostBlogPayload {
   url: string;
 }
 
-export type IUpdateBlogPayload = Omit<IBlog, "id">;
+export type IUpdateBlogPayload = Omit<IBlog, 'id'>;

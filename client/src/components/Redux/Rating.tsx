@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { Box, Heading, Button } from 'components/common';
-import type { RootState } from './store/store';
+import { Box, Button, Heading } from 'components/common';
+
 import { useAppDispatch, useAppSelector } from './store';
 import { rate, reset } from './store/ratingSlice';
+import type { RootState } from './store/store';
 
 const Rating = () => {
   const rating = useAppSelector((state: RootState) => state.rating.value);

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button } from 'components/common';
 import { BsSortNumericDown, BsSortNumericUp } from 'react-icons/bs';
+
+import { Button } from 'components/common';
 
 interface SortByButtonProps {
   sortBy: 'ASC' | 'DESC';

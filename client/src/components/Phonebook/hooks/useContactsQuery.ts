@@ -1,8 +1,10 @@
 // ** Simple implementation of React Query for easy server client state management
 import { useQuery } from 'react-query';
-import axios from 'axios';
-import { IContact } from '../Contact.types';
+
 import { apiBaseUrl } from 'api';
+import axios from 'axios';
+
+import { IContact } from '../Contact.types';
 
 export const queryKey = 'Contacts';
 

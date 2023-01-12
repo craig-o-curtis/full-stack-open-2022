@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { Loader } from 'components/common';
+
 import * as Styled from './AppLoader.styled';
 
 interface AppLoaderWrapperProps {
@@ -9,14 +11,14 @@ interface AppLoaderWrapperProps {
 
 const AppLoader = ({ children, isLoading }: AppLoaderWrapperProps) => {
   return (
-    <Styled.AppLoaderWrapper>
+    <div>
       <>{children}</>
       {isLoading && (
         <Styled.AppLoaderContainer>
           <Loader />
         </Styled.AppLoaderContainer>
       )}
-    </Styled.AppLoaderWrapper>
+    </div>
   );
 };
 

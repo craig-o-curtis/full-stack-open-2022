@@ -1,5 +1,6 @@
-import { Box, Button } from 'components/common';
 import styled from 'styled-components';
+
+import { Box, Button } from 'components/common';
 
 const Bada55 = '#bada55';
 

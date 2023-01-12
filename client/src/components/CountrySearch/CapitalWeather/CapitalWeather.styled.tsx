@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 import { Heading } from '../../common';
 
 export const CapitalWeather = styled.div`

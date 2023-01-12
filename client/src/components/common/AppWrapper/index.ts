@@ -1,1 +1,1 @@
-export {AppWrapper as default } from './AppWrapper.styled';
+export { AppWrapper as default } from './AppWrapper.styled';

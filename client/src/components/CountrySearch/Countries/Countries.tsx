@@ -1,7 +1,9 @@
 import { useMemo } from 'react';
-import CountryDetail from '../CountryDetail';
-import { ICountry } from '../Country.types';
+
 import { Banner } from 'components/common';
+
+import { ICountry } from '../Country.types';
+import CountryDetail from '../CountryDetail';
 import * as Styled from './Countries.styled';
 
 interface CountriesProps {

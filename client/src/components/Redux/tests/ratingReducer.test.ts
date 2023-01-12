@@ -1,5 +1,6 @@
-import { ratingSlice, RatingState } from '../store/ratingSlice';
 import deepFreeze from 'deep-freeze';
+
+import { RatingState, ratingSlice } from '../store/ratingSlice';
 
 describe('ratingReducer', () => {
   it('should handle initial state', () => {

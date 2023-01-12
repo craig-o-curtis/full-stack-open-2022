@@ -1,5 +1,6 @@
-import React from "react";
-import * as Styled from "./Icon.styled";
+import React from 'react';
+
+import * as Styled from './Icon.styled';
 
 interface IconProps {
   size?: number;

@@ -1,7 +1,7 @@
-import * as Styled from "./Banner.styled";
+import * as Styled from './Banner.styled';
 
 interface ErrorProps {
-  variant: "success" | "danger" | "info" | "warning";
+  variant: 'success' | 'danger' | 'info' | 'warning';
   children: React.ReactNode;
 }
 

@@ -1,7 +1,7 @@
-import React, { useMemo } from "react";
+import React, { useMemo } from 'react';
 
-import { FeedbackType, FeedbackStat } from "./Feedback.types";
-import StatisticsTable from "./StatisticsTable";
+import { FeedbackStat, FeedbackType } from './Feedback.types';
+import StatisticsTable from './StatisticsTable';
 
 interface FeedbackStatisticsProps {
   stats: FeedbackStat;
@@ -35,9 +35,9 @@ const FeedbackStatistics = ({ stats }: FeedbackStatisticsProps) => {
         label: key,
         stat: value,
       })),
-      { label: "All", stat: total },
-      { label: "Average", stat: average },
-      { label: "Positive", stat: `${positive}%` },
+      { label: 'All', stat: total },
+      { label: 'Average', stat: average },
+      { label: 'Positive', stat: `${positive}%` },
     ];
   }, [average, positive, stats, total]);
 

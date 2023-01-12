@@ -1,5 +1,5 @@
-import * as Styled from "./StatisticLine.styled";
-import { TR, TD } from "./StatisticsTable.styled";
+import * as Styled from './StatisticLine.styled';
+import { TD, TR } from './StatisticsTable.styled';
 
 interface StatisticLineProps {
   label: string;
@@ -10,7 +10,7 @@ const StatisticLine = ({ label, stat }: StatisticLineProps) => {
   return (
     <TR>
       <TD>
-        <Styled.StrongUpper>{label}:</Styled.StrongUpper>{" "}
+        <Styled.StrongUpper>{label}:</Styled.StrongUpper>{' '}
       </TD>
       <TD>{stat}</TD>
     </TR>

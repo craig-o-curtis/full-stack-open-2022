@@ -1,5 +1,6 @@
-import { TiWarning } from "react-icons/ti";
-import * as Styled from "./NoContactsMessage.styled";
+import { TiWarning } from 'react-icons/ti';
+
+import * as Styled from './NoContactsMessage.styled';
 
 interface NoContactsProps {
   children: React.ReactNode;

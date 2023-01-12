@@ -1,22 +1,24 @@
 import { useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+
 import {
   AppLoader,
   Banner,
-  Heading,
   Box,
+  Heading,
   Overflow,
   OverflowLock,
 } from 'components/common';
+
 import AddContactForm from './AddContactForm';
-import Contacts from './Contacts';
 import { IContact } from './Contact.types';
+import Contacts from './Contacts';
 import FilterContacts from './FilterContacts';
 import {
-  useContactsQuery,
   useAddContactMutation,
-  useUpdateContactMutation,
+  useContactsQuery,
   useDeleteContactMutation,
+  useUpdateContactMutation,
 } from './hooks';
 
 // ** Completed extraction already for part-2.b Exercise 2.10

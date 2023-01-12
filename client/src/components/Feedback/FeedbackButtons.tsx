@@ -1,7 +1,11 @@
 import React from 'react';
+
 import styled from 'styled-components';
-import { FeedbackType } from './Feedback.types';
+
 import { Button } from 'components/common';
+
+import { FeedbackType } from './Feedback.types';
+
 interface FeedBackButtonsProps {
   onClick: (type: FeedbackType) => void;
 }

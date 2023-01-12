@@ -1,12 +1,12 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
-export type Variant = "success" | "danger" | "info" | "warning";
+export type Variant = 'success' | 'danger' | 'info' | 'warning';
 
 const variantMap: Record<Variant, string> = {
-  success: "forestgreen",
-  danger: "firebrick",
-  warning: "goldenrod",
-  info: "dodgerblue",
+  success: 'forestgreen',
+  danger: 'firebrick',
+  warning: 'goldenrod',
+  info: 'dodgerblue',
 };
 
 interface IconWrapperProps {
@@ -21,13 +21,13 @@ export const IconWrapper = styled.div<IconWrapperProps>`
   justify-content: center;
   align-items: center;
   font-size: ${(props) => `${props.size}rem`};
-  color: ${(props) => variantMap[props?.variant || "info"]};
+  color: ${(props) => variantMap[props?.variant || 'info']};
   margin-left: ${(props) => `${props.spacing}rem`};
   margin-right: ${(props) => `${props.spacing}rem`};
 `;
 
 IconWrapper.defaultProps = {
-  variant: "info",
+  variant: 'info',
   size: 1,
   spacing: 0.25,
 };

@@ -1,7 +1,9 @@
-import { AxiosRequestConfig } from "axios";
-import { useMemo } from "react";
-import { useUserContext } from "../AuthProvider";
-import { useLocalStorageCurrentUser } from "../hooks";
+import { useMemo } from 'react';
+
+import { AxiosRequestConfig } from 'axios';
+
+import { useUserContext } from '../AuthProvider';
+import { useLocalStorageCurrentUser } from '../hooks';
 
 export type AuthTokenConfig =
   | AxiosRequestConfig<any>

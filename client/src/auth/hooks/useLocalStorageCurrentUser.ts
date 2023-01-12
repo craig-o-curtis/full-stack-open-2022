@@ -1,7 +1,7 @@
-import { useLocalStorage, useReadLocalStorage } from "../../hooks";
-import { IAuthUser } from "../Auth.types";
+import { useLocalStorage, useReadLocalStorage } from '../../hooks';
+import { IAuthUser } from '../Auth.types';
 
-export const LS_USER_KEY = "uhel-fullstack2022currentUser";
+export const LS_USER_KEY = 'uhel-fullstack2022currentUser';
 
 export const useLocalStorageCurrentUser = (): {
   lsUser: IAuthUser | null;

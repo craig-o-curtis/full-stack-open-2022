@@ -1,15 +1,16 @@
 // ** Simple implementation of React Query for easy server client state management
+import toast from 'react-hot-toast';
 import {
   MutationFunction,
-  useMutation,
   UseMutationOptions,
+  useMutation,
   useQueryClient,
-} from "react-query";
-import axios from "axios";
-import { apiBaseUrl } from "../../api";
-import { queryKey } from "./useRefreshTokenQuery";
+} from 'react-query';
 
-import toast from "react-hot-toast";
+import { apiBaseUrl } from 'api';
+import axios from 'axios';
+
+import { queryKey } from './useRefreshTokenQuery';
 
 function errorHandler(error: any, defaultMessage: string) {
   if (error?.response?.data?.error) {

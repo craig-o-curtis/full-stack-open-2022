@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+
 // reducers
 import counterReducer from './counterSlice';
 import ratingReducer from './ratingSlice';

@@ -1,5 +1,7 @@
 import React, { useMemo, useState } from 'react';
-import { Heading, HR } from 'components/common';
+
+import { HR, Heading } from 'components/common';
+
 import Anecdote from './Anecdote';
 import TopAnecdote from './TopAnecdote';
 

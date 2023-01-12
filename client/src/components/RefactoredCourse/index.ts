@@ -1,1 +1,1 @@
-export { default } from "./RefactoredCourse";
+export { default } from './RefactoredCourse';

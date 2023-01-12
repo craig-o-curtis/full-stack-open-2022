@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { ICountry } from '../Country.types';
-import { Heading, Image, Button } from 'components/common';
+import React, { useEffect, useState } from 'react';
+
+import { Button, Heading, Image } from 'components/common';
+
 import CapitalWeather from '../CapitalWeather';
+import { ICountry } from '../Country.types';
 import * as Styled from './CountryDetail.styled';
 
 interface CountryDetailProps {

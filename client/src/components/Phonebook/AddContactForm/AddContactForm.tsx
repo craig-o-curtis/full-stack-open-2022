@@ -1,9 +1,11 @@
-import React, { useState, useMemo } from 'react';
-import { Button, WarningIcon, Box, Spacer } from 'components/common';
+import React, { useMemo, useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
+
+import { Box, Button, Spacer } from 'components/common';
+
+import { IContact } from '../Contact.types';
 import PhoneNumberInput from '../PhoneNumberInput';
 import * as Styled from './AddContactForm.styled';
-import { IContact } from '../Contact.types';
 
 interface AddContactFormProps {
   contacts: IContact[];
@@ -77,7 +79,7 @@ const AddContactForm = ({
                 ml={1}
                 my={0.5}
               >
-                <WarningIcon />
+                {/* <WarningIcon /> */}
               </Box>
             )}
           </Styled.InputWrapper>

@@ -1,5 +1,7 @@
 import { useMemo } from 'react';
-import { Heading, Loader, Banner, Image } from 'components/common';
+
+import { Banner, Heading, Image, Loader } from 'components/common';
+
 import { useWeatherQuery } from '../hooks';
 import * as Styled from './CapitalWeather.styled';
 

@@ -1,5 +1,7 @@
 import React from 'react';
+
 import { Heading } from 'components/common';
+
 import AnecdoteDisplay from './AnecdoteDisplay';
 
 interface TopAnecdoteProps {

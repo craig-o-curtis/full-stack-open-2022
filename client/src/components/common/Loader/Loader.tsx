@@ -1,5 +1,6 @@
 import React from 'react';
 import { ImSpinner9 } from 'react-icons/im';
+
 import styled, { keyframes } from 'styled-components';
 
 const loadAnimation = keyframes`

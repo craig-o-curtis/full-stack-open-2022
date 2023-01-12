@@ -1,9 +1,11 @@
 import React from 'react';
+
+import { Loader } from 'components/common';
+
 import { ICourse } from './Course.types';
 import Header from './Header';
 import Parts from './Parts';
 import Totals from './Totals';
-import { Loader } from 'components/common';
 
 // ** already declared as separate from app
 const RefactoredCourse = () => {
